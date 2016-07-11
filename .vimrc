@@ -88,11 +88,12 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:airline_theme='wombat'
 " Hide whitespace errors
 let g:airline#extensions#whitespace#enabled = 0
-" Left and right separators
-" Hide section A
-let g:airline_section_a = airline#section#create([])
-" Display only the name in section c
+" Display only the filename in section c
 let g:airline_section_c = airline#section#create(['%t'])
+" Display only the file encoding in section y
+let g:airline_section_y = airline#section#create(["%{strlen(&fenc)?&fenc:'none'}"])
+"Display only the line and column information in section z
+let g:airline_section_z = airline#section#create(['Line %04l of %04L Col: %02c'])
 
 " EXAMPLES FROM :help airline
 " let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
