@@ -1,5 +1,4 @@
 " Plgins for vim. Using VimPlug as the package manager
-
 call plug#begin('~/.vim/plugged')
 
 " Auto complete package
@@ -17,10 +16,10 @@ Plug 'easymotion/vim-easymotion'
 " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plug 'Raimondi/delimitMate'
 
-" git diff marks in gutter
+" Git diff marks in gutter
 Plug 'airblade/vim-gitgutter'
 
-" command-line fuzzy finder
+" Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 
 " Makes inserting multiple comments easy by text selection
@@ -32,8 +31,11 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GLOBAL SETTINGS FOR VIM
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use the deep-space color scheme located in the /colors folder
 syntax enable
@@ -64,8 +66,11 @@ set backspace=indent,eol,start
 set listchars=eol:¬,tab:\ \ ,extends:>,precedes:<
 set list
 
-" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Have NERDTree be open automatically when vim starts
 autocmd VimEnter * NERDTree
@@ -76,9 +81,7 @@ map <leader>j <Plug>(easymotion-j)
 map <leader>k <Plug>(easymotion-k)
 map <leader>h <Plug>(easymotion-linebackward)
 
-
-" Allow commenting and inverting empty lines (useful when commenting a
-" region)
+" Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
