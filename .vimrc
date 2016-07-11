@@ -30,6 +30,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 " Makes inserting multiple comments easy by text selection
 Plug 'scrooloose/nerdcommenter'
 
+" Plugin for a vim status bar and its themes. Automatically integrates compatible packages 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+
 call plug#end() 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -84,3 +89,24 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+
+" Use the wombat theme 
+let g:airline_theme='wombat'
+" Hide whitespace errors
+let g:airline#extensions#whitespace#enabled = 0
+" Left and right separators
+" Hide section A
+let g:airline_section_a = airline#section#create([])
+" Display only the name in section c
+let g:airline_section_c = airline#section#create(['%t'])
+
+" EXAMPLES FROM :help airline
+" let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
+" let g:airline_section_b       (hunks, branch)
+" let g:airline_section_c       (bufferline or filename)
+" let g:airline_section_gutter  (readonly, csv)
+" let g:airline_section_x       (tagbar, filetype, virtualenv)
+" let g:airline_section_y       (fileencoding, fileformat)
+" let g:airline_section_z       (percentage, line number, column number)
+" let g:airline_section_error   (ycm_error_count, syntastic, eclim)
+" let g:airline_section_warning (ycm_warning_count, whitespace)
