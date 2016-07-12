@@ -69,6 +69,9 @@ set backspace=indent,eol,start
 set listchars=eol:¬,tab:\ \ ,extends:>,precedes:<
 set list
 
+" Hide the default mode indicator. Do so because status bar will show current mode
+set noshowmode
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -89,9 +92,6 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-
-" Hide the default mode indicator
-set noshowmode
 
 " Get the right symbols for the status bar
 if !exists('g:airline_symbols')
