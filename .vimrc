@@ -98,6 +98,8 @@ if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
 
+" Using the font Meslo LG S Regular for Powerline which can be found here: https://github.com/powerline/fonts/tree/master/Meslo
+" It is also installed on my personal computer 
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
 let g:airline_symbols.branch = '⎇'
