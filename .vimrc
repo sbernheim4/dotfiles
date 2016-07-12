@@ -123,4 +123,3 @@ let g:airline_section_z = airline#section#create(['Line %04l of %04L Col: %02c']
 " let g:airline_section_z       (percentage, line number, column number)
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 " let g:airline_section_warning (ycm_warning_count, whitespace)
-
