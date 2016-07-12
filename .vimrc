@@ -25,6 +25,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 " Makes inserting multiple comments easy by text selection
 Plug 'scrooloose/nerdcommenter'
 
+" Run git commands from inside vim. Also displays the current branch in the status bar
+Plug 'tpope/vim-fugitive'
+
 " Plugin for a vim status bar and its themes. Automatically integrates compatible packages
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -87,6 +90,18 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+" Hide the default mode indicator
+set noshowmode
+
+" Get the right symbols for the status bar
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.branch = '⎇'
+
 " Use the wombat theme
 let g:airline_theme='wombat'
 " Hide whitespace errors
@@ -108,3 +123,4 @@ let g:airline_section_z = airline#section#create(['Line %04l of %04L Col: %02c']
 " let g:airline_section_z       (percentage, line number, column number)
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 " let g:airline_section_warning (ycm_warning_count, whitespace)
+
