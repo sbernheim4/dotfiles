@@ -1,4 +1,7 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plgins for vim. Using VimPlug as the package manager
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 call plug#begin('~/.vim/plugged')
 
 " Auto complete package
@@ -72,11 +75,12 @@ set list
 " Hide the default mode indicator. Do so because status bar will show current mode
 set noshowmode
 
-
+" Keep formatting when copying and pasting from an external source into vim using CMD+C --> CMD+V (EX: from chrome into vim)
+set paste
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Have NERDTree be open automatically when vim starts
 autocmd VimEnter * NERDTree
@@ -125,3 +129,4 @@ let g:airline_section_z = airline#section#create(['Line %04l of %04L Col: %02c']
 " let g:airline_section_z       (percentage, line number, column number)
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 " let g:airline_section_warning (ycm_warning_count, whitespace)
+
