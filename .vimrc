@@ -76,7 +76,7 @@ set list
 set noshowmode
 
 " Keep formatting when copying and pasting from an external source into vim using CMD+C --> CMD+V (EX: from chrome into vim)
-set paste
+map sp :set paste
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
