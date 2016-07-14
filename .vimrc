@@ -69,7 +69,7 @@ set backspace=indent,eol,start
 
 " Displays the eol character
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
-set listchars=eol:¬,tab:>.,extends:>,precedes:<
+set listchars=tab:▸.,eol:¬
 set list
 
 " Hide the default mode indicator. Do so because status bar will show current mode
@@ -77,7 +77,7 @@ set noshowmode
 
 " Keep formatting when copying and pasting from an external source into vim using CMD+C --> CMD+V (EX: from chrome into vim)
 map sp :set paste
-
+map snp :set nopaste
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
