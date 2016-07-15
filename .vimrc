@@ -69,7 +69,7 @@ set backspace=indent,eol,start
 
 " Displays the eol character
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
-set listchars=tab:▸.,eol:¬
+set listchars=tab:▸\ ,eol:¬
 set list
 
 " Hide the default mode indicator. Do so because status bar will show current mode
