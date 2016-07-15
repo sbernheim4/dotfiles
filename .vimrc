@@ -106,7 +106,11 @@ endif
 " It is also installed on my personal computer 
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
-let g:airline_symbols.branch = '⎇'
+" let g:airline_symbols.branch = '⎇'
+" Using the font octicons.otf which can be found in one of the comments here:
+" https://github.com/vim-airline/vim-airline/issues/237
+let g:airline_symbols.branch = ""
+
 
 " Use the wombat theme
 let g:airline_theme='wombat'
@@ -117,7 +121,7 @@ let g:airline_section_c = airline#section#create(['%t'])
 " Display only the file encoding in section y
 let g:airline_section_y = airline#section#create(["%{strlen(&fenc)?&fenc:'none'}"])
 "Display only the line and column information in section z
-let g:airline_section_z = airline#section#create(['Line %04l of %04L Col: %02c'])
+let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: %02c'])
 
 " EXAMPLES FROM :help airline
 " let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
@@ -129,4 +133,3 @@ let g:airline_section_z = airline#section#create(['Line %04l of %04L Col: %02c']
 " let g:airline_section_z       (percentage, line number, column number)
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 " let g:airline_section_warning (ycm_warning_count, whitespace)
-
