@@ -34,7 +34,7 @@ Plug 'tpope/vim-fugitive'
 " Plugin for a vim status bar and its themes. Automatically integrates compatible packages
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 
