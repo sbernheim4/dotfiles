@@ -10,9 +10,6 @@ Plug 'Valloric/YouCompleteMe'
 " Tree view package
 Plug 'scrooloose/nerdtree'
 
-" React JSX Syntax highlighting and indenting for vim
-Plug 'mxw/vim-jsx'
-
 " Easy way to naviagte to many different points on the current screen
 Plug 'easymotion/vim-easymotion'
 
@@ -34,7 +31,9 @@ Plug 'tpope/vim-fugitive'
 " Plugin for a vim status bar and its themes. Automatically integrates compatible packages
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'mattn/emmet-vim'
+
+" This plugin causes all trailing whitespace to be highlighted in red.
+Plug 'bronson/vim-trailing-whitespace'
 call plug#end()
 
 
@@ -75,9 +74,8 @@ set list
 " Hide the default mode indicator. Do so because status bar will show current mode
 set noshowmode
 
-" Keep formatting when copying and pasting from an external source into vim using CMD+C --> CMD+V (EX: from chrome into vim)
-map sp :set paste
-map snp :set nopaste
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -103,7 +101,7 @@ if !exists('g:airline_symbols')
 endif
 
 " Using the font Meslo LG S Regular for Powerline which can be found here: https://github.com/powerline/fonts/tree/master/Meslo
-" It is also installed on my personal computer 
+" It is also installed on my personal computer
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
 " let g:airline_symbols.branch = '⎇'
@@ -133,3 +131,5 @@ let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: 
 " let g:airline_section_z       (percentage, line number, column number)
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 " let g:airline_section_warning (ycm_warning_count, whitespace)
+
+map dws :FixWhitespace
