@@ -47,7 +47,7 @@ call plug#end()
 syntax enable
 set background=dark
 set t_Co=16
-colorscheme deep-space
+colorscheme onedark
 
 " Unbinds the arrow keys and makes them stop working
 noremap <UP> <NOP>
