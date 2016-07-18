@@ -1,14 +1,16 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plgins for vim. Using VimPlug as the package manager
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin('~/.vim/plugged')
 
 " Auto complete package
+" After running :PlugInstall cd to the YouCompleteMe folder and run ./install.sh
 Plug 'Valloric/YouCompleteMe'
 
 " Tree view package
 Plug 'scrooloose/nerdtree'
+
+" Makes inserting multiple comments easy by text selection
+Plug 'scrooloose/nerdcommenter'
 
 " Easy way to naviagte to many different points on the current screen
 Plug 'easymotion/vim-easymotion'
@@ -21,9 +23,6 @@ Plug 'airblade/vim-gitgutter'
 
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
-
-" Makes inserting multiple comments easy by text selection
-Plug 'scrooloose/nerdcommenter'
 
 " Run git commands from inside vim. Also displays the current branch in the status bar
 Plug 'tpope/vim-fugitive'
@@ -132,4 +131,5 @@ let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: 
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 " let g:airline_section_warning (ycm_warning_count, whitespace)
 
+" Type dws when in normal mode to run :FixWhitespace
 map dws :FixWhitespace
