@@ -1,3 +1,5 @@
+ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
+
 # Based on the great ys theme (http://ysmood.org/wp/2013/03/my-ys-terminal-theme/)
 
 # Machine name.
@@ -16,10 +18,11 @@ YS_VCS_PROMPT_DIRTY=" %{$fg[red]%}✖︎"
 YS_VCS_PROMPT_CLEAN=" %{$fg[green]%}✓"
 
 # Git info.
+# Edit 242 to change the highlight color of the branch
 local git_info='$(git_prompt_info)'
-ZSH_THEME_GIT_PROMPT_PREFIX="${YS_VCS_PROMPT_PREFIX1}git${YS_VCS_PROMPT_PREFIX2}"
+ZSH_THEME_GIT_PROMPT_PREFIX="${YS_VCS_PROMPT_PREFIX1}git${YS_VCS_PROMPT_PREFIX2}$BG[242]"
 ZSH_THEME_GIT_PROMPT_SUFFIX="$YS_VCS_PROMPT_SUFFIX"
-ZSH_THEME_GIT_PROMPT_DIRTY="$YS_VCS_PROMPT_DIRTY"
+ZSH_THEME_GIT_PROMPT_DIRTY="$BG[242]$YS_VCS_PROMPT_DIRTY$BG[242] "
 ZSH_THEME_GIT_PROMPT_CLEAN="$YS_VCS_PROMPT_CLEAN"
 
 # HG info
@@ -49,7 +52,7 @@ PROMPT="
 ${hg_info}\
 ${git_info} \
 %]
-%{$terminfo[bold]$fg[red]%}→→ %{$reset_color%}"
+%{$reset_color%}%{$terminfo[bold]$fg[red]%}→→ %{$reset_color%}"
 
 if [[ "$USER" == "root" ]]; then
 PROMPT="
