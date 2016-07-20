@@ -95,18 +95,25 @@ chsh -s $(which zsh)
 echo -e "${CYAN}******* Installing Vim Packages. ONCE VIM HAS FINISHED INSTALLING TYPE :q <ENTER> AND REPEAT UNTIL YOU RETURN TO THE SHELL.${NC}" 
 vim +PlugInstall
 
-YCM_PLUGIN=~/.vim/plugged/YouCompleteMe/
-
-if [ -d $YCM_PLUGIN ] ; then
-	cd $YCM_PLUGIN
-	source install.sh
-	cd ~
-fi
+cd ~/.vim/plugged/
+./install.sh
 
 echo
 echo
 echo
-echo -e "${CYAN}******* CONGRATS YOU'RE ALL SET UP. ENJOY!! ******* ${NC}" 
+
+echo "
+       ______                                __                                                                  
+      |      |.-----.-----.-----.----.---.-.|  |_.-----.                                                         
+      |   ---||  _  |     |  _  |   _|  _  ||   _|__ --|__                                                       
+      |______||_____|__|__|___  |__| |___._||____|_____|__|                                                      
+                    |_____|                                                                               
+      ___ ___               __                         __ __                   __                        __ __ 
+     |   |   |.-----.--.--.|  |.----.-----.    .---.-.|  |  |    .-----.-----.|  |_    .--.--.-----.    |  |  |
+     \     / |  _  |  |  | |_||   _|  -__|    |  _  ||  |  |    |__ --|  -__||   _|    |  |  |  _  |    |__|__|
+      |___|  |_____|_____|    |__| |_____|    |___._||__|__|    |_____|_____||____|    |_____|   __|    |__|__|
+                                                                                            |__|                 "
+
 echo
 echo
 echo
