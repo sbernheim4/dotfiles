@@ -133,4 +133,4 @@ let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: 
 " let g:airline_section_warning (ycm_warning_count, whitespace)
 
 " Type dws when in normal mode to run :FixWhitespace
-nnoremap dws :FixWhitespace
+" nnoremap dws :FixWhitespace
