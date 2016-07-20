@@ -20,4 +20,4 @@ NOTES
 	
 	./install.sh 
 
-and only keep the one in ~/ to avoid confusion. 
+...and only keep the one in ~/ to avoid confusion. 
