@@ -95,7 +95,7 @@ chsh -s $(which zsh)
 echo -e "${CYAN}******* Installing Vim Packages. ONCE VIM HAS FINISHED INSTALLING TYPE :q <ENTER> AND REPEAT UNTIL YOU RETURN TO THE SHELL.${NC}" 
 vim +PlugInstall
 
-cd ~/.vim/plugged/
+cd ~/.vim/plugged/YouCompleteMe/
 ./install.sh
 
 echo
