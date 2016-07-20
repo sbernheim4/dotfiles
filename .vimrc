@@ -71,7 +71,7 @@ set listchars=tab:▸\ ,eol:¬
 set list
 
 " Hide the default mode indicator. Do so because status bar will show current mode
-" set noshowmode
+set noshowmode
 
 " Wrap text on the screen appropriately (don't wrap in the middle of the word)
 :set wrap
