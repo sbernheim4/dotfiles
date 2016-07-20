@@ -90,7 +90,7 @@ echo -e "${GREEN}******* Changing default shell to ZSH *******${NC}"
 chsh -s $(which zsh)
 
 
-echo "${GREEN}******* Now you have to install the vim packages separately. Open a new terminal window and follow the instructions below"
+echo -e "${GREEN}******* Now you have to install the vim packages separately. Open a new terminal window and follow the instructions below"
 echo "Type"
 echo "vim"
 echo "And then hit the return key three times. Then type"
