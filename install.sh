@@ -88,7 +88,7 @@ cp ~/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
 
 # Shell settings
 echo -e "${CYAN}******* Changing default shell to ZSH *******${NC}"
-# chsh -s $(which zsh)
+chsh -s $(which zsh)
 
 
 
@@ -96,7 +96,7 @@ echo -e "${CYAN}******* Installing Vim Packages. ONCE VIM HAS FINISHED INSTALLIN
 # vim +PlugInstall
 
 cd ~/.vim/plugged/YouCompleteMe/
-# ./install.sh
+./install.sh
 
 echo
 echo
