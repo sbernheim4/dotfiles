@@ -1,10 +1,11 @@
 #!/bin/bash
 
-GREEN='\033[0;31m'
+RED='\033[0;31m'
 GREEN='\033[0;32m'
+CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
-echo -e "${GREEN}Beginning installation${NC}"
+echo -e "${CYAN}Beginning installation${NC}"
 
 cd ~/
 
@@ -14,11 +15,11 @@ cd ~/
 which -s brew
 if [[ $? != 0 ]] ; then
     # Install Homebrew
-    echo -e "${GREEN}******* Installing Homebrew *******${NC}"
+    echo -e "${CYAN}******* Installing Homebrew *******${NC}"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
 else
     # update homebrew
-    echo -e "${GREEN}******* Updating Homebrew *******${NC}"
+    echo -e "${CYAN}******* Updating Homebrew *******${NC}"
     brew update
 fi
 
@@ -30,7 +31,7 @@ brew install tmux
 
 
 # Actual dotfiles
-echo -e "${GREEN}******* Downloading dotfiles for vim, tmux *******${NC}"
+echo -e "${CYAN}******* Downloading dotfiles for vim, tmux *******${NC}"
 cd ~
 git clone https://github.com/sbernheim4/dotfiles.git
 cd ~
@@ -50,14 +51,14 @@ fi
 
 
 # Soft links
-echo -e "${GREEN}******* Creating soft links for dotfiles (.vimrc, .tmux.conf, .zshrc) *******${NC}"
+echo -e "${CYAN}******* Creating soft links for dotfiles (.vimrc, .tmux.conf, .zshrc) *******${NC}"
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 
 
 
 # Vim settings
-echo "${GREEN}******* Creating ~/.vim and ~/.vim/autoload and using Vim Plug for plugin manager for vim"
+echo "${CYAN}******* Creating ~/.vim and ~/.vim/autoload and using Vim Plug for plugin manager for vim"
 mkdir ~/.vim/
 cd .vim/
 mkdir autoload/
@@ -79,28 +80,33 @@ fi
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 
 # Install  oh-my-zsh
-echo -e "${GREEN}******* Installing oh-my-zsh *******${NC}"
+echo -e "${CYAN}******* Installing oh-my-zsh *******${NC}"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-echo -e "${GREEN}******* Moving honukai theme to ~/.oh-my-zsh/themes *******${NC}"
+echo -e "${CYAN}******* Moving honukai theme to ~/.oh-my-zsh/themes *******${NC}"
 cp ~/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
 
 # Shell settings
-echo -e "${GREEN}******* Changing default shell to ZSH *******${NC}"
+echo -e "${CYAN}******* Changing default shell to ZSH *******${NC}"
 chsh -s $(which zsh)
 
 
-echo -e "${GREEN}******* Now you have to install the vim packages separately. Open a new terminal window and follow the instructions below"
-echo "Type"
-echo "vim"
-echo "And then hit the return key three times. Then type"
-echo ":PlugInstall"
-echo "Then type"
-echo ":q"
-echo "And then hit the return key and then type"
-echo ":q"
-echo "And hit the return key again. Then, copy the line below and paste it in a new window and hit enter. Once it is done you will be all set up"
-echo "cd ~/.vim/plugged/YouCompleteMe; ./install.sh"
 
-echo -e "${GREEN}******* AFTER THAT YOU'RE ALL SET UP. ENJOY!! *******"
+echo -e "${CYAN}******* Installing Vim Packages. ONCE VIM HAS FINISHED INSTALLING TYPE :q <ENTER> AND REPEAT UNTIL YOU RETURN TO THE SHELL.${NC}" 
+vim +PlugInstall
 
+YCM_PLUGIN=~/.vim/plugged/YouCompleteMe/
+
+if [ -d $YCM_PLUGIN ] ; then
+	cd $YCM_PLUGIN
+	source install.sh
+	cd ~
+fi
+
+echo
+echo
+echo
+echo -e "${CYAN}******* CONGRATS YOU'RE ALL SET UP. ENJOY!! ******* ${NC}" 
+echo
+echo
+echo
