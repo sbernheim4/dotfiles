@@ -1,10 +1,10 @@
 #!/bin/bash
 
-RED='\033[0;31m'
+GREEN='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-echo -e "${RED}Beginning installation${NC}"
+echo -e "${GREEN}Beginning installation${NC}"
 
 cd ~/
 
@@ -14,11 +14,11 @@ cd ~/
 which -s brew
 if [[ $? != 0 ]] ; then
     # Install Homebrew
-    echo -e "${RED}******* Installing Homebrew *******${NC}"
+    echo -e "${GREEN}******* Installing Homebrew *******${NC}"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
 else
     # update homebrew
-    echo -e "${RED}******* Updating Homebrew *******${NC}"
+    echo -e "${GREEN}******* Updating Homebrew *******${NC}"
     brew update
 fi
 
@@ -30,7 +30,7 @@ brew install tmux
 
 
 # Actual dotfiles
-echo -e "${RED}******* Downloading dotfiles for vim, tmux *******${NC}"
+echo -e "${GREEN}******* Downloading dotfiles for vim, tmux *******${NC}"
 cd ~
 git clone https://github.com/sbernheim4/dotfiles.git
 cd ~
@@ -50,14 +50,14 @@ fi
 
 
 # Soft links
-echo -e "${RED}******* Creating soft links for dotfiles (.vimrc, .tmux.conf, .zshrc) *******${NC}"
+echo -e "${GREEN}******* Creating soft links for dotfiles (.vimrc, .tmux.conf, .zshrc) *******${NC}"
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 
 
 
 # Vim settings
-echo "${RED}******* Creating ~/.vim and ~/.vim/autoload and using Vim Plug for plugin manager for vim"
+echo "${GREEN}******* Creating ~/.vim and ~/.vim/autoload and using Vim Plug for plugin manager for vim"
 mkdir ~/.vim/
 cd .vim/
 mkdir autoload/
@@ -79,18 +79,18 @@ fi
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 
 # Install  oh-my-zsh
-echo -e "${RED}******* Installing oh-my-zsh *******${NC}"
+echo -e "${GREEN}******* Installing oh-my-zsh *******${NC}"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-echo -e "${RED}******* Moving honukai theme to ~/.oh-my-zsh/themes *******${NC}"
+echo -e "${GREEN}******* Moving honukai theme to ~/.oh-my-zsh/themes *******${NC}"
 cp ~/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
 
 # Shell settings
-echo -e "${RED}******* Changing default shell to ZSH *******${NC}"
+echo -e "${GREEN}******* Changing default shell to ZSH *******${NC}"
 chsh -s $(which zsh)
 
 
-echo "******* Now you have to install the vim packages separately. Open a new terminal window and follow the instructions below"
+echo "${GREEN}******* Now you have to install the vim packages separately. Open a new terminal window and follow the instructions below"
 echo "Type"
 echo "vim"
 echo "And then hit the return key three times. Then type"
