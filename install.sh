@@ -88,4 +88,13 @@ cp ~/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
 echo -e "${RED}******* Changing default shell to ZSH *******${NC}"
 chsh -s $(which zsh)
 
-echo -e "Please quit and reopen your terminal application"
+echo -e "${RED}******* Please quit and reopen your terminal application *******"
+
+echo "******* Now you have to install the vim packages separately. After opening your terminal application, type"
+echo "vim"
+echo "followed by"
+echo ":PlugInstall"
+echo "and all the vim plugins will be installed."
+
+echo "then run the following command"
+echo "cd ~/.vim/plugged/YouCompleteMe; ./install.sh"
