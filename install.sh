@@ -7,6 +7,8 @@ echo -e "${RED}Beginning installation${NC}"
 
 cd ~/
 
+
+# Brew stuff
 # check if Homebrew is installed
 which -s brew
 if [[ $? != 0 ]] ; then
@@ -19,17 +21,15 @@ else
     brew update
 fi
 
-# install vim, tmux and zsh on the system on top of any current exist files
+# install vim and tmux on the system on top of any current exist files
 # if any are already installed then nothing happens here
 brew install vim
 brew install tmux
-brew install zsh
 
-# install  oh-my-zsh
-echo -e "${RED}******* Installing oh-my-zsh *******${NC}"
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-echo -e "${RED}******* Downloading dotfiles for vim, tmux and zsh *******${NC}"
+
+# Actual dotfiles
+echo -e "${RED}******* Downloading dotfiles for vim, tmux *******${NC}"
 cd ~
 git clone https://github.com/sbernheim4/dotfiles.git
 cd ~
@@ -47,28 +47,44 @@ else
 fi
 
 
+
+# Soft links
+echo -e "${RED}******* Creating soft links for dotfiles (.vimrc, .tmux.conf, .zshrc) *******${NC}"
+ln -sf ~/dotfiles/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+
+
+
+# Vim settings
+echo "${RED}******* Creating ~/.vim and ~/.vim/autoload and using Vim Plug for plugin manager for vim"
+mkdir ~/.vim/
+cd .vim/
+mkdir autoload/
+mkdir colors/
+cd ~
+cp ~/dotfiles/plug.vim ~/.vim/autoload/
+cp ~/dotfiles/onedark.vim ~/.vim/colors/
+
+
+# ALL ZSH SETTINGS GO HERE
+brew install zsh
+
 if [ -e "${HOME}/.zshrc" ] ; then
 	echo -e "${HOME}/.zshrc"
 else
 	touch .zshrc
 fi
 
+ln -sf ~/dotfiles/.zshrc ~/.zshrc
+
+# Install  oh-my-zsh
+echo -e "${RED}******* Installing oh-my-zsh *******${NC}"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 echo -e "${RED}******* Moving honukai theme to ~/.oh-my-zsh/themes *******${NC}"
 cp ~/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
 
-echo -e "${RED}******* Creating soft links for dotfiles (.vimrc, .tmux.conf, .zshrc) *******${NC}"
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
-
-echo "${RED}******* Creating ~/.vim and ~/.vim/autoload and using Vim Plug for plugin manager for vim"
-mkdir ~/.vim/
-cd .vim/
-mkdir autoload/
-cd ~
-cp ~/dotfiles/plug.vim ~/.vim/autoload/
-
-
+# Shell settings
 echo -e "${RED}******* Changing default shell to ZSH *******${NC}"
 chsh -s $(which zsh)
 
