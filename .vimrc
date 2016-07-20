@@ -77,6 +77,9 @@ set noshowmode
 :set wrap
 :set linebreak
 
+set timeoutlen=1000 ttimeoutlen=0
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
