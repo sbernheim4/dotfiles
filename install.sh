@@ -1,6 +1,7 @@
 #!/bin/bash
 
 RED='\033[0;31m'
+GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 echo -e "${RED}Beginning installation${NC}"
@@ -88,7 +89,6 @@ cp ~/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
 echo -e "${RED}******* Changing default shell to ZSH *******${NC}"
 chsh -s $(which zsh)
 
-echo -e "${RED}******* Please quit and reopen your terminal application *******"
 
 echo "******* Now you have to install the vim packages separately. Open a new terminal window and follow the instructions below"
 echo "Type"
@@ -101,3 +101,6 @@ echo "And then hit the return key and then type"
 echo ":q"
 echo "And hit the return key again. Then, copy the line below and paste it in a new window and hit enter. Once it is done you will be all set up"
 echo "cd ~/.vim/plugged/YouCompleteMe; ./install.sh"
+
+echo -e "${GREEN}******* AFTER THAT YOU'RE ALL SET UP. ENJOY!! *******"
+
