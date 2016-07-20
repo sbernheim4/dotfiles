@@ -31,8 +31,6 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 
 echo -e "${RED}******* Downloading dotfiles for vim, tmux and zsh *******${NC}"
 cd ~
-mkdir Github-Projects
-cd Github-Projects
 git clone https://github.com/sbernheim4/dotfiles.git
 cd ~
 
@@ -59,12 +57,12 @@ echo -e "${RED}******* Changing default shell to ZSH *******${NC}"
 chsh -s $(which zsh)
 
 echo -e "${RED}******* Moving honukai theme to ~/.oh-my-zsh/themes *******${NC}"
-cp ~/Github-Projects/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
+cp ~/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
 
 echo -e "${RED}******* Creating soft links for dotfiles (.vimrc, .tmux.conf, .zshrc) *******${NC}"
-ln -sf ~/Github-Projects/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/Github-Projects/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/Github-Projects/dotfiles/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/.zshrc ~/.zshrc
 
 echo
 echo -e "Please quit and reopen your terminal application"
