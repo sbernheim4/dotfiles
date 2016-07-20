@@ -1,3 +1,5 @@
+ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
+
 # Based on the great ys theme (http://ysmood.org/wp/2013/03/my-ys-terminal-theme/)
 
 # Machine name.
@@ -17,10 +19,10 @@ YS_VCS_PROMPT_CLEAN=" %{$fg[green]%}✔"
 
 # Git info.
 local git_info='$(git_prompt_info)'
-ZSH_THEME_GIT_PROMPT_PREFIX="${YS_VCS_PROMPT_PREFIX1}git${YS_VCS_PROMPT_PREFIX2}"
+ZSH_THEME_GIT_PROMPT_PREFIX="${YS_VCS_PROMPT_PREFIX1}git${YS_VCS_PROMPT_PREFIX2} $BG[235] "
 ZSH_THEME_GIT_PROMPT_SUFFIX="$YS_VCS_PROMPT_SUFFIX"
-ZSH_THEME_GIT_PROMPT_DIRTY="$YS_VCS_PROMPT_DIRTY"
-ZSH_THEME_GIT_PROMPT_CLEAN="$YS_VCS_PROMPT_CLEAN"
+ZSH_THEME_GIT_PROMPT_DIRTY=" %{$reset_color%}$YS_VCS_PROMPT_DIRTY"
+ZSH_THEME_GIT_PROMPT_CLEAN=" $YS_VCS_PROMPT_CLEAN"
 
 # HG info
 local hg_info='$(ys_hg_prompt_info)'
@@ -39,8 +41,7 @@ ys_hg_prompt_info() {
 }
 
 # Prompt format: \n # USER at MACHINE in DIRECTORY on git:BRANCH STATE [TIME] \n $
-PROMPT="
-%{$terminfo[bold]$fg[blue]%}#%{$reset_color%} \
+PROMPT="%{$terminfo[bold]$fg[blue]%}#%{$reset_color%} \
 %{$fg[cyan]%}%n \
 %{$fg[white]%}at \
 %{$fg[green]%}$(box_name) \
@@ -49,7 +50,7 @@ PROMPT="
 ${hg_info}\
 ${git_info} \
 %]
-%{$terminfo[bold]$fg[red]%}→→ %{$reset_color%}"
+%{$terminfo[bold]$fg[red]%}→→ %{$reset_color%} "
 
 if [[ "$USER" == "root" ]]; then
 PROMPT="

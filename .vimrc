@@ -32,7 +32,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " This plugin causes all trailing whitespace to be highlighted in red.
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'bronson/vim-trailing-whitespace'
 call plug#end()
 
 
@@ -71,7 +71,7 @@ set listchars=tab:▸\ ,eol:¬
 set list
 
 " Hide the default mode indicator. Do so because status bar will show current mode
-set noshowmode
+" set noshowmode
 
 " Wrap text on the screen appropriately (don't wrap in the middle of the word)
 :set wrap
@@ -105,7 +105,6 @@ endif
 " It is also installed on my personal computer
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
-" let g:airline_symbols.branch = '⎇'
 " Using the font octicons.otf which can be found in one of the comments here:
 " https://github.com/vim-airline/vim-airline/issues/237
 let g:airline_symbols.branch = ""
@@ -134,4 +133,4 @@ let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: 
 " let g:airline_section_warning (ycm_warning_count, whitespace)
 
 " Type dws when in normal mode to run :FixWhitespace
-map dws :FixWhitespace
+nnoremap dws :FixWhitespace
