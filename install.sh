@@ -53,9 +53,6 @@ else
 	touch .zshrc
 fi
 
-echo -e "${RED}******* Changing default shell to ZSH *******${NC}"
-chsh -s $(which zsh)
-
 echo -e "${RED}******* Moving honukai theme to ~/.oh-my-zsh/themes *******${NC}"
 cp ~/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
 
@@ -64,5 +61,15 @@ ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 
-echo
+echo "${RED}******* Creating ~/.vim and ~/.vim/autoload and using Vim Plug for plugin manager for vim"
+mkdir ~/.vim/
+cd .vim/
+mkdir autoload/
+cd ~
+cp ~/dotfiles/plug.vim ~/.vim/autoload/
+
+
+echo -e "${RED}******* Changing default shell to ZSH *******${NC}"
+chsh -s $(which zsh)
+
 echo -e "Please quit and reopen your terminal application"
