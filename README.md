@@ -10,7 +10,8 @@ To install all the settings that my dotfiles have, all that is necessary is the 
 
 	./install.sh
 
-This will install everything that is need if it is not already installed and create symlinks between the ~/.vimrc, ,~/.tmux.conf and ~/.zshrc. 
+This will install brew, vim, tmux, zsh and oh-my-zsh. ZSH will be set to be the default shell. Additionally, symlinks will be set up for the .vimrc, .tmux.conf and .zshrc so that they will always point to the files in this repo so that any updates made to this repo can be easily pulled down and used without having to copy and paste. 
 
-NOTE: The script will clone this repo again and so really only the install.sh file is needed to get all the settings. 
-
+NOTES
+1. Your computer password will be necessary for the script to run. It is necessary to change the default shell to be zsh. 
+2. The install.sh file will clone the repo into ~/. If you have already clone this repo into ~/ nothing will be affected. This is done to ensure that the dotfiles are accessible at a universal location.
