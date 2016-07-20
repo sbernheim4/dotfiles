@@ -16,8 +16,4 @@ NOTES
 
 1. Your computer password will be necessary for the script to run. It is necessary to change the default shell to be zsh. 
 
-2. The install.sh file will clone the repo into ~/. If you have already clone this repo into ~/ nothing will be affected. This is done to ensure that the dotfiles are accessible at a universal location. If you cloned it into another folder, please delete that copy after running 
-	
-	./install.sh 
-
-...and only keep the one in ~/ to avoid confusion. 
+2. The install.sh file will clone the repo into ~/. If you have already clone this repo into ~/ nothing will be affected. This is done to ensure that the dotfiles are accessible at a universal location. If you cloned it into another folder, please delete that copy after running ./install.sh and only keep the one in ~/ to avoid confusion. 
