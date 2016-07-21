@@ -9,11 +9,11 @@ install_brew() {
 	which -s brew
 	if [[ $? != 0 ]] ; then
 		# Install Homebrew
-		# # echo -e "${CYAN}InstallingHomebrew${NC}"
+		# echo -e "${CYAN}Installing Homebrew${NC}"
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	else
 		# Update homebrew
-		# # echo -e "${CYAN}UpdatingHomebrew${NC}"
+		# echo -e "${CYAN}Updating Homebrew${NC}"
 		brew update > output.txt
 	fi
 }
@@ -22,6 +22,32 @@ download_dotfiles() {
 	# Actual dotfiles
 	# echo -e "${CYAN}Downloading dotfiles for vim, tmux${NC}"
 	git clone https://github.com/sbernheim4/dotfiles.git
+}
+
+install_vim() {
+	brew install vim
+
+	if [ ! -e ~/.vimrc ] ; then
+		touch .vimrc
+	fi
+	ln -sf ~/dotfiles/.vimrc ~/.vimrc
+
+	# # echo "${CYAN}Creating ~/.vim, ~/.vim/autoload and ~/.vim/colors and using Vim Plug for plugin manager for vim${NC}"
+	if [ ! -d ~/.vim ] ; then
+		mkdir ~/.vim/
+	fi
+
+	cd ~/.vim/
+	if [ ! -d ~/.vim/colors ] ; then
+		mkdir colors/
+	fi
+
+	if [ ! -d ~/.vim/autoload ] ; then
+		mkdir autoload
+	fi
+
+	cp ~/dotfiles/plug.vim ~/.vim/autoload/
+	cp ~/dotfiles/onedark.vim ~/.vim/colors/
 }
 
 install_tmux() {
@@ -34,39 +60,8 @@ install_tmux() {
 	ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 }
 
-install_vim() {
-
-	brew install vim
-
-	if [ ! -e ~/.vimrc ] ; then
-		touch .vimrc
-	fi
-
-	ln -sf ~/dotfiles/.vimrc ~/.vimrc
-
-	# echo "${CYAN}Creating ~/.vim, ~/.vim/autoload and ~/.vim/colors and using Vim Plug for plugin manager for vim${NC}"
-
-	if [ ! -d ~/.vim ] ; then
-		mkdir ~/.vim/
-	fi
-
-	cd ~/.vim/
-
-	if [ ! -d ~/.vim/colors ] ; then
-		mkdir colors/
-	fi
-
-	if [ ! -d ~/.vim/autoload ] ; then
-		mkdir autoload
-	fi
-
-	cp ~/dotfiles/plug.vim ~/.vim/autoload/ > output.txt
-	cp ~/dotfiles/onedark.vim ~/.vim/colors/ > output.txt
-}
-
 install_zsh() {
-
-	brew install zsh > output.txt
+	brew install zsh
 
 	if [ ! -e ~/.zshrc ] ; then
 		touch .zshrc
@@ -76,7 +71,7 @@ install_zsh() {
 
 	# Install  oh-my-zsh
 	# echo -e "${CYAN}Installing oh-my-zsh${NC}"
-	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" > output.txt
+	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 	# Move theme
 	# echo -e "${CYAN}Moving honukai theme to ~/.oh-my-zsh/themes${NC}"
@@ -84,13 +79,13 @@ install_zsh() {
 
 	# Change default shell to be zsh
 	# echo -e "${CYAN}Changing default shell to ZSH${NC}"
-	chsh -s $(which zsh) > output.txt
+	chsh -s $(which zsh)
 }
 
 #Main
 # echo -e "${CYAN}Beginning installation${NC}"
 
-$(install_brew)
+#$(install_brew)
 cd ~
 $(download_dotfiles)
 cd ~
@@ -101,11 +96,12 @@ cd ~
 $(install_tmux)
 cd ~
 
+brew install cmake
 vim +PlugInstall
 cd ~/.vim/plugged/YouCompleteMe/
 ./install.sh
 
-echo -e "${GREEN}
+# echo -e "${GREEN}
 	 _________                                     __           ._.
 	\_   ___ \  ____   ____    ________________ _/  |_  ______ | |
 	/    \  \/ /  _ \ /    \  / ___\_  __ \__  \\   __\/  ___/ | |
