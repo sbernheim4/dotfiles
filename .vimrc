@@ -106,8 +106,8 @@ endif
 
 " Using the font Meslo LG S Regular for Powerline which can be found here: https://github.com/powerline/fonts/tree/master/Meslo
 " It is also installed on my personal computer
-let g:airline_left_sep = '⇒'
-let g:airline_right_sep = '⇐'
+let g:airline_left_sep = '⇒ '
+let g:airline_right_sep = '⇐ '
 " ▶   ◀"
 " ⇛   ⇚ 
 " Using the font octicons.otf which can be found in one of the comments here:
