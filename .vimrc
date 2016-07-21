@@ -108,6 +108,8 @@ endif
 " It is also installed on my personal computer
 let g:airline_left_sep = '⇒'
 let g:airline_right_sep = '⇐'
+" ▶   ◀"
+" ⇛   ⇚ 
 " Using the font octicons.otf which can be found in one of the comments here:
 " https://github.com/vim-airline/vim-airline/issues/237
 let g:airline_symbols.branch = ""
