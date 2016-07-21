@@ -21,11 +21,11 @@ install_brew() {
 download_dotfiles() {
 	# Actual dotfiles
 	# echo -e "${CYAN}Downloading dotfiles for vim, tmux${NC}"
-	git clone https://github.com/sbernheim4/dotfiles.git > output.txt
+	git clone https://github.com/sbernheim4/dotfiles.git
 }
 
 install_tmux() {
-	brew install tmux > output.txt
+	brew install tmux
 
 	if [ ! -e "~/.tmux.conf" ] ; then
 		touch .tmux.conf
@@ -36,9 +36,9 @@ install_tmux() {
 
 install_vim() {
 
-	brew install vim > output.txt
+	brew install vim
 
-	if [ ! -e "~/.vimrc" ] ; then
+	if [ ! -e ~/.vimrc ] ; then
 		touch .vimrc
 	fi
 
@@ -46,17 +46,17 @@ install_vim() {
 
 	# echo "${CYAN}Creating ~/.vim, ~/.vim/autoload and ~/.vim/colors and using Vim Plug for plugin manager for vim${NC}"
 
-	if [! -d "~/.vim" ] ; then
+	if [ ! -d ~/.vim ] ; then
 		mkdir ~/.vim/
 	fi
 
 	cd ~/.vim/
 
-	if [ ! -d "~/.vim/colors" ] ; then
+	if [ ! -d ~/.vim/colors ] ; then
 		mkdir colors/
 	fi
 
-	if [ ! -d "~/.vim/autoload" ] ; then
+	if [ ! -d ~/.vim/autoload ] ; then
 		mkdir autoload
 	fi
 
@@ -68,7 +68,7 @@ install_zsh() {
 
 	brew install zsh > output.txt
 
-	if [ ! -e "~/.zshrc" ] ; then
+	if [ ! -e ~/.zshrc ] ; then
 		touch .zshrc
 	fi
 
@@ -87,15 +87,6 @@ install_zsh() {
 	chsh -s $(which zsh) > output.txt
 }
 
-install_vim_packages() {
-	# echo -e "${CYAN}Installing Vim Packages. O${NC}E VIM HAS FINISHED INSTALLING TYPE :q <ENTER> AND REPEAT UNTIL YOU RETURN TO THE SHELL.${NC}"
-	vim +PlugInstall
-
-	cd ~/.vim/plugged/YouCompleteMe/
-	./install.sh > output.txt
-}
-
-
 #Main
 # echo -e "${CYAN}Beginning installation${NC}"
 
@@ -109,6 +100,10 @@ $(install_zsh)
 cd ~
 $(install_tmux)
 cd ~
+
+vim +PlugInstall
+cd ~/.vim/plugged/YouCompleteMe/
+./install.sh
 
 echo -e "${GREEN}
 	 _________                                     __           ._.
