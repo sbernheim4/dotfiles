@@ -119,6 +119,7 @@ install_zsh() {
 }
 
 #Main
+
 echo -e "${CYAN}Beginning installation${NC}"
 echo
 
@@ -138,13 +139,13 @@ if [ $? != 0 ] ; then
 	brew install cmake
 fi
 
-# vim +PlugInstall
-# cd ~/.vim/plugged/YouCompleteMe/
+vim +PlugInstall
+cd ~/.vim/plugged/YouCompleteMe/
 echo "Installing a vim package. Please wait"
 echo
-# touch ~/delete.txt
-# ./install.sh > delete.txt
-# rm ~/delete.txt
+touch ~/delete.txt
+./install.sh > delete.txt
+rm ~/delete.txt
 echo "Package Installed"
 
 
