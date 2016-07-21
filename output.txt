@@ -1,3 +1,0 @@
-Updated 1 tap (homebrew/core).
-==> Updated Formulae
-glide

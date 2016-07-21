@@ -9,18 +9,21 @@ install_brew() {
 	which -s brew
 	if [[ $? != 0 ]] ; then
 		# Install Homebrew
-		# echo -e "${CYAN}Installing Homebrew${NC}"
+		echo -e "${CYAN}Installing Homebrew${NC}"
+		echo
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	else
 		# Update homebrew
-		# echo -e "${CYAN}Updating Homebrew${NC}"
-		brew update > output.txt
+		echo -e "${CYAN}Updating Homebrew${NC}"
+		echo
+		brew update
 	fi
 }
 
 download_dotfiles() {
 	# Actual dotfiles
-	# echo -e "${CYAN}Downloading dotfiles for vim, tmux${NC}"
+	echo -e "${CYAN}Downloading dotfiles for vim, tmux${NC}"
+	echo
 	git clone https://github.com/sbernheim4/dotfiles.git
 }
 
@@ -36,7 +39,7 @@ install_vim() {
 	fi
 	ln -sf ~/dotfiles/.vimrc ~/.vimrc
 
-	# # echo "${CYAN}Creating ~/.vim, ~/.vim/autoload and ~/.vim/colors and using Vim Plug for plugin manager for vim${NC}"
+	# echo "${CYAN}Creating ~/.vim, ~/.vim/autoload and ~/.vim/colors and using Vim Plug for plugin manager for vim${NC}"
 	if [ ! -d ~/.vim ] ; then
 		mkdir ~/.vim/
 	fi
@@ -57,9 +60,10 @@ install_vim() {
 install_tmux() {
 	which -s tmux
 	if [ $? != 0 ] ; then
-		brew install zsh
+		brew install tmux
 	else
 		echo "tmux is already installed"
+		echo
 	fi
 
 
@@ -77,6 +81,7 @@ install_zsh() {
 		brew install zsh
 	else
 		echo "zsh is already installed"
+		echo
 	fi
 
 	if [ ! -e ~/.zshrc ] ; then
@@ -86,33 +91,38 @@ install_zsh() {
 	ln -sf ~/dotfiles/.zshrc ~/.zshrc
 
 	# Install  oh-my-zsh
-	# echo -e "${CYAN}Installing oh-my-zsh${NC}"
+	echo -e "${CYAN}Installing oh-my-zsh${NC}"
 	ls -a | grep .oh-my-zsh
 	if [ $? != 0 ] ; then
         sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	else
-        echo "OH MY ZSH IS INSTALLED"
+        echo "oh-my-zsh is already installed"
+		echo
 	fi
 
 	# Move theme
-	# echo -e "${CYAN}Moving honukai theme to ~/.oh-my-zsh/themes${NC}"
+	echo -e "${CYAN}Moving honukai theme to ~/.oh-my-zsh/themes${NC}"
+	echo
 	cp ~/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
 
 	# Change default shell to be zsh
-	# echo -e "${CYAN}Changing default shell to ZSH${NC}"
+	echo -e "${CYAN}Changing default shell to ZSH${NC}"
+	echo
 
 	which -s zsh
 	if [ $? == "-zsh" ] ; then
 		chsh -s $(which zsh)
 	else
 		echo "ZSH is the default shell"
+		echo
 	fi
 }
 
 #Main
-# echo -e "${CYAN}Beginning installation${NC}"
+echo -e "${CYAN}Beginning installation${NC}"
+echo
 
-#$(install_brew)
+$(install_brew)
 cd ~
 $(download_dotfiles)
 cd ~
@@ -128,9 +138,15 @@ if [ $? != 0 ] ; then
 	brew install cmake
 fi
 
-vim +PlugInstall
-cd ~/.vim/plugged/YouCompleteMe/
-./install.sh
+# vim +PlugInstall
+# cd ~/.vim/plugged/YouCompleteMe/
+echo "Installing a vim package. Please wait"
+echo
+# touch ~/delete.txt
+# ./install.sh > delete.txt
+# rm ~/delete.txt
+echo "Package Installed"
+
 
 echo -e "${GREEN}
 	 _________                                     __           ._.
