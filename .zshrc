@@ -86,4 +86,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# alias hist = "history | awk \'{ $1=\"\"; print $0 }\' | sort | awk \'{ print $1 }\' | uniq -c | sort -n | tail -n 25"
+alias kin=cd\ ~/Github-Projects/kinetic-web
+
+export NVM_DIR="/Users/samuelbernheim/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

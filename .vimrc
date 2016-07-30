@@ -32,7 +32,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " This plugin causes all trailing whitespace to be highlighted in red.
-" Plug 'bronson/vim-trailing-whitespace'
+Plug 'bronson/vim-trailing-whitespace'
 call plug#end()
 
 
@@ -65,9 +65,10 @@ set tabstop=4
 " Allow the backspace button to work as normal
 set backspace=indent,eol,start
 
+" ▸•
 " Displays the eol character
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:•\ ,eol:¬
 set list
 
 " Hide the default mode indicator. Do so because status bar will show current mode
@@ -78,7 +79,6 @@ set noshowmode
 :set linebreak
 
 set timeoutlen=1000 ttimeoutlen=0
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
