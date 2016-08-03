@@ -90,3 +90,5 @@ alias kin=cd\ ~/Github-Projects/kinetic-web
 
 export NVM_DIR="/Users/samuelbernheim/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
