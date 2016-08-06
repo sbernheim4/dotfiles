@@ -26,6 +26,8 @@ Plug 'airblade/vim-gitgutter'
 " This plugin causes all trailing whitespace to be highlighted in red.
 Plug 'bronson/vim-trailing-whitespace'
 
+Plug 'tpope/vim-fugitive'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -34,6 +36,9 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GLOBAL SETTINGS FOR VIM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Make the leader key , instead of the default \
+let mapleader=","
+
 
 " Use the deep-space color scheme located in the /colors folder
 syntax enable
@@ -70,9 +75,6 @@ noremap <RIGHT> <NOP>
 " Shows line numbers by default when opening files
 set number
 
-" Make the leader key , instead of the default \
- let mapleader = ","
-
 " Set the tab stop to 4
 set tabstop=4
 
@@ -102,10 +104,10 @@ set noshowmode
 autocmd VimEnter * NERDTree
 
 " Run easymotion commands in a direction --> based off of hjkl
-map <leader>l <Plug>(easymotion-lineforward)
-map <leader>j <Plug>(easymotion-j)
-map <leader>k <Plug>(easymotion-k)
-map <leader>h <Plug>(easymotion-linebackward)
+noremap <leader>l <Plug>(easymotion-lineforward)
+noremap <leader>j <Plug>(easymotion-j)
+noremap <leader>k <Plug>(easymotion-k)
+noremap <leader>h <Plug>(easymotion-linebackward)
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
@@ -122,4 +124,37 @@ let g:NERDTrimTrailingWhitespace = 1
 " Type dws when in normal mode to run :FixWhitespace
 nnoremap dws :FixWhitespace
 
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+" Using the font Meslo LG S Regular for Powerline which can be found here:
+" https://github.com/powerline/fonts/tree/master/Meslo
+" It is also installed on my personal computer
+" Using the font octicons.otf which can be found in one of the comments here:
+" https://github.com/vim-airline/vim-airline/issues/237
+
+set timeoutlen=20
+
 let g:airline_theme='one'
+let g:airline_symbols.branch = ""
+" Hide whitespace errors
+let g:airline#extensions#whitespace#enabled = 0
+" Display only the filename in section c
+let g:airline_section_c = airline#section#create(['%t'])
+"  Display only the file encoding in section y
+let g:airline_section_y = airline#section#create(["%{strlen(&fenc)?&fenc:'none'}"])
+" Display only the line and column information in section z
+let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: %02c'])
+"
+" EXAMPLES FROM :help airline
+" let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
+" let g:airline_section_b       (hunks, branch)
+" let g:airline_section_c       (bufferline or filename)
+" let g:airline_section_gutter  (readonly, csv)
+" let g:airline_section_x       (tagbar, filetype, virtualenv)
+" let g:airline_section_y       (fileencoding, fileformat)
+" let g:airline_section_z       (percentage, line number, column number)
+" let g:airline_section_error   (ycm_error_count, syntastic, eclim)
+" let g:airline_section_warning (ycm_warning_count, whitespace)])
