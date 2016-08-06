@@ -94,7 +94,7 @@ set noshowmode
 :set wrap
 :set linebreak
 
-" set timeoutlen=1000 ttimeoutlen=0
+set timeoutlen=1000 ttimeoutlen=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
@@ -104,10 +104,10 @@ set noshowmode
 autocmd VimEnter * NERDTree
 
 " Run easymotion commands in a direction --> based off of hjkl
-noremap <leader>l <Plug>(easymotion-lineforward)
-noremap <leader>j <Plug>(easymotion-j)
-noremap <leader>k <Plug>(easymotion-k)
-noremap <leader>h <Plug>(easymotion-linebackward)
+map <leader>l <Plug>(easymotion-lineforward)
+map <leader>j <Plug>(easymotion-j)
+map <leader>k <Plug>(easymotion-k)
+map <leader>h <Plug>(easymotion-linebackward)
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
@@ -134,8 +134,6 @@ endif
 " It is also installed on my personal computer
 " Using the font octicons.otf which can be found in one of the comments here:
 " https://github.com/vim-airline/vim-airline/issues/237
-
-set timeoutlen=20
 
 let g:airline_theme='one'
 let g:airline_symbols.branch = ""
