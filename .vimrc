@@ -94,6 +94,8 @@ set noshowmode
 :set wrap
 :set linebreak
 
+" Fix to make sure switching from insert mode to normal mode is fast but that
+" easy motion is still possible I think because of the ttimeoutlen=0
 set timeoutlen=1000 ttimeoutlen=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
