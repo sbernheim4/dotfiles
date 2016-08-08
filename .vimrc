@@ -39,8 +39,6 @@ call plug#end()
 " Make the leader key , instead of the default \
 let mapleader=","
 
-
-" Use the deep-space color scheme located in the /colors folder
 syntax enable
 " set t_Co=16
 
@@ -60,11 +58,9 @@ if (empty($TMUX))
   endif
 endif
 
-
 set background=dark " for the dark version
 " set background=light " for the light version
 colorscheme one
-
 
 " Unbinds the arrow keys and makes them stop working
 noremap <UP> <NOP>
@@ -72,27 +68,32 @@ noremap <DOWN> <NOP>
 noremap <LEFT> <NOP>
 noremap <RIGHT> <NOP>
 
+" Toggle paste mode
+nnoremap <leader>a :set paste!
+
+" Toggle wrap mode
+nnoremap <leader>wr :set wrap!
+" Wrap text on the screen appropriately (don't wrap in the middle of the word)
+:set linebreak
+
 " Shows line numbers by default when opening files
 set number
 
 " Set the tab stop to 4
 set tabstop=4
+" Helps with autoindenting when using =
+set dhiftwidth=4
 
 " Allow the backspace button to work as normal
 set backspace=indent,eol,start
 
-" ▸•
 " Displays the eol character
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
 set listchars=tab:•\ ,eol:¬
 set list
 
-" Hide the default mode indicator. Do so because status bar will show current mode
+" Hide the default mode indicator. Do so because airline will  show the current mode
 set noshowmode
-
-" Wrap text on the screen appropriately (don't wrap in the middle of the word)
-:set wrap
-:set linebreak
 
 " Fix to make sure switching from insert mode to normal mode is fast but that
 " easy motion is still possible I think because of the ttimeoutlen=0
@@ -104,6 +105,9 @@ set timeoutlen=1000 ttimeoutlen=0
 
 " Have NERDTree be open automatically when vim starts
 autocmd VimEnter * NERDTree
+
+" Typing nerd opens NERDTree
+nnoremap nerd :NERDTree<CR>
 
 " Run easymotion commands in a direction --> based off of hjkl
 map <leader>l <Plug>(easymotion-lineforward)
@@ -126,7 +130,6 @@ let g:NERDTrimTrailingWhitespace = 1
 " Type dws when in normal mode to run :FixWhitespace
 nnoremap dws :FixWhitespace
 
-
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
@@ -139,14 +142,18 @@ endif
 
 let g:airline_theme='one'
 let g:airline_symbols.branch = ""
+let g:airline_symbols.paste = 'Þ'
+
 " Hide whitespace errors
 let g:airline#extensions#whitespace#enabled = 0
 " Display only the filename in section c
 let g:airline_section_c = airline#section#create(['%t'])
+" Display the file type in section x
+let g:airline_section_x = airline#section#create(['%y'])
 "  Display only the file encoding in section y
 let g:airline_section_y = airline#section#create(["%{strlen(&fenc)?&fenc:'none'}"])
 " Display only the line and column information in section z
-let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: %02c'])
+let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: %03c'])
 "
 " EXAMPLES FROM :help airline
 " let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
