@@ -140,14 +140,13 @@ if [ $? != 0 ] ; then
 fi
 
 vim +PlugInstall
-cd ~/.vim/plugged/YouCompleteMe/
-echo "Installing a vim package. Please wait"
+#cd ~/.vim/plugged/YouCompleteMe/
+#echo "Installing a vim package. Please wait"
 echo
 touch ~/delete.txt
 ./install.sh > delete.txt
 rm ~/delete.txt
-echo "Package Installed"
-
+#echo "Package Installed"
 
 echo -e "${GREEN}
 	 _________                                     __           ._.
