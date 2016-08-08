@@ -82,7 +82,7 @@ set number
 " Set the tab stop to 4
 set tabstop=4
 " Helps with autoindenting when using =
-set dhiftwidth=4
+set shiftwidth=4
 
 " Allow the backspace button to work as normal
 set backspace=indent,eol,start
@@ -92,7 +92,7 @@ set backspace=indent,eol,start
 set listchars=tab:•\ ,eol:¬
 set list
 
-" Hide the default mode indicator. Do so because airline will  show the current mode
+" Hide the default mode indicator. Do so because airline will show the current mode
 set noshowmode
 
 " Fix to make sure switching from insert mode to normal mode is fast but that
