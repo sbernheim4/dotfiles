@@ -142,7 +142,7 @@ endif
 
 let g:airline_theme='one'
 let g:airline_symbols.branch = ""
-let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = "Þ"
 
 " Hide whitespace errors
 let g:airline#extensions#whitespace#enabled = 0

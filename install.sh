@@ -54,7 +54,7 @@ install_vim() {
 	fi
 
 	cp ~/dotfiles/plug.vim ~/.vim/autoload/
-	cp ~/dotfiles/onedark.vim ~/.vim/colors/
+	cp ~/dotfiles/one.vim ~/.vim/colors/
 }
 
 install_tmux() {
