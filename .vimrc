@@ -69,10 +69,10 @@ noremap <LEFT> <NOP>
 noremap <RIGHT> <NOP>
 
 " Toggle paste mode
-nnoremap <leader>a :set paste!
+nnoremap <leader>a :set paste!<CR>
 
 " Toggle wrap mode
-nnoremap <leader>wr :set wrap!
+nnoremap <leader>wr :set wrap!<CR>
 " Wrap text on the screen appropriately (don't wrap in the middle of the word)
 :set linebreak
 
