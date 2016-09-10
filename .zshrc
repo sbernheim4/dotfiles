@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-# Run spectrum_ls to see a list of colors zsh can easily produce and 
+# Run spectrum_ls to see a list of colors zsh can easily produce and
 # which can be used in a theme
 ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
 
@@ -88,8 +88,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias kin=cd\ ~/Github-Projects/kinetic-web
 alias sub="open -a 'Sublime Text'"
+alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 3"
 
 export NVM_DIR="/Users/samuelbernheim/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export TERM=xterm-256color
