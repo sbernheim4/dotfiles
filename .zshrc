@@ -89,10 +89,13 @@ source $ZSH/oh-my-zsh.sh
 alias kin=cd\ ~/Github-Projects/kinetic-web
 alias sub="open -a 'Sublime Text'"
 alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 3"
-
+alias res="cd ~/Github-Projects/Resume/; atom .; gulp"
+alias gitproj="cd ~/Github-Projects"
+alias site="cd Github-Projects/sbernheim4.github.io"
 export NVM_DIR="/Users/samuelbernheim/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export TERM=xterm-256color
+export PATH="/usr/local/sbin:$PATH"

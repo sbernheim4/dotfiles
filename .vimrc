@@ -62,7 +62,7 @@ endif
 
 set background=dark " for the dark version
 " set background=light " for the light version
-colorscheme one
+colorscheme mod8
 
 " Unbinds the arrow keys and makes them stop working
 noremap <UP> <NOP>
