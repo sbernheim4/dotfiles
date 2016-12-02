@@ -110,6 +110,9 @@ set timeoutlen=1000 ttimeoutlen=0
 
 set laststatus=2
 
+" Toggle highlighting of search results
+nnoremap <leader>hl :set hlsearch<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
