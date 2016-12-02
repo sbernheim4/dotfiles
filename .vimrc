@@ -31,6 +31,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" Allows ctrl-p fuzzy file searching
+Plug 'ctrlpvim/ctrlp.vim'
+
 " Fuzzy Finder for files in vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 call plug#end()
@@ -83,6 +86,7 @@ set number
 
 " Set the tab stop to 4
 set tabstop=4
+"
 " Helps with autoindenting when using =
 set shiftwidth=4
 
@@ -93,6 +97,9 @@ set backspace=indent,eol,start
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
 set listchars=tab:•\ ,eol:¬
 set list
+
+" Add ctrl-p to runtime path
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Hide the default mode indicator. Do so because airline will show the current mode
 set noshowmode
@@ -108,8 +115,8 @@ set timeoutlen=1000 ttimeoutlen=0
 " Have NERDTree be open automatically when vim starts
 autocmd VimEnter * NERDTree
 
-" Typing nerd opens NERDTree
-nnoremap nerd :NERDTree<CR>
+" Toggle NERDTree
+nnoremap <leader>d :NERDTreeToggle<CR>
 
 " Run easymotion commands in a direction --> based off of hjkl
 map <leader>l <Plug>(easymotion-lineforward)
@@ -123,9 +130,7 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-
 " Get the right symbols for the status bar
-
 " Using the font Meslo LG S Regular for Powerline which can be found here: https://github.com/powerline/fonts/tree/master/Meslo
 " It is also installed on my personal computer
 
@@ -142,7 +147,7 @@ endif
 " Using the font octicons.otf which can be found in one of the comments here:
 " https://github.com/vim-airline/vim-airline/issues/237
 
-let g:airline_theme='one'
+let g:airline_theme='simple'
 let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
 

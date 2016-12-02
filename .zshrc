@@ -92,10 +92,28 @@ alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 3"
 alias res="cd ~/Github-Projects/Resume/; atom .; gulp"
 alias gitproj="cd ~/Github-Projects"
 alias site="cd Github-Projects/sbernheim4.github.io"
+# type "fd" to open a directory using fzf
+fd() {
+	local dir
+	dir=$(find ${1:-.} -path '*/\.*' -prune \
+		-o -type d -print 2> /dev/null | fzf +m) &&
+		cd "$dir"
+}
+
+# type "fo" to open a file in its default application by hiting ctrl + o when the file is selected
+fo() {
+	local out file key
+	IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
+	key=$(head -1 <<< "$out")
+	file=$(head -2 <<< "$out" | tail -1)
+	if [ -n "$file" ]; then
+		[ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+	fi
+}
+
 export NVM_DIR="/Users/samuelbernheim/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export TERM=xterm-256color
 export PATH="/usr/local/sbin:$PATH"
