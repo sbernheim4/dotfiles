@@ -108,6 +108,8 @@ set noshowmode
 " easy motion is still possible I think because of the ttimeoutlen=0
 set timeoutlen=1000 ttimeoutlen=0
 
+set laststatus=2
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -117,6 +119,8 @@ autocmd VimEnter * NERDTree
 
 " Toggle NERDTree
 nnoremap <leader>d :NERDTreeToggle<CR>
+
+nnoremap <leader>t :CtrlP<CR>
 
 " Run easymotion commands in a direction --> based off of hjkl
 map <leader>l <Plug>(easymotion-lineforward)
