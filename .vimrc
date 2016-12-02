@@ -46,6 +46,7 @@ let mapleader=","
 
 syntax enable
 set t_Co=256
+let base16colorspace=256
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
