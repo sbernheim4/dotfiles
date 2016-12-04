@@ -34,8 +34,6 @@ Plug 'vim-airline/vim-airline-themes'
 " Allows ctrl-p fuzzy file searching
 Plug 'ctrlpvim/ctrlp.vim'
 
-" Fuzzy Finder for files in vim
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -68,19 +66,12 @@ set background=dark " for the dark version
 " set background=light " for the light version
 colorscheme eighties
 
-" Unbinds the arrow keys and makes them stop working
-noremap <UP> <NOP>
-noremap <DOWN> <NOP>
-noremap <LEFT> <NOP>
-noremap <RIGHT> <NOP>
+"""""""""""""""""""""" ENVIRONMENT VARIABLES """"""""""""""""""""""
+" Highlight the current cursor line
+set cursorline
 
-" Toggle paste mode
-nnoremap <leader>a :set paste!<CR>
-
-" Toggle wrap mode
-nnoremap <leader>wr :set wrap!<CR>
 " Wrap text on the screen appropriately (don't wrap in the middle of the word)
-:set linebreak
+set linebreak
 
 " Shows line numbers by default when opening files
 set number
@@ -107,22 +98,57 @@ set noshowmode
 
 " Fix to make sure switching from insert mode to normal mode is fast but that
 " easy motion is still possible I think because of the ttimeoutlen=0
-set timeoutlen=1000 ttimeoutlen=0
+set timeoutlen=400 ttimeoutlen=0
 
 set laststatus=2
+
+ """"""""""""""""""""""""""" Key Bindings """"""""""""""""""""""""""
+
+" Toggle paste mode
+nnoremap <leader>a :set paste!<CR>
+
+" Toggle wrap mode
+nnoremap <leader>wr :set wrap!<CR>
 
 " Toggle highlighting of search results
 nnoremap <leader>hl :set hlsearch!<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SETTINGS FOR THE BUFFER
+" Create a new buffer
+nnoremap <leader>b :enew<cr>
+
+" Move to the next buffer
+nnoremap <leader>n :bnext<CR>
+
+" Move to the previous buffer
+nnoremap <leader>p :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nnoremap <leader>bq :bp <BAR> bd #<CR>
+
+" Show all open buffers and their status
+nnoremap <leader>bl :ls<CR>
+
+" Toggle cursor line highlight
+nnoremap <leader>hl :set cursorline!<CR>
+
+" Unbinds the arrow keys and makes them stop working
+noremap <UP> <NOP>
+noremap <DOWN> <NOP>
+noremap <LEFT> <NOP>
+noremap <RIGHT> <NOP>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Have NERDTree be open automatically when vim starts
 autocmd VimEnter * NERDTree
 
 " Toggle NERDTree
 nnoremap <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>nt :NERDTree<CR>
 
 nnoremap <leader>t :CtrlP<CR>
 
@@ -165,11 +191,15 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_c = airline#section#create(['%t'])
 " Display the file type in section x
 let g:airline_section_x = airline#section#create(['%y'])
-"  Display only the file encoding in section y
+" Display only the file encoding in section y
 let g:airline_section_y = airline#section#create(["%{strlen(&fenc)?&fenc:'none'}"])
 " Display only the line and column information in section z
 let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: %03c'])
-"
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
 " EXAMPLES FROM :help airline
 " let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
 " let g:airline_section_b       (hunks, branch)
