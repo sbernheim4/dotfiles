@@ -131,7 +131,7 @@ nnoremap <leader>bq :bp <BAR> bd #<CR>
 nnoremap <leader>bl :ls<CR>
 
 " Toggle cursor line highlight
-nnoremap <leader>hl :set cursorline!<CR>
+nnoremap <leader>cll :set cursorline!<CR>
 
 " Unbinds the arrow keys and makes them stop working
 noremap <UP> <NOP>
