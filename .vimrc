@@ -22,6 +22,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Command-line fuzzy finder
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 " This plugin causes all trailing whitespace to be highlighted in red.
 Plug 'bronson/vim-trailing-whitespace'
@@ -164,12 +165,20 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+" Type dws when in normal mode to run :FixWhitespace
+nnoremap dws :FixWhitespace
+
+" Use fzf to open files --> Alternative to Ctrl-P
+" Toggles NERDTree and then opens fzf window to find file so new file isn't
+" opened in the NERDTree space --> ONLY WORKS THIS WAY IF NERDTree is already
+" open and file is opened in a new buffer
+nnoremap <leader>fo :NERDTreeToggle<CR> :Files<CR>
+" Opens fzf window without toggling NERDTree
+nnoremap <leader>o :Files<CR>
+
 " Get the right symbols for the status bar
 " Using the font Meslo LG S Regular for Powerline which can be found here: https://github.com/powerline/fonts/tree/master/Meslo
 " It is also installed on my personal computer
-
-" Type dws when in normal mode to run :FixWhitespace
-nnoremap dws :FixWhitespace
 
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}

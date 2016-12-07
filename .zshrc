@@ -1,4 +1,4 @@
-# Path to your oh-my-zsh installation.
+#; Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
 # Run spectrum_ls to see a list of colors zsh can easily produce and
@@ -117,3 +117,7 @@ export NVM_DIR="/Users/samuelbernheim/.nvm"
 
 export TERM=xterm-256color
 export PATH="/usr/local/sbin:$PATH"
+
+
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
