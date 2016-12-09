@@ -11,6 +11,8 @@ Plug 'scrooloose/nerdtree'
 " Makes inserting multiple comments easy by text selection
 Plug 'scrooloose/nerdcommenter'
 
+Plug 'scrooloose/syntastic'
+
 " Easy way to naviagte to many different points on the current screen
 Plug 'easymotion/vim-easymotion'
 
@@ -44,6 +46,7 @@ call plug#end()
 let mapleader=","
 
 syntax enable
+syntax on
 set t_Co=256
 let base16colorspace=256
 
@@ -85,6 +88,9 @@ set shiftwidth=4
 
 " Allow the backspace button to work as normal
 set backspace=indent,eol,start
+
+" Have line wrapping off by default
+set nowrap
 
 " Displays the eol character
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
@@ -144,6 +150,18 @@ noremap <RIGHT> <NOP>
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 5
+
+" Run syntastic check
+nnoremap <leader>sc :SyntasticCheck<CR>
+
+" Close syntastic check window
+nnoremap <leader>sr :SyntasticReset<CR>
+
 " Have NERDTree be open automatically when vim starts
 autocmd VimEnter * NERDTree
 
@@ -166,7 +184,7 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " Type dws when in normal mode to run :FixWhitespace
-nnoremap dws :FixWhitespace
+nnoremap dws :FixWhitespace<CR>
 
 " Use fzf to open files --> Alternative to Ctrl-P
 " Toggles NERDTree and then opens fzf window to find file so new file isn't
@@ -184,15 +202,18 @@ if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
 
+
 " Using the font Meslo LG S Regular for Powerline which can be found here:
 " https://github.com/powerline/fonts/tree/master/Meslo
 " It is also installed on my personal computer
 " Using the font octicons.otf which can be found in one of the comments here:
 " https://github.com/vim-airline/vim-airline/issues/237
 
-let g:airline_theme='simple'
+let g:airline_theme='bubblegum'
 let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
+" let g:airline_left_sep = '>'
+" let g:airline_right_sep = '<'
 
 " Hide whitespace errors
 let g:airline#extensions#whitespace#enabled = 0
@@ -204,10 +225,11 @@ let g:airline_section_x = airline#section#create(['%y'])
 let g:airline_section_y = airline#section#create(["%{strlen(&fenc)?&fenc:'none'}"])
 " Display only the line and column information in section z
 let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: %03c'])
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
+" Enable the list of buffers let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+let g:airline_section_error = airline#section#create(['ycm_error_count', 'syntastic'])
 
 " EXAMPLES FROM :help airline
 " let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
