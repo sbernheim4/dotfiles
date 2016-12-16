@@ -31,7 +31,7 @@ ZSH_THEME="honukai"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -101,7 +101,8 @@ fd() {
 		cd "$dir"
 }
 
-# type "fo" to open a file in its default application by hiting ctrl + o when the file is selected
+# type "fo" to open a file in its default application by hiting ctrl + o when
+# the file is selected
 fo() {
 	local out file key
 	IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
@@ -115,8 +116,10 @@ fo() {
 export NVM_DIR="/Users/samuelbernheim/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
+# Fix the colorscheme
 export TERM=xterm-256color
 export PATH="/usr/local/sbin:$PATH"
 
+# Use the right colorscheme
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
