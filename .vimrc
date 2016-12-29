@@ -37,6 +37,8 @@ Plug 'vim-airline/vim-airline-themes'
 " Allows ctrl-p fuzzy file searching
 Plug 'ctrlpvim/ctrlp.vim'
 
+" javascript syntax highlighting
+Plug 'pangloss/vim-javascript'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -149,13 +151,14 @@ noremap <RIGHT> <NOP>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_check_on_w = 0
+" let g:syntastic_loc_list_height = 5
 
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_w = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 5
+
 
 " Run syntastic check
 nnoremap <leader>sc :SyntasticCheck<CR>
@@ -192,6 +195,7 @@ nnoremap dws :FixWhitespace<CR>
 " opened in the NERDTree space --> ONLY WORKS THIS WAY IF NERDTree is already
 " open and file is opened in a new buffer
 nnoremap <leader>fo :NERDTreeToggle<CR> :Files<CR>
+
 " Opens fzf window without toggling NERDTree
 nnoremap <leader>o :Files<CR>
 

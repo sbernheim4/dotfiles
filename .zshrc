@@ -92,6 +92,8 @@ alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 3"
 alias res="cd ~/Github-Projects/Resume/; atom .; gulp"
 alias gitproj="cd ~/Github-Projects"
 alias site="cd Github-Projects/sbernheim4.github.io"
+alias pom="cd ~/Github-Projects/pomodoro-timer"
+alias pomv="cd ~/Github-Projects/pomodoro-timer; vim"
 
 # type "fd" to open a directory using fzf
 fd() {
