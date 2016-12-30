@@ -38,7 +38,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 
 " javascript syntax highlighting
-Plug 'pangloss/vim-javascript'
+Plug 'jelera/vim-javascript-syntax'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -69,7 +70,7 @@ if (empty($TMUX))
 endif
 
 set background=dark " for the dark version
-" set background=light " for the light version
+" use a gray background instead of the default blue
 let g:neodark#background='gray'
 colorscheme neodark
 
@@ -101,7 +102,7 @@ set listchars=tab:•\ ,eol:¬
 set list
 
 " Add ctrl-p to runtime path
-"set runtimepath^=~/.vim/bundle/ctrlp.vim
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Hide the default mode indicator. Do so because airline will show the current mode
 set noshowmode
@@ -112,7 +113,7 @@ set timeoutlen=400 ttimeoutlen=0
 
 set laststatus=2
 
- """"""""""""""""""""""""""" Key Bindings """"""""""""""""""""""""""
+""""""""""""""""""""""""""" Key Bindings """"""""""""""""""""""""""
 
 " Toggle paste mode
 nnoremap <leader>a :set paste!<CR>
