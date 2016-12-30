@@ -70,7 +70,8 @@ endif
 
 set background=dark " for the dark version
 " set background=light " for the light version
-colorscheme eighties
+let g:neodark#background='gray'
+colorscheme neodark
 
 """""""""""""""""""""" ENVIRONMENT VARIABLES """"""""""""""""""""""
 " Highlight the current cursor line
@@ -100,7 +101,7 @@ set listchars=tab:•\ ,eol:¬
 set list
 
 " Add ctrl-p to runtime path
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+"set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Hide the default mode indicator. Do so because airline will show the current mode
 set noshowmode
