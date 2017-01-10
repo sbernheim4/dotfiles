@@ -72,7 +72,7 @@ endif
 set background=dark " for the dark version
 " use a gray background instead of the default blue
 let g:neodark#background='gray'
-colorscheme neodark
+colorscheme material-theme
 
 """""""""""""""""""""" ENVIRONMENT VARIABLES """"""""""""""""""""""
 " Highlight the current cursor line
