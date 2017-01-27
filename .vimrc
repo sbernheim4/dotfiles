@@ -56,7 +56,7 @@ let base16colorspace=256
 set background=dark " for the dark version
 " use a gray background instead of the default blue
 let g:neodark#background='gray'
-colorscheme material-theme
+colorscheme neodark
 
 """""""""""""""""""""" ENVIRONMENT VARIABLES """"""""""""""""""""""
 " Highlight the current cursor line
