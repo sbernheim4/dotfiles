@@ -203,19 +203,26 @@ let g:airline_symbols.paste = "Þ"
 " let g:airline_left_sep = '>'
 " let g:airline_right_sep = '<'
 
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename and not the extension
+let g:airline#extensions#tabline#fnamemod = ':t'
+
 " Hide whitespace errors
 let g:airline#extensions#whitespace#enabled = 0
+
 " Display only the filename in section c
 let g:airline_section_c = airline#section#create(['%t'])
+
 " Display the file type in section x
 let g:airline_section_x = airline#section#create(['%y'])
+
 " Display only the file encoding in section y
 let g:airline_section_y = airline#section#create(["%{strlen(&fenc)?&fenc:'none'}"])
+
 " Display only the line and column information in section z
 let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: %03c'])
-" Enable the list of buffers let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
 
 let g:airline_section_error = airline#section#create(['ycm_error_count', 'syntastic'])
 
