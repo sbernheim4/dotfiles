@@ -108,6 +108,16 @@ nnoremap <leader>wr :set wrap!<CR>
 " Toggle highlighting of search results
 nnoremap <leader>hl :set hlsearch!<CR>
 
+
+" Toggle cursor line highlight
+nnoremap <leader>cll :set cursorline!<CR>
+
+" Unbinds the arrow keys and makes them stop working
+noremap <UP> <NOP>
+noremap <DOWN> <NOP>
+noremap <LEFT> <NOP>
+noremap <RIGHT> <NOP>
+
 " SETTINGS FOR THE BUFFER
 " Create a new buffer
 nnoremap <leader>b :enew<cr>
@@ -122,17 +132,8 @@ nnoremap <leader>p :bprevious<CR>
 " This replicates the idea of closing a tab
 nnoremap <leader>bq :bp <BAR> bd #<CR>
 
-" Show all open buffers and their status
-nnoremap <leader>bl :ls<CR>
-
-" Toggle cursor line highlight
-nnoremap <leader>cll :set cursorline!<CR>
-
-" Unbinds the arrow keys and makes them stop working
-noremap <UP> <NOP>
-noremap <DOWN> <NOP>
-noremap <LEFT> <NOP>
-noremap <RIGHT> <NOP>
+" Show all open buffers and their status --> Unnecessary since I am displaying open buffers at the top using airline
+" nnoremap <leader>bl :ls<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES

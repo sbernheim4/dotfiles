@@ -1,37 +1,35 @@
 #!/bin/bash
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-CYAN='\033[0;36m'
-NC='\033[0;00m' # No Color
-
 install_brew() {
 	which -s brew
 	if [[ $? != 0 ]] ; then
-		# Install Homebrew
-		echo -e "${CYAN}Installing Homebrew${NC}"
+		# Install Homebrew if not already installed
+		echo " ---------- Installing Homebrew ---------- "
 		echo
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	else
-		# Update homebrew
-		echo -e "${CYAN}Updating Homebrew${NC}"
+		# Update homebrew if already installed
+		echo " ---------- Updating Homebrew and Upgrading Packages ---------- "
 		echo
 		brew update
+		brew upgrade
 	fi
 }
 
 download_dotfiles() {
-	# Actual dotfiles
-	echo -e "${CYAN}Downloading dotfiles for vim, tmux${NC}"
+	# Download dotfiles from github
+	echo " ---------- Downloading dotfiles for vim, tmux ---------- "
 	echo
 	git clone https://github.com/sbernheim4/dotfiles.git
 }
 
 install_vim() {
-
+	# Install vim with homebrew and .vimrc create symlink to .vimrc
 	which -s vim
 	if [ $? != 0 ] ; then
 		brew install vim
+	else
+		brew upgrade vim
 	fi
 
 	if [ ! -e ~/.vimrc ] ; then
@@ -39,12 +37,11 @@ install_vim() {
 	fi
 	ln -sf ~/dotfiles/.vimrc ~/.vimrc
 
-	# echo "${CYAN}Creating ~/.vim, ~/.vim/autoload and ~/.vim/colors and using Vim Plug for plugin manager for vim${NC}"
 	if [ ! -d ~/.vim ] ; then
 		mkdir ~/.vim/
 	fi
-
 	cd ~/.vim/
+
 	if [ ! -d ~/.vim/colors ] ; then
 		mkdir colors/
 	fi
@@ -53,8 +50,11 @@ install_vim() {
 		mkdir autoload
 	fi
 
+	# copy plug.vim which is what vim plug uses
 	cp ~/dotfiles/plug.vim ~/.vim/autoload/
-	cp ~/dotfiles/one.vim ~/.vim/colors/
+
+	# Copy all the vim color schemes into the .vim colors folder
+	cp ~/dotfiles/vim_colors/*.vim ~/.vim/colors/
 }
 
 install_tmux() {
@@ -62,10 +62,8 @@ install_tmux() {
 	if [ $? != 0 ] ; then
 		brew install tmux
 	else
-		echo "tmux is already installed"
-		echo
+		brew upgrade tmux
 	fi
-
 
 	if [ ! -e "~/.tmux.conf" ] ; then
 		touch .tmux.conf
@@ -75,13 +73,12 @@ install_tmux() {
 }
 
 install_zsh() {
-
+	# Install zsh with homebrew if not already installed
 	which -s zsh
 	if [ $? != 0 ] ; then
 		brew install zsh
 	else
-		echo "zsh is already installed"
-		echo
+		brew upgrade zsh
 	fi
 
 	if [ ! -e ~/.zshrc ] ; then
@@ -91,36 +88,33 @@ install_zsh() {
 	ln -sf ~/dotfiles/.zshrc ~/.zshrc
 
 	# Install  oh-my-zsh
-	echo -e "${CYAN}Installing oh-my-zsh${NC}"
+	echo " ---------- Installing oh-my-zsh ---------- "
 	ls -a | grep .oh-my-zsh
 	if [ $? != 0 ] ; then
         sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	else
-        echo "oh-my-zsh is already installed"
+        echo " ---------- oh-my-zsh is Already Installed ---------- "
 		echo
 	fi
 
-	# Move theme
-	echo -e "${CYAN}Moving honukai theme to ~/.oh-my-zsh/themes${NC}"
+	# Move zsh theme
+	echo " ---------- Moving Honukai Theme to ~/.oh-my-zsh/themes ---------- "
 	echo
 	cp ~/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
 
 	# Change default shell to be zsh
-	echo -e "${CYAN}Changing default shell to ZSH${NC}"
+	echo " ---------- Changing default shell to ZSH ---------- "
 	echo
 
 	which -s zsh
 	if [ $? == "-zsh" ] ; then
 		chsh -s $(which zsh)
-	else
-		echo "ZSH is the default shell"
-		echo
 	fi
 }
 
-#Main
+# Main Program
 
-echo -e "${CYAN}Beginning installation${NC}"
+echo " ---------- Beginning installation ---------- "
 echo
 
 $(install_brew)
@@ -139,16 +133,16 @@ if [ $? != 0 ] ; then
 	brew install cmake
 fi
 
+# Install vim plugins
 vim +PlugInstall
-#cd ~/.vim/plugged/YouCompleteMe/
-#echo "Installing a vim package. Please wait"
-echo
-touch ~/delete.txt
-./install.sh > delete.txt
-rm ~/delete.txt
-#echo "Package Installed"
 
-echo -e "${GREEN}
+# Install YouCompleteMe for vim
+cd ~/.vim/plugged/YouCompleteMe/; python install.py
+
+echo " ---------- Vim Packages are Installed ---------- "
+echo
+
+echo "
 	 _________                                     __           ._.
 	\_   ___ \  ____   ____    ________________ _/  |_  ______ | |
 	/    \  \/ /  _ \ /    \  / ___\_  __ \__  \\   __\/  ___/ | |
