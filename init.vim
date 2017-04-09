@@ -1,5 +1,5 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Auto complete package
 " After running :PlugInstall cd to the YouCompleteMe folder and run ./install.sh
@@ -10,8 +10,6 @@ Plug 'scrooloose/nerdtree'
 
 " Makes inserting multiple comments easy by text selection
 Plug 'scrooloose/nerdcommenter'
-
-Plug 'scrooloose/syntastic'
 
 " Easy way to naviagte to many different points on the current screen
 Plug 'easymotion/vim-easymotion'
@@ -39,8 +37,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 " javascript syntax highlighting
 Plug 'jelera/vim-javascript-syntax'
-
-Plug 'ternjs/tern_for_vim'
 
 call plug#end()
 
@@ -84,21 +80,19 @@ set nowrap
 
 " Displays the eol character
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
-set listchars=tab:\|\ ,
-" set listchars=tab:•\ ,eol:¬
+set listchars=tab:•\ ,eol:¬
 set list
 
 " Add ctrl-p to runtime path
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
+" Hide the default mode indicator. Do so because airline will show the current mode
+set noshowmode
+
 " Fix to make sure switching from insert mode to normal mode is fast but that
 " easy motion is still possible I think because of the ttimeoutlen=0
 set timeoutlen=400 ttimeoutlen=0
 
-" Hide the default mode indicator. Do so because airline will show the current mode
-set noshowmode
-
-" Display vim airline at the botom of the window
 set laststatus=2
 
 """"""""""""""""""""""""""" Key Bindings """"""""""""""""""""""""""
@@ -135,15 +129,6 @@ nnoremap <leader>p :bp<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nnoremap <leader>bq :bp <BAR> bd #<CR>
-
-" Use normal python type regex when searching
-nnoremap / /\v
-vnoremap / /\v
-
-" If search string contains only lowercase letters search is case insensitive.
-" If search string contains capital letters search is case sensative
-set ignorecase
-set smartcase
 
 " Show all open buffers and their status --> Unnecessary since I am displaying open buffers at the top using airline
 " nnoremap <leader>bl :ls<CR>

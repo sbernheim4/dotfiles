@@ -53,7 +53,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git fzf)
 
 # User configuration
 
@@ -89,9 +89,7 @@ source $ZSH/oh-my-zsh.sh
 alias kin=cd\ ~/Github-Projects/kinetic-web
 alias sub="open -a 'Sublime Text'"
 alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 3"
-alias res="cd ~/Github-Projects/Resume/; atom .; gulp"
-alias gitproj="cd ~/Github-Projects"
-alias site="cd Github-Projects/sbernheim4.github.io"
+alias gproj="cd ~/Github-Projects"
 
 # type "fd" to open a directory using fzf
 fd() {
@@ -123,3 +121,5 @@ export PATH="/usr/local/sbin:$PATH"
 # Use the right colorscheme
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
