@@ -22,7 +22,7 @@ set tabstop=4                                            |
 set shiftwidth=4                                         |
 "                                                        |
 " Indent new lines automatically                         |
-set autoindent                                           | 
+set autoindent                                           |
 "                                                        |
 " Don't expand tab characters into spaces                |
 set noexpandtab                                          |

@@ -1,5 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
+" hi my name is samuel \ 
+" I like to eat food
 
 " Auto complete package
 " After running :PlugInstall cd to the YouCompleteMe folder and run ./install.sh
@@ -34,21 +36,21 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Allows ctrl-p fuzzy file searching
-Plug 'ctrlpvim/ctrlp.vim'
-
 " javascript syntax highlighting
 Plug 'jelera/vim-javascript-syntax'
 
 Plug 'ternjs/tern_for_vim'
 
+"🔗 The fancy start screen for Vim.
+Plug 'mhinz/vim-startify'
+
 call plug#end()
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GLOBAL SETTINGS FOR VIM
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Make the leader key , instead of the default \
-let mapleader=","
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Make the Leader key , instead of the default \
+let mapLeader=","
 
 syntax enable
 syntax on
@@ -57,10 +59,13 @@ let base16colorspace=256
 
 set background=dark " for the dark version
 " use a gray background instead of the default blue
-let g:neodark#background='gray'
-colorscheme neodark
+"let g:neodark#background='gray'
+colorscheme gruvbox
 
-"""""""""""""""""""""" ENVIRONMENT VARIABLES """"""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ENVIRONMENT VARIABLES
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Highlight the current cursor line
 set cursorline
 
@@ -89,7 +94,7 @@ set listchars=tab:\|\ ,
 set list
 
 " Add ctrl-p to runtime path
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Fix to make sure switching from insert mode to normal mode is fast but that
 " easy motion is still possible I think because of the ttimeoutlen=0
@@ -101,20 +106,22 @@ set noshowmode
 " Display vim airline at the botom of the window
 set laststatus=2
 
-""""""""""""""""""""""""""" Key Bindings """"""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Key Bindings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Toggle paste mode
-nnoremap <leader>a :set paste!<CR>
+nnoremap <Leader>a :set paste!<CR>
 
 " Toggle wrap mode
-nnoremap <leader>wr :set wrap!<CR>
+nnoremap <Leader>wr :set wrap!<CR>
 
 " Toggle highlighting of search results
-nnoremap <leader>hl :set hlsearch!<CR>
+nnoremap <Leader>hl :set hlsearch!<CR>
 
 
 " Toggle cursor line highlight
-nnoremap <leader>cll :set cursorline!<CR>
+nnoremap <Leader>cll :set cursorline!<CR>
 
 " Unbinds the arrow keys and makes them stop working
 noremap <UP> <NOP>
@@ -124,33 +131,31 @@ noremap <RIGHT> <NOP>
 
 " SETTINGS FOR THE BUFFER
 " Create a new buffer
-nnoremap <leader>b :enew<cr>
+nnoremap <Leader>b :enew<cr>
 
 " Move to the next buffer
-nnoremap <leader>n :bn<CR>
+nnoremap <Leader>n :bn<CR>
 
 " Move to the previous buffer
-nnoremap <leader>p :bp<CR>
+nnoremap <Leader>p :bp<CR>
 
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
-nnoremap <leader>bq :bp <BAR> bd #<CR>
+nnoremap <Leader>q :bp <BAR> bd #<CR>
 
-" Use normal python type regex when searching
-nnoremap / /\v
-vnoremap / /\v
+" Show all open buffers and their status --> Unnecessary since I am displaying open buffers at the top using airline
+" nnoremap <Leader>bl :ls<CR>
 
 " If search string contains only lowercase letters search is case insensitive.
 " If search string contains capital letters search is case sensative
 set ignorecase
 set smartcase
 
-" Show all open buffers and their status --> Unnecessary since I am displaying open buffers at the top using airline
-" nnoremap <leader>bl :ls<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>sp :split<CR>
+nnoremap <Leader>vsp :vsplit<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
 " let g:syntastic_check_on_open = 1
@@ -159,25 +164,44 @@ set smartcase
 " let g:syntastic_loc_list_height = 5
 
 " Run syntastic check
-nnoremap <leader>sc :SyntasticCheck<CR>
+nnoremap <Leader>sc :SyntasticCheck<CR>
 
 " Close syntastic check window
-nnoremap <leader>sr :SyntasticReset<CR>
+nnoremap <Leader>sr :SyntasticReset<CR>
 
-" Have NERDTree be open automatically when vim starts
-autocmd VimEnter * NERDTree
+let g:startify_update_oldfiles = 1
+
+autocmd VimEnter *
+			\   if !argc()
+			\ |   Startify
+			\ |   NERDTree
+			\ |   wincmd w
+			\ | endif
+
+let g:startify_custom_header = [
+			\ '	█░░░█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀   █▀▀▄ █▀▀█ █▀▀ █░█ ',
+			\ '	█▄█▄█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀   █▀▀▄ █▄▄█ █░░ █▀▄ ',
+			\ '	░▀░▀░ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀   ▀▀▀░ ▀░░▀ ▀▀▀ ▀░▀ ',
+			\ ]
+
+" Have NERDTree be open automatically when vim starts --> Handled by the above
+" cmd for use with startify
+" autocmd VimEnter * NERDTree
 
 " Toggle NERDTree
-nnoremap <leader>d :NERDTreeToggle<CR>
-nnoremap <leader>nt :NERDTree<CR>
+nnoremap <Leader>d :NERDTreeToggle<CR>
+nnoremap <Leader>nt :NERDTree<CR>
 
-nnoremap <leader>t :CtrlP<CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" nnoremap <Leader>t :CtrlP<CR>
 
 " Run easymotion commands in a direction --> based off of hjkl
-map <leader>l <Plug>(easymotion-lineforward)
-map <leader>j <Plug>(easymotion-j)
-map <leader>k <Plug>(easymotion-k)
-map <leader>h <Plug>(easymotion-linebackward)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
@@ -192,10 +216,10 @@ nnoremap dws :FixWhitespace<CR>
 " Toggles NERDTree and then opens fzf window to find file so new file isn't
 " opened in the NERDTree space --> ONLY WORKS THIS WAY IF NERDTree is already
 " open and file is opened in a new buffer
-nnoremap <leader>fo :NERDTreeToggle<CR> :Files<CR>
+nnoremap nff :NERDTreeToggle<CR> :Files<CR>
 
 " Opens fzf window without toggling NERDTree
-nnoremap <leader>o :Files<CR>
+nnoremap ff :Files<CR>
 
 " Get the right symbols for the status bar
 " Using the font Meslo LG S Regular for Powerline which can be found here: https://github.com/powerline/fonts/tree/master/Meslo
