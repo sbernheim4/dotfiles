@@ -120,7 +120,7 @@ export TERM=xterm-256color
 export PATH="/usr/local/sbin:$PATH"
 
 # Use the right colorscheme
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# BASE16_SHELL=$HOME/.config/base16-shell/
+# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
