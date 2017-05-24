@@ -1,47 +1,47 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Using Vim-Plug for plugin manager
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
-" hi my name is samuel \ 
-" I like to eat food
 
 " Auto complete package
 " After running :PlugInstall cd to the YouCompleteMe folder and run ./install.sh
 Plug 'Valloric/YouCompleteMe'
 
-" Tree view package
+" A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree'
 
-" Makes inserting multiple comments easy by text selection
+" Vim plugin for intensely orgasmic commenting
 Plug 'scrooloose/nerdcommenter'
 
+" Syntax checking hacks for vim
 Plug 'scrooloose/syntastic'
 
-" Easy way to naviagte to many different points on the current screen
+" Vim motions on speed!
 Plug 'easymotion/vim-easymotion'
 
 " Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plug 'Raimondi/delimitMate'
 
-" Git diff marks in gutter
+" A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
 Plug 'airblade/vim-gitgutter'
 
 " Command-line fuzzy finder
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
-" This plugin causes all trailing whitespace to be highlighted in red.
+" Highlights trailing whitespace in red and provides :FixWhitespace to fix it.
 Plug 'bronson/vim-trailing-whitespace'
 
+" fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 
+" lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
+
+" A collection of themes for vim-airline
 Plug 'vim-airline/vim-airline-themes'
 
-" javascript syntax highlighting
-Plug 'jelera/vim-javascript-syntax'
-
-Plug 'ternjs/tern_for_vim'
-
-"🔗 The fancy start screen for Vim.
+" 🔗 The fancy start screen for Vim.
 Plug 'mhinz/vim-startify'
 
 call plug#end()
@@ -50,7 +50,7 @@ call plug#end()
 " GLOBAL SETTINGS FOR VIM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Make the Leader key , instead of the default \
-let mapLeader=","
+let mapleader=","
 
 syntax enable
 syntax on
@@ -153,6 +153,9 @@ set smartcase
 
 nnoremap <Leader>sp :split<CR>
 nnoremap <Leader>vsp :vsplit<CR>
+
+" Delete all extra whitespace on save
+" nnoremap :w :FixWhitespace<CR>:w<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -236,7 +239,7 @@ endif
 " https://github.com/vim-airline/vim-airline/issues/237
 
 let g:airline_theme='bubblegum'
-let g:airline_symbols.branch = ""
+let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
 " let g:airline_left_sep = '>'
 " let g:airline_right_sep = '<'
