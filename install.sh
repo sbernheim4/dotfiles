@@ -4,12 +4,12 @@ install_brew() {
 	which -s brew
 	if [[ $? != 0 ]] ; then
 		# Install Homebrew if not already installed
-		echo " ---------- Installing Homebrew ---------- "
+		echo ' ---------- Installing Homebrew ---------- '
 		echo
 		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	else
 		# Update homebrew if already installed
-		echo " ---------- Updating Homebrew and Upgrading Packages ---------- "
+		echo ' ---------- Updating Homebrew and Upgrading Packages ---------- '
 		echo
 		brew update
 		brew upgrade
@@ -18,7 +18,7 @@ install_brew() {
 
 download_dotfiles() {
 	# Download dotfiles from github
-	echo " ---------- Downloading dotfiles for vim, tmux ---------- "
+	echo ' ---------- Downloading dotfiles for vim, tmux ---------- '
 	echo
 	git clone https://github.com/sbernheim4/dotfiles.git
 }
@@ -88,22 +88,22 @@ install_zsh() {
 	ln -sf ~/dotfiles/.zshrc ~/.zshrc
 
 	# Install  oh-my-zsh
-	echo " ---------- Installing oh-my-zsh ---------- "
+	echo ' ---------- Installing oh-my-zsh ---------- '
 	ls -a | grep .oh-my-zsh
 	if [ $? != 0 ] ; then
         sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	else
-        echo " ---------- oh-my-zsh is Already Installed ---------- "
+        echo ' ---------- oh-my-zsh is Already Installed ---------- '
 		echo
 	fi
 
 	# Move zsh theme
-	echo " ---------- Moving Honukai Theme to ~/.oh-my-zsh/themes ---------- "
+	echo ' ---------- Moving Themes to ~/.oh-my-zsh/themes ---------- '
 	echo
-	cp ~/dotfiles/honukai.zsh-theme ~/.oh-my-zsh/themes
+	cp ~/dotfiles/zsh_themes/*.zsh-theme ~/.oh-my-zsh/themes
 
 	# Change default shell to be zsh
-	echo " ---------- Changing default shell to ZSH ---------- "
+	echo ' ---------- Changing default shell to ZSH ---------- '
 	echo
 
 	which -s zsh
@@ -114,7 +114,7 @@ install_zsh() {
 
 # Main Program
 
-echo " ---------- Beginning installation ---------- "
+echo ' ---------- Beginning installation ---------- '
 echo
 
 $(install_brew)
@@ -139,10 +139,10 @@ vim +PlugInstall
 # Install YouCompleteMe for vim
 cd ~/.vim/plugged/YouCompleteMe/; python install.py
 
-echo " ---------- Vim Packages are Installed ---------- "
+echo ' ---------- Vim Packages are Installed ---------- '
 echo
 
-echo "
+echo '
 	 _________                                     __           ._.
 	\_   ___ \  ____   ____    ________________ _/  |_  ______ | |
 	/    \  \/ /  _ \ /    \  / ___\_  __ \__  \\   __\/  ___/ | |
@@ -155,4 +155,4 @@ echo "
 	\____   (  <_> )  |  /|  | \/\  ___/    / __ \|  |_|  |__  \___ \\  ___/|  |     \|  \|
 	/ ______|\____/|____/ |__|    \___  >  (____  /____/____/ /____  >\___  >__|    __  __
 	\/                                \/        \/                 \/     \/        \/  \/
-"
+'

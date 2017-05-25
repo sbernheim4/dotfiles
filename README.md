@@ -10,7 +10,7 @@ To install all the settings that my dotfiles have, all that is necessary is the 
 
 	./install.sh
 
-This will install brew, vim, tmux, zsh and oh-my-zsh. ZSH will be set to be the default shell. Additionally, symlinks will be set up for the .vimrc, .tmux.conf and .zshrc so that they will always point to the files in this repo so that any updates made to this repo can be easily pulled down and used without having to copy and paste.
+You will probably have to exit vim during the installation process just by typing :q and then hitting enter, keep repeating this until vim is fully quit so the script can finish the plugin installation process. This will install brew, vim, tmux, zsh and oh-my-zsh. zsh will be set to be the default shell. Additionally, symlinks will be set up for the .vimrc, .tmux.conf and .zshrc so that they will always point to the files in this repo so that any updates made to this repo can be easily pulled down and used without having to copy and paste.
 
 NOTES
 
