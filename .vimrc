@@ -234,15 +234,14 @@ endif
 
 " Using the font Meslo LG S Regular for Powerline which can be found here:
 " https://github.com/powerline/fonts/tree/master/Meslo
+" Currently using DejaVu Sans Mono for Powerline
 " It is also installed on my personal computer
-" Using the font octicons.otf which can be found in one of the comments here:
-" https://github.com/vim-airline/vim-airline/issues/237
 
 let g:airline_theme='bubblegum'
 let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
-" let g:airline_left_sep = '>'
-" let g:airline_right_sep = '<'
+"let g:airline_left_sep = ''
+"let g:airline_right_sep = ''
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
