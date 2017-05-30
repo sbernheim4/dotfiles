@@ -14,11 +14,17 @@ install_brew() {
 		brew update
 		brew upgrade
 	fi
+
+	# Install git node and nvm
+	brew install git
+	brew install node
+	brew install nvm
+
 }
 
 download_dotfiles() {
 	# Download dotfiles from github
-	echo ' ---------- Downloading dotfiles for vim, tmux ---------- '
+	echo ' ---------- Downloading dotfiles for vim, tmux, and zsh ---------- '
 	echo
 	git clone https://github.com/sbernheim4/dotfiles.git
 }
