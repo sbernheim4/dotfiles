@@ -213,11 +213,12 @@ prompt_status() {
 }
 
 SEGMENT_SEPARATOR_TWO=$'\u279c'
+GREEN='green'
 
 prompt_newline() {
   if [[ -n $CURRENT_BG ]]; then
     echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR
-%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR_TWO"
+%{%k%F{$GREEN}%}$SEGMENT_SEPARATOR_TWO"
   else
     echo -n " %{%k%}"
   fi
