@@ -212,6 +212,20 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
+SEGMENT_SEPARATOR_TWO=$'\u279c'
+
+prompt_newline() {
+  if [[ -n $CURRENT_BG ]]; then
+    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR
+%{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR_TWO"
+  else
+    echo -n " %{%k%}"
+  fi
+
+  echo -n " %{%f%}"
+  CURRENT_BG=''
+}
+
 ## Main prompt
 build_prompt() {
   RETVAL=$?
@@ -222,6 +236,7 @@ build_prompt() {
   prompt_git
   prompt_bzr
   prompt_hg
+  prompt_newline
   prompt_end
 }
 
