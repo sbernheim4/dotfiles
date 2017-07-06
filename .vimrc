@@ -202,14 +202,14 @@ let g:startify_custom_header = [
 "			\ '	░▀░▀░ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀   ▀▀▀░ ▀░░▀ ▀▀▀ ▀░▀ ',
 "			\ ]
 
-" Have NERDTree be open automatically when vim starts --> Handled by the above
-" cmd for use with startify
+" Have NERDTree be open automatically when vim starts --> Handled by the above cmd for use with startify
 " autocmd VimEnter * NERDTree
 
 " Toggle NERDTree
 nnoremap <Leader>d :NERDTreeToggle<CR>
 nnoremap <Leader>nt :NERDTree<CR>
 
+" Choose the arrow character NERDTree will use
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
@@ -255,8 +255,8 @@ endif
 let g:airline_theme='bubblegum'
 let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
-"let g:airline_left_sep = ''
-"let g:airline_right_sep = ''
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
