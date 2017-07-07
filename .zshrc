@@ -1,6 +1,8 @@
 #; Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
+fortune | cowsay -f tux | lolcat
+
 # Run spectrum_ls to see a list of colors zsh can easily produce and
 # which can be used in a theme
 ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
@@ -93,6 +95,7 @@ alias kin=cd\ ~/Github-Projects/kinetic-web
 alias sub="open -a 'Sublime Text'"
 alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 3"
 alias gproj="cd ~/Github-Projects"
+alias weather="ansiweather -u imperial -l NewYork,NY" # Requires ansiweather, jq and bc (all can be installed with brew)
 
 # type "fd" to open a directory using fzf
 fd() {
