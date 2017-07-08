@@ -187,7 +187,7 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue black '%~'
+  prompt_segment blue black '%3~'
 }
 
 # Virtualenv: current working virtualenv
@@ -213,12 +213,12 @@ prompt_status() {
 }
 
 SEGMENT_SEPARATOR_TWO=$'\u279c'
-GREEN='green'
+PROMPT_COLOR='green'
 
 prompt_newline() {
   if [[ -n $CURRENT_BG ]]; then
     echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR
-%{%k%F{$GREEN}%}$SEGMENT_SEPARATOR_TWO"
+%{%k%F{$PROMPT_COLOR}%}$SEGMENT_SEPARATOR_TWO"
   else
     echo -n " %{%k%}"
   fi
