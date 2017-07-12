@@ -44,6 +44,9 @@ Plug 'vim-airline/vim-airline-themes'
 " 🔗 The fancy start screen for Vim.
 Plug 'mhinz/vim-startify'
 
+" List of JavaScript ES6 snippets and syntax highlighting for vim.
+Plug 'isruslan/vim-es6'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
