@@ -47,6 +47,16 @@ Plug 'mhinz/vim-startify'
 " List of JavaScript ES6 snippets and syntax highlighting for vim.
 Plug 'isruslan/vim-es6'
 
+" Vim plugin that displays tags in a window, ordered by scope
+" NOTE: Requires ctags to be installed to do so, run the following from ~/
+" 1. run `brew install ctags`
+" 2. run `which ctags` if the result is /usr/bin/ctags it means you are not
+" 	 using the brew version
+" 3. run `PATH=/usr/local/bin:$PATH`
+" 4. run `which ctags` if the result is /usr/local/bin/ctags you are using
+" 	 brew's version
+Plug 'majutsushi/tagbar'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -159,6 +169,10 @@ nnoremap <Leader>vsp :vsplit<CR>
 
 " Delete all extra whitespace on save
 " nnoremap :w :FixWhitespace<CR>:w<CR>
+
+" Use tt to togle the tagbar open and close
+nnoremap tt :TagbarToggle<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -198,12 +212,6 @@ let g:startify_custom_header = [
 			\ '                       |    \  |     |  |        |  \                       ',
 			\ '                       o----o  o     o  o-----o  o   o                      ',
 			\ ]
-
-"let g:startify_custom_header = [
-"			\ '	█░░░█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀   █▀▀▄ █▀▀█ █▀▀ █░█ ',
-"			\ '	█▄█▄█ █▀▀ █░░ █░░ █░░█ █░▀░█ █▀▀   █▀▀▄ █▄▄█ █░░ █▀▄ ',
-"			\ '	░▀░▀░ ▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀▀ ▀░░░▀ ▀▀▀   ▀▀▀░ ▀░░▀ ▀▀▀ ▀░▀ ',
-"			\ ]
 
 " Have NERDTree be open automatically when vim starts --> Handled by the above cmd for use with startify
 " autocmd VimEnter * NERDTree
@@ -294,3 +302,18 @@ let g:airline_section_error = airline#section#create(['ycm_error_count', 'syntas
 " let g:airline_section_z       (percentage, line number, column number)
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 " let g:airline_section_warning (ycm_warning_count, whitespace)])
+
+" Set the width to be 40 columns
+let g:tagbar_width = 40
+
+" Display tagbar info compactly
+let g:tagbar_compact = 1
+
+" Open the tagbar when vim starts if the file being opened is supported
+autocmd VimEnter * nested :call tagbar#autoopen(1)
+
+" To view a list of colors available run :highlight
+highlight TagbarHighlight ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
+
+" Sort by order of appearence in the file, not by alphabetical
+let g:tagbar_sort = 0
