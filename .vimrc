@@ -337,3 +337,15 @@ highlight TagbarHighlight ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
 
 " Sort by order of appearence in the file, not by alphabetical
 let g:tagbar_sort = 0
+
+
+" #########################
+" ###### Ale
+" ########################
+
+" Use the quickfix list
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
+" Open the list
+let g:ale_open_list = 1
