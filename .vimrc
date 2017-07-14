@@ -349,3 +349,5 @@ let g:ale_set_quickfix = 1
 
 " Open the list
 let g:ale_open_list = 1
+nnoremap <Leader>tl :ALEToggle<CR>
+let g:ale_sign_error='>'
