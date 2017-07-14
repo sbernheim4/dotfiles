@@ -16,9 +16,9 @@ install_brew() {
 	fi
 
 	# Install git node and nvm
-	brew install git
-	brew install node
-	brew install nvm
+	brew install git > /dev/null
+	brew install node > /dev/null
+	brew install nvm > /dev/null
 
 }
 
@@ -26,16 +26,16 @@ download_dotfiles() {
 	# Download dotfiles from github
 	echo ' ---------- Downloading dotfiles for vim, tmux, and zsh ---------- '
 	echo
-	git clone https://github.com/sbernheim4/dotfiles.git
+	git clone https://github.com/sbernheim4/dotfiles.git > /dev/null
 }
 
 install_vim() {
 	# Install vim with homebrew and .vimrc create symlink to .vimrc
 	which -s vim
 	if [ $? != 0 ] ; then
-		brew install vim
+		brew install vim > /dev/null
 	else
-		brew upgrade vim
+		brew upgrade vim > /dev/null
 	fi
 
 	if [ ! -e ~/.vimrc ] ; then
@@ -66,9 +66,9 @@ install_vim() {
 install_tmux() {
 	which -s tmux
 	if [ $? != 0 ] ; then
-		brew install tmux
+		brew install tmux > /dev/null
 	else
-		brew upgrade tmux
+		brew upgrade tmux > /dev/null
 	fi
 
 	if [ ! -e "~/.tmux.conf" ] ; then
@@ -82,9 +82,9 @@ install_zsh() {
 	# Install zsh with homebrew if not already installed
 	which -s zsh
 	if [ $? != 0 ] ; then
-		brew install zsh
+		brew install zsh > /dev/null
 	else
-		brew upgrade zsh
+		brew upgrade zsh > /dev/null
 	fi
 
 	if [ ! -e ~/.zshrc ] ; then
@@ -136,14 +136,23 @@ cd ~
 
 which -s cmake
 if [ $? != 0 ] ; then
-	brew install cmake
+	brew install cmake > /dev/null
 fi
 
+
+# Needed to use the tagbar vim plugin
+brew install ctags > /dev/null
+# Needed to use the tagbar vim plugin
+PATH=/usr/local/bin:$PATH
+
 # Install vim plugins
+echo ' ---------- Installing Vim Plugins ---------- '
+sleep 5s
 vim +PlugInstall
 
 # Install YouCompleteMe for vim
-cd ~/.vim/plugged/YouCompleteMe/; python install.py
+echo ' ---------- Installing YouCompleteMe Vim Package ---------- '
+cd ~/.vim/plugged/YouCompleteMe/; python install.py > /dev/null
 
 echo ' ---------- Vim Packages are Installed ---------- '
 echo
