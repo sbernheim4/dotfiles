@@ -13,9 +13,6 @@ Plug 'scrooloose/nerdtree'
 " Vim plugin for intensely orgasmic commenting
 Plug 'scrooloose/nerdcommenter'
 
-" Syntax checking hacks for vim
-Plug 'scrooloose/syntastic'
-
 " Vim motions on speed!
 Plug 'easymotion/vim-easymotion'
 
@@ -57,11 +54,15 @@ Plug 'isruslan/vim-es6'
 " 	 brew's version
 Plug 'majutsushi/tagbar'
 
+" Asynchronous Lint Engine
+Plug 'w0rp/ale'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GLOBAL SETTINGS FOR VIM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Make the Leader key , instead of the default \
 let mapleader=","
 
@@ -119,6 +120,11 @@ set noshowmode
 " Display vim airline at the botom of the window
 set laststatus=2
 
+" If search string contains only lowercase letters search is case insensitive.
+" If search string contains capital letters search is case sensative
+set ignorecase
+set smartcase
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Bindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -159,87 +165,17 @@ nnoremap <Leader>q :bp <BAR> bd #<CR>
 " Show all open buffers and their status --> Unnecessary since I am displaying open buffers at the top using airline
 " nnoremap <Leader>bl :ls<CR>
 
-" If search string contains only lowercase letters search is case insensitive.
-" If search string contains capital letters search is case sensative
-set ignorecase
-set smartcase
-
 nnoremap <Leader>sp :split<CR>
 nnoremap <Leader>vsp :vsplit<CR>
 
 " Delete all extra whitespace on save
 " nnoremap :w :FixWhitespace<CR>:w<CR>
 
+" Vertically resize a window
+nnoremap vrs :vertical resize
+
 " Use tt to togle the tagbar open and close
 nnoremap tt :TagbarToggle<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SETTINGS TO MODIFY SPECIFIC  PACKAGES
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_check_on_w = 0
-" let g:syntastic_loc_list_height = 5
-
-" Run syntastic check
-nnoremap <Leader>sc :SyntasticCheck<CR>
-
-" Close syntastic check window
-nnoremap <Leader>sr :SyntasticReset<CR>
-
-let g:startify_update_oldfiles = 1
-
-autocmd VimEnter *
-			\   if !argc()
-			\ |   Startify
-			\ |   NERDTree
-			\ |   wincmd w
-			\ | endif
-
-let g:startify_custom_header = [
-			\ '                                                                            ',
-			\ '    o             o  o----o  o       o-----o  o-----o  o       o  o----o    ',
-			\ '     \     o     /   |       |       |        |     |  | \   / |  |         ',
-			\ '      \   / \   /    |----o  |       |        |     |  |  \ /  |  |----o    ',
-			\ '       \ /   \ /     |       |       |        |     |  |   o   |  |         ',
-			\ '        o     o      o----o  o----o  o-----o  o-----o  o       o  o----o    ',
-			\ '                                                                            ',
-			\ '                       o---o   o-----o  o-----o  o   o                      ',
-			\ '                       |   |   |     |  |        |  /                       ',
-			\ '                       o---o   |-----|  |        |--                        ',
-			\ '                       |    \  |     |  |        |  \                       ',
-			\ '                       o----o  o     o  o-----o  o   o                      ',
-			\ ]
-
-" Have NERDTree be open automatically when vim starts --> Handled by the above cmd for use with startify
-" autocmd VimEnter * NERDTree
-
-" Toggle NERDTree
-nnoremap <Leader>d :NERDTreeToggle<CR>
-nnoremap <Leader>nt :NERDTree<CR>
-
-" Choose the arrow character NERDTree will use
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
-" nnoremap <Leader>t :CtrlP<CR>
-
-" Run easymotion commands in a direction --> based off of hjkl
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-" Type dws when in normal mode to run :FixWhitespace
-nnoremap dws :FixWhitespace<CR>
 
 " Use fzf to open files --> Alternative to Ctrl-P
 " Toggles NERDTree and then opens fzf window to find file so new file isn't
@@ -249,6 +185,58 @@ nnoremap nff :NERDTreeToggle<CR> :Files<CR>
 
 " Opens fzf window without toggling NERDTree
 nnoremap ff :Files<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SETTINGS TO MODIFY SPECIFIC  PACKAGES
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" #########################
+" ###### NERDTree
+" ########################
+
+" Toggle NERDTree
+nnoremap <Leader>d :NERDTreeToggle<CR>
+nnoremap <Leader>nt :NERDTree<CR>
+
+" Choose the arrow character NERDTree will use
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" Have NERDTree be open automatically when vim starts --> Handled by cmd for use with startify
+" autocmd VimEnter * NERDTree
+
+
+" #########################
+" ###### NerdCommenter
+" ########################
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+
+
+" #########################
+" ###### EasyMotion
+" ########################
+
+" Run easymotion commands in a direction --> based off of hjkl
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+" #########################
+" ###### Trailing-White-Space
+" ########################
+" Type dws when in normal mode to run :FixWhitespace
+nnoremap dws :FixWhitespace<CR>
+
+
+" #########################
+" ###### Airline
+" ########################
 
 " Get the right symbols for the status bar
 " Using the font Meslo LG S Regular for Powerline which can be found here: https://github.com/powerline/fonts/tree/master/Meslo
@@ -290,7 +278,8 @@ let g:airline_section_y = airline#section#create(["%{strlen(&fenc)?&fenc:'none'}
 " Display only the line and column information in section z
 let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: %03c'])
 
-let g:airline_section_error = airline#section#create(['ycm_error_count', 'syntastic'])
+" Display syntax errors from Ale in the status line
+" let g:airline#extensions#ale#enabled = 1
 
 " EXAMPLES FROM :help airline
 " let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
@@ -303,6 +292,37 @@ let g:airline_section_error = airline#section#create(['ycm_error_count', 'syntas
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 " let g:airline_section_warning (ycm_warning_count, whitespace)])
 
+" #########################
+" ###### Startify
+" ########################
+
+let g:startify_update_oldfiles = 1
+
+autocmd VimEnter *
+			\   if !argc()
+			\ |   Startify
+			\ |   NERDTree
+			\ |   wincmd w
+			\ | endif
+
+let g:startify_custom_header = [
+			\ '                                                                            ',
+			\ '    o             o  o----o  o       o-----o  o-----o  o       o  o----o    ',
+			\ '     \     o     /   |       |       |        |     |  | \   / |  |         ',
+			\ '      \   / \   /    |----o  |       |        |     |  |  \ /  |  |----o    ',
+			\ '       \ /   \ /     |       |       |        |     |  |   o   |  |         ',
+			\ '        o     o      o----o  o----o  o-----o  o-----o  o       o  o----o    ',
+			\ '                                                                            ',
+			\ '                       o---o   o-----o  o-----o  o   o                      ',
+			\ '                       |   |   |     |  |        |  /                       ',
+			\ '                       o---o   |-----|  |        |--                        ',
+			\ '                       |    \  |     |  |        |  \                       ',
+			\ '                       o----o  o     o  o-----o  o   o                      ',
+			\ ]
+
+" #########################
+" ###### Tagbar
+" ########################
 " Set the width to be 40 columns
 let g:tagbar_width = 40
 
