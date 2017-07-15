@@ -244,9 +244,6 @@ nnoremap dws :FixWhitespace<CR>
 " ########################
 
 " Get the right symbols for the status bar
-" Using the font Meslo LG S Regular for Powerline which can be found here: https://github.com/powerline/fonts/tree/master/Meslo
-" It is also installed on my personal computer
-
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
@@ -256,19 +253,14 @@ endif
 " Currently using DejaVu Sans Mono for Powerline
 " It is also installed on my personal computer
 
-let g:airline_theme='bubblegum'
+let g:airline_theme='base16_eighties'
 let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-
-" let g:airline_powerline_fonts = 1
+let g:airline_left_sep = "\uE0B8"
+let g:airline_right_sep = "\uE0BA"
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-
-" Show just the filename and not the extension
-let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Hide whitespace errors
 let g:airline#extensions#whitespace#enabled = 0
@@ -277,16 +269,19 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_c = airline#section#create(['%t'])
 
 " Display the file type in section x
-let g:airline_section_x = airline#section#create(['%y'])
+let g:airline_section_x = airline#section#create('%y')
 
 " Display only the file encoding in section y
-let g:airline_section_y = airline#section#create(["%{strlen(&fenc)?&fenc:'none'}"])
+let g:airline_section_y = airline#section#create("%{strlen(&fenc)?&fenc:'none'}")
 
 " Display only the line and column information in section z
-let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: %03c'])
+let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col:%03c'])
+
+let g:airline_section_error = airline#section#create('')
+let g:airline_section_warning = airline#section#create ('')
 
 " Display syntax errors from Ale in the status line
-" let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 
 " EXAMPLES FROM :help airline
 " let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
@@ -297,7 +292,7 @@ let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col: 
 " let g:airline_section_y       (fileencoding, fileformat)
 " let g:airline_section_z       (percentage, line number, column number)
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
-" let g:airline_section_warning (ycm_warning_count, whitespace)])
+" let g:airline_section_warning (ycm_warning_count, whitespace)
 
 " #########################
 " ###### Startify
@@ -337,14 +332,13 @@ let g:tagbar_width = 30
 let g:tagbar_compact = 1
 
 " Open the tagbar when vim starts if the file being opened is supported
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+" autocmd VimEnter * nested :call tagbar#autoopen(1)
 
 " To view a list of colors available run :highlight
 highlight TagbarHighlight ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
 
 " Sort by order of appearence in the file, not by alphabetical
 let g:tagbar_sort = 0
-
 
 " #########################
 " ###### Ale
