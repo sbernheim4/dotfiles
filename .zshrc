@@ -121,9 +121,6 @@ fo() {
 export TERM=xterm-256color
 export PATH="/usr/local/sbin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-  . "/usr/local/opt/nvm/nvm.sh"
-
 # Use the right colorscheme
 # BASE16_SHELL=$HOME/.config/base16-shell/
 # [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"

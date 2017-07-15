@@ -200,8 +200,8 @@ nnoremap <Leader>nt :NERDTree<CR>
 
 " Choose the arrow character NERDTree will use
 let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
+let g:NERDTreeDirArrowCollapsible = '▿'
+" ▾
 " Have NERDTree be open automatically when vim starts --> Handled by cmd for use with startify
 " autocmd VimEnter * NERDTree
 
