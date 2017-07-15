@@ -38,7 +38,7 @@ Plug 'vim-airline/vim-airline'
 " A collection of themes for vim-airline
 Plug 'vim-airline/vim-airline-themes'
 
-" 🔗 The fancy start screen for Vim.
+" 🔗  The fancy start screen for Vim.
 Plug 'mhinz/vim-startify'
 
 " List of JavaScript ES6 snippets and syntax highlighting for vim.
@@ -56,6 +56,9 @@ Plug 'majutsushi/tagbar'
 
 " Asynchronous Lint Engine
 Plug 'w0rp/ale'
+
+" 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -124,6 +127,8 @@ set laststatus=2
 " If search string contains capital letters search is case sensative
 set ignorecase
 set smartcase
+
+set encoding=utf8
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Bindings
@@ -257,6 +262,8 @@ let g:airline_symbols.paste = "Þ"
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
+let g:airline_powerline_fonts = 1
+
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 
@@ -324,7 +331,7 @@ let g:startify_custom_header = [
 " ###### Tagbar
 " ########################
 " Set the width to be 40 columns
-let g:tagbar_width = 40
+let g:tagbar_width = 30
 
 " Display tagbar info compactly
 let g:tagbar_compact = 1
