@@ -352,3 +352,10 @@ let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 
 nnoremap <Leader>tl :ALEToggle<CR>
+
+
+" #########################
+" ###### Vim Devicons
+" ########################
+
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
