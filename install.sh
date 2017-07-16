@@ -19,6 +19,8 @@ install_brew() {
 	brew install git > /dev/null
 	brew install node > /dev/null
 	brew install nvm > /dev/null
+	# Needed for lua support which vim needs for certain packages
+	brew install luajit
 
 }
 
@@ -33,7 +35,7 @@ install_vim() {
 	# Install vim with homebrew and .vimrc create symlink to .vimrc
 	which -s vim
 	if [ $? != 0 ] ; then
-		brew install vim > /dev/null
+		brew install vim --with-luajit > /dev/null
 	else
 		brew upgrade vim > /dev/null
 	fi
