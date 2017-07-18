@@ -131,11 +131,6 @@ set smartcase
 
 set encoding=utf8
 
-" Set backup directories to be in ~/.vim so as to not clutter up the CWD
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
-set undodir=~/.vim/undo//
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Bindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
