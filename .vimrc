@@ -3,9 +3,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-" Auto complete package
-" After running :PlugInstall cd to the YouCompleteMe folder and run ./install.sh
-" Plug 'Valloric/YouCompleteMe'
+" Asynchronous Lint Engine
 Plug 'Shougo/neocomplete.vim'
 
 " A tree explorer plugin for vim.
