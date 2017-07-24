@@ -95,7 +95,6 @@ export EDITOR='vim'
 alias sub="open -a 'Sublime Text'"
 alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 3"
 alias gproj="cd ~/Github-Projects"
-alias weather="ansiweather -u imperial -l NewYork,NY" # Requires ansiweather, jq and bc (all can be installed with brew)
 
 # type "fd" to open a directory using fzf
 fd() {
