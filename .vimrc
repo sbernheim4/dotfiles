@@ -3,8 +3,11 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-" Asynchronous Lint Engine
+" Next generation completion framework after neocomplcache
 Plug 'Shougo/neocomplete.vim'
+
+" Extra syntax and highlight for nerdtree files
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree'
