@@ -383,6 +383,10 @@ let g:ale_open_list = 1
 
 nnoremap <Leader>tl :ALEToggle<CR>
 
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+
 
 " #########################
 " ###### Vim Devicons
