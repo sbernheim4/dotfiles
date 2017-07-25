@@ -239,6 +239,8 @@ let g:NERDTreeDirArrowCollapsible = '▿'
 " Have NERDTree be open automatically when vim starts --> Handled by cmd for use with startify
 " autocmd VimEnter * NERDTree
 
+let NERDTreeShowHidden=1
+
 
 " #########################
 " ###### NerdCommenter
