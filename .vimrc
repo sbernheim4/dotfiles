@@ -3,10 +3,11 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-" Auto complete package
-" After running :PlugInstall cd to the YouCompleteMe folder and run ./install.sh
-" Plug 'Valloric/YouCompleteMe'
+" Next generation completion framework after neocomplcache
 Plug 'Shougo/neocomplete.vim'
+
+" Extra syntax and highlight for nerdtree files
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree'
@@ -383,6 +384,10 @@ let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
 
 nnoremap <Leader>tl :ALEToggle<CR>
+
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
 
 
 " #########################
