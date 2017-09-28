@@ -93,6 +93,7 @@ set linebreak
 
 " Shows line numbers by default when opening files
 set number
+set relativenumber
 
 " Set the tab stop to 4
 set tabstop=4
@@ -382,6 +383,9 @@ let g:ale_set_quickfix = 1
 
 " Open the list
 let g:ale_open_list = 1
+
+" Wait 400 ms before linting after text is changed
+let g:ale_lint_delay = 400
 
 nnoremap <Leader>tl :ALEToggle<CR>
 

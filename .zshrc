@@ -34,7 +34,7 @@ DEFAULT_USER=`whoami`
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 unsetopt correct_all
 
 # Uncomment the following line to display red dots whilst waiting for completion.
@@ -93,7 +93,7 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias sub="open -a 'Sublime Text'"
-alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 3"
+alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 4"
 alias gproj="cd ~/Github-Projects"
 
 # type "fd" to open a directory using fzf
