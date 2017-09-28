@@ -13,7 +13,7 @@ This repo is a collection of all my dotfiles for vim, tmux and zsh. This repo co
 
 Be sure to also install the font in the `fonts/` folder and use this font as the default for your terminal. Do not use a separate font for non-ascii characters.
 
-## What Get's Installed
+## What Gets Installed
 
 - brew
 - git
@@ -33,6 +33,5 @@ Be sure to install the font in `fonts/` and set this to be the default font for 
 You will probably have to exit vim during the installation process just by typing :q and then hitting enter, keep repeating this until vim is fully quit so the script can finish the plugin installation process.
 
 1. Your computer password will be necessary for the script to run. It is necessary to change the default shell to be zsh.
-
 
 2. The install.sh file will clone the repo into ~/. If you have already clone this repo into ~/ nothing will be affected. This is done to ensure that the dotfiles are accessible at a universal location. If you cloned it into another folder, please delete that copy after running ./install.sh and only keep the one in ~/ to avoid confusion.
