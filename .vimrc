@@ -113,14 +113,11 @@ set backspace=indent,eol,start
 " Have line wrapping off by default
 set nowrap
 
-" Displays the eol character
+" Displays the special characters like eol, indents etc
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
 set listchars=tab:\|\ ,
 " set listchars=tab:•\ ,eol:¬
 set list
-
-" Add ctrl-p to runtime path
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Fix to make sure switching from insert mode to normal mode is fast but that
 " easy motion is still possible I think because of the ttimeoutlen=0
@@ -179,14 +176,15 @@ nnoremap <Leader>q :bp <BAR> bd #<CR>
 " Show all open buffers and their status --> Unnecessary since I am displaying open buffers at the top using airline
 " nnoremap <Leader>bl :ls<CR>
 
-nnoremap <Leader>sp :split<CR>
-nnoremap <Leader>vsp :vsplit<CR>
+" Split the curent window vertically or horizontally (Useful when you want to have the same file open at two different locations at the same time)
+nnoremap <Leader>sp :vsplit<CR>
+nnoremap <Leader>hsp :split<CR>
+
+" Vertically resize a window
+snoremap vrs :vertical resize
 
 " Delete all extra whitespace on save
 " nnoremap :w :FixWhitespace<CR>:w<CR>
-
-" Vertically resize a window
-nnoremap vrs :vertical resize
 
 " Use tt to togle the tagbar open and close
 nnoremap tt :TagbarToggle<CR>
@@ -218,10 +216,10 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
-	\ 'default' : '',
-	\ 'vimshell' : $HOME.'/.vimshell_hist',
-	\ 'scheme' : $HOME.'/.gosh_completions'
-	\ }
+\ 'default' : '',
+\ 'vimshell' : $HOME.'/.vimshell_hist',
+\ 'scheme' : $HOME.'/.gosh_completions'
+\ }
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -247,7 +245,8 @@ let g:NERDTreeDirArrowCollapsible = '▿'
 " Have NERDTree be open automatically when vim starts --> Handled by cmd for use with startify
 " autocmd VimEnter * NERDTree
 
-let NERDTreeShowHidden=1
+" let NERDTreeShowHidden=1
+
 
 
 " #########################
@@ -284,7 +283,7 @@ nnoremap dws :FixWhitespace<CR>
 
 " Get the right symbols for the status bar
 if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+let g:airline_symbols = {}
 endif
 
 " Using the font Meslo LG S Regular for Powerline which can be found here:
@@ -340,26 +339,28 @@ let g:airline#extensions#ale#enabled = 1
 let g:startify_update_oldfiles = 1
 
 autocmd VimEnter *
-			\   if !argc()
-			\ |   Startify
-			\ |   NERDTree
-			\ |   wincmd w
-			\ | endif
+\   if !argc()
+\ |   Startify
+\ |   NERDTree
+\ |   wincmd w
+\ | endif
 
 let g:startify_custom_header = [
-			\ '                                                                            ',
-			\ '    o             o  o----o  o       o-----o  o-----o  o       o  o----o    ',
-			\ '     \     o     /   |       |       |        |     |  | \   / |  |         ',
-			\ '      \   / \   /    |----o  |       |        |     |  |  \ /  |  |----o    ',
-			\ '       \ /   \ /     |       |       |        |     |  |   o   |  |         ',
-			\ '        o     o      o----o  o----o  o-----o  o-----o  o       o  o----o    ',
-			\ '                                                                            ',
-			\ '                       o---o   o-----o  o-----o  o   o                      ',
-			\ '                       |   |   |     |  |        |  /                       ',
-			\ '                       o---o   |-----|  |        |--                        ',
-			\ '                       |    \  |     |  |        |  \                       ',
-			\ '                       o----o  o     o  o-----o  o   o                      ',
-			\ ]
+\ '                                                                            ',
+\ '    o             o  o----o  o       o-----o  o-----o  o       o  o----o    ',
+\ '     \     o     /   |       |       |        |     |  | \   / |  |         ',
+\ '      \   / \   /    |----o  |       |        |     |  |  \ /  |  |----o    ',
+\ '       \ /   \ /     |       |       |        |     |  |   o   |  |         ',
+\ '        o     o      o----o  o----o  o-----o  o-----o  o       o  o----o    ',
+\ '                                                                            ',
+\ '                       o---o   o-----o  o-----o  o   o                      ',
+\ '                       |   |   |     |  |        |  /                       ',
+\ '                       o---o   |-----|  |        |--                        ',
+\ '                       |    \  |     |  |        |  \                       ',
+\ '                       o----o  o     o  o-----o  o   o                      ',
+\ ]
+
+
 
 " #########################
 " ###### Tagbar
