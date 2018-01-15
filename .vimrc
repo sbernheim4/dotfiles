@@ -62,11 +62,18 @@ Plug 'w0rp/ale'
 " 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'ryanoasis/vim-devicons'
 
-" An ack.vim alternative mimics Ctrl-Shift-F on Sublime Text 2
-Plug 'dyng/ctrlsf.vim'
-
 " True Sublime Text style multiple selections for Vim
 Plug 'terryma/vim-multiple-cursors'
+
+" Quantify your coding inside Vim.
+Plug 'wakatime/vim-wakatime'
+
+" JS and JSX syntax highlighting
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+
+" Vim dark+ colorscheme like visual studio
+Plug 'tomasiser/vim-code-dark'
 
 call plug#end()
 

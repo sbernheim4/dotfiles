@@ -1,7 +1,7 @@
 #; Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-fortune | cowsay -f tux | lolcat
+# fortune | cowsay -f tux | lolcat
 
 # Run spectrum_ls to see a list of colors zsh can easily produce and
 # which can be used in a theme
@@ -11,7 +11,7 @@ ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab o
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="spaceship"
 DEFAULT_USER=`whoami`
 
 # Uncomment the following line to use case-sensitive completion.
@@ -93,6 +93,7 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias sub="open -a 'Sublime Text'"
+alias vis="open -a 'Visual Studio Code'"
 alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 4"
 alias gproj="cd ~/Github-Projects"
 
