@@ -16,9 +16,8 @@ install_brew() {
 	fi
 
 	# Install git node and nvm
-	brew install git > /dev/null
-	brew install node > /dev/null
-	brew install nvm > /dev/null
+	brew install git
+	brew install nvm
 	# Needed for lua support which vim needs for certain packages
 	brew install luajit
 
@@ -28,16 +27,16 @@ download_dotfiles() {
 	# Download dotfiles from github
 	echo ' ---------- Downloading dotfiles for vim, tmux, and zsh ---------- '
 	echo
-	git clone https://github.com/sbernheim4/dotfiles.git > /dev/null
+	git clone https://github.com/sbernheim4/dotfiles.git
 }
 
 install_vim() {
 	# Install vim with homebrew and .vimrc create symlink to .vimrc
 	which -s vim
 	if [ $? != 0 ] ; then
-		brew install vim --with-luajit > /dev/null
+		brew install vim --with-luajit
 	else
-		brew upgrade vim > /dev/null
+		brew upgrade vim
 	fi
 
 	if [ ! -e ~/.vimrc ] ; then
@@ -68,9 +67,9 @@ install_vim() {
 install_tmux() {
 	which -s tmux
 	if [ $? != 0 ] ; then
-		brew install tmux > /dev/null
+		brew install tmux
 	else
-		brew upgrade tmux > /dev/null
+		brew upgrade tmux
 	fi
 
 	if [ ! -e "~/.tmux.conf" ] ; then
@@ -84,9 +83,9 @@ install_zsh() {
 	# Install zsh with homebrew if not already installed
 	which -s zsh
 	if [ $? != 0 ] ; then
-		brew install zsh > /dev/null
+		brew install zsh
 	else
-		brew upgrade zsh > /dev/null
+		brew upgrade zsh
 	fi
 
 	if [ ! -e ~/.zshrc ] ; then
@@ -138,12 +137,12 @@ cd ~
 
 which -s cmake
 if [ $? != 0 ] ; then
-	brew install cmake > /dev/null
+	brew install cmake
 fi
 
 
 # Needed to use the tagbar vim plugin
-brew install ctags > /dev/null
+brew install ctags
 # Needed to use the tagbar vim plugin
 PATH=/usr/local/bin:$PATH
 
@@ -151,10 +150,6 @@ PATH=/usr/local/bin:$PATH
 echo ' ---------- Installing Vim Plugins ---------- '
 sleep 5s
 vim +PlugInstall
-
-# Install YouCompleteMe for vim
-echo ' ---------- Installing YouCompleteMe Vim Package ---------- '
-cd ~/.vim/plugged/YouCompleteMe/; python install.py > /dev/null
 
 echo ' ---------- Vim Packages are Installed ---------- '
 echo
