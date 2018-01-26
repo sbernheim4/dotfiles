@@ -28,9 +28,6 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
-" Highlights trailing whitespace in red and provides :FixWhitespace to fix it.
-Plug 'bronson/vim-trailing-whitespace'
-
 " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
 
@@ -42,9 +39,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 " 🔗  The fancy start screen for Vim.
 Plug 'mhinz/vim-startify'
-
-" List of JavaScript ES6 snippets and syntax highlighting for vim.
-Plug 'isruslan/vim-es6'
 
 " Vim plugin that displays tags in a window, ordered by scope
 " NOTE: Requires ctags to be installed to do so, run the following from ~/
@@ -68,12 +62,12 @@ Plug 'terryma/vim-multiple-cursors'
 " Quantify your coding inside Vim.
 Plug 'wakatime/vim-wakatime'
 
+" List of JavaScript ES6 snippets and syntax highlighting for vim.
+Plug 'isruslan/vim-es6'
+
 " JS and JSX syntax highlighting
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-
-" Vim dark+ colorscheme like visual studio
-Plug 'tomasiser/vim-code-dark'
 
 call plug#end()
 
@@ -205,6 +199,9 @@ nnoremap nff :NERDTreeToggle<CR> :Files<CR>
 " Opens fzf window without toggling NERDTree
 nnoremap ff :Files<CR>
 
+" Delete trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -276,13 +273,6 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
-
-" #########################
-" ###### Trailing-White-Space
-" ########################
-" Type dws when in normal mode to run :FixWhitespace
-nnoremap dws :FixWhitespace<CR>
-
 
 " #########################
 " ###### Airline
@@ -398,13 +388,14 @@ let g:ale_set_quickfix = 1
 " Open the list
 let g:ale_open_list = 1
 
-" Wait 400 ms before linting after text is changed
-let g:ale_lint_delay = 400
+" Wait n ms before linting after text is changed
+let g:ale_lint_delay = 700
 
 nnoremap <Leader>tl :ALEToggle<CR>
 
 let g:ale_linters = {
 \   'javascript': ['eslint'],
+\	'SCSS': ['styleint'],
 \}
 
 
