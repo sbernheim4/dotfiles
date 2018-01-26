@@ -11,12 +11,11 @@ if it is running then
 			# If the track has an artist set and is therefore most likely a song rather than an advert
 			set t to "♫ " & artist_name & " - " & track_name
 
-			if length of t > 31
-				text 1 thru 31 of t & "..."
+			if length of t > 35
+				text 1 thru 35 of t & "..."
 			else
 				"♫ " & artist_name & " - " & track_name
 			end if
-
 		else
 			# If the track doesn't have an artist set and is therefore most likely an advert rather than a song
 			"~ " & track_name
