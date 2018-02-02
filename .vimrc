@@ -4,7 +4,7 @@
 call plug#begin('~/.vim/plugged')
 
 " Next generation completion framework after neocomplcache
-Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/deoplete.nvim'
 
 " Dependency for vimfiler
 Plug 'Shougo/unite.vim'
@@ -192,8 +192,6 @@ nnoremap ff :Files<CR>
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-nmap <Leader>i <Plug>(vimfiler_toggle_visible_dot_files)
-
 "vimfiler_toggle_visible_dot_files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
@@ -202,30 +200,32 @@ nmap <Leader>i <Plug>(vimfiler_toggle_visible_dot_files)
 " #########################
 " ###### NeoComplete
 " ########################
+let g:deoplete#enable_at_startup = 1
+
 " Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
+" let g:acp_enableAtStartup = 0
 " " Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 " Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-\ 'default' : '',
-\ 'vimshell' : $HOME.'/.vimshell_hist',
-\ 'scheme' : $HOME.'/.gosh_completions'
-\ }
+" let g:neocomplete#sources#dictionary#dictionaries = {
+" \ 'default' : '',
+" \ 'vimshell' : $HOME.'/.vimshell_hist',
+" \ 'scheme' : $HOME.'/.gosh_completions'
+" \ }
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
 
 " #########################
 " ###### VimFiler
@@ -233,7 +233,9 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
 
 let g:vimfiler_tree_opened_icon = '▿'
 let g:vimfiler_tree_closed_icon = '▸'
+
 noremap <Leader>d :VimFilerExplorer<CR>
+nmap <Leader>i <Plug>(vimfiler_toggle_visible_dot_files)
 "
 " #########################
 " ###### NerdCommenter
@@ -268,11 +270,13 @@ endif
 " Currently using DejaVu Sans Mono for Powerline
 " It is also installed on my personal computer
 
-let g:airline_theme='base16_eighties'
+let g:airline_theme='base16'
 let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
-let g:airline_left_sep = "\uE0B8"
-let g:airline_right_sep = "\uE0BA"
+" let g:airline_left_sep = "\uE0B8"
+" let g:airline_right_sep = "\uE0BA"
+let g:airline_left_sep=""
+let g:airline_right_sep=""
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -318,7 +322,7 @@ let g:startify_update_oldfiles = 1
 autocmd VimEnter *
 \   if !argc()
 \ |   Startify
-\ |   VimFilerExplorer
+\ |   VimFilerExplorer -direction=rightbelow
 \ |   wincmd w
 \ | endif
 
