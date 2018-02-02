@@ -198,9 +198,18 @@ autocmd BufWritePre * %s/\s\+$//e
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " #########################
+" ###### Deocomplete
+" ########################
+
+let g:deoplete#enable_at_startup = 1
+
+" Use tab to auto cycle through autocmoplete list instead of arrows
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+
+" #########################
 " ###### NeoComplete
 " ########################
-let g:deoplete#enable_at_startup = 1
 
 " Disable AutoComplPop.
 " let g:acp_enableAtStartup = 0
