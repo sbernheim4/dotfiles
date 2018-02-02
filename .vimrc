@@ -6,11 +6,11 @@ call plug#begin('~/.vim/plugged')
 " Next generation completion framework after neocomplcache
 Plug 'Shougo/neocomplete.vim'
 
-" Extra syntax and highlight for nerdtree files
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Dependency for vimfiler
+Plug 'Shougo/unite.vim'
 
 " A tree explorer plugin for vim.
-Plug 'scrooloose/nerdtree'
+Plug 'Shougo/vimfiler'
 
 " Vim plugin for intensely orgasmic commenting
 Plug 'scrooloose/nerdcommenter'
@@ -56,17 +56,10 @@ Plug 'w0rp/ale'
 " 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'ryanoasis/vim-devicons'
 
-" True Sublime Text style multiple selections for Vim
-Plug 'terryma/vim-multiple-cursors'
-
 " Quantify your coding inside Vim.
 Plug 'wakatime/vim-wakatime'
 
-" List of JavaScript ES6 snippets and syntax highlighting for vim.
-Plug 'isruslan/vim-es6'
-
-" JS and JSX syntax highlighting
-Plug 'pangloss/vim-javascript'
+" JSX syntax highlighting
 Plug 'mxw/vim-jsx'
 
 call plug#end()
@@ -182,10 +175,7 @@ nnoremap <Leader>sp :vsplit<CR>
 nnoremap <Leader>hsp :split<CR>
 
 " Vertically resize a window
-snoremap vrs :vertical resize
-
-" Delete all extra whitespace on save
-" nnoremap :w :FixWhitespace<CR>:w<CR>
+nnoremap <Leader>vrs :vertical resize
 
 " Use tt to togle the tagbar open and close
 nnoremap tt :TagbarToggle<CR>
@@ -194,7 +184,7 @@ nnoremap tt :TagbarToggle<CR>
 " Toggles NERDTree and then opens fzf window to find file so new file isn't
 " opened in the NERDTree space --> ONLY WORKS THIS WAY IF NERDTree is already
 " open and file is opened in a new buffer
-nnoremap nff :NERDTreeToggle<CR> :Files<CR>
+" nnoremap nff :NERDTreeToggle<CR> :Files<CR>
 
 " Opens fzf window without toggling NERDTree
 nnoremap ff :Files<CR>
@@ -202,6 +192,9 @@ nnoremap ff :Files<CR>
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
+nmap <Leader>i <Plug>(vimfiler_toggle_visible_dot_files)
+
+"vimfiler_toggle_visible_dot_files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -235,24 +228,13 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
 
 " #########################
-" ###### NERDTree
+" ###### VimFiler
 " ########################
 
-" Toggle NERDTree
-nnoremap <Leader>d :NERDTreeToggle<CR>
-nnoremap <Leader>nt :NERDTree<CR>
-
-" Choose the arrow character NERDTree will use
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▿'
-" ▾
-" Have NERDTree be open automatically when vim starts --> Handled by cmd for use with startify
-" autocmd VimEnter * NERDTree
-
-" let NERDTreeShowHidden=1
-
-
-
+let g:vimfiler_tree_opened_icon = '▿'
+let g:vimfiler_tree_closed_icon = '▸'
+noremap <Leader>d :VimFilerExplorer<CR>
+"
 " #########################
 " ###### NerdCommenter
 " ########################
@@ -261,8 +243,6 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
-
-
 
 " #########################
 " ###### EasyMotion
@@ -338,7 +318,7 @@ let g:startify_update_oldfiles = 1
 autocmd VimEnter *
 \   if !argc()
 \ |   Startify
-\ |   NERDTree
+\ |   VimFilerExplorer
 \ |   wincmd w
 \ | endif
 
@@ -362,7 +342,7 @@ let g:startify_custom_header = [
 " #########################
 " ###### Tagbar
 " ########################
-" Set the width to be 40 columns
+" Set the width to be x columns
 let g:tagbar_width = 30
 
 " Display tagbar info compactly
