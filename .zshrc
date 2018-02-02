@@ -96,6 +96,7 @@ alias sub="open -a 'Sublime Text'"
 alias vis="open -a 'Visual Studio Code'"
 alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 4"
 alias gproj="cd ~/Github-Projects"
+alias vim="nvim"
 
 # type "fd" to open a directory using fzf
 fd() {
