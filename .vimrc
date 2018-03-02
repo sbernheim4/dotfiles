@@ -62,6 +62,9 @@ Plug 'wakatime/vim-wakatime'
 " JSX syntax highlighting
 Plug 'mxw/vim-jsx'
 
+" True Sublime Text style multiple selections for Vim
+Plug 'terryma/vim-multiple-cursors'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -331,7 +334,7 @@ let g:startify_update_oldfiles = 1
 autocmd VimEnter *
 \   if !argc()
 \ |   Startify
-\ |   VimFilerExplorer -direction=rightbelow
+\ |   VimFilerExplorer -direction=topleft
 \ |   wincmd w
 \ | endif
 

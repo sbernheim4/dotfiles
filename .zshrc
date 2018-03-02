@@ -11,9 +11,23 @@ ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab o
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="bullet-train"
 DEFAULT_USER=`whoami`
 
+BULLETTRAIN_PROMPT_ORDER=(
+  status
+  custom
+  dir
+  screen
+  ruby
+  virtualenv
+  aws
+  go
+  git
+  cmd_exec_time
+)
+
+BULLETTRAIN_PROMPT_ADD_NEWLINE=false
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -57,7 +71,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf)
+plugins=(git fzf extract)
 
 # User configuration
 
@@ -97,6 +111,7 @@ alias vis="open -a 'Visual Studio Code'"
 alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 4"
 alias gproj="cd ~/Github-Projects"
 alias vim="nvim"
+alias spot="spotify"
 
 # type "fd" to open a directory using fzf
 fd() {
