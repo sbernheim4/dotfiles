@@ -70,6 +70,8 @@ Plug 'mxw/vim-jsx'
 
 call plug#end()
 
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GLOBAL SETTINGS FOR VIM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -80,12 +82,11 @@ let mapleader=","
 syntax enable
 syntax on
 set t_Co=256
-let base16colorspace=256
 
 set background=dark " for the dark version
-" use a gray background instead of the default blue
-"let g:neodark#background='gray'
 colorscheme gruvbox
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ENVIRONMENT VARIABLES
@@ -99,6 +100,8 @@ set linebreak
 
 " Shows line numbers by default when opening files
 set number
+
+" Shows relative line numbers
 set relativenumber
 
 " Set the tab stop to 4
@@ -116,12 +119,9 @@ set nowrap
 " Displays the special characters like eol, indents etc
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
 set listchars=tab:\|\ ,
+set listchars=tab:•\ ,
 " set listchars=tab:•\ ,eol:¬
 set list
-
-" Fix to make sure switching from insert mode to normal mode is fast but that
-" easy motion is still possible I think because of the ttimeoutlen=0
-set timeoutlen=400 ttimeoutlen=0
 
 " Hide the default mode indicator. Do so because airline will show the current mode
 set noshowmode
@@ -148,7 +148,6 @@ nnoremap <Leader>wr :set wrap!<CR>
 
 " Toggle highlighting of search results
 nnoremap <Leader>hl :set hlsearch!<CR>
-
 
 " Toggle cursor line highlight
 nnoremap <Leader>cll :set cursorline!<CR>
@@ -198,7 +197,8 @@ nnoremap ff :Files<CR>
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-"vimfiler_toggle_visible_dot_files
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SETTINGS TO MODIFY SPECIFIC  PACKAGES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -213,34 +213,6 @@ let g:deoplete#enable_at_startup = 1
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 
-" #########################
-" ###### NeoComplete
-" ########################
-
-" Disable AutoComplPop.
-" let g:acp_enableAtStartup = 0
-" " Use neocomplete.
-" let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-" let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" Define dictionary.
-" let g:neocomplete#sources#dictionary#dictionaries = {
-" \ 'default' : '',
-" \ 'vimshell' : $HOME.'/.vimshell_hist',
-" \ 'scheme' : $HOME.'/.gosh_completions'
-" \ }
-
-" Enable omni completion.
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-
-" <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>""
 
 " #########################
 " ###### VimFiler
@@ -251,7 +223,9 @@ let g:vimfiler_tree_closed_icon = '▸'
 
 noremap <Leader>d :VimFilerExplorer<CR>
 nmap <Leader>i <Plug>(vimfiler_toggle_visible_dot_files)
-"
+
+
+
 " #########################
 " ###### NerdCommenter
 " ########################
@@ -260,6 +234,8 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+
+
 
 " #########################
 " ###### EasyMotion
@@ -271,30 +247,29 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
 
+
+
 " #########################
 " ###### Airline
 " ########################
 
-" Get the right symbols for the status bar
-if !exists('g:airline_symbols')
-let g:airline_symbols = {}
-endif
-
 " Using the font Meslo LG S Regular for Powerline which can be found here:
 " https://github.com/powerline/fonts/tree/master/Meslo
 " Currently using DejaVu Sans Mono for Powerline
-" It is also installed on my personal computer
+" It is also installed on my computer
 
-let g:airline_theme='base16'
+let g:airline_theme='angr'
 let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
-" let g:airline_left_sep = "\uE0B8"
-" let g:airline_right_sep = "\uE0BA"
+" let g:airline_left_sep = "\uE0B4"
+" let g:airline_right_sep = "\uE0B6"
 let g:airline_left_sep=""
 let g:airline_right_sep=""
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " Hide whitespace errors
 let g:airline#extensions#whitespace#enabled = 0
@@ -327,6 +302,8 @@ let g:airline#extensions#ale#enabled = 1
 " let g:airline_section_z       (percentage, line number, column number)
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 " let g:airline_section_warning (ycm_warning_count, whitespace)
+
+
 
 " #########################
 " ###### Startify
@@ -376,6 +353,8 @@ highlight TagbarHighlight ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
 " Sort by order of appearence in the file, not by alphabetical
 let g:tagbar_sort = 0
 
+
+
 " #########################
 " ###### Ale
 " ########################
@@ -393,13 +372,18 @@ let g:ale_lint_delay = 700
 nnoremap <Leader>tl :ALEToggle<CR>
 
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\	'javascript': ['eslint'],
 \	'SCSS': ['styleint'],
 \}
+
 
 
 " #########################
 " ###### Vim Devicons
 " ########################
 
+" the amount of space to use after the glyph character (default ' ')
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+
+" adding the column to vimfiler
+let g:webdevicons_enable_vimfiler = 1
