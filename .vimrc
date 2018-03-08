@@ -257,6 +257,10 @@ map <Leader>h <Plug>(easymotion-linebackward)
 " https://github.com/powerline/fonts/tree/master/Meslo
 " Currently using DejaVu Sans Mono for Powerline
 " It is also installed on my computer
+"
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
 
 let g:airline_theme='angr'
 let g:airline_symbols.branch = ""
