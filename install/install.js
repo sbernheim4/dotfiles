@@ -1,7 +1,10 @@
 const shell = require("shelljs");
 const fs = require('fs');
+const chalk = require("chalk");
 
 function installHomebrew() {
+	shell.cd("~/");
+
 	let brewInstalled = shell.exec("which -s brew").code;
 
 	if (brewInstalled === 0) {
@@ -19,6 +22,8 @@ function installHomebrew() {
 function installHomebrewPackages() {
 	console.log(chalk.blue("Installing git, nvm, neovim, tmux, zsh, cmake, and ctags with homebrew"));
 
+	shell.cd("~/");
+
 	shell.exec("brew install git");
 	shell.exec("brew install nvm");
 	shell.exec("brew install neovim");
@@ -26,12 +31,16 @@ function installHomebrewPackages() {
 	shell.exec("brew install zsh");
 	shell.exec("brew install cmake");
 	shell.exec("brew install ctags");
+	shell.exec("brew install fzf");
 
 	console.log(chalk.green("Packages installed"));
 }
 
 function downloadDotfiles() {
 	console.log(chalk.blue("Cloning dotfiles repo"));
+
+	shell.cd("~/");
+
 	shell.exec("git clone https://github.com/sbernheim4/dotfiles.git");
 	console.log(chalk.green("Cloning complete"));
 }
@@ -51,7 +60,7 @@ function setupVimFiles() {
 
 	// Create .vim folder
 	if (fs.existsSync(".vim/")) {
-		shell.rm("-r", ".vim/");
+		shell.rm("-rf", ".vim/");
 	}
 
 	shell.mkdir(".vim");
@@ -73,10 +82,12 @@ function setupVimFiles() {
 	shell.cp("~/dotfiles/plug.vim", "autoload");
 
 	// Create symlinks for all the vim colorscheme files
-	shell.cd("colors/");
+	shell.cd("~/dotfiles/vim_colors/");
 	shell.ls().forEach(file => {
 		shell.touch(`~/.vim/colors/${file}`);
+		shell.cd("~/.vim/colors");
 		shell.ln("-sf", `~/dotfiles/vim_colors/${file}`, `./${file}`)
+		shell.cd("~/dotfiles/vim_colors");
 	});
 
 	console.log(chalk.green("Vim files installed"));
@@ -130,10 +141,13 @@ function setupZshFiles() {
 }
 
 function installVimPlugins() {
-	shell.exec("vim +PlugIstall");
+	shell.cd("~/")
+	console.log(chalk.green("To install vim plugins, run vim and then type :PlugInstall"));
 }
 
 function changeDefaultShellToZSH() {
+	shell.cd("~/");
+
 	shell.exec("chsh -s $(which zsh)");
 }
 
