@@ -59,11 +59,14 @@ Plug 'ryanoasis/vim-devicons'
 " Quantify your coding inside Vim.
 Plug 'wakatime/vim-wakatime'
 
+" Vastly improved Javascript indentation and syntax support in Vim. https://www.vim.org/scripts/script.php?script_id=4452
+Plug 'pangloss/vim-javascript'
+
 " JSX syntax highlighting
 Plug 'mxw/vim-jsx'
 
 " True Sublime Text style multiple selections for Vim
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 

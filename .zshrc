@@ -19,6 +19,7 @@ BULLETTRAIN_PROMPT_ORDER=(
   custom
   dir
   screen
+  nvm
   ruby
   virtualenv
   aws
@@ -90,7 +91,7 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
