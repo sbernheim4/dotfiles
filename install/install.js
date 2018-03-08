@@ -78,8 +78,9 @@ function setupVimFiles() {
 	}
 	shell.mkdir("autoload");
 
-	// Copy plug.vim into autoload
-	shell.cp("~/dotfiles/plug.vim", "autoload");
+	// Install vim-plug
+	shell.exec("curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
 
 	// Create symlinks for all the vim colorscheme files
 	shell.cd("~/dotfiles/vim_colors/");
