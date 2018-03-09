@@ -98,7 +98,7 @@ fi
 
 # NVM
 if [ ! -n "${BULLETTRAIN_NVM_BG+1}" ]; then
-  BULLETTRAIN_NVM_BG=green
+  BULLETTRAIN_NVM_BG=red
 fi
 if [ ! -n "${BULLETTRAIN_NVM_FG+1}" ]; then
   BULLETTRAIN_NVM_FG=white
