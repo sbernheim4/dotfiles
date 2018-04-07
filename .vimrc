@@ -193,6 +193,7 @@ nnoremap tt :TagbarToggle<CR>
 
 " Opens fzf window without toggling NERDTree
 nnoremap ff :Files<CR>
+nnoremap <c-f> :Ag<CR>
 
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
