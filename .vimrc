@@ -179,8 +179,10 @@ nnoremap <Leader>q :bp <BAR> bd #<CR>
 nnoremap <Leader>sp :vsplit<CR>
 nnoremap <Leader>hsp :split<CR>
 
-" Vertically resize a window
+" Vertically and horizontally resize a window
 nnoremap <Leader>vrs :vertical resize
+nnoremap <Leader>hrs :resize
+
 
 " Use tt to togle the tagbar open and close
 nnoremap tt :TagbarToggle<CR>
