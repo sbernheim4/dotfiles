@@ -30,7 +30,7 @@ BULLETTRAIN_PROMPT_ORDER=(
 
 BULLETTRAIN_PROMPT_ADD_NEWLINE=false
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -76,9 +76,6 @@ plugins=(git fzf)
 
 # User configuration
 
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -113,6 +110,8 @@ alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 4"
 alias gproj="cd ~/Github-Projects"
 alias vim="nvim"
 alias spot="spotify"
+alias diff="icdiff"
+alias gd="git icdiff"
 
 # type "fd" to open a directory using fzf
 fd() {
@@ -136,14 +135,12 @@ fo() {
 
 # Fix the colorscheme
 export TERM=xterm-256color
-export PATH="/usr/local/sbin:$PATH"
-
 # Use the right colorscheme
 # BASE16_SHELL=$HOME/.config/base16-shell/
 # [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
