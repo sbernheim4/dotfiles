@@ -84,7 +84,7 @@ syntax on
 set t_Co=256
 
 set background=dark " for the dark version
-colorscheme neodark
+colorscheme gruvbox
 
 
 
