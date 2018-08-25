@@ -91,11 +91,12 @@ alias vis="open -a 'Visual Studio Code'"
 alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 4"
 alias gproj="cd ~/Github-Projects"
 alias vim="nvim"
-alias spot="spotify"
+# https://github.com/jeffkaufman/icdiff
 alias diff="icdiff"
 alias gd="git icdiff"
+# https://github.com/sharkdp/bat
+alias cat="bat"
 alias preview="fzf --preview 'bat --color \"always\" {}'"
-
 
 # type "fd" to open a directory using fzf
 fd() {
