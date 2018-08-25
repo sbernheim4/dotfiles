@@ -1,4 +1,3 @@
-
 export TERM="xterm-256color"
 
 #; Path to your oh-my-zsh installation.
@@ -95,6 +94,8 @@ alias vim="nvim"
 alias spot="spotify"
 alias diff="icdiff"
 alias gd="git icdiff"
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+
 
 # type "fd" to open a directory using fzf
 fd() {
@@ -107,19 +108,17 @@ fd() {
 # type "fo" to open a file in its default application by hiting ctrl + o when
 # the file is selected
 fo() {
-	local out file key
-	IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
-	key=$(head -1 <<< "$out")
-	file=$(head -2 <<< "$out" | tail -1)
-	if [ -n "$file" ]; then
-		[ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
-	fi
+	x=$(preview)
+	folder_path=$(echo $x | cut -d '.' -f 1,1 | rev | cut -d "/" -f2- | rev);
+	cd $folder_path
+	nvim $(echo $x | rev | cut -d '/' -f 1,1 | rev)
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 
 #####################################################################################
 ### Powerlevel 9k Settings - https://github.com/bhilburn/powerlevel9k
