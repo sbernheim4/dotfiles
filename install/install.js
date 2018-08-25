@@ -20,20 +20,32 @@ function installHomebrew() {
 }
 
 function installHomebrewPackages() {
-	console.log(chalk.blue("Installing git, nvm, neovim, tmux, zsh, cmake, and ctags with homebrew"));
+	console.log(chalk.blue("Installing git, neovim, tmux, zsh, cmake, and ctags with homebrew"));
 
 	shell.cd("~/");
 
 	shell.exec("brew install git");
-	shell.exec("brew install nvm");
 	shell.exec("brew install neovim");
 	shell.exec("brew install tmux");
 	shell.exec("brew install zsh");
 	shell.exec("brew install cmake");
 	shell.exec("brew install ctags");
 	shell.exec("brew install fzf");
+	shell.exec("brew install icdiff");
 
 	console.log(chalk.green("Packages installed"));
+}
+
+function setupNode() {
+	// Install nvm
+	shell.exec("curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash");
+	// Install latest version of node
+	shell.exec("nvm install node");
+
+	// Install node packages
+	shell.exec("npm i -g weatherterm");
+	shell.exec("npm i -g tldr");
+	shell.exec("npm i -g vtop");
 }
 
 function downloadDotfiles() {
@@ -156,6 +168,7 @@ downloadDotfiles();
 installHomebrew();
 installHomebrewPackages();
 setupZshFiles();
+setupNode();
 setupTmuxFiles();
 setupVimFiles();
 changeDefaultShellToZSH();
