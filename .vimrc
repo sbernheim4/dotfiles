@@ -4,7 +4,7 @@
 call plug#begin('~/.vim/plugged')
 
 " Next generation completion framework after neocomplcache
-Plug 'Shougo/deoplete.nvim'
+" Plug 'Shougo/deoplete.nvim'
 
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree'
@@ -15,7 +15,7 @@ Plug 'scrooloose/nerdcommenter'
 " Vim motions on speed!
 Plug 'easymotion/vim-easymotion'
 
-" Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
+" Vim plugin, provides insert mode a uto-completion for quotes, parens, brackets, etc.
 Plug 'Raimondi/delimitMate'
 
 " A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
@@ -24,6 +24,7 @@ Plug 'airblade/vim-gitgutter'
 " Command-line fuzzy finder
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+" Plug '/usr/local/opt/fzf'
 
 " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
@@ -40,11 +41,11 @@ Plug 'mhinz/vim-startify'
 " Vim plugin that displays tags in a window, ordered by scope
 " NOTE: Requires ctags to be installed to do so, run the following from ~/
 " 1. run `brew install ctags`
-" 2. run `which ctags` if the result is /usr/bin/ctags it means you are not
-" 	 using the brew version
+" 2. run `which ctags` if the result is /usr/local/bin/ctags you are using
+" brew's version
 " 3. run `PATH=/usr/local/bin:$PATH`
-" 4. run `which ctags` if the result is /usr/local/bin/ctags you are using
 " 	 brew's version
+
 Plug 'majutsushi/tagbar'
 
 " Asynchronous Lint Engine
@@ -57,7 +58,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Quantify your coding inside Vim.
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 
 " Vastly improved Javascript indentation and syntax support in Vim. https://www.vim.org/scripts/script.php?script_id=4452
 Plug 'pangloss/vim-javascript'
@@ -67,6 +68,17 @@ Plug 'mxw/vim-jsx'
 
 " True Sublime Text style multiple selections for Vim
 " Plug 'terryma/vim-multiple-cursors'
+"
+" Modern buffer manager for Vim - https://github.com/zefei/vim-wintabs
+" Plug 'zefei/vim-wintabs'
+" Plug 'zefei/vim-wintabs-powerline'
+
+" TabNine is the all-language autocompleter. It uses machine learning to provide responsive, reliable, and relevant suggestions.
+Plug 'zxqfl/tabnine-vim'
+
+" A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
+" --> Needed by TabNine
+Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
@@ -82,9 +94,10 @@ let mapleader=","
 syntax enable
 syntax on
 set t_Co=256
+let base16colorspace=256
 
-set background=dark " for the dark version
-colorscheme gruvbox
+" set background=dark " for the dark version
+colorscheme neodark
 
 
 
@@ -103,15 +116,6 @@ set number
 
 " Shows relative line numbers
 set relativenumber
-
-" Set the tab stop to 4
-set tabstop=4
-"
-" Helps with autoindenting when using =
-set shiftwidth=4
-
-" Allow the backspace button to work as normal
-set backspace=indent,eol,start
 
 " Have line wrapping off by default
 set nowrap
@@ -135,6 +139,23 @@ set ignorecase
 set smartcase
 
 set encoding=utf8
+
+" Allow the backspace button to work as normal
+set backspace=indent,eol,start
+
+" ****************** Tabs and Spaces Settings ********************
+" Set the tab stop to 4
+set tabstop=4
+
+" Helps with autoindenting when using =
+set shiftwidth=4
+
+" This sets vim to indent with tabs instead of spaces
+" set noexpandtab
+
+" This sets vim to indent with spaces instead of tabs
+set expandtab
+" ****************************************************************
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Bindings
@@ -271,7 +292,7 @@ map <Leader>h <Plug>(easymotion-linebackward)
 " It is also installed on my computer
 "
 if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+    let g:airline_symbols = {}
 endif
 
 let g:airline_theme='angr'
@@ -328,26 +349,26 @@ let g:airline#extensions#ale#enabled = 1
 let g:startify_update_oldfiles = 1
 
 autocmd VimEnter *
-\   if !argc()
-\ |   Startify
-\ |   NERDTree
-\ |   wincmd w
-\ | endif
+            \   if !argc()
+            \ |   Startify
+            \ |   NERDTree
+            \ |   wincmd w
+            \ | endif
 
 let g:startify_custom_header = [
-\ '                                                                            ',
-\ '    o             o  o----o  o       o-----o  o-----o  o       o  o----o    ',
-\ '     \     o     /   |       |       |        |     |  | \   / |  |         ',
-\ '      \   / \   /    |----o  |       |        |     |  |  \ /  |  |----o    ',
-\ '       \ /   \ /     |       |       |        |     |  |   o   |  |         ',
-\ '        o     o      o----o  o----o  o-----o  o-----o  o       o  o----o    ',
-\ '                                                                            ',
-\ '                       o---o   o-----o  o-----o  o   o                      ',
-\ '                       |   |   |     |  |        |  /                       ',
-\ '                       o---o   |-----|  |        |--                        ',
-\ '                       |    \  |     |  |        |  \                       ',
-\ '                       o----o  o     o  o-----o  o   o                      ',
-\ ]
+            \ '                                                                            ',
+            \ '    o             o  o----o  o       o-----o  o-----o  o       o  o----o    ',
+            \ '     \     o     /   |       |       |        |     |  | \   / |  |         ',
+            \ '      \   / \   /    |----o  |       |        |     |  |  \ /  |  |----o    ',
+            \ '       \ /   \ /     |       |       |        |     |  |   o   |  |         ',
+            \ '        o     o      o----o  o----o  o-----o  o-----o  o       o  o----o    ',
+            \ '                                                                            ',
+            \ '                       o---o   o-----o  o-----o  o   o                      ',
+            \ '                       |   |   |     |  |        |  /                       ',
+            \ '                       o---o   |-----|  |        |--                        ',
+            \ '                       |    \  |     |  |        |  \                       ',
+            \ '                       o----o  o     o  o-----o  o   o                      ',
+            \ ]
 
 
 
@@ -388,9 +409,9 @@ let g:ale_lint_delay = 700
 nnoremap <Leader>tl :ALEToggle<CR>
 
 let g:ale_linters = {
-\	'javascript': ['eslint'],
-\	'SCSS': ['styleint'],
-\}
+            \	'javascript': ['eslint'],
+            \	'SCSS': ['styleint'],
+            \}
 
 " #########################
 " ###### Vim Devicons
