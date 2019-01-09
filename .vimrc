@@ -22,9 +22,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter'
 
 " Command-line fuzzy finder
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-" Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
@@ -45,7 +43,6 @@ Plug 'mhinz/vim-startify'
 " brew's version
 " 3. run `PATH=/usr/local/bin:$PATH`
 " 	 brew's version
-
 Plug 'majutsushi/tagbar'
 
 " Asynchronous Lint Engine
@@ -93,7 +90,6 @@ let mapleader=","
 
 syntax enable
 syntax on
-set t_Co=256
 let base16colorspace=256
 
 " set background=dark " for the dark version
@@ -117,14 +113,14 @@ set number
 " Shows relative line numbers
 set relativenumber
 
-" Have line wrapping off by default
+" Don't wrap lines by default
 set nowrap
 
 " Displays the special characters like eol, indents etc
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
-set listchars=tab:\|\ ,
-set listchars=tab:•\ ,
+" set listchars=tab:\|\ ,
 " set listchars=tab:•\ ,eol:¬
+set listchars=tab:•\ ,
 set list
 
 " Hide the default mode indicator. Do so because airline will show the current mode
@@ -138,24 +134,27 @@ set laststatus=2
 set ignorecase
 set smartcase
 
+" Use utf8 as the encoding format for files
 set encoding=utf8
 
 " Allow the backspace button to work as normal
 set backspace=indent,eol,start
 
-" ****************** Tabs and Spaces Settings ********************
+" ****************** Tabs VS Spaces ********************
 " Set the tab stop to 4
 set tabstop=4
 
 " Helps with autoindenting when using =
 set shiftwidth=4
 
-" This sets vim to indent with tabs instead of spaces
+" Indent with TABS instead of spaces
 " set noexpandtab
 
-" This sets vim to indent with spaces instead of tabs
+" Indent with SPACES instead of tabs
 set expandtab
 " ****************************************************************
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Bindings
@@ -173,7 +172,7 @@ nnoremap <Leader>hl :set hlsearch!<CR>
 " Toggle cursor line highlight
 nnoremap <Leader>cll :set cursorline!<CR>
 
-" Unbinds the arrow keys and makes them stop working
+" Unbinds the arrow keys in normal mode (they still work in insert mode)
 noremap <UP> <NOP>
 noremap <DOWN> <NOP>
 noremap <LEFT> <NOP>
@@ -197,26 +196,18 @@ nnoremap <Leader>q :bp <BAR> bd #<CR>
 " nnoremap <Leader>bl :ls<CR>
 
 " Split the curent window vertically or horizontally (Useful when you want to have the same file open at two different locations at the same time)
-nnoremap <Leader>sp :vsplit<CR>
+nnoremap <Leader>vsp :vsplit<CR>
 nnoremap <Leader>hsp :split<CR>
 
 " Vertically and horizontally resize a window
 nnoremap <Leader>vrs :vertical resize
 nnoremap <Leader>hrs :resize
 
-
 " Use tt to togle the tagbar open and close
 nnoremap tt :TagbarToggle<CR>
 
-" Use fzf to open files --> Alternative to Ctrl-P
-" Toggles NERDTree and then opens fzf window to find file so new file isn't
-" opened in the NERDTree space --> ONLY WORKS THIS WAY IF NERDTree is already
-" open and file is opened in a new buffer
-" nnoremap nff :NERDTreeToggle<CR> :Files<CR>
-
 " Opens fzf window without toggling NERDTree
-nnoremap ff :Files<CR>
-nnoremap <c-f> :Ag<CR>
+nnoremap ff :FZF<CR>
 
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
@@ -224,23 +215,21 @@ autocmd BufWritePre * %s/\s\+$//e
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SETTINGS TO MODIFY SPECIFIC  PACKAGES
+" Plugin Specific Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " #########################
-" ###### Deocomplete
+" ###### Deocomplete --> DISABLED since I'm using tab nine with YouCompleteMe
 " ########################
 
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
-" Use tab to auto cycle through autocmoplete list instead of arrows
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
+" Use tabFOR PLUGINS
+" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 
 " #########################
 " ###### NERDTree
-" ###### VimFiler
 " ########################
 
 " Toggle NERDTree
@@ -251,12 +240,8 @@ nnoremap <Leader>nt :NERDTree<CR>
 " Choose the arrow character NERDTree will use
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▿'
-" ▾
 " Have NERDTree be open automatically when vim starts --> Handled by cmd for use with startify
 " autocmd VimEnter * NERDTree
-
-" let NERDTreeShowHidden=1
-
 
 
 " #########################
@@ -269,7 +254,6 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 
-
 " #########################
 " ###### EasyMotion
 " ########################
@@ -279,7 +263,6 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
-
 
 
 " #########################
@@ -341,13 +324,13 @@ let g:airline#extensions#ale#enabled = 1
 " let g:airline_section_warning (ycm_warning_count, whitespace)
 
 
-
 " #########################
 " ###### Startify
 " ########################
 
 let g:startify_update_oldfiles = 1
 
+" Open Startify and NERDTree when starting vim
 autocmd VimEnter *
             \   if !argc()
             \ |   Startify
@@ -355,6 +338,7 @@ autocmd VimEnter *
             \ |   wincmd w
             \ | endif
 
+" Custom message to display in startify menu
 let g:startify_custom_header = [
             \ '                                                                            ',
             \ '    o             o  o----o  o       o-----o  o-----o  o       o  o----o    ',
@@ -371,11 +355,10 @@ let g:startify_custom_header = [
             \ ]
 
 
-
 " #########################
 " ###### Tagbar
 " ########################
-" Set the width to be x columns
+" Set the width to be 30 columns
 let g:tagbar_width = 30
 
 " Display tagbar info compactly
@@ -391,12 +374,11 @@ highlight TagbarHighlight ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
 let g:tagbar_sort = 0
 
 
-
 " #########################
 " ###### Ale
 " ########################
 
-" Use the quickfix list
+" Use the quickfix list to display linting errors
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 
@@ -412,6 +394,7 @@ let g:ale_linters = {
             \	'javascript': ['eslint'],
             \	'SCSS': ['styleint'],
             \}
+
 
 " #########################
 " ###### Vim Devicons
