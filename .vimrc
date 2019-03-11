@@ -23,6 +23,7 @@ Plug 'airblade/vim-gitgutter'
 
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-fugitive'
@@ -92,8 +93,8 @@ syntax enable
 syntax on
 let base16colorspace=256
 
-" set background=dark " for the dark version
-colorscheme neodark
+set background=dark " for the dark version
+colorscheme gruvbox
 
 
 
@@ -389,6 +390,15 @@ let g:ale_open_list = 1
 let g:ale_lint_delay = 700
 
 nnoremap <Leader>tl :ALEToggle<CR>
+
+" Fix files with ESLint.
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
 
 let g:ale_linters = {
             \	'javascript': ['eslint'],
