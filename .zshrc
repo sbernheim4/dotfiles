@@ -3,8 +3,6 @@ export TERM="xterm-256color"
 #; Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-fortune | cowsay -f tux | lolcat
-
 # Run spectrum_ls to see a list of colors zsh can easily produce and
 # which can be used in a theme
 #ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
@@ -16,44 +14,12 @@ fortune | cowsay -f tux | lolcat
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 DEFAULT_USER=`whoami`
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
 unsetopt correct_all
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -65,23 +31,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 export EDITOR='nvim'
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 #################################################
 ### Aliases
@@ -92,20 +42,22 @@ alias vis="open -a 'Visual Studio Code'"
 alias deis="cd /Users/samuelbernheim/Google\ Drive/Brandeis/Year\ 4"
 alias gproj="cd ~/Github-Projects"
 alias vim="nvim"
-# https://github.com/jeffkaufman/icdiff
-alias diff="icdiff"
+alias diff="icdiff" # https://github.com/jeffkaufman/icdiff
 alias gd="git icdiff"
-# https://github.com/sharkdp/bat
-alias cat="bat"
+alias cat="bat" # https://github.com/sharkdp/bat
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias spi="spotify status"
 alias spn="spotify next"
 alias spp="spotify pause"
 alias sp="spotify"
 
+# Load private keys
 source ~/dotfiles/secret-keys.sh
 
-# type "fd" to open a directory using fzf
+# Load in fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Type "fd" to open a directory using fzf
 fd() {
 	local dir
 	dir=$(find ${1:-.} -path '*/\.*' -prune \
@@ -113,7 +65,8 @@ fd() {
 		cd "$dir"
 }
 
-# type "fo" to open a file in its default application by hiting ctrl + o when
+
+# Type "fo" to open a file in its default application by hiting ctrl + o when
 # the file is selected
 fo() {
 	x=$(preview)
@@ -122,16 +75,19 @@ fo() {
 	nvim $(echo $x | rev | cut -d '/' -f 1,1 | rev)
 }
 
+
+# Helper function to remove/putback work npmrc file
 npmrc() {
     if [[ -f ~/.npmrc ]]; then
         mv ~/.npmrc ~/temp.npmrc
     elif [[ -f ~/temp.npmrc ]]; then
         mv ~/temp.npmrc ~/.npmrc
     fi
+
 }
 
 #####################################################################################
-### Powerlevel 9k Settings - https://github.com/bhilburn/powerlevel9k
+### Powerlevel 9k Settings - https://github.com/bhilburn/powerlevel9k - NOTE: I'm using powerlevel10k
 #####################################################################################
 
 # POWERLEVEL9K_MODE='nerdfont-complete'
@@ -240,6 +196,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(node_version status background_jobs host use
 HIST_STAMPS="mm/dd/yyyy"
 DISABLE_UPDATE_PROMPT=true
 
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
 #################################################
 ### Colorize Man pages
 #################################################
@@ -255,6 +213,3 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 export PATH="/usr/local/sbin:$PATH"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ~/powerlevel10k/powerlevel10k.zsh-theme

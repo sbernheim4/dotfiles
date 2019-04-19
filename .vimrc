@@ -253,17 +253,6 @@ let g:NERDTrimTrailingWhitespace = 1
 
 
 " #########################
-" ###### EasyMotion
-" ########################
-
-" Run easymotion commands in a direction --> based off of hjkl
-" map <Leader>l <Plug>(easymotion-lineforward)
-" map <Leader>j <Plug>(easymotion-j)
-" map <Leader>k <Plug>(easymotion-k)
-" map <Leader>h <Plug>(easymotion-linebackward)
-
-
-" #########################
 " ###### Airline
 " ########################
 
@@ -348,24 +337,6 @@ let g:startify_custom_header = [
             \ '                       o----o  o     o  o-----o  o   o                      ',
             \ ]
 
-
-" #########################
-" ###### Tagbar
-" ########################
-" Set the width to be 30 columns
-let g:tagbar_width = 30
-
-" Display tagbar info compactly
-let g:tagbar_compact = 1
-
-" Open the tagbar when vim starts if the file being opened is supported
-" autocmd VimEnter * nested :call tagbar#autoopen(1)
-
-" To view a list of colors available run :highlight
-highlight TagbarHighlight ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
-
-" Sort by order of appearence in the file, not by alphabetical
-let g:tagbar_sort = 0
 
 " #########################
 " ###### Vim Devicons
