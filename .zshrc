@@ -197,6 +197,7 @@ HIST_STAMPS="mm/dd/yyyy"
 DISABLE_UPDATE_PROMPT=true
 
 source ~/powerlevel10k/powerlevel10k.zsh-theme
+source ~/z/z.sh
 
 #################################################
 ### Colorize Man pages
