@@ -3,8 +3,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-" Next generation completion framework after neocomplcache
-" Plug 'Shougo/deoplete.nvim'
+Plug 'mhartington/oceanic-next'
 
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree'
@@ -71,8 +70,12 @@ syntax enable
 syntax on
 let base16colorspace=256
 
+if (has("termguicolors"))
+ set termguicolors
+endif
+
 set background=dark " for the dark version
-colorscheme gruvbox
+colorscheme OceanicNext
 
 
 
@@ -273,7 +276,7 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-let g:airline_theme='angr'
+let g:airline_theme='molokai'
 let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
 " let g:airline_left_sep = "\uE0B4"
