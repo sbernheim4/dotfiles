@@ -25,9 +25,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" fugitive.vim: a Git wrapper so awesome, it should be illegal
-Plug 'tpope/vim-fugitive'
-
 " lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
 
@@ -37,46 +34,27 @@ Plug 'vim-airline/vim-airline-themes'
 " 🔗  The fancy start screen for Vim.
 Plug 'mhinz/vim-startify'
 
-" Vim plugin that displays tags in a window, ordered by scope
-" NOTE: Requires ctags to be installed to do so, run the following from ~/
-" 1. run `brew install ctags`
-" 2. run `which ctags` if the result is /usr/local/bin/ctags you are using
-" brew's version
-" 3. run `PATH=/usr/local/bin:$PATH`
-" 	 brew's version
-Plug 'majutsushi/tagbar'
-
-" Asynchronous Lint Engine
-Plug 'w0rp/ale'
-
 " 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'ryanoasis/vim-devicons'
 
 " Extra syntax and highlight for nerdtree files
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-" Quantify your coding inside Vim.
-" Plug 'wakatime/vim-wakatime'
-
 " Vastly improved Javascript indentation and syntax support in Vim. https://www.vim.org/scripts/script.php?script_id=4452
 Plug 'pangloss/vim-javascript'
 
-" JSX syntax highlighting
+" React JSX syntax highlighting and indenting for vim.
 Plug 'mxw/vim-jsx'
 
-" True Sublime Text style multiple selections for Vim
-" Plug 'terryma/vim-multiple-cursors'
-"
-" Modern buffer manager for Vim - https://github.com/zefei/vim-wintabs
-" Plug 'zefei/vim-wintabs'
-" Plug 'zefei/vim-wintabs-powerline'
+" Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://www.vim.org/scripts/script.ph…
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+" Also install coc-eslint, coc-snippets, coc-css, and coc-json via :CocInstall <item>
 
-" TabNine is the all-language autocompleter. It uses machine learning to provide responsive, reliable, and relevant suggestions.
-Plug 'zxqfl/tabnine-vim'
+" vim-snipmate default snippets (Previously snipmate-snippets)
+Plug 'honza/vim-snippets'
 
-" A code-completion engine for Vim http://valloric.github.io/YouCompleteMe/
-" --> Needed by TabNine
-Plug 'Valloric/YouCompleteMe'
+" vim syntax file for plantuml
+Plug 'aklt/plantuml-syntax'
 
 call plug#end()
 
@@ -141,6 +119,9 @@ set encoding=utf8
 " Allow the backspace button to work as normal
 set backspace=indent,eol,start
 
+" Map <Esc> to exit terminal-mode:
+tnoremap <Esc> <C-\><C-n>
+
 " ****************** Tabs VS Spaces ********************
 " Set the tab stop to 4
 set tabstop=4
@@ -178,6 +159,7 @@ noremap <UP> <NOP>
 noremap <DOWN> <NOP>
 noremap <LEFT> <NOP>
 noremap <RIGHT> <NOP>
+
 
 " SETTINGS FOR THE BUFFER
 " Create a new buffer
@@ -220,13 +202,25 @@ autocmd BufWritePre * %s/\s\+$//e
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " #########################
-" ###### Deocomplete --> DISABLED since I'm using tab nine with YouCompleteMe
-" ########################
+" ###### CoC
+" #########################
 
-" let g:deoplete#enable_at_startup = 1
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" Use tabFOR PLUGINS
-" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" Use <CR> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 
 " #########################
@@ -260,10 +254,10 @@ let g:NERDTrimTrailingWhitespace = 1
 " ########################
 
 " Run easymotion commands in a direction --> based off of hjkl
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
+" map <Leader>l <Plug>(easymotion-lineforward)
+" map <Leader>j <Plug>(easymotion-j)
+" map <Leader>k <Plug>(easymotion-k)
+" map <Leader>h <Plug>(easymotion-linebackward)
 
 
 " #########################
@@ -310,9 +304,6 @@ let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col:%
 let g:airline_section_error = airline#section#create('')
 let g:airline_section_warning = airline#section#create ('')
 
-" Display syntax errors from Ale in the status line
-let g:airline#extensions#ale#enabled = 1
-
 " EXAMPLES FROM :help airline
 " let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
 " let g:airline_section_b       (hunks, branch)
@@ -328,7 +319,6 @@ let g:airline#extensions#ale#enabled = 1
 " #########################
 " ###### Startify
 " ########################
-
 let g:startify_update_oldfiles = 1
 
 " Open Startify and NERDTree when starting vim
@@ -374,38 +364,6 @@ highlight TagbarHighlight ctermfg=109 ctermbg=237 guifg=#83a598 guibg=#3c3836
 " Sort by order of appearence in the file, not by alphabetical
 let g:tagbar_sort = 0
 
-
-" #########################
-" ###### Ale
-" ########################
-
-" Use the quickfix list to display linting errors
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-
-" Open the list
-let g:ale_open_list = 1
-
-" Wait n ms before linting after text is changed
-let g:ale_lint_delay = 700
-
-nnoremap <Leader>tl :ALEToggle<CR>
-
-" Fix files with ESLint.
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\}
-
-" Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
-
-let g:ale_linters = {
-            \	'javascript': ['eslint'],
-            \	'SCSS': ['styleint'],
-            \}
-
-
 " #########################
 " ###### Vim Devicons
 " ########################
@@ -413,3 +371,10 @@ let g:ale_linters = {
 " the amount of space to use after the glyph character (default ' ')
 let g:WebDevIconsUnicodeDecorateFolderNodes = 0
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+
+
+" #########################
+" ####### Vim Javascript
+" #########################
+
+let g:javascript_plugin_jsdoc = 1
