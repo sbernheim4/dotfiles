@@ -28,6 +28,7 @@ function installHomebrewPackages() {
     brew install zsh
     brew install fzf
     brew install icdiff
+    brew install shpotify
 }
 
 function installNodeJS() {
@@ -53,7 +54,6 @@ function installNpmPackages() {
     npm i -g weatherterm
     npm i -g tldr
     npm i -g vtop
-    npm i -g spotify-cli-mac
 }
 
 function cloneDotfiles() {
