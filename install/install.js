@@ -37,15 +37,17 @@ function installHomebrewPackages() {
 }
 
 function setupNode() {
-	// Install nvm
-	shell.exec("curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash");
-	// Install latest version of node
-	shell.exec("nvm install node");
+	// Install n - https://github.com/tj/n
+	shell.exec("curl -L https://git.io/n-install | bash");
+
+	// Install lts version of node
+	shell.exec("n lts");
 
 	// Install node packages
 	shell.exec("npm i -g weatherterm");
 	shell.exec("npm i -g tldr");
 	shell.exec("npm i -g vtop");
+	shell.exec("npm i -g spotify-cli-mac");
 }
 
 function downloadDotfiles() {
