@@ -125,7 +125,7 @@ fo() {
 npmrc() {
     if [[ -f ~/.npmrc ]]; then
         mv ~/.npmrc ~/temp.npmrc
-    else if [[ -f ~/temp.npmrc ]]; then
+    elif [[ -f ~/temp.npmrc ]]; then
         mv ~/temp.npmrc ~/.npmrc
     fi
 }
