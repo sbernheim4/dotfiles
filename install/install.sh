@@ -17,7 +17,14 @@ function installHomebrew() {
 function installHomebrewPackages() {
 
     echo "=================================="
-    echo "Installing homebrew packages"
+    echo "Installing homebrew packages:"
+    echo "git"
+    echo "neovim"
+    echo "tmux"
+    echo "zsh"
+    echo "fzf"
+    echo "icdiff"
+    echo "shpotify"
     echo "=================================="
 
     cd ~/
@@ -47,6 +54,9 @@ function installNpmPackages() {
 
     echo "==================================="
     echo "Installing global npm packages"
+    echo "weatherterm"
+    echo "tldr"
+    echo "vtop"
     echo "==================================="
 
     cd ~/
@@ -103,7 +113,7 @@ function setupVim() {
 
 function setupTmux() {
     echo "==================================="
-    echo "Linking tmux file"
+    echo "Linking tmux config"
     echo "==================================="
 
     cd ~/
@@ -123,11 +133,20 @@ function useZsh() {
     chsh -s $(which zsh)
 }
 
-installHomebrew
-installHomebrewPackages
-installNodeJS
-installNpmPackages
-cloneDotfiles
-setupVim
-setupTmux
-useZsh
+function install() {
+
+    echo "==================================="
+    echo "Beginning Installation..."
+    echo "==================================="
+
+    installHomebrew
+    installHomebrewPackages
+    installNodeJS
+    installNpmPackages
+    cloneDotfiles
+    setupVim
+    setupTmux
+    useZsh
+}
+
+install
