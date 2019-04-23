@@ -23,6 +23,7 @@ function installHomebrewPackages() {
     echo "tmux"
     echo "zsh"
     echo "fzf"
+    echo "bat"
     echo "icdiff"
     echo "shpotify"
     echo "=================================="
@@ -34,6 +35,7 @@ function installHomebrewPackages() {
     brew install tmux
     brew install zsh
     brew install fzf
+    brew install bat
     brew install icdiff
     brew install shpotify
 }
@@ -75,6 +77,12 @@ function cloneDotfiles() {
     cd ~/
 
     git clone https://github.com/sbernheim4/dotfiles.git
+
+    echo "Installing z.sh"
+    git clone https://github.com/rupa/z.git ~/
+
+    # Create secret keys file - used to store local env vars
+    touch ~/dotfile/secret-keys.sh
 }
 
 function setupVim() {
