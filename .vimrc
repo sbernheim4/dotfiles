@@ -186,8 +186,8 @@ nnoremap <Leader>vsp :vsplit<CR>
 nnoremap <Leader>hsp :split<CR>
 
 " Vertically and horizontally resize a window
-nnoremap <Leader>vrs :vertical resize
-nnoremap <Leader>hrs :resize
+nnoremap <Leader>vrs :vertical resize +
+nnoremap <Leader>hrs :resize +
 
 " Use tt to togle the tagbar open and close
 nnoremap tt :TagbarToggle<CR>
@@ -198,6 +198,7 @@ nnoremap ff :FZF<CR>
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
+nnoremap <Leader>pwf :!ls %:p<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
