@@ -136,6 +136,9 @@ function useZsh() {
     echo "Setting ZSH as default shell"
     echo "==================================="
 
+	# User powerlevel10k zsh theme for prompt - https://github.com/romkatv/powerlevel10k#oh-my-zsh for more details
+	git clone https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+
     cd ~/
 
     chsh -s $(which zsh)
