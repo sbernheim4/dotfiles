@@ -43,12 +43,11 @@ Plug 'pangloss/vim-javascript'
 " React JSX syntax highlighting and indenting for vim.
 Plug 'mxw/vim-jsx'
 
-" Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://www.vim.org/scripts/script.ph…
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-" Also install coc-eslint, coc-snippets, coc-css, and coc-json via :CocInstall <item>
+" Asynchronous Lint Engine
+Plug 'w0rp/ale'
 
-" vim-snipmate default snippets (Previously snipmate-snippets)
-Plug 'honza/vim-snippets'
+" 🌠 Dark powered asynchronous completion framework for neovim/Vim8
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " vim syntax file for plantuml
 Plug 'aklt/plantuml-syntax'
@@ -203,26 +202,13 @@ nnoremap <Leader>pwf :!ls %:p<CR>
 " Plugin Specific Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" #########################
-" ###### CoC
-" #########################
+" ########################
+" ###### DeoPlete
+" ########################
+let g:deoplete#enable_at_startup = 1
 
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <CR> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Allow cyclying through autocomplete options with tab key
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 
 " #########################
@@ -338,6 +324,38 @@ let g:startify_custom_header = [
             \ '                       |    \  |     |  |        |  \                       ',
             \ '                       o----o  o     o  o-----o  o   o                      ',
             \ ]
+
+
+
+" #########################
+" ###### Ale
+" ########################
+" Use the quickfix list to display linting errors
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+
+" Open the list
+let g:ale_open_list = 1
+
+" Wait n ms before linting after text is changed
+let g:ale_lint_delay = 700
+
+nnoremap <Leader>tl :ALEToggle<CR>
+
+" Fix files with ESLint.
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
+
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
+
+let g:ale_linters = {
+            \	'javascript': ['eslint'],
+            \	'SCSS': ['styleint'],
+            \}
+
 
 
 " #########################
