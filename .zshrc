@@ -80,8 +80,10 @@ fo() {
 npmrc() {
     if [[ -f ~/.npmrc ]]; then
         mv ~/.npmrc ~/temp.npmrc
+		echo "temp.npmrc"
     elif [[ -f ~/temp.npmrc ]]; then
         mv ~/temp.npmrc ~/.npmrc
+		echo ".npmrc"
     fi
 
 }
@@ -196,8 +198,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(node_version status background_jobs host use
 HIST_STAMPS="mm/dd/yyyy"
 DISABLE_UPDATE_PROMPT=true
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-source ~/z/z.sh
+source ~/powerlevel10k/powerlevel10k.zsh-theme # Prompt builder
+source ~/z/z.sh # For fast `cd`ing. Type `z <folder>` to quickly cd into `folder` without having to enter the full path
 
 #################################################
 ### Colorize Man pages
@@ -214,3 +216,5 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 export PATH="/usr/local/sbin:$PATH"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
