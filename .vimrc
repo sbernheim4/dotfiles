@@ -3,8 +3,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-Plug 'mhartington/oceanic-next'
-
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree'
 
@@ -17,8 +15,8 @@ Plug 'easymotion/vim-easymotion'
 " Vim plugin, provides insert mode a uto-completion for quotes, parens, brackets, etc.
 Plug 'Raimondi/delimitMate'
 
-" A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
-Plug 'airblade/vim-gitgutter'
+" ➕ Show a diff using Vim its sign column.
+Plug 'mhinz/vim-signify'
 
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -75,7 +73,7 @@ if (has("termguicolors"))
 endif
 
 set background=dark " for the dark version
-colorscheme OceanicNext
+colorscheme gruvbox
 
 
 
@@ -312,7 +310,10 @@ let g:airline_section_warning = airline#section#create ('')
 " #########################
 " ###### Startify
 " ########################
-let g:startify_update_oldfiles = 1
+
+" When opening a file or bookmark, seek and change to the root directory of the
+" VCS (if there is one).
+let g:startify_change_to_vcs_root = 2
 
 " Open Startify and NERDTree when starting vim
 autocmd VimEnter *
