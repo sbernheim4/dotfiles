@@ -37,8 +37,8 @@ Plug 'ryanoasis/vim-devicons'
 " Extra syntax and highlight for nerdtree files
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-" Vastly improved Javascript indentation and syntax support in Vim. https://www.vim.org/scripts/script.php?script_id=4452
-Plug 'pangloss/vim-javascript'
+" A solid language pack for Vim.
+Plug 'sheerun/vim-polyglot'
 
 " React JSX syntax highlighting and indenting for vim.
 Plug 'mxw/vim-jsx'
