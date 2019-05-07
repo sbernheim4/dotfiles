@@ -53,9 +53,6 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " vim-snipmate default snippets (Previously snipmate-snippets)
 Plug 'honza/vim-snippets'
 
-" vim syntax file for plantuml
-Plug 'aklt/plantuml-syntax'
-
 " Vim and Neovim plugin to reveal the commit messages under the cursor
 Plug 'rhysd/git-messenger.vim'
 
