@@ -68,7 +68,7 @@ syntax on
 let base16colorspace=256
 
 if (has("termguicolors"))
- set termguicolors
+    set termguicolors
 endif
 
 set background=dark " for the dark version
@@ -234,7 +234,7 @@ let g:NERDTreeDirArrowCollapsible = '▿'
 let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
+let g:NERDTrimTrailingWhitesace = 1
 
 
 " #########################
@@ -253,27 +253,22 @@ endif
 let g:airline_theme='molokai'
 let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
-" let g:airline_left_sep = "\uE0B4"
-" let g:airline_right_sep = "\uE0B6"
-let g:airline_left_sep=""
-let g:airline_right_sep=""
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
+" let g:airline_left_sep=""
+" let g:airline_right_sep=""
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_sep = "\uE0B4"
+" let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-" Hide whitespace errors
-let g:airline#extensions#whitespace#enabled = 0
-
-" Display only the filename in section c
-let g:airline_section_c = airline#section#create(['%t'])
-
 " Display the file type in section x
-let g:airline_section_x = airline#section#create('%y')
+let g:airline_section_x = ''
 
 " Display only the file encoding in section y
-let g:airline_section_y = airline#section#create("%{strlen(&fenc)?&fenc:'none'}")
+let g:airline_section_y = ''
 
 " Display only the line and column information in section z
 let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col:%03c'])
@@ -344,9 +339,9 @@ nnoremap <Leader>tl :ALEToggle<CR>
 
 " Fix files with ESLint.
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\}
+            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \   'javascript': ['eslint'],
+            \}
 
 " Set this variable to 1 to fix files when you save them.
 let g:ale_fix_on_save = 1
