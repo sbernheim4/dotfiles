@@ -46,8 +46,12 @@ Plug 'mxw/vim-jsx'
 " Asynchronous Lint Engine
 Plug 'w0rp/ale'
 
-" 🌠 Dark powered asynchronous completion framework for neovim/Vim8
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://www.vim.org/scripts/script.ph…
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+" Also install coc-eslint, coc-snippets, coc-css, and coc-json via :CocInstall <item>
+
+" vim-snipmate default snippets (Previously snipmate-snippets)
+Plug 'honza/vim-snippets'
 
 " vim syntax file for plantuml
 Plug 'aklt/plantuml-syntax'
@@ -134,7 +138,10 @@ set shiftwidth=4
 
 " Indent with SPACES instead of tabs
 set expandtab
-" ****************************************************************
+
+" Removes background for vim splits
+hi VertSplit ctermbg=NONE guibg=NONE
+"" ****************************************************************
 
 
 
@@ -186,16 +193,14 @@ nnoremap <Leader>hsp :split<CR>
 nnoremap <Leader>vrs :vertical resize +
 nnoremap <Leader>hrs :resize +
 
-" Use tt to togle the tagbar open and close
-nnoremap tt :TagbarToggle<CR>
-
 " Opens fzf window without toggling NERDTree
 nnoremap ff :FZF<CR>
 
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-nnoremap <Leader>pwf :!ls %:p<CR>
+" Display the path of the current file
+nnoremap <Leader>pwf :echo expand("%p")<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -237,6 +242,24 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitesace = 1
 
 
+
+" #########################
+" ###### Signify
+" #########################
+"
+" Toggle showing git gutter
+nnoremap <Leader><Leader>g :SignifyToggle<CR>
+
+" Select symbols to use
+let g:signify_sign_add               = '+'
+let g:signify_sign_delete            = '_'
+let g:signify_sign_delete_first_line = '‾'
+let g:signify_sign_change            = '~'
+
+" Toggle highlighting changes made
+nnoremap <leader>gh :SignifyToggleHighlight<CR>
+
+
 " #########################
 " ###### Airline
 " ########################
@@ -264,10 +287,9 @@ let g:airline#extensions#tabline#left_sep = "\uE0B4"
 " let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-" Display the file type in section x
+" Display nothing in section x
 let g:airline_section_x = ''
-
-" Display only the file encoding in section y
+" Display nothing in section y
 let g:airline_section_y = ''
 
 " Display only the line and column information in section z
@@ -367,3 +389,37 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 " #########################
 
 let g:javascript_plugin_jsdoc = 1
+
+" #########################
+" ####### Coc
+" #########################
+
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <CR> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+"
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
