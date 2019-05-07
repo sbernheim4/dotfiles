@@ -423,3 +423,6 @@ nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 
 " Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
