@@ -56,6 +56,9 @@ Plug 'honza/vim-snippets'
 " vim syntax file for plantuml
 Plug 'aklt/plantuml-syntax'
 
+" Vim and Neovim plugin to reveal the commit messages under the cursor
+Plug 'rhysd/git-messenger.vim'
+
 call plug#end()
 
 
