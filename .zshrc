@@ -50,6 +50,7 @@ alias spi="spotify status"
 alias spn="spotify next"
 alias spp="spotify pause"
 alias sp="spotify"
+alias veonim="cd ~/personal/veonim/ && git pull && npm run start:release"
 
 # Load private keys
 source ~/dotfiles/secret-keys.sh
