@@ -4,26 +4,26 @@
 " Normal mode
 "          [ guifg, guibg, ctermfg, ctermbg, opts ]
 let s:N1 = [ '#000000' , '#FFC13D' , 232 , 192 ] " mode
-let s:N2 = [ '#2693c9' , '#32322F' , 192 , 238 ] " info
-let s:N3 = [ '#FFFFFF' , '#242424' , 192 , 235 ] " statusline
+let s:N2 = [ '#FFC13D' , '#32322F' , 192 , 238 ] " info
+let s:N3 = [ '#000000' , '#FFC13D' , 192 , 235 ] " statusline
 let s:N4 = [ '#86CD74' , 113 ]                   " mode modified
 
 " Insert mode
 let s:I1 = [ '#141413' , '#0cb267' , 232 , 227 ]
-let s:I2 = [ '#2693c9' , '#32322F' , 227 , 238 ]
+let s:I2 = [ '#0cb267' , '#32322F' , 227 , 238 ]
 let s:I3 = [ '#000000' , '#0cb267' , 227 , 235 ]
 let s:I4 = [ '#FADE3E' , 221 ]
 
 " Visual mode
-let s:V1 = [ '#141413' , '#B5D3F3' , 232 , 153 ]
-let s:V2 = [ '#B5D3F3' , '#32322F' , 153 , 238 ]
-let s:V3 = [ '#B5D3F3' , '#242424' , 153 , 235 ]
+let s:V1 = [ '#000000' , '#007aa3' , 232 , 153 ]
+let s:V2 = [ '#FFFFFF' , '#32322F' , 153 , 238 ]
+let s:V3 = [ '#000000' , '#007aa3' , 153 , 235 ]
 let s:V4 = [ '#7CB0E6' , 111 ]
 
 " Replace mode
 let s:R1 = [ '#141413' , '#E5786D' , 232 , 173 ]
 let s:R2 = [ '#E5786D' , '#32322F' , 173 , 238 ]
-let s:R3 = [ '#E5786D' , '#242424' , 173 , 235 ]
+let s:R3 = [ '#000000' , '#E5785D' , 173 , 235 ]
 let s:R4 = [ '#E55345' , 203 ]
 
 " Paste mode
@@ -46,7 +46,6 @@ let g:airline#themes#wombat#palette.normal_modified = {
     \ 'airline_a': [ s:N1[0] , s:N4[0] , s:N1[2] , s:N4[1] , ''     ] ,
     \ 'airline_b': [ s:N4[0] , s:IM[0] , s:N4[1] , s:IM[1] , ''     ] ,
     \ 'airline_c': [ s:N4[0] , s:N3[1] , s:N4[1] , s:N3[3] , ''     ] }
-
 
 let g:airline#themes#wombat#palette.insert = airline#themes#generate_color_map(s:I1, s:I2, s:I3)
 let g:airline#themes#wombat#palette.insert_modified = {
@@ -78,13 +77,4 @@ let g:airline#themes#wombat#palette.insert_paste = {
 let g:airline#themes#wombat#palette.inactive = airline#themes#generate_color_map(s:IA, s:IA, s:IA)
 let g:airline#themes#wombat#palette.inactive_modified = {
     \ 'airline_c': [ s:N4[0] , ''      , s:N4[1] , ''      , ''     ] }
-
-
-if !get(g:, 'loaded_ctrlp', 0)
-  finish
-endif
-let g:airline#themes#wombat#palette.ctrlp = airline#extensions#ctrlp#generate_color_map(
-      \ [ '#DADADA' , '#242424' , 253 , 234 , ''     ] ,
-      \ [ '#DADADA' , '#40403C' , 253 , 238 , ''     ] ,
-      \ [ '#141413' , '#DADADA' , 232 , 253 , 'bold' ] )
 
