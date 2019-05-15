@@ -276,8 +276,8 @@ endif
 let g:airline_theme='molokai'
 let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
-let g:airline_left_sep = "\uE0B4"
-let g:airline_right_sep = "\uE0B6"
+let g:airline_left_sep = "\uE0BC"
+let g:airline_right_sep = "\uE0BE"
 " let g:airline_left_sep=""
 " let g:airline_right_sep=""
 
