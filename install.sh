@@ -38,6 +38,9 @@ function installHomebrewPackages() {
     brew install bat
     brew install icdiff
     brew install shpotify
+
+    # Sneak on colorls here --> https://github.com/athityakumar/colorls
+    gem install colorls
 }
 
 function installNodeJS() {
