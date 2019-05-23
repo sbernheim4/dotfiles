@@ -44,7 +44,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'mxw/vim-jsx'
 
 " Asynchronous Lint Engine
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://www.vim.org/scripts/script.ph…
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
@@ -414,7 +414,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-"
+
 " Show commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 
@@ -423,6 +423,9 @@ nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 
 " Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+
+" Go to the definition of the value the cursor is on
+nmap <silent> <space>gd <Plug>(coc-definition)
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
