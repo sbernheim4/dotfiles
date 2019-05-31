@@ -86,6 +86,10 @@ function cloneDotfiles() {
 
     # Create secret keys file - used to store local env vars
     touch ~/dotfile/secret-keys.sh
+
+    # Clone gruvbox community fork and symlink it
+    git clone https://github.com/gruvbox-community/gruvbox.git ~/personal
+    ln -sf ~/personal/gruvbox/colors/gruvbox.vim ~/dotfiles/vim_colors/gruvbox.vim
 }
 
 function setupVim() {

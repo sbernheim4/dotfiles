@@ -126,6 +126,9 @@ set backspace=indent,eol,start
 " Map <Esc> to exit terminal-mode:
 tnoremap <Esc> <C-\><C-n>
 
+" Persist undo, even after vim is closed and reopened
+set undofile
+
 " ****************** Tabs VS Spaces ********************
 " Set the tab stop to 4
 set tabstop=4
@@ -341,37 +344,6 @@ let g:startify_custom_header = [
             \ '                       |    \  |     |  |        |  \                       ',
             \ '                       o----o  o     o  o-----o  o   o                      ',
             \ ]
-
-
-
-" #########################
-" ###### Ale
-" ########################
-" Use the quickfix list to display linting errors
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-
-" Open the list
-let g:ale_open_list = 1
-
-" Wait n ms before linting after text is changed
-let g:ale_lint_delay = 700
-
-nnoremap <Leader>tl :ALEToggle<CR>
-
-" Fix files with ESLint.
-let g:ale_fixers = {
-            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \   'javascript': ['eslint'],
-            \}
-
-" Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
-
-let g:ale_linters = {
-            \	'javascript': ['eslint'],
-            \	'SCSS': ['styleint'],
-            \}
 
 
 
