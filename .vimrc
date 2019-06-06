@@ -99,6 +99,9 @@ set relativenumber
 " Don't wrap lines by default
 set nowrap
 
+" Indent wrapped lines for easier separation
+set breakindent
+
 " Displays the special characters like eol, indents etc
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
 " set listchars=tab:\|\ ,
