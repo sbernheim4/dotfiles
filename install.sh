@@ -143,8 +143,8 @@ function useZsh() {
     echo "Setting ZSH as default shell"
     echo "==================================="
 
-	# User powerlevel10k zsh theme for prompt - https://github.com/romkatv/powerlevel10k#oh-my-zsh for more details
-	git clone https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+	# Use powerlevel9k for prompt - https://github.com/bhilburn/powerlevel9k
+    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
     cd ~/
 
