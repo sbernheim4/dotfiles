@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-brew update
+/usr/local/bin/brew update
 
-brew upgrade
+/usr/local/bin/brew upgrade
 
 npm update -g
 
