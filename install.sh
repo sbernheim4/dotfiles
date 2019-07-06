@@ -38,6 +38,7 @@ function installHomebrewPackages() {
     brew install bat
     brew install icdiff
     brew install shpotify
+    brew install ripgrep
 
     # Sneak on colorls here --> https://github.com/athityakumar/colorls
     gem install colorls
