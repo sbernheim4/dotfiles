@@ -351,15 +351,6 @@ let g:startify_custom_header = [
 
 
 " #########################
-" ###### Vim Devicons
-" ########################
-
-" the amount of space to use after the glyph character (default ' ')
-let g:WebDevIconsUnicodeDecorateFolderNodes = 0
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-
-
-" #########################
 " ####### Vim Javascript
 " #########################
 
@@ -395,13 +386,21 @@ nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> tt :<C-u>CocList outline<cr>
 
 " Search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 
 " Go to the definition of the value the cursor is on
-nmap <silent> <space>gd <Plug>(coc-definition)
+nmap <silent> <leader>gd <Plug>(coc-definition)
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
+
+
+
+" #########################
+" ####### Ripgrep
+" #########################
+
+nnoremap <leader>f :Rg<cr>
