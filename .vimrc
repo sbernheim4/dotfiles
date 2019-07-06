@@ -199,14 +199,20 @@ nnoremap <Leader>hsp :split<CR>
 nnoremap <Leader>vrs :vertical resize +
 nnoremap <Leader>hrs :resize +
 
-" Opens fzf window without toggling NERDTree
-nnoremap ff :FZF<CR>
+" Handy fzf commands
+nnoremap ff :FZF<CR> " Search all files in project directory
+nnoremap aa :Buffers<CR> " Fuzzy find one of the open buffers
+nnoremap fif :BLines<CR> " Like / but uses fzf to display output
+
+" Search entire project dir for a string
+nnoremap <leader>f :Rg<cr>
 
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
 " Display the path of the current file
 nnoremap <Leader>pwf :echo expand("%p")<CR>
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -397,10 +403,3 @@ nmap <silent> <leader>gd <Plug>(coc-definition)
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-
-
-" #########################
-" ####### Ripgrep
-" #########################
-
-nnoremap <leader>f :Rg<cr>

@@ -43,7 +43,7 @@ source ~/dotfiles/aliases.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Use ripgrep to get list of files over find, search hidden files, follow symlinks
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!{.git,package-lock.json}"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!{.git,package-lock.json}"'
 
 # Type "fd" to open a directory using fzf
 fd() {
