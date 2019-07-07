@@ -200,9 +200,11 @@ nnoremap <Leader>vrs :vertical resize +
 nnoremap <Leader>hrs :resize +
 
 " Handy fzf commands
-nnoremap ff :FZF<CR> " Search all files in project directory
-nnoremap aa :Buffers<CR> " Fuzzy find one of the open buffers
-nnoremap fif :BLines<CR> " Like / but uses fzf to display output
+nnoremap ff :FZF<CR>
+nnoremap aa :Buffers<CR>
+nnoremap fif :BLines<CR>
+
+nnoremap <Leader>r :source ~/.vimrc<CR>
 
 " Search entire project dir for a string
 nnoremap <leader>f :Rg<cr>
