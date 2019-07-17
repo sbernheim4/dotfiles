@@ -92,6 +92,9 @@ function cloneDotfiles() {
     git clone https://github.com/gruvbox-community/gruvbox.git ~/personal
     ln -sf ~/personal/gruvbox/colors/gruvbox.vim ~/dotfiles/vim_colors/gruvbox.vim
 
+    # Symlink custom wombat theme stored in dotfiles
+    ln -sf ~/dotfiles/wombat.vim ~/.vim/plugged/vim-airline-themes/autoload/airline/themes/wombat.vim
+
     # Clone zsh syntax highlighting dir
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 }
