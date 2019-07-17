@@ -56,6 +56,9 @@ Plug 'honza/vim-snippets'
 " Vim and Neovim plugin to reveal the commit messages under the cursor
 Plug 'rhysd/git-messenger.vim'
 
+" A different approach to code highlighting. http://www.vim.org/scripts/script.php…
+Plug 'thiagoalessio/rainbow_levels.vim'
+
 call plug#end()
 
 
@@ -405,3 +408,10 @@ nmap <silent> <leader>gd <Plug>(coc-definition)
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
+
+
+" #########################
+" ####### RainbowLevels
+" #########################
+
+nnoremap <leader>l :RainbowLevelsToggle<cr>
