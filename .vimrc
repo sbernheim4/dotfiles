@@ -293,16 +293,16 @@ endif
 let g:airline_theme='wombat'
 let g:airline_symbols.branch = ""
 let g:airline_symbols.paste = "Þ"
-let g:airline_left_sep = "\uE0BC"
-let g:airline_right_sep = "\uE0BE"
-" let g:airline_left_sep=""
-" let g:airline_right_sep=""
+" let g:airline_left_sep = "\uE0BC"
+" let g:airline_right_sep = "\uE0BE"
+let g:airline_left_sep=""
+let g:airline_right_sep=""
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = "\uE0BC"
-" let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#left_sep = "\uE0BC"
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '  |'
 
 " Display nothing in section x
 let g:airline_section_x = ''
