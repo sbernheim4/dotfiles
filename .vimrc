@@ -59,13 +59,13 @@ Plug 'rhysd/git-messenger.vim'
 " A different approach to code highlighting. http://www.vim.org/scripts/script.php…
 Plug 'thiagoalessio/rainbow_levels.vim'
 
+Plug 'wakatime/vim-wakatime'
+
 call plug#end()
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" GLOBAL SETTINGS FOR VIM
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" GLOBAL SETTINGS FOR VIM
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Make the Leader key , instead of the default \
 let mapleader=","
@@ -75,13 +75,11 @@ syntax on
 let base16colorspace=256
 
 if (has("termguicolors"))
-    set termguicolors
+   "set termguicolors
 endif
 
 set background=dark " for the dark version
 colorscheme gruvbox
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ENVIRONMENT VARIABLES
@@ -152,8 +150,6 @@ set expandtab
 hi VertSplit ctermbg=NONE guibg=NONE
 "" ****************************************************************
 
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Bindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,7 +171,6 @@ noremap <UP> <NOP>
 noremap <DOWN> <NOP>
 noremap <LEFT> <NOP>
 noremap <RIGHT> <NOP>
-
 
 " SETTINGS FOR THE BUFFER
 " Create a new buffer
@@ -212,11 +207,13 @@ nnoremap <Leader>r :source ~/.vimrc<CR>
 " Search entire project dir for a string
 nnoremap <leader>f :Rg<cr>
 
+" Display the path of the current file
+nnoremap <Leader>pwf :echo expand("%p")<CR>
+
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-" Display the path of the current file
-nnoremap <Leader>pwf :echo expand("%p")<CR>
+
 
 
 
@@ -232,7 +229,6 @@ let g:deoplete#enable_at_startup = 1
 " Allow cyclying through autocomplete options with tab key
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
-
 " #########################
 " ###### NERDTree
 " ########################
@@ -241,13 +237,11 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 nnoremap <Leader>d :NERDTreeToggle<CR>
 nnoremap <Leader>nt :NERDTree<CR>
 
-
 " Choose the arrow character NERDTree will use
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▿'
 " Have NERDTree be open automatically when vim starts --> Handled by cmd for use with startify
 " autocmd VimEnter * NERDTree
-
 
 " #########################
 " ###### NerdCommenter
@@ -257,8 +251,6 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitesace = 1
-
-
 
 " #########################
 " ###### Signify
@@ -275,7 +267,6 @@ let g:signify_sign_change            = '~'
 
 " Toggle highlighting changes made
 nnoremap <leader>gh :SignifyToggleHighlight<CR>
-
 
 " #########################
 " ###### Airline
@@ -326,7 +317,6 @@ let g:airline_section_warning = airline#section#create ('')
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 " let g:airline_section_warning (ycm_warning_count, whitespace)
 
-
 " #########################
 " ###### Startify
 " ########################
@@ -359,8 +349,6 @@ let g:startify_custom_header = [
             \ '                       o----o  o     o  o-----o  o   o                      ',
             \ ]
 
-
-
 " #########################
 " ####### Vim Javascript
 " #########################
@@ -376,7 +364,6 @@ function! s:check_back_space() abort
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-
 " Use <CR> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -388,7 +375,6 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
 
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
@@ -407,8 +393,6 @@ nmap <silent> <leader>gd <Plug>(coc-definition)
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
-
-
 
 " #########################
 " ####### RainbowLevels
