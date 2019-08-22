@@ -76,6 +76,8 @@ npmrc() {
 
 }
 
+source ./secret-functions.sh
+
 #####################################################################################
 ### Powerlevel 9k Settings - https://github.com/bhilburn/powerlevel9k - NOTE: I'm using powerlevel10k
 #####################################################################################

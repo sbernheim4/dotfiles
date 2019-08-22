@@ -5,3 +5,5 @@
 node_modules
 secret-keys.sh
 aliases.sh
+secret-functions.sh
+.vim
