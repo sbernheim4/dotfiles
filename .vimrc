@@ -37,11 +37,11 @@ Plug 'ryanoasis/vim-devicons'
 " Extra syntax and highlight for nerdtree files
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
-" A solid language pack for Vim.
-Plug 'sheerun/vim-polyglot'
-
 " React JSX syntax highlighting and indenting for vim.
 Plug 'mxw/vim-jsx'
+
+" Vastly improved Javascript indentation and syntax support in Vim. http://www.vim.org/scripts/script.php…
+Plug 'pangloss/vim-javascript'
 
 " Asynchronous Lint Engine
 " Plug 'w0rp/ale'
@@ -113,9 +113,6 @@ set list
 " Hide the default mode indicator. Do so because airline will show the current mode
 set noshowmode
 
-" Display vim airline at the botom of the window
-set laststatus=2
-
 " If search string contains only lowercase letters search is case insensitive.
 " If search string contains capital letters search is case sensative
 set ignorecase
@@ -147,7 +144,7 @@ set shiftwidth=4
 set expandtab
 
 " Removes background for vim splits
-hi VertSplit ctermbg=NONE guibg=NONE
+hi VertSplit ctermbg=4f5675 guibg=NONE
 "" ****************************************************************
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -213,8 +210,18 @@ nnoremap <Leader>pwf :echo expand("%p")<CR>
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
+" Toggle showing the sign column
+function! ToggleSignColumn()
+    if !exists("b:signcolumn_on") || b:signcolumn_on
+        set signcolumn=no
+        let b:signcolumn_on=0
+    else
+        set signcolumn=auto
+        let b:signcolumn_on=1
+    endif
+endfunction
 
-
+nnoremap <Leader><Leader>g :call ToggleSignColumn()<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -255,9 +262,8 @@ let g:NERDTrimTrailingWhitesace = 1
 " #########################
 " ###### Signify
 " #########################
-"
-" Toggle showing git gutter
-nnoremap <Leader><Leader>g :SignifyToggle<CR>
+
+let g:signify_vcs_list = [ 'git' ]
 
 " Select symbols to use
 let g:signify_sign_add               = '+'
@@ -267,6 +273,7 @@ let g:signify_sign_change            = '~'
 
 " Toggle highlighting changes made
 nnoremap <leader>gh :SignifyToggleHighlight<CR>
+
 
 " #########################
 " ###### Airline
@@ -349,11 +356,6 @@ let g:startify_custom_header = [
             \ '                       o----o  o     o  o-----o  o   o                      ',
             \ ]
 
-" #########################
-" ####### Vim Javascript
-" #########################
-
-let g:javascript_plugin_jsdoc = 1
 
 " #########################
 " ####### Coc
