@@ -12,7 +12,7 @@ Plug 'scrooloose/nerdcommenter'
 " Vim motions on speed!
 Plug 'easymotion/vim-easymotion'
 
-" Vim plugin, provides insert mode a uto-completion for quotes, parens, brackets, etc.
+" Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
 Plug 'Raimondi/delimitMate'
 
 " ➕ Show a diff using Vim its sign column.
@@ -50,9 +50,6 @@ Plug 'pangloss/vim-javascript'
 " https://www.vim.org/scripts/script.ph…
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Also install coc-eslint, coc-snippets, coc-css, and coc-json via :CocInstall <item>
-
-" vim-snipmate default snippets (Previously snipmate-snippets)
-Plug 'honza/vim-snippets'
 
 " Vim and Neovim plugin to reveal the commit messages under the cursor
 Plug 'rhysd/git-messenger.vim'
@@ -386,7 +383,6 @@ let g:startify_change_to_vcs_root = 2
 autocmd VimEnter *
             \   if !argc()
             \ |   Startify
-            \ |   NERDTree
             \ |   wincmd w
             \ | endif
 
