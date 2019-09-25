@@ -98,7 +98,7 @@ set linebreak
 " Shows line numbers by default when opening files
 set number
 
-" Shows relative line numbers
+" Shows relative line numbers by default
 set relativenumber
 
 " Indent wrapped lines for easier separation
@@ -255,6 +255,19 @@ function! ToggleTextWidth()
 endfunction
 
 nnoremap <silent> tw :call ToggleTextWidth()<CR>
+
+function! ToggleRelativeLineNumbers()
+    if (&relativenumber)
+        set norelativenumber
+    else
+        set relativenumber
+    endif
+endfunction
+
+nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Specific Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
