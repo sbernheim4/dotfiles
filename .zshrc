@@ -76,7 +76,7 @@ npmrc() {
 
 }
 
-source ./secret-functions.sh
+source ~/dotfiles/secret-functions.sh
 
 #####################################################################################
 ### Powerlevel 9k Settings - https://github.com/bhilburn/powerlevel9k - NOTE: I'm using powerlevel10k
@@ -145,3 +145,8 @@ export LESS_TERMCAP_mh=$(tput dim)
 export PATH="/usr/local/sbin:$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+#################################################
+### Git Stuff
+#################################################
+export REVIEW_BASE=master

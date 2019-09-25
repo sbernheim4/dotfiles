@@ -46,7 +46,8 @@ Plug 'pangloss/vim-javascript'
 " Asynchronous Lint Engine
 " Plug 'w0rp/ale'
 
-" Intellisense engine for vim8 & neovim, full language server protocol support as VSCode https://www.vim.org/scripts/script.ph…
+" Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
+" https://www.vim.org/scripts/script.ph…
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Also install coc-eslint, coc-snippets, coc-css, and coc-json via :CocInstall <item>
 
@@ -88,7 +89,10 @@ colorscheme gruvbox
 " Highlight the current cursor line
 set cursorline
 
-" Wrap text on the screen appropriately (don't wrap in the middle of the word)
+" Don't wrap lines by default
+set nowrap
+
+" When wraping text, do so appropriately (don't wrap in the middle of the word)
 set linebreak
 
 " Shows line numbers by default when opening files
@@ -96,9 +100,6 @@ set number
 
 " Shows relative line numbers
 set relativenumber
-
-" Don't wrap lines by default
-set nowrap
 
 " Indent wrapped lines for easier separation
 set breakindent
@@ -130,6 +131,16 @@ tnoremap <Esc> <C-\><C-n>
 " Persist undo, even after vim is closed and reopened
 set undofile
 
+" Have vim splits open on the right and on the bottom by default
+set splitbelow
+set splitright
+"
+" Set color for vertical bar for the color column
+hi ColorColumn ctermbg=darkgray
+
+" Set background for vertical vim split
+hi VertSplit ctermbg=darkgray guibg=darkgray
+
 " ****************** Tabs VS Spaces ********************
 " Set the tab stop to 4
 set tabstop=4
@@ -142,10 +153,9 @@ set shiftwidth=4
 
 " Indent with SPACES instead of tabs
 set expandtab
-
-" Removes background for vim splits
-hi VertSplit ctermbg=4f5675 guibg=NONE
 "" ****************************************************************
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Bindings
@@ -186,7 +196,8 @@ nnoremap <Leader>q :bp <BAR> bd #<CR>
 " Show all open buffers and their status --> Unnecessary since I am displaying open buffers at the top using airline
 " nnoremap <Leader>bl :ls<CR>
 
-" Split the curent window vertically or horizontally (Useful when you want to have the same file open at two different locations at the same time)
+" Split the curent window vertically or horizontally (Useful when you want to have the same file open at two different
+" locations at the same time)
 nnoremap <Leader>vsp :vsplit<CR>
 nnoremap <Leader>hsp :split<CR>
 
@@ -223,7 +234,27 @@ endfunction
 
 nnoremap <Leader><Leader>g :call ToggleSignColumn()<CR>
 
+" Search for visually selected text using `//` ignoring any reg ex characters
+" y will yank the selected text
+" / will enter search mode
+" \M sets vim to ignore any reg ex characters like * or . and use their literal
+" value
+" <C-R>" pastes the yanked text into the search bar
+" <CR> is enter to execute the search
+vnoremap // y/\M<C-R>"<CR>
 
+" Function to toggle textwidth bar
+function! ToggleTextWidth()
+    " if the textwidth is not set and the width is greater than 120 chars
+    if (&textwidth == 0 && winwidth('%') > 120)
+        set textwidth=120
+        set colorcolumn=+1
+    else
+        set textwidth=0
+    endif
+endfunction
+
+nnoremap <silent> tw :call ToggleTextWidth()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Specific Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -266,14 +297,20 @@ let g:NERDTrimTrailingWhitesace = 1
 let g:signify_vcs_list = [ 'git' ]
 
 " Select symbols to use
-let g:signify_sign_add               = '+'
-let g:signify_sign_delete            = '_'
+let g:signify_sign_add               = ''
+let g:signify_sign_delete            = ''
 let g:signify_sign_delete_first_line = '‾'
-let g:signify_sign_change            = '~'
+let g:signify_sign_change            = 'ﰣ'
 
 " Toggle highlighting changes made
 nnoremap <leader>gh :SignifyToggleHighlight<CR>
 
+" #########################
+" ###### FZF
+" #########################
+
+" Open fzf windos at the bottom of the screen and take up ~20% of space
+let g:fzf_layout = { 'down': '~20%' }
 
 " #########################
 " ###### Airline
