@@ -31,6 +31,7 @@ function installHomebrewPackages() {
     cd ~/
 
     brew install git
+    brew install hub
     brew install neovim
     brew install tmux
     brew install zsh
@@ -60,9 +61,6 @@ function installNpmPackages() {
 
     echo "==================================="
     echo "Installing global npm packages"
-    echo "weatherterm"
-    echo "tldr"
-    echo "vtop"
     echo "==================================="
 
     cd ~/
@@ -120,6 +118,7 @@ function setupVim() {
 
 
     local colors=($(ls ~/dotfiles/vim_colors))
+
     for colorFile in $colors
     do
         ln -sf ~/dotfiles/vim_colors/$colorFile ~/.vim/colors/$colorFile
