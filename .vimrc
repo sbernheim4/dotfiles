@@ -59,6 +59,9 @@ Plug 'thiagoalessio/rainbow_levels.vim'
 
 Plug 'wakatime/vim-wakatime'
 
+" 🌷 Distraction-free writing in Vim
+Plug 'junegunn/goyo.vim'
+
 call plug#end()
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -178,7 +181,7 @@ noremap <RIGHT> <NOP>
 
 " SETTINGS FOR THE BUFFER
 " Create a new buffer
-nnoremap <Leader>b :enew<cr>
+nnoremap <Leader>b :enew<CR>
 
 " Move to the next buffer
 nnoremap <Leader>n :bn<CR>
@@ -210,7 +213,7 @@ nnoremap fif :BLines<CR>
 nnoremap <Leader>r :source ~/.vimrc<CR>
 
 " Search entire project dir for a string
-nnoremap <leader>f :Rg<cr>
+nnoremap <Leader>f :Rg<CR>
 
 " Display the path of the current file
 nnoremap <Leader>pwf :echo expand("%p")<CR>
@@ -313,7 +316,7 @@ let g:signify_sign_delete_first_line = '‾'
 let g:signify_sign_change            = 'ﰣ'
 
 " Toggle highlighting changes made
-nnoremap <leader>gh :SignifyToggleHighlight<CR>
+nnoremap <Leader>gh :SignifyToggleHighlight<CR>
 
 " #########################
 " ###### FZF
@@ -373,7 +376,7 @@ let g:airline_section_warning = airline#section#create ('')
 
 " #########################
 " ###### Startify
-" ########################
+" #########################
 
 " When opening a file or bookmark, seek and change to the root directory of the
 " VCS (if there is one).
@@ -425,25 +428,31 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
 
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
 
 " Find symbol of current document
-nnoremap <silent> tt :<C-u>CocList outline<cr>
+nnoremap <silent> tt :<C-u>CocList outline<CR>
 
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<CR>
 
 " Go to the definition of the value the cursor is on
-nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <Leader>gd <Plug>(coc-definition)
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nmap <Leader>rn <Plug>(coc-rename)
 
 " #########################
 " ####### RainbowLevels
 " #########################
 
-nnoremap <leader>l :RainbowLevelsToggle<cr>
+nnoremap <Leader>l :RainbowLevelsToggle<CR>
+
+" #########################
+" ####### Goyo
+" #########################
+
+nnoremap <silent> <Leader>go :Goyo 80%x80%<CR>
