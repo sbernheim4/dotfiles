@@ -50,6 +50,7 @@ Plug 'pangloss/vim-javascript'
 " https://www.vim.org/scripts/script.ph…
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Also install coc-eslint, coc-snippets, coc-css, and coc-json via :CocInstall <item>
+" Run :CocCommand snippets.openSnippetFiles to edit snippets files.
 
 " Vim and Neovim plugin to reveal the commit messages under the cursor
 Plug 'rhysd/git-messenger.vim'
@@ -65,7 +66,7 @@ Plug 'junegunn/goyo.vim'
 call plug#end()
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" GLOBAL SETTINGS FOR VIM
+" COLORSCHME SETTINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Make the Leader key , instead of the default \
@@ -76,10 +77,11 @@ syntax on
 let base16colorspace=256
 
 if (has("termguicolors"))
-   "set termguicolors
+   set termguicolors
 endif
 
-set background=dark " for the dark version
+set background=dark
+
 colorscheme gruvbox
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -191,7 +193,6 @@ noremap <DOWN> <NOP>
 noremap <LEFT> <NOP>
 noremap <RIGHT> <NOP>
 
-" SETTINGS FOR THE BUFFER
 " Create a new buffer
 nnoremap <Leader>b :enew<CR>
 
@@ -217,7 +218,7 @@ nnoremap <Leader>hsp :split<CR>
 nnoremap <Leader>vrs :vertical resize +
 nnoremap <Leader>hrs :resize +
 
-" Handy fzf commands
+" Useful fzf shortcuts
 nnoremap ff :FZF<CR>
 nnoremap aa :Buffers<CR>
 nnoremap fif :BLines<CR>
@@ -283,14 +284,6 @@ nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Specific Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" ########################
-" ###### DeoPlete
-" ########################
-let g:deoplete#enable_at_startup = 1
-
-" Allow cyclying through autocomplete options with tab key
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " #########################
 " ###### NERDTree
@@ -427,29 +420,29 @@ function! s:check_back_space() abort
 	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <CR> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Use <CR> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
+nnoremap <silent> <Leader>e :<C-u>CocList extensions<CR>
 
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
+nnoremap <silent> <Leader>c :<C-u>CocList commands<CR>
 
 " Find symbol of current document
 nnoremap <silent> tt :<C-u>CocList outline<CR>
 
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<CR>
+nnoremap <silent> <Leader>s :<C-u>CocList symbols<CR>
 
 " Go to the definition of the value the cursor is on
 nmap <silent> <Leader>gd <Plug>(coc-definition)
