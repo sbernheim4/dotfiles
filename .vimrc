@@ -432,9 +432,6 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Manage extensions
-nnoremap <silent> <Leader>e :<C-u>CocList extensions<CR>
-
 " Show commands
 nnoremap <silent> <Leader>c :<C-u>CocList commands<CR>
 
@@ -449,6 +446,12 @@ nmap <silent> <Leader>gd <Plug>(coc-definition)
 
 " Remap for rename current word
 nmap <Leader>rn <Plug>(coc-rename)
+
+" Add a cursor for multiple cursors
+nmap <silent> <Leader>c <Plug>(coc-cursors-position)
+
+" Highlight group for cursors when using multiple cursors
+hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
 " #########################
 " ####### RainbowLevels
