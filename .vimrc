@@ -43,9 +43,6 @@ Plug 'mxw/vim-jsx'
 " Vastly improved Javascript indentation and syntax support in Vim. http://www.vim.org/scripts/script.php…
 Plug 'pangloss/vim-javascript'
 
-" Asynchronous Lint Engine
-" Plug 'w0rp/ale'
-
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
 " https://www.vim.org/scripts/script.ph…
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
