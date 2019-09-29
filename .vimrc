@@ -71,11 +71,7 @@ let mapleader=","
 
 syntax enable
 syntax on
-let base16colorspace=256
-
-if (has("termguicolors"))
-   set termguicolors
-endif
+set termguicolors
 
 set background=dark
 
@@ -133,14 +129,19 @@ set undofile
 " Have vim splits open on the right and on the bottom by default
 set splitbelow
 set splitright
-"
+
+" ************** Custom Highlight Groups **************
+
 " Set color for vertical bar for the color column
-hi ColorColumn ctermbg=darkgray
+hi ColorColumn guibg=#3a3a3a
 
 " Set background for vertical vim split
-hi VertSplit ctermbg=darkgray guibg=darkgray
+hi VertSplit guibg=#3a3a3a guifg=#3a3a3a
 
-" ****************** Tabs VS Spaces ********************
+" Highlight group for cursors when using multiple cursors
+hi CocCursorRange guibg=#b16286 guifg=#c9cf73
+
+" ****************** Tabs VS Spaces ******************
 " Set the tab stop to 4
 set tabstop=4
 
@@ -446,9 +447,6 @@ nmap <Leader>rn <Plug>(coc-rename)
 
 " Add a cursor for multiple cursors
 nmap <silent> <Leader>c <Plug>(coc-cursors-position)
-
-" Highlight group for cursors when using multiple cursors
-hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
 " #########################
 " ####### RainbowLevels
