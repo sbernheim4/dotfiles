@@ -441,7 +441,7 @@ nnoremap <silent> <Leader>s :<C-u>CocList symbols<CR>
 
 " Go to the definition of the value the cursor is on
 nmap <silent> <Leader>gd <Plug>(coc-definition)
-
+"
 " Remap for rename current word
 nmap <Leader>rn <Plug>(coc-rename)
 
