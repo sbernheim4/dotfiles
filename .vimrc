@@ -148,11 +148,23 @@ set tabstop=4
 " Helps with autoindenting when using =
 set shiftwidth=4
 
-" Indent with TABS instead of spaces
-" set noexpandtab
-
-" Indent with SPACES instead of tabs
+" Indent with spaces by default - only due to work :(
 set expandtab
+
+function! ToggleIndentType()
+    if !exists("g:use_tabs") || g:use_tabs
+        " Indent with SPACES instead of tabs
+        set expandtab
+        let g:use_tabs=0
+    else
+        " Indent with TABS instead of spaces
+        set noexpandtab
+        let g:use_tabs=1
+    endif
+endfunction
+
+nmap <Leader><Leader>t :call ToggleIndentType()<CR>
+
 "" ****************************************************************
 
 
