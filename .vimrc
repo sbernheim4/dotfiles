@@ -326,7 +326,9 @@ nnoremap <Leader>gh :SignifyToggleHighlight<CR>
 " #########################
 
 " Open fzf windos at the bottom of the screen and take up ~20% of space
-let g:fzf_layout = { 'down': '~20%' }
+"let g:fzf_layout = { 'down': '~20%' }
+
+let g:ackprg = 'ag'
 
 " #########################
 " ###### Airline
@@ -395,11 +397,11 @@ autocmd VimEnter *
 " Custom message to display in startify menu
 let g:startify_custom_header = [
             \ '                                                                            ',
-            \ '    o             o  o----o  o       o-----o  o-----o  o       o  o----o    ',
-            \ '     \     o     /   |       |       |        |     |  | \   / |  |         ',
-            \ '      \   / \   /    |----o  |       |        |     |  |  \ /  |  |----o    ',
-            \ '       \ /   \ /     |       |       |        |     |  |   o   |  |         ',
-            \ '        o     o      o----o  o----o  o-----o  o-----o  o       o  o----o    ',
+            \ '    o             o  o----o  o       o----o  o-----o  o       o  o----o     ',
+            \ '     \     o     /   |       |       |       |     |  | \   / |  |          ',
+            \ '      \   / \   /    |----o  |       |       |     |  |  \ /  |  |----o     ',
+            \ '       \ /   \ /     |       |       |       |     |  |   o   |  |          ',
+            \ '        o     o      o----o  o----o  o----o  o-----o  o       o  o----o     ',
             \ '                                                                            ',
             \ '                       o---o   o-----o  o-----o  o   o                      ',
             \ '                       |   |   |     |  |        |  /                       ',
