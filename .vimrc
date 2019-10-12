@@ -432,6 +432,13 @@ let g:startify_custom_header = [
 
 
 " #########################
+" ####### Vim-Javascript
+" #########################
+
+" Enable jsdoc/esdoc syntax highlighting
+let g:javascript_plugin_jsdoc = 1
+
+" #########################
 " ####### Coc
 " #########################
 
