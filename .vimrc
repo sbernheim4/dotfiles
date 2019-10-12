@@ -22,6 +22,9 @@ Plug 'mhinz/vim-signify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" Vim plugin for the Perl module / CLI script 'ack'
+Plug 'mileszs/ack.vim'
+
 " lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
 
@@ -136,7 +139,8 @@ set splitright
 hi ColorColumn guibg=#3a3a3a
 
 " Set background for vertical vim split
-hi VertSplit guibg=#3a3a3a guifg=#3a3a3a
+"hi VertSplit guibg=#3a3a3a guifg=#3a3a3a
+hi vertsplit guifg=444
 
 " Highlight group for cursors when using multiple cursors
 hi CocCursorRange guibg=#b16286 guifg=#c9cf73
@@ -224,6 +228,12 @@ nnoremap fif :BLines<CR>
 nnoremap <Leader>r :source ~/.vimrc<CR>
 
 " Search entire project dir for a string
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --hidden --smart-case --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \   <bang>0)
 nnoremap <Leader>f :Rg<CR>
 
 " Display the path of the current file
@@ -307,6 +317,18 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitesace = 1
 
 " #########################
+" ###### Ack
+" #########################
+
+if executable('ag')
+  let g:ackprg = 'rg --vimgrep'
+endif
+
+cnoreabbrev Ack Ack!
+nnoremap <Leader><Leader>f :Ack!<Space>""<LEFT>
+
+
+" #########################
 " ###### Signify
 " #########################
 
@@ -326,9 +348,7 @@ nnoremap <Leader>gh :SignifyToggleHighlight<CR>
 " #########################
 
 " Open fzf windos at the bottom of the screen and take up ~20% of space
-"let g:fzf_layout = { 'down': '~20%' }
-
-let g:ackprg = 'ag'
+" let g:fzf_layout = { 'down': '~20%' }
 
 " #########################
 " ###### Airline
