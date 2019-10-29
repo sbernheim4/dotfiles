@@ -22,9 +22,6 @@ Plug 'mhinz/vim-signify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Vim plugin for the Perl module / CLI script 'ack'
-Plug 'mileszs/ack.vim'
-
 " lean & mean status/tabline for vim that's light as air
 Plug 'vim-airline/vim-airline'
 
@@ -58,7 +55,7 @@ Plug 'rhysd/git-messenger.vim'
 " A different approach to code highlighting. http://www.vim.org/scripts/script.php…
 Plug 'thiagoalessio/rainbow_levels.vim'
 
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 
 " 🌷 Distraction-free writing in Vim
 Plug 'junegunn/goyo.vim'
@@ -126,8 +123,10 @@ set backspace=indent,eol,start
 " Map <Esc> to exit terminal-mode:
 tnoremap <Esc> <C-\><C-n>
 
-" Persist undo, even after vim is closed and reopened
-set undofile
+" Persist undo (just for neovim), even after vim is closed and reopened
+if (has('nvim'))
+    set undofile
+endif
 
 " Have vim splits open on the right and on the bottom by default
 set splitbelow
@@ -139,8 +138,8 @@ set splitright
 hi ColorColumn guibg=#3a3a3a
 
 " Set background for vertical vim split
-"hi VertSplit guibg=#3a3a3a guifg=#3a3a3a
-hi vertsplit guifg=444
+" hi VertSplit guibg=#3a3a3a guifg=#3a3a3a
+hi vertsplit guifg=#444444
 
 " Highlight group for cursors when using multiple cursors
 hi CocCursorRange guibg=#b16286 guifg=#c9cf73
@@ -267,7 +266,7 @@ vnoremap // y/\M<C-R>"<CR>
 " Function to toggle textwidth bar
 function! ToggleTextWidth()
     " if the textwidth is not set and the width is greater than 120 chars
-    if (&textwidth == 0 && winwidth('%') > 120)
+    if (&textwidth == 0)
         set textwidth=120
         set colorcolumn=+1
     else
@@ -320,12 +319,12 @@ let g:NERDTrimTrailingWhitesace = 1
 " ###### Ack
 " #########################
 
-if executable('ag')
-  let g:ackprg = 'rg --vimgrep'
-endif
-
-cnoreabbrev Ack Ack!
-nnoremap <Leader><Leader>f :Ack!<Space>""<LEFT>
+"if executable('rg')
+  "let g:ackprg = 'rg --vimgrep'
+"endif
+"
+""cnoreabbrev Ack Ack!
+"nnoremap <Leader><Leader>f :Ack!<Space>""<LEFT>
 
 
 " #########################
