@@ -33,8 +33,9 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
 
-# Load private keys
+# Load private keys and secret functions
 source ~/dotfiles/secret-keys.sh
+source ~/dotfiles/secret-functions.sh
 
 # Load aliases
 source ~/dotfiles/aliases.sh
