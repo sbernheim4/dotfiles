@@ -4,8 +4,6 @@
 
 /usr/local/bin/brew upgrade
 
-npm update -g
-
 # Update dotfiles
 cd ~/dotfiles && git pull && cd
 
@@ -14,4 +12,7 @@ cd ~/.oh-my-zsh/custom/themes/powerlevel9k && git pull && cd
 
 # Update community gruvbox
 cd ~/personal/gruvbox/ && git pull && cd
+
+# Update npm packages
+npm update -g
 
