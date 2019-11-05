@@ -176,9 +176,6 @@ nmap <Leader><Leader>t :call ToggleIndentType()<CR>
 " Key Bindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Toggle paste mode
-nnoremap <Leader>a :set paste!<CR>
-
 " Toggle wrap mode
 nnoremap <Leader>wr :set wrap!<CR>
 
@@ -489,6 +486,12 @@ endfunction
 
 " Use `:Format` to format the current buffer
 command! -nargs=0 Format :call CocAction('format')
+
+" Remap for do codeAction of current line
+nnoremap <leader>ac  <Plug>(coc-codeaction)
+
+" Fix autofix problem of current line
+nnoremap <leader>qf  <Plug>(coc-fix-current)
 
 " #########################
 " ####### RainbowLevels
