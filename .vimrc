@@ -476,6 +476,20 @@ nmap <Leader>rn <Plug>(coc-rename)
 " Add a cursor for multiple cursors
 nmap <silent> <Leader>c <Plug>(coc-cursors-position)
 
+" Show function signature when `K` is pressed
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+
+" Use `:Format` to format the current buffer
+command! -nargs=0 Format :call CocAction('format')
+
 " #########################
 " ####### RainbowLevels
 " #########################
