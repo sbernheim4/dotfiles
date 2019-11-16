@@ -41,10 +41,7 @@ Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
-" https://www.vim.org/scripts/script.ph…
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-" Also install coc-eslint, coc-snippets, coc-css, and coc-json via :CocInstall <item>
-" Run :CocCommand snippets.openSnippetFiles to edit snippets files.
 
 " Vim and Neovim plugin to reveal the commit messages under the cursor
 Plug 'rhysd/git-messenger.vim'
@@ -117,9 +114,6 @@ set encoding=utf8
 
 " Allow the backspace button to work as normal
 set backspace=indent,eol,start
-
-" Map <Esc> to exit terminal-mode:
-tnoremap <Esc> <C-\><C-n>
 
 " Persist undo (just for neovim), even after vim is closed and reopened
 if (has('nvim'))
