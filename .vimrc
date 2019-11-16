@@ -59,10 +59,10 @@ Plug 'liuchengxu/vista.vim'
 Plug 'junegunn/goyo.vim'
 
 call plug#end()
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLORSCHME SETTINGS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Make the Leader key , instead of the default \
 let mapleader=","
@@ -166,9 +166,6 @@ endfunction
 
 nmap <Leader><Leader>t :call ToggleIndentType()<CR>
 
-"" ****************************************************************
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Bindings
@@ -201,9 +198,6 @@ nnoremap <Leader>p :bp<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nnoremap <Leader>q :bp <BAR> bd #<CR>
-
-" Show all open buffers and their status --> Unnecessary since I am displaying open buffers at the top using airline
-" nnoremap <Leader>bl :ls<CR>
 
 " Split the curent window vertically or horizontally (Useful when you want to have the same file open at two different
 " locations at the same time)
@@ -288,7 +282,7 @@ nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " #########################
-" ###### NERDTree
+" ######## NERDTree
 " ########################
 
 " Toggle NERDTree
@@ -301,8 +295,8 @@ let g:NERDTreeDirArrowCollapsible = '▿'
 " Have NERDTree be open automatically when vim starts --> Handled by cmd for use with startify
 " autocmd VimEnter * NERDTree
 
-" #########################
-" ###### NerdCommenter
+" ########################
+" ######## NerdCommenter
 " ########################
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
@@ -310,9 +304,9 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitesace = 1
 
-" #########################
-" ###### Ack
-" #########################
+" ########################
+" ######## Ack
+" ########################
 
 "if executable('rg')
   "let g:ackprg = 'rg --vimgrep'
@@ -322,9 +316,9 @@ let g:NERDTrimTrailingWhitesace = 1
 "nnoremap <Leader><Leader>f :Ack!<Space>""<LEFT>
 
 
-" #########################
-" ###### Signify
-" #########################
+" ########################
+" ######## Signify
+" ########################
 
 let g:signify_vcs_list = [ 'git' ]
 
@@ -337,15 +331,15 @@ let g:signify_sign_change            = 'ﰣ'
 " Toggle highlighting changes made
 nnoremap <Leader>gh :SignifyToggleHighlight<CR>
 
-" #########################
-" ###### FZF
-" #########################
+" ########################
+" ######## FZF
+" ########################
 
 " Open fzf windos at the bottom of the screen and take up ~20% of space
 " let g:fzf_layout = { 'down': '~20%' }
 
-" #########################
-" ###### Airline
+" ########################
+" ######## Airline
 " ########################
 
 " Using the font Meslo LG S Regular for Powerline which can be found here:
@@ -393,9 +387,9 @@ let g:airline_section_warning = airline#section#create ('')
 " let g:airline_section_error   (ycm_error_count, syntastic, eclim)
 " let g:airline_section_warning (ycm_warning_count, whitespace)
 
-" #########################
-" ###### Startify
-" #########################
+" ########################
+" ######## Startify
+" ########################
 
 " When opening a file or bookmark, seek and change to the root directory of the
 " VCS (if there is one).
@@ -425,16 +419,16 @@ let g:startify_custom_header = [
             \ ]
 
 
-" #########################
-" ####### Vim-Javascript
-" #########################
+" ########################
+" ######## Vim-Javascript
+" ########################
 
 " Enable jsdoc/esdoc syntax highlighting
 let g:javascript_plugin_jsdoc = 1
 
-" #########################
-" ####### Coc
-" #########################
+" ########################
+" ######## Coc
+" ########################
 
 function! s:check_back_space() abort
 	let col = col('.') - 1
@@ -503,21 +497,21 @@ let g:coc_global_extensions = [
 \ ]
 
 
-" #########################
-" ####### RainbowLevels
-" #########################
+" ########################
+" ######## RainbowLevels
+" ########################
 
 nnoremap <Leader>l :RainbowLevelsToggle<CR>
 
-" #########################
-" ####### Goyo
-" #########################
+" ########################
+" ######## Goyo
+" ########################
 
 nnoremap <silent> <Leader>go :Goyo 80%x80%<CR>
 
-" #########################
+" ########################
 " ######## Vista
-" #########################
+" ########################
 
 let g:vista_default_executive = 'coc'
 nnoremap <Leader>v :Vista!!<CR>
