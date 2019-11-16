@@ -264,6 +264,8 @@ endfunction
 nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
 
 
+" Use zz to place current line n lines above the center
+nnoremap zz z<CR>5<C-y>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Specific Settings
