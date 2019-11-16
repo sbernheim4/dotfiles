@@ -12,9 +12,6 @@ Plug 'scrooloose/nerdcommenter'
 " Vim motions on speed!
 Plug 'easymotion/vim-easymotion'
 
-" Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc.
-Plug 'Raimondi/delimitMate'
-
 " ➕ Show a diff using Vim its sign column.
 Plug 'mhinz/vim-signify'
 
@@ -56,6 +53,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'thiagoalessio/rainbow_levels.vim'
 
 " Plug 'wakatime/vim-wakatime'
+Plug 'liuchengxu/vista.vim'
 
 " 🌷 Distraction-free writing in Vim
 Plug 'junegunn/goyo.vim'
@@ -491,7 +489,19 @@ command! -nargs=0 Format :call CocAction('format')
 nnoremap <leader>ac  <Plug>(coc-codeaction)
 
 " Fix autofix problem of current line
-nnoremap <leader>qf  <Plug>(coc-fix-current)
+noremap <leader>qf  <Plug>(coc-fix-current)
+
+let g:coc_global_extensions = [
+\ 'coc-snippets',
+\ 'coc-eslint',
+\ 'coc-prettier',
+\ 'coc-pairs',
+\ 'coc-css',
+\ 'coc-html',
+\ 'coc-json',
+\ 'coc-tsserver'
+\ ]
+
 
 " #########################
 " ####### RainbowLevels
@@ -504,3 +514,11 @@ nnoremap <Leader>l :RainbowLevelsToggle<CR>
 " #########################
 
 nnoremap <silent> <Leader>go :Goyo 80%x80%<CR>
+
+" #########################
+" ######## Vista
+" #########################
+
+let g:vista_default_executive = 'coc'
+nnoremap <Leader>v :Vista!!<CR>
+let g:vista_sidebar_width = 35
