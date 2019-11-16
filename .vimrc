@@ -124,6 +124,9 @@ endif
 set splitbelow
 set splitright
 
+" Start scrolling when you hit 10 lines above or below the buffer start/end
+set scrolloff=10
+
 " ************** Custom Highlight Groups **************
 
 " Set color for vertical bar for the color column
@@ -135,6 +138,9 @@ hi vertsplit guifg=#444444
 
 " Highlight group for cursors when using multiple cursors
 hi CocCursorRange guibg=#b16286 guifg=#c9cf73
+
+" Highlight color for the cursor line
+hi CursorLine guibg=#1c1c1c
 
 " ****************** Tabs VS Spaces ******************
 " Set the tab stop to 4
@@ -263,9 +269,11 @@ endfunction
 
 nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
 
-
 " Use zz to place current line n lines above the center
 nnoremap zz z<CR>5<C-y>
+
+" Don't jump to the next occurance automatically when searching
+nnoremap * *N
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Specific Settings
@@ -295,18 +303,6 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitesace = 1
 
 " ########################
-" ######## Ack
-" ########################
-
-"if executable('rg')
-  "let g:ackprg = 'rg --vimgrep'
-"endif
-"
-""cnoreabbrev Ack Ack!
-"nnoremap <Leader><Leader>f :Ack!<Space>""<LEFT>
-
-
-" ########################
 " ######## Signify
 " ########################
 
@@ -320,13 +316,6 @@ let g:signify_sign_change            = 'ﰣ'
 
 " Toggle highlighting changes made
 nnoremap <Leader>gh :SignifyToggleHighlight<CR>
-
-" ########################
-" ######## FZF
-" ########################
-
-" Open fzf windos at the bottom of the screen and take up ~20% of space
-" let g:fzf_layout = { 'down': '~20%' }
 
 " ########################
 " ######## Airline
