@@ -3,82 +3,6 @@ export TERM="xterm-256color"
 #; Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-# Run spectrum_ls to see a list of colors zsh can easily produce and
-# which can be used in a theme
-#ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k/powerlevel9k"
-DEFAULT_USER=`whoami`
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-unsetopt correct_all
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git z zsh-syntax-highlighting)
-
-# User configuration
-
-source $ZSH/oh-my-zsh.sh
-
-export EDITOR='nvim'
-
-# Load private keys and secret functions
-source ~/dotfiles/secret-keys.sh
-source ~/dotfiles/secret-functions.sh
-
-# Load aliases
-source ~/dotfiles/aliases.sh
-
-# Load in fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Use ripgrep to get list of files over find, search hidden files, follow symlinks
-export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!{.git,package-lock.json}"'
-
-# Type "fd" to open a directory using fzf
-fd() {
-	local dir
-	dir=$(find ${1:-.} -path '*/\.*' -prune \
-		-o -type d -print 2> /dev/null | fzf +m) &&
-		cd "$dir"
-}
-
-
-# Type "fo" to open a file in its default application by hiting ctrl + o when
-# the file is selected
-fo() {
-	x=$(preview)
-	folder_path=$(echo $x | cut -d '.' -f 1,1 | rev | cut -d "/" -f2- | rev);
-	cd $folder_path
-	nvim $(echo $x | rev | cut -d '/' -f 1,1 | rev)
-}
-
-
-# Helper function to remove/putback work npmrc file
-npmrc() {
-    if [[ -f ~/.npmrc ]]; then
-        mv ~/.npmrc ~/temp.npmrc
-		echo "temp.npmrc"
-    elif [[ -f ~/temp.npmrc ]]; then
-        mv ~/temp.npmrc ~/.npmrc
-		echo ".npmrc"
-    fi
-
-}
-
-source ~/dotfiles/secret-functions.sh
-
 #####################################################################################
 ### Powerlevel 9k Settings - https://github.com/bhilburn/powerlevel9k - NOTE: I'm using powerlevel10k
 #####################################################################################
@@ -128,6 +52,64 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir battery context vcs root_indicator dir_wr
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(node_version status background_jobs host user)
 HIST_STAMPS="mm/dd/yyyy"
 DISABLE_UPDATE_PROMPT=true
+
+
+# Run spectrum_ls to see a list of colors zsh can easily produce and
+# which can be used in a theme
+#ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="powerlevel9k/powerlevel9k"
+DEFAULT_USER=`whoami`
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+unsetopt correct_all
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git z zsh-syntax-highlighting)
+
+# User configuration
+
+source $ZSH/oh-my-zsh.sh
+
+export EDITOR='nvim'
+
+# Load private keys and secret functions
+source ~/dotfiles/secret-keys.sh
+source ~/dotfiles/secret-functions.sh
+
+# Load aliases
+source ~/dotfiles/aliases.sh
+
+# Load in fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Use ripgrep to get list of files over find, search hidden files, follow symlinks
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!{.git,package-lock.json}"'
+
+# Helper function to remove/putback work npmrc file
+npmrc() {
+    if [[ -f ~/.npmrc ]]; then
+        mv ~/.npmrc ~/temp.npmrc
+		echo "temp.npmrc"
+    elif [[ -f ~/temp.npmrc ]]; then
+        mv ~/temp.npmrc ~/.npmrc
+		echo ".npmrc"
+    fi
+
+}
+
+source ~/dotfiles/secret-functions.sh
 
 #################################################
 ### Colorize Man pages
