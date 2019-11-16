@@ -215,13 +215,7 @@ nnoremap fif :BLines<CR>
 
 nnoremap <Leader>r :source ~/.vimrc<CR>
 
-" Search entire project dir for a string
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --hidden --smart-case --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
-  \   <bang>0)
+" Global search
 nnoremap <Leader>f :Rg<CR>
 
 " Display the path of the current file
