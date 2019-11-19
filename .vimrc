@@ -140,7 +140,7 @@ hi vertsplit guifg=#444444
 hi CocCursorRange guibg=#b16286 guifg=#c9cf73
 
 " Highlight color for the cursor line
-hi CursorLine guibg=#1c1c1c
+hi CursorLine guibg=#212121
 
 " ****************** Tabs VS Spaces ******************
 " Set the tab stop to 4
@@ -211,7 +211,6 @@ nnoremap <Leader>hrs :resize +
 " Useful fzf shortcuts
 nnoremap ff :FZF<CR>
 nnoremap aa :Buffers<CR>
-nnoremap fif :BLines<CR>
 
 nnoremap <Leader>r :source ~/.vimrc<CR>
 
@@ -270,7 +269,7 @@ endfunction
 nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
 
 " Use zz to place current line n lines above the center
-nnoremap zz z<CR>5<C-y>
+nnoremap zz zt5<C-y>
 
 " Don't jump to the next occurance automatically when searching
 nnoremap * *N
