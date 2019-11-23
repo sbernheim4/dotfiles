@@ -223,7 +223,7 @@ nnoremap <Leader>pwf :echo expand("%p")<CR>
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-" Toggle showing the sign column
+" Toggle function for the sign column
 function! ToggleSignColumn()
     if !exists("b:signcolumn_on") || b:signcolumn_on
         set signcolumn=no
@@ -233,6 +233,15 @@ function! ToggleSignColumn()
         let b:signcolumn_on=1
     endif
 endfunction
+
+set scl=no
+
+" Automatically hide and show the sign column when switching buffers
+augroup reduce_noise
+    autocmd!
+    autocmd WinEnter * :set scl=auto
+    autocmd WinLeave * :set scl=no
+augroup END
 
 nnoremap <Leader><Leader>g :call ToggleSignColumn()<CR>
 
@@ -271,7 +280,7 @@ nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
 " Use zz to place current line n lines above the center
 nnoremap zz zt5<C-y>
 
-" Don't jump to the next occurance automatically when searching
+" Don't jump to the next occurance automatically when searching via *
 nnoremap * *N
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
