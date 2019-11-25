@@ -152,6 +152,12 @@ set shiftwidth=4
 " Indent with spaces by default - only due to work :(
 set expandtab
 
+" Write on :next/:prev/^Z
+set autowrite
+
+" Search as you type (for vim)
+set incsearch
+
 function! ToggleIndentType()
     if !exists("g:use_tabs") || g:use_tabs
         " Indent with SPACES instead of tabs
