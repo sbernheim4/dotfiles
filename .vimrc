@@ -55,14 +55,20 @@ Plug 'liuchengxu/vista.vim'
 " 🌷 Distraction-free writing in Vim
 Plug 'junegunn/goyo.vim'
 
+" Use RipGrep in Vim and display results in a quickfix list
+Plug 'jremmen/vim-ripgrep'
+
+" 👏 Modern generic interactive finder and dispatcher for Vim and NeoVim
+Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') }
+
+" Vim plugin that shows the context of the currently visible buffer contents
+Plug 'wellle/context.vim'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLORSCHME SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Make the Leader key , instead of the default \
-let mapleader=","
 
 syntax enable
 syntax on
@@ -75,6 +81,9 @@ colorscheme gruvbox
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ENVIRONMENT VARIABLES
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Make the Leader key , instead of the default \
+let mapleader=","
 
 " Highlight the current cursor line
 set cursorline
@@ -125,7 +134,15 @@ set splitbelow
 set splitright
 
 " Start scrolling when you hit 10 lines above or below the buffer start/end
-set scrolloff=10
+set scrolloff=4
+
+" Write on :next/:prev/^Z
+set autowrite
+
+" Search as you type (for vim)
+set incsearch
+
+set scl=no
 
 " ************** Custom Highlight Groups **************
 
@@ -152,12 +169,6 @@ set shiftwidth=4
 " Indent with spaces by default - only due to work :(
 set expandtab
 
-" Write on :next/:prev/^Z
-set autowrite
-
-" Search as you type (for vim)
-set incsearch
-
 function! ToggleIndentType()
     if !exists("g:use_tabs") || g:use_tabs
         " Indent with SPACES instead of tabs
@@ -172,10 +183,15 @@ endfunction
 
 nmap <Leader><Leader>t :call ToggleIndentType()<CR>
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Bindings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Unbinds the arrow keys in normal mode (they still work in insert mode)
+noremap <UP> <NOP>
+noremap <DOWN> <NOP>
+noremap <LEFT> <NOP>
+noremap <RIGHT> <NOP>
 
 " Toggle wrap mode
 nnoremap <Leader>wr :set wrap!<CR>
@@ -185,12 +201,6 @@ nnoremap <Leader>hl :set hlsearch!<CR>
 
 " Toggle cursor line highlight
 nnoremap <Leader>cll :set cursorline!<CR>
-
-" Unbinds the arrow keys in normal mode (they still work in insert mode)
-noremap <UP> <NOP>
-noremap <DOWN> <NOP>
-noremap <LEFT> <NOP>
-noremap <RIGHT> <NOP>
 
 " Create a new buffer
 nnoremap <Leader>b :enew<CR>
@@ -214,14 +224,10 @@ nnoremap <Leader>hsp :split<CR>
 nnoremap <Leader>vrs :vertical resize +
 nnoremap <Leader>hrs :resize +
 
-" Useful fzf shortcuts
-nnoremap ff :FZF<CR>
-nnoremap aa :Buffers<CR>
-
 nnoremap <Leader>r :source ~/.vimrc<CR>
 
 " Global search
-nnoremap <Leader>f :Rg<CR>
+nnoremap <Leader>f :Rg ''<LEFT>
 
 " Display the path of the current file
 nnoremap <Leader>pwf :echo expand("%p")<CR>
@@ -239,8 +245,6 @@ function! ToggleSignColumn()
         let b:signcolumn_on=1
     endif
 endfunction
-
-set scl=no
 
 " Automatically hide and show the sign column when switching buffers
 augroup reduce_noise
@@ -284,10 +288,10 @@ endfunction
 nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
 
 " Use zz to place current line n lines above the center
-nnoremap zz zt5<C-y>
+" nnoremap zz zt5<C-y>
 
 " Don't jump to the next occurance automatically when searching via *
-nnoremap * *N
+nnoremap * *N zz
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Specific Settings
@@ -315,6 +319,8 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitesace = 1
+
+let g:NERDTreeWinPos = 'right'
 
 " ########################
 " ######## Signify
@@ -473,10 +479,10 @@ endfunction
 command! -nargs=0 Format :call CocAction('format')
 
 " Remap for do codeAction of current line
-nnoremap <leader>ac  <Plug>(coc-codeaction)
+nnoremap <leader>ac <Plug>(coc-codeaction)
 
 " Fix autofix problem of current line
-noremap <leader>qf  <Plug>(coc-fix-current)
+noremap <leader>qf <Plug>(coc-fix-current)
 
 let g:coc_global_extensions = [
 \ 'coc-snippets',
@@ -488,7 +494,6 @@ let g:coc_global_extensions = [
 \ 'coc-json',
 \ 'coc-tsserver'
 \ ]
-
 
 " ########################
 " ######## RainbowLevels
@@ -507,5 +512,38 @@ nnoremap <silent> <Leader>go :Goyo 80%x80%<CR>
 " ########################
 
 let g:vista_default_executive = 'coc'
-nnoremap <Leader>v :Vista!!<CR>
-let g:vista_sidebar_width = 35
+nnoremap <Leader>v :Vista<CR>
+let g:vista_sidebar_width = 40
+
+" ########################
+" ######## Vim Clap
+" ########################
+nnoremap ff :Clap files<CR>
+nnoremap aa :Clap buffers<CR>
+nnoremap <Leader>ff :Clap grep<CR>
+
+" Highlight group for selected option
+hi ClapDefaultCurrentSelection guifg=#6f8c6f gui=bold
+hi ClapCurrentSelection guifg=#6f8c6f gui=bold
+hi default link ClapCurrentSelection ClapDefaultCurrentSelection
+
+" Highlight group for results that match the filtering term
+hi ClapFuzzyMatches1 guifg=#d39923
+hi ClapFuzzyMatches2 guifg=#d39923
+hi ClapFuzzyMatches3 guifg=#d39923
+hi ClapFuzzyMatches4 guifg=#d39923
+hi ClapFuzzyMatches5 guifg=#d39923
+hi ClapFuzzyMatches6 guifg=#d39923
+hi ClapFuzzyMatches7 guifg=#d39923
+hi ClapFuzzyMatches8 guifg=#d39923
+hi ClapFuzzyMatches9 guifg=#d39923
+hi ClapFuzzyMatches10 guifg=#d39923
+hi ClapFuzzyMatches11 guifg=#d39923
+hi ClapFuzzyMatches12 guifg=#d39923
+
+" ########################
+" ######## Context
+" ########################
+let g:context_enabled = 0 " Disable by default
+
+nnoremap <Leader>ct :ContextToggle<CR>
