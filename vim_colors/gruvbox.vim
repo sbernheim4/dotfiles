@@ -1,1 +1,1 @@
-/Users/sbernheim/personal/gruvbox/colors/gruvbox.vim
+/Users/samuelbernheim/personal/gruvbox/colors/gruvbox.vim
