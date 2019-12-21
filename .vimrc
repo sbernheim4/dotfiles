@@ -61,9 +61,6 @@ Plug 'jremmen/vim-ripgrep'
 " 👏 Modern generic interactive finder and dispatcher for Vim and NeoVim
 Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') }
 
-" Vim plugin that shows the context of the currently visible buffer contents
-Plug 'wellle/context.vim'
-
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -540,10 +537,3 @@ hi ClapFuzzyMatches9 guifg=#d39923
 hi ClapFuzzyMatches10 guifg=#d39923
 hi ClapFuzzyMatches11 guifg=#d39923
 hi ClapFuzzyMatches12 guifg=#d39923
-
-" ########################
-" ######## Context
-" ########################
-let g:context_enabled = 0 " Disable by default
-
-nnoremap <Leader>ct :ContextToggle<CR>
