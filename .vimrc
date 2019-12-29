@@ -59,7 +59,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'jremmen/vim-ripgrep'
 
 " 👏 Modern generic interactive finder and dispatcher for Vim and NeoVim
-Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') }
+Plug 'liuchengxu/vim-clap'
 
 " Vim plugin that shows the context of the currently visible buffer contents
 Plug 'wellle/context.vim'
