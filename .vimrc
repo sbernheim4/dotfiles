@@ -274,31 +274,6 @@ nnoremap * *N zz
 
 nnoremap ff :Files<CR>
 
-" #########################
-" ######## NERDTree
-" ########################
-
-" Toggle NERDTree
-nnoremap <Leader>d :NERDTreeToggle<CR>
-nnoremap <Leader>nt :NERDTree<CR>
-
-" Choose the arrow character NERDTree will use
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▿'
-" Have NERDTree be open automatically when vim starts
-" autocmd VimEnter * NERDTree
-
-" ########################
-" ######## NerdCommenter
-" ########################
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitesace = 1
-
-let g:NERDTreeWinPos = 'right'
-
 " ########################
 " ######## Vim-Javascript
 " ########################
@@ -377,10 +352,3 @@ let g:coc_global_extensions = [
     \ 'coc-json',
     \ 'coc-tsserver'
 \ ]
-
-" ########################
-" ######## Goyo
-" ########################
-
-nnoremap <silent> <Leader>go :Goyo 80%x80%<CR>
-
