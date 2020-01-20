@@ -352,3 +352,69 @@ let g:coc_global_extensions = [
     \ 'coc-json',
     \ 'coc-tsserver'
 \ ]
+
+
+" Status Line
+
+set showtabline=2
+
+function! GitBranch()
+    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! BranchName()
+    let l:branchname = GitBranch()
+    return strlen(l:branchname) > 0 ? '   '.l:branchname.' ' : ''
+endfunction
+
+function! GetMode()
+    let l:mode = mode()
+    if l:mode == 'n'
+        return 'Normal'
+    elseif l:mode == 'i'
+        return 'Insert'
+    elseif l:mode == 'v'
+        return 'Visual'
+    endif
+endfunction
+
+let g:left_sep=""
+let g:right_sep=""
+
+set statusline=
+
+set statusline+=%1*
+set statusline+=\ %{GetMode()}
+
+set statusline+=\ %2*
+set statusline+=%{g:left_sep}
+
+set statusline+=%3*
+set statusline+=%{BranchName()}
+
+set statusline+=\ %4*
+set statusline+=%{g:left_sep}
+set statusline+=\ \ %.30F\ \ |
+
+set statusline+=%3*
+set statusline+=%{g:left_sep}
+set statusline+=%=
+
+set statusline+=\ Line
+set statusline+=\ %04l
+set statusline+=\ /
+set statusline+=\ %L
+set statusline+=\ (%p%%)
+
+set statusline+=\ \ %{g:right_sep}
+set statusline+=\ \ Col
+set statusline+=\ %-3c
+set statusline+=\ |
+
+hi User1 guibg=black guifg=red
+hi User2 guibg=#424242 guifg=black
+hi User3 guibg=#424242 guifg=#b3b3b3
+hi User4 guibg=#b3b3b3 guifg=#424242
+
+set laststatus=2
+set noshowmode
