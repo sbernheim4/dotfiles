@@ -3,36 +3,35 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-" A tree explorer plugin for vim.
-Plug 'scrooloose/nerdtree'
+" Vim motions on speed!
+" Plug 'easymotion/vim-easymotion'
 
 " Vim plugin for intensely orgasmic commenting
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
 
-" Vim motions on speed!
-Plug 'easymotion/vim-easymotion'
+" A tree explorer plugin for vim.
+" Plug 'scrooloose/nerdtree'
 
-" ➕ Show a diff using Vim its sign column.
-Plug 'mhinz/vim-signify'
+" Vim and Neovim plugin to reveal the commit messages under the cursor
+" Plug 'rhysd/git-messenger.vim'
+
+" 🌷 Distraction-free writing in Vim
+" Plug 'junegunn/goyo.vim'
+
+" Extra syntax and highlight for nerdtree files
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
+" Plug 'ryanoasis/vim-devicons'
+
+" Plug 'dense-analysis/ale'
 
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-" lean & mean status/tabline for vim that's light as air
-Plug 'vim-airline/vim-airline'
-
-" A collection of themes for vim-airline
-Plug 'vim-airline/vim-airline-themes'
-
-" 🔗  The fancy start screen for Vim.
-Plug 'mhinz/vim-startify'
-
-" 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
-Plug 'ryanoasis/vim-devicons'
-
-" Extra syntax and highlight for nerdtree files
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+"
+" A different approach to code highlighting. http://www.vim.org/scripts/script.php…
+Plug 'thiagoalessio/rainbow_levels.vim'
 
 " React JSX syntax highlighting and indenting for vim.
 Plug 'mxw/vim-jsx'
@@ -42,24 +41,6 @@ Plug 'pangloss/vim-javascript'
 
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-
-" Vim and Neovim plugin to reveal the commit messages under the cursor
-Plug 'rhysd/git-messenger.vim'
-
-" A different approach to code highlighting. http://www.vim.org/scripts/script.php…
-Plug 'thiagoalessio/rainbow_levels.vim'
-
-" Plug 'wakatime/vim-wakatime'
-Plug 'liuchengxu/vista.vim'
-
-" 🌷 Distraction-free writing in Vim
-Plug 'junegunn/goyo.vim'
-
-" Use RipGrep in Vim and display results in a quickfix list
-Plug 'jremmen/vim-ripgrep'
-
-" 👏 Modern generic interactive finder and dispatcher for Vim and NeoVim
-Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') }
 
 call plug#end()
 
@@ -107,9 +88,6 @@ set breakindent
 set listchars=tab:•\ ,
 set list
 
-" Hide the default mode indicator. Do so because airline will show the current mode
-set noshowmode
-
 " If search string contains only lowercase letters search is case insensitive.
 " If search string contains capital letters search is case sensative
 set ignorecase
@@ -150,13 +128,10 @@ hi ColorColumn guibg=#3a3a3a
 " hi VertSplit guibg=#3a3a3a guifg=#3a3a3a
 hi vertsplit guifg=#444444
 
-" Highlight group for cursors when using multiple cursors
-hi CocCursorRange guibg=#b16286 guifg=#c9cf73
-
 " Highlight color for the cursor line
 hi CursorLine guibg=#212121
 
-" ****************** Tabs VS Spaces ******************
+" ****************** Tabs and Spaces ******************
 " Set the tab stop to 4
 set tabstop=4
 
@@ -203,7 +178,7 @@ nnoremap <Leader>cll :set cursorline!<CR>
 nnoremap <Leader>b :enew<CR>
 
 " Move to the next buffer
-nnoremap <Leader>n :bn<CR>
+noremap <Leader>n :bn<CR>
 
 " Move to the previous buffer
 nnoremap <Leader>p :bp<CR>
@@ -222,9 +197,6 @@ nnoremap <Leader>vrs :vertical resize +
 nnoremap <Leader>hrs :resize +
 
 nnoremap <Leader>r :source ~/.vimrc<CR>
-
-" Global search
-nnoremap <Leader>f :Rg ''<LEFT>
 
 " Display the path of the current file
 nnoremap <Leader>pwf :echo expand("%p")<CR>
@@ -295,6 +267,12 @@ nnoremap * *N zz
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " #########################
+" ######## FZF
+" ########################
+
+nnoremap ff :Files<CR>
+
+" #########################
 " ######## NERDTree
 " ########################
 
@@ -305,7 +283,7 @@ nnoremap <Leader>nt :NERDTree<CR>
 " Choose the arrow character NERDTree will use
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▿'
-" Have NERDTree be open automatically when vim starts --> Handled by cmd for use with startify
+" Have NERDTree be open automatically when vim starts
 " autocmd VimEnter * NERDTree
 
 " ########################
@@ -318,102 +296,6 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitesace = 1
 
 let g:NERDTreeWinPos = 'right'
-
-" ########################
-" ######## Signify
-" ########################
-
-let g:signify_vcs_list = [ 'git' ]
-
-" Select symbols to use
-let g:signify_sign_add               = ''
-let g:signify_sign_delete            = ''
-let g:signify_sign_delete_first_line = '‾'
-let g:signify_sign_change            = 'ﰣ'
-
-" Toggle highlighting changes made
-nnoremap <Leader>gh :SignifyToggleHighlight<CR>
-
-" ########################
-" ######## Airline
-" ########################
-
-" Using the font Meslo LG S Regular for Powerline which can be found here:
-" https://github.com/powerline/fonts/tree/master/Meslo
-" Currently using DejaVu Sans Mono for Powerline
-" It is also installed on my computer
-"
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-let g:airline_theme='gruvbox'
-let g:airline_symbols.branch = ""
-let g:airline_symbols.paste = "Þ"
-" let g:airline_left_sep = "\uE0BC"
-" let g:airline_right_sep = "\uE0BE"
-let g:airline_left_sep=""
-let g:airline_right_sep=""
-
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#left_sep = "\uE0BC"
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '  |'
-
-" Display nothing in section x
-let g:airline_section_x = ''
-" Display nothing in section y
-let g:airline_section_y = ''
-
-" Display only the line and column information in section z
-let g:airline_section_z = airline#section#create(['Line %03l/%03L (%02p%%) Col:%03c'])
-
-let g:airline_section_error = airline#section#create('')
-let g:airline_section_warning = airline#section#create ('')
-
-" EXAMPLES FROM :help airline
-" let g:airline_section_a       (mode, crypt, paste, spell, iminsert)
-" let g:airline_section_b       (hunks, branch)
-" let g:airline_section_c       (bufferline or filename)
-" let g:airline_section_gutter  (readonly, csv)
-" let g:airline_section_x       (tagbar, filetype, virtualenv)
-" let g:airline_section_y       (fileencoding, fileformat)
-" let g:airline_section_z       (percentage, line number, column number)
-" let g:airline_section_error   (ycm_error_count, syntastic, eclim)
-" let g:airline_section_warning (ycm_warning_count, whitespace)
-
-" ########################
-" ######## Startify
-" ########################
-
-" When opening a file or bookmark, seek and change to the root directory of the
-" VCS (if there is one).
-let g:startify_change_to_vcs_root = 2
-
-" Open Startify and NERDTree when starting vim
-autocmd VimEnter *
-            \   if !argc()
-            \ |   Startify
-            \ |   wincmd w
-            \ | endif
-
-" Custom message to display in startify menu
-let g:startify_custom_header = [
-            \ '                                                                            ',
-            \ '    o             o  o----o  o       o----o  o-----o  o       o  o----o     ',
-            \ '     \     o     /   |       |       |       |     |  | \   / |  |          ',
-            \ '      \   / \   /    |----o  |       |       |     |  |  \ /  |  |----o     ',
-            \ '       \ /   \ /     |       |       |       |     |  |   o   |  |          ',
-            \ '        o     o      o----o  o----o  o----o  o-----o  o       o  o----o     ',
-            \ '                                                                            ',
-            \ '                       o---o   o-----o  o-----o  o   o                      ',
-            \ '                       |   |   |     |  |        |  /                       ',
-            \ '                       o---o   |-----|  |        |--                        ',
-            \ '                       |    \  |     |  |        |  \                       ',
-            \ '                       o----o  o     o  o-----o  o   o                      ',
-            \ ]
-
 
 " ########################
 " ######## Vim-Javascript
@@ -476,27 +358,24 @@ endfunction
 command! -nargs=0 Format :call CocAction('format')
 
 " Remap for do codeAction of current line
-nnoremap <leader>ac <Plug>(coc-codeaction)
+nmap <Leader>ac <Plug>(coc-codeaction)
 
 " Fix autofix problem of current line
-noremap <leader>qf <Plug>(coc-fix-current)
+nmap <Leader>qf <Plug>(coc-fix-current)
+
+" Add to coc config: "coc.preferences.useQuickfixForLocations": true
+nmap <Leader>fr <Plug>(coc-references)
 
 let g:coc_global_extensions = [
-\ 'coc-snippets',
-\ 'coc-eslint',
-\ 'coc-prettier',
-\ 'coc-pairs',
-\ 'coc-css',
-\ 'coc-html',
-\ 'coc-json',
-\ 'coc-tsserver'
+    \ 'coc-snippets',
+    \ 'coc-eslint',
+    \ 'coc-prettier',
+    \ 'coc-pairs',
+    \ 'coc-css',
+    \ 'coc-html',
+    \ 'coc-json',
+    \ 'coc-tsserver'
 \ ]
-
-" ########################
-" ######## RainbowLevels
-" ########################
-
-nnoremap <Leader>l :RainbowLevelsToggle<CR>
 
 " ########################
 " ######## Goyo
@@ -504,36 +383,3 @@ nnoremap <Leader>l :RainbowLevelsToggle<CR>
 
 nnoremap <silent> <Leader>go :Goyo 80%x80%<CR>
 
-" ########################
-" ######## Vista
-" ########################
-
-let g:vista_default_executive = 'coc'
-nnoremap <Leader>v :Vista<CR>
-let g:vista_sidebar_width = 40
-
-" ########################
-" ######## Vim Clap
-" ########################
-nnoremap ff :Clap files<CR>
-nnoremap aa :Clap buffers<CR>
-nnoremap <Leader>ff :Clap grep<CR>
-
-" Highlight group for selected option
-hi ClapDefaultCurrentSelection guifg=#6f8c6f gui=bold
-hi ClapCurrentSelection guifg=#6f8c6f gui=bold
-hi default link ClapCurrentSelection ClapDefaultCurrentSelection
-
-" Highlight group for results that match the filtering term
-hi ClapFuzzyMatches1 guifg=#d39923
-hi ClapFuzzyMatches2 guifg=#d39923
-hi ClapFuzzyMatches3 guifg=#d39923
-hi ClapFuzzyMatches4 guifg=#d39923
-hi ClapFuzzyMatches5 guifg=#d39923
-hi ClapFuzzyMatches6 guifg=#d39923
-hi ClapFuzzyMatches7 guifg=#d39923
-hi ClapFuzzyMatches8 guifg=#d39923
-hi ClapFuzzyMatches9 guifg=#d39923
-hi ClapFuzzyMatches10 guifg=#d39923
-hi ClapFuzzyMatches11 guifg=#d39923
-hi ClapFuzzyMatches12 guifg=#d39923
