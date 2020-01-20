@@ -24,8 +24,6 @@ call plug#begin('~/.vim/plugged')
 " 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 " Plug 'ryanoasis/vim-devicons'
 
-" Plug 'dense-analysis/ale'
-
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -41,6 +39,10 @@ Plug 'pangloss/vim-javascript'
 
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+
+Plug 'tpope/vim-surround'
+
+" Plug '~/personal/sampleplugin/'
 
 call plug#end()
 
@@ -363,7 +365,6 @@ nmap <Leader>ac <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <Leader>qf <Plug>(coc-fix-current)
 
-" Add to coc config: "coc.preferences.useQuickfixForLocations": true
 nmap <Leader>fr <Plug>(coc-references)
 
 let g:coc_global_extensions = [
