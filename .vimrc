@@ -266,17 +266,6 @@ nnoremap * *N zz
 
 " Status Line
 
-set showtabline=2
-
-function! GitBranch()
-    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! BranchName()
-    let l:branchname = GitBranch()
-    return strlen(l:branchname) > 0 ? '   '.l:branchname.' ' : ''
-endfunction
-
 function! GetMode()
     let l:mode = mode()
     if l:mode == 'n'
@@ -304,7 +293,6 @@ set statusline+=\ %{GetMode()}
 set statusline+=\ %2*
 set statusline+=%{g:left_sep}
 set statusline+=%3*
-set statusline+=%{BranchName()}
 set statusline+=\ %4*
 set statusline+=%{g:left_sep}
 set statusline+=\ %.30F\ |
