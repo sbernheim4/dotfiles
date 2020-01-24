@@ -346,6 +346,7 @@ set tabline+=%1t
 " ########################
 
 nnoremap ff :Files<CR>
+nnoremap aa :Buffers<CR>
 
 " ########################
 " ######## Vim-Javascript
