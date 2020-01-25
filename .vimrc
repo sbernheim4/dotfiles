@@ -9,9 +9,6 @@ call plug#begin('~/.vim/plugged')
 " Vim plugin for intensely orgasmic commenting
 " Plug 'scrooloose/nerdcommenter'
 
-" A tree explorer plugin for vim.
-" Plug 'scrooloose/nerdtree'
-
 " Vim and Neovim plugin to reveal the commit messages under the cursor
 " Plug 'rhysd/git-messenger.vim'
 
@@ -23,6 +20,9 @@ call plug#begin('~/.vim/plugged')
 
 " 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 " Plug 'ryanoasis/vim-devicons'
+
+" A tree explorer plugin for vim.
+Plug 'scrooloose/nerdtree'
 
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -63,14 +63,14 @@ colorscheme gruvbox
 " Make the Leader key , instead of the default \
 let mapleader=","
 
-" Highlight the current cursor line
-set cursorline
-
 " Don't wrap lines by default
 set nowrap
 
 " When wraping text, do so appropriately (don't wrap in the middle of the word)
 set linebreak
+
+" Highlight the current cursor line
+set cursorline
 
 " Shows line numbers by default when opening files
 set number
@@ -83,10 +83,10 @@ set breakindent
 
 " Displays the special characters like eol, indents etc
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
-" set listchars=tab:\|\ ,
-" set listchars=tab:•\ ,eol:¬
-set listchars=tab:•\ ,
 set list
+set listchars=tab:\|\ ,
+set listchars=tab:•\ ,eol:¬
+set listchars=tab:•\ ,
 
 " If search string contains only lowercase letters search is case insensitive.
 " If search string contains capital letters search is case sensative
