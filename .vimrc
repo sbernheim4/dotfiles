@@ -12,17 +12,14 @@ call plug#begin('~/.vim/plugged')
 " Vim and Neovim plugin to reveal the commit messages under the cursor
 " Plug 'rhysd/git-messenger.vim'
 
-" 🌷 Distraction-free writing in Vim
-" Plug 'junegunn/goyo.vim'
-
-" Extra syntax and highlight for nerdtree files
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-" 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
-" Plug 'ryanoasis/vim-devicons'
-
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree'
+
+" Extra syntax and highlight for nerdtree files
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
+Plug 'ryanoasis/vim-devicons'
 
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -330,7 +327,16 @@ set tabline+=%1t
 " Plugin Specific Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" #########################
+" ########################
+" ######## NERDTree
+" ########################
+nnoremap <Leader>d :NERDTreeToggle<CR>
+nnoremap <Leader>nt :NERDTree<CR>
+nnoremap <Leader>nf :NERDTreeFind <CR>
+
+let g:NERDTreeWinPos = 'right'
+
+" ########################
 " ######## FZF
 " ########################
 
