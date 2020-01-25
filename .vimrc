@@ -40,8 +40,6 @@ Plug 'pangloss/vim-javascript'
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
-Plug 'tpope/vim-surround'
-
 " Plug '~/personal/sampleplugin/'
 
 call plug#end()
@@ -118,8 +116,6 @@ set autowrite
 
 " Search as you type (for vim)
 set incsearch
-
-set scl=no
 
 " ************** Custom Highlight Groups **************
 
@@ -216,13 +212,6 @@ function! ToggleSignColumn()
         let b:signcolumn_on=1
     endif
 endfunction
-
-" Automatically hide and show the sign column when switching buffers
-augroup reduce_noise
-    autocmd!
-    autocmd WinEnter * :set scl=auto
-    autocmd WinLeave * :set scl=no
-augroup END
 
 nnoremap <Leader><Leader>g :call ToggleSignColumn()<CR>
 
