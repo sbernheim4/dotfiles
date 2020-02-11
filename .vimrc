@@ -3,14 +3,11 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
+" Use RipGrep in Vim and display results in a quickfix list
+Plug 'sbernheim4/vim-ripgrep'
+
 " Vim motions on speed!
-" Plug 'easymotion/vim-easymotion'
-
-" Vim plugin for intensely orgasmic commenting
-" Plug 'scrooloose/nerdcommenter'
-
-" Vim and Neovim plugin to reveal the commit messages under the cursor
-" Plug 'rhysd/git-messenger.vim'
+Plug 'easymotion/vim-easymotion'
 
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree'
@@ -199,19 +196,6 @@ nnoremap <Leader>pwf :echo expand("%p")<CR>
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-" Toggle function for the sign column
-function! ToggleSignColumn()
-    if !exists("b:signcolumn_on") || b:signcolumn_on
-        set signcolumn=no
-        let b:signcolumn_on=0
-    else
-        set signcolumn=auto
-        let b:signcolumn_on=1
-    endif
-endfunction
-
-nnoremap <Leader><Leader>g :call ToggleSignColumn()<CR>
-
 " Search for visually selected text using `//` ignoring any reg ex characters
 " y will yank the selected text
 " / will enter search mode
@@ -279,11 +263,10 @@ let g:right_sep=""
 " Left side of status line
 
 set statusline=
-
-set statusline+=%1*
-set statusline+=\ %{GetMode()}
-set statusline+=\ %2*
-set statusline+=%{g:left_sep}
+" set statusline+=%1*
+" set statusline+=\ %{GetMode()}
+" set statusline+=\ %2*
+" set statusline+=%{g:left_sep}
 set statusline+=%3*
 set statusline+=\ %4*
 set statusline+=%{g:left_sep}
@@ -301,7 +284,7 @@ set statusline+=\ Line
 set statusline+=\ %04l
 set statusline+=\ /
 set statusline+=\ %L
-set statusline+=\ (%p%%)
+" set statusline+=\ (%p%%)
 set statusline+=%7*
 set statusline+=\ %{g:right_sep}
 set statusline+=%6*
@@ -321,14 +304,10 @@ hi User7 guibg=#458588 guifg=#404040
 hi User8 guibg=#282828 guifg=#458588
 
 set laststatus=2
-set noshowmode
+set showmode
+set showtabline=0
 
-
-set showtabline=2
-set tabline=
-set tabline+=%1*
-set tabline+=%1t
-
+set scl=no
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Specific Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
