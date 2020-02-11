@@ -250,6 +250,12 @@ nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
 " Don't jump to the next occurance automatically when searching via *
 nnoremap * *N zz
 
+" Use CTRL + h/j/k/l to move between buffers
+nnoremap <C-j> <C-W><C-J>
+nnoremap <C-k> <C-W><C-K>
+nnoremap <C-l> <C-W><C-L>
+nnoremap <C-h> <C-W><C-H>
+
 " Status Line
 
 function! GetMode()
