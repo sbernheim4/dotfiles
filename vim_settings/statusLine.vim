@@ -97,5 +97,4 @@ augroup Statusline
   autocmd!
   autocmd WinEnter,BufEnter * setlocal statusline=%!ActiveLine()
   autocmd WinLeave,BufLeave * setlocal statusline=%!InactiveLine()
-  autocmd FileType nerdtree setlocal statusline=%!NERDLine()
 augroup END
