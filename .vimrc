@@ -1,3 +1,6 @@
+" Make the Leader key , instead of the default \
+let mapleader=","
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Using Vim-Plug for plugin manager
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

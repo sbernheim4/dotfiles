@@ -1,6 +1,3 @@
-" Make the Leader key , instead of the default \
-let mapleader=","
-
 " Don't wrap lines by default
 set nowrap
 
