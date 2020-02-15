@@ -287,12 +287,12 @@ function! ActiveLine()
     " Left side of status line
     let statusline = ""
     let statusline .= "%1*"
-    let statusline .= " %{GetMode()}"
-    let statusline .= "%1*"
+    let statusline .= " %{GetMode()} "
     let statusline .= "%2*"
     let statusline .= "%{g:left_sep}"
     let statusline .= "%4*"
-    let statusline .= "%{CheckMod(&modified)} "
+    let statusline .= "%{g:left_sep}"
+    let statusline .= " %{CheckMod(&modified)} "
     let statusline .= "%5*"
     let statusline .= "%{g:left_sep}"
 
