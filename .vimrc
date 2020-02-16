@@ -25,9 +25,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "
-" A different approach to code highlighting. http://www.vim.org/scripts/script.php…
-Plug 'thiagoalessio/rainbow_levels.vim'
-
 " React JSX syntax highlighting and indenting for vim.
 Plug 'mxw/vim-jsx'
 
