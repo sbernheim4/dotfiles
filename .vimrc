@@ -34,6 +34,9 @@ Plug 'pangloss/vim-javascript'
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
+" Range, pattern and substitute preview for Vim
+Plug 'markonm/traces.vim'
+
 call plug#end()
 
 " ########################################################################
