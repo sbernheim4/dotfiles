@@ -37,6 +37,10 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Range, pattern and substitute preview for Vim
 Plug 'markonm/traces.vim'
 
+Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'tpope/vim-commentary'
+
 call plug#end()
 
 " ########################################################################
@@ -90,9 +94,6 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Show commands
-nnoremap <silent> <Leader>c :<C-u>CocList commands<CR>
-
 " Find symbol of current document
 nnoremap <silent> tt :<C-u>CocList outline<CR>
 
@@ -118,9 +119,6 @@ function! s:show_documentation()
         call CocAction('doHover')
     endif
 endfunction
-
-" Use `:Format` to format the current buffer
-command! -nargs=0 Format :call CocAction('format')
 
 " Remap for do codeAction of current line
 nmap <Leader>ac <Plug>(coc-codeaction)
