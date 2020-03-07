@@ -87,11 +87,8 @@ function cloneDotfiles() {
     touch ~/dotfiles/aliases.sh
 
     # Clone gruvbox community fork and symlink it
-    git clone https://github.com/gruvbox-community/gruvbox.git ~/personal
-    ln -sf ~/personal/gruvbox/colors/gruvbox.vim ~/dotfiles/vim_colors/gruvbox.vim
-
-    # Symlink gruvbox theme stored in dotfiles
-    ln -sf ~/personal/gruvbox/autoload/airline/themes/gruvbox.vim  ~/.vim/plugged/vim-airline-themes/autoload/airline/themes/gruvbox.vim
+    git clone https://github.com/gruvbox-community/gruvbox.git ~/personal/gruvbox-community
+    ln -sf ~/personal/gruvbox-community/colors/gruvbox.vim ~/dotfiles/vim_colors/gruvbox.vim
 
     # Clone zsh syntax highlighting dir
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
