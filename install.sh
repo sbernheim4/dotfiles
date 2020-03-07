@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function installHomebrew() {
 
     echo "==================================="
@@ -146,7 +148,10 @@ function useZsh() {
     echo "Setting ZSH as default shell"
     echo "==================================="
 
-	# Use powerlevel9k for prompt - https://github.com/bhilburn/powerlevel9k
+    # Link .zshrc
+    ln -sf ~/dotfiles/.zshrc ~/.zhsrc
+
+    # Use powerlevel9k for prompt - https://github.com/bhilburn/powerlevel9k
     git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
     cd ~/
@@ -168,6 +173,7 @@ function install() {
     setupVim
     setupTmux
     useZsh
+
 }
 
 install
