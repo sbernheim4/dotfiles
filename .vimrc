@@ -37,9 +37,14 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Range, pattern and substitute preview for Vim
 Plug 'markonm/traces.vim'
 
+" Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-navigator'
 
+" commentary.vim: comment stuff out http://www.vim.org/scripts/script.php…
 Plug 'tpope/vim-commentary'
+
+" vim plugin that open the link of current line on github
+Plug 'ruanyl/vim-gh-line'
 
 call plug#end()
 
