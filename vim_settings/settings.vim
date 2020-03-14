@@ -62,7 +62,7 @@ hi ColorColumn guibg=#3a3a3a
 hi vertsplit guifg=#444444
 
 " Highlight color for the cursor line
-hi CursorLine guibg=#212121
+hi CursorLine guibg=#3d3d3d
 
 " ****************** Tabs and Spaces ******************
 " Set the tab stop to 4

@@ -6,12 +6,6 @@ let mapleader=","
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-" Use RipGrep in Vim and display results in a quickfix list
-Plug 'sbernheim4/vim-ripgrep'
-
-" Vim motions on speed!
-Plug 'easymotion/vim-easymotion'
-
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree'
 
@@ -20,6 +14,12 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'ryanoasis/vim-devicons'
+
+" Use RipGrep in Vim and display results in a quickfix list
+Plug 'sbernheim4/vim-ripgrep'
+
+" Vim motions on speed!
+Plug 'easymotion/vim-easymotion'
 
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -39,9 +39,6 @@ Plug 'markonm/traces.vim'
 
 " Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-navigator'
-
-" commentary.vim: comment stuff out http://www.vim.org/scripts/script.php…
-Plug 'tpope/vim-commentary'
 
 " vim plugin that open the link of current line on github
 Plug 'ruanyl/vim-gh-line'

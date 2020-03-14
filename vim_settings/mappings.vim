@@ -105,3 +105,5 @@ endfunction
 
 nmap <Leader><Leader>t :call ToggleIndentType()<CR>
 
+" nnoremap j jzz
+" nnoremap k kzz
