@@ -31,15 +31,15 @@ function! CheckMod(modi)
 endfunction
 
 hi User1 guibg=#424242 guifg=#ffaf00
-hi User2 guibg=#282828 guifg=#424242
-hi User3 guibg=#282828 guifg=#ebdbb2
-hi User4 guibg=#458588 guifg=#282828
-hi User5 guibg=#282828 guifg=#458588
+hi User2 guibg=#1c1c1c guifg=#424242
+hi User3 guibg=#1c1c1c guifg=#ebdbb2
+hi User4 guibg=#458588 guifg=#1c1c1c
+hi User5 guibg=#1c1c1c guifg=#458588
 
-hi User6 guibg=#458588 guifg=#282828
+hi User6 guibg=#458588 guifg=#1c1c1c
 hi User7 guibg=#404040 guifg=#ebdbb2
 hi User8 guibg=#458588 guifg=#404040
-hi User9 guibg=#282828 guifg=#458588
+hi User9 guibg=#1c1c1c guifg=#458588
 
 function! ActiveLine()
     " Left side of status line
@@ -72,8 +72,8 @@ endfunction
 
 function! InactiveLine()
     let statusline = ""
-    let statusline .= "%3*"
-    let statusline .= " %{CheckMod(&modified)} "
+    let statusline .= "%2*"
+    " let statusline .= " %{CheckMod(&modified)} "
     return statusline
 endfunction
 

@@ -97,22 +97,32 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Find symbol of current document
-nnoremap <silent> tt :<C-u>CocList outline<CR>
+nmap <silent> <silent> tt :<C-u>CocList outline<CR>
 
 " Search workspace symbols
-nnoremap <silent> <Leader>s :<C-u>CocList symbols<CR>
+nmap <silent> <Leader>s :<C-u>CocList symbols<CR>
 
 " Go to the definition of the value the cursor is on
 nmap <silent> <Leader>gd <Plug>(coc-definition)
 "
 " Remap for rename current word
-nmap <Leader>rn <Plug>(coc-rename)
+nmap <silent> <Leader>rn <Plug>(coc-rename)
 
 " Add a cursor for multiple cursors
-nmap <silent> <Leader>c <Plug>(coc-cursors-position)
+nmap <silent> <silent> <Leader>c <Plug>(coc-cursors-position)
 
 " Show function signature when `K` is pressed
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <silent> K :call <SID>show_documentation()<CR>
+
+" Remap for do codeAction of current line
+nmap <silent> <Leader>ac <Plug>(coc-codeaction)
+
+" Fix autofix problem of current line
+nmap <silent> <Leader>qf <Plug>(coc-fix-current)
+
+nmap <silent> <Leader>fr <Plug>(coc-references)
+
+nmap <silent> <Leader>acc<Plug>(coc-codelens-action)
 
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
@@ -121,14 +131,6 @@ function! s:show_documentation()
         call CocAction('doHover')
     endif
 endfunction
-
-" Remap for do codeAction of current line
-nmap <Leader>ac <Plug>(coc-codeaction)
-
-" Fix autofix problem of current line
-nmap <Leader>qf <Plug>(coc-fix-current)
-
-nmap <Leader>fr <Plug>(coc-references)
 
 let g:coc_global_extensions = [
     \ 'coc-snippets',

@@ -58,8 +58,7 @@ set incsearch
 hi ColorColumn guibg=#3a3a3a
 
 " Set background for vertical vim split
-" hi VertSplit guibg=#3a3a3a guifg=#3a3a3a
-hi vertsplit guifg=#444444
+hi vertsplit guifg=#1d1d1d guibg=#1d1d1d
 
 " Highlight color for the cursor line
 hi CursorLine guibg=#3d3d3d
