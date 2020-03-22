@@ -30,7 +30,7 @@ nnoremap <Leader>p :bp<CR>
 " This replicates the idea of closing a tab
 nnoremap <Leader>q :bp <BAR> bd #<CR>
 
-" Split the curent window vertically or horizontally (Useful when you want to have the same file open at two different
+" Split the current window vertically or horizontally (Useful when you want to have the same file open at two different
 " locations at the same time)
 nnoremap <Leader>vsp :vsplit<CR>
 nnoremap <Leader>hsp :split<CR>
@@ -79,13 +79,10 @@ endfunction
 
 nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
 
-" Use zz to place current line n lines above the center
-" nnoremap zz zt5<C-y>
-
-" Don't jump to the next occurance automatically when searching via *
+" Don't jump to the next occurrence automatically when searching via *
 nnoremap * *N zz
 
-" Use CTRL + h/j/k/l to move between buffers
+" Use CTRL + h/j/k/l to move between buffers instead of CTRL + W + (HJKL)
 nnoremap <C-j> <C-W><C-J>
 nnoremap <C-k> <C-W><C-K>
 nnoremap <C-l> <C-W><C-L>
@@ -104,6 +101,3 @@ function! ToggleIndentType()
 endfunction
 
 nmap <Leader><Leader>t :call ToggleIndentType()<CR>
-
-" nnoremap j jzz
-" nnoremap k kzz

@@ -73,7 +73,7 @@ endfunction
 function! InactiveLine()
     let statusline = ""
     let statusline .= "%2*"
-    " let statusline .= " %{CheckMod(&modified)} "
+    let statusline .= " %{CheckMod(&modified)} "
     return statusline
 endfunction
 
@@ -92,7 +92,7 @@ function! GetMode()
     endif
 endfunction
 
-" Change statusline automatically
+" Change status line automatically
 augroup Statusline
   autocmd!
   autocmd WinEnter,BufEnter * setlocal statusline=%!ActiveLine()

@@ -109,7 +109,7 @@ nmap <silent> <Leader>gd <Plug>(coc-definition)
 nmap <silent> <Leader>rn <Plug>(coc-rename)
 
 " Add a cursor for multiple cursors
-nmap <silent> <silent> <Leader>c <Plug>(coc-cursors-position)
+nmap <silent> <Leader>c <Plug>(coc-cursors-position)
 
 " Show function signature when `K` is pressed
 nmap <silent> K :call <SID>show_documentation()<CR>
@@ -117,7 +117,7 @@ nmap <silent> K :call <SID>show_documentation()<CR>
 " Remap for do codeAction of current line
 nmap <silent> <Leader>ac <Plug>(coc-codeaction)
 
-" Fix autofix problem of current line
+" Fix auto fix problem of current line
 nmap <silent> <Leader>qf <Plug>(coc-fix-current)
 
 nmap <silent> <Leader>fr <Plug>(coc-references)
@@ -144,7 +144,7 @@ let g:coc_global_extensions = [
 \ ]
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COLORSCHME SETTINGS
+" COLOR SCHEME SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 syntax enable
