@@ -122,8 +122,6 @@ nmap <silent> <Leader>qf <Plug>(coc-fix-current)
 
 nmap <silent> <Leader>fr <Plug>(coc-references)
 
-nmap <silent> <Leader>acc<Plug>(coc-codelens-action)
-
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
