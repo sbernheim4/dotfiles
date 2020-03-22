@@ -72,7 +72,11 @@ endfunction
 
 function! InactiveLine()
     let statusline = ""
-    let statusline .= "%2*"
+
+    if (has('nvim'))
+        let statusline .= "%2*"
+    endif
+
     let statusline .= " %{CheckMod(&modified)} "
     return statusline
 endfunction
