@@ -29,3 +29,6 @@ Be sure to install the font in `fonts/`and set this to be the default font for y
 ## Installation Notes
 
 Your computer password is needed to change shells which is a sudo operation
+
+# Vim Speed
+The file that changes the most in this repo is my .vimrc. I use vim daily, for coding, committing, diffing and anything else that requires editing text in a terminal. While I use a decent number of plugins (around 15) I've now configured my vimrc to fast. The plugin slowing everything down the most was Coc.nvim. It was adding about 200ms to the total startup time which was around 300ms. I was able cut this out by lazy loading Coc when I enter insert mode. Now vim loads in 95ms on average with a range of 75ms to 120ms and it feels much snappier.
