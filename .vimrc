@@ -32,7 +32,7 @@ Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
 
 " Range, pattern and substitute preview for Vim
 Plug 'markonm/traces.vim'
@@ -44,6 +44,13 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ruanyl/vim-gh-line'
 
 call plug#end()
+
+" Lazy load coc after insert mode is entered to keep vim snappy
+" https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
+augroup load_coc
+  autocmd!
+  autocmd InsertEnter * call plug#load('coc.nvim')
+augroup END
 
 " ########################################################################
 " ######## NERDTree
