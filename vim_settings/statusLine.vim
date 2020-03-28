@@ -1,5 +1,3 @@
-" Status Line
-
 let g:left_sep=""
 let g:right_sep=""
 

@@ -87,7 +87,7 @@ endfunction
 nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
 
 " Don't jump to the next occurrence automatically when searching via *
-nnoremap * *N zz
+nnoremap * *N
 
 " Use CTRL + h/j/k/l to move between buffers instead of CTRL + W + (HJKL)
 nnoremap <C-j> <C-W><C-J>
