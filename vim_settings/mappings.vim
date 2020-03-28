@@ -108,3 +108,11 @@ function! ToggleIndentType()
 endfunction
 
 nmap <Leader><Leader>t :call ToggleIndentType()<CR>
+
+" make wrapped lines more intuitive. Pressing j/k moves to the next/previous
+" line even if wrppaed and the 'next' line is still the same line. Same for 0
+" and $
+noremap <silent> k gk
+noremap <silent> j gj
+" noremap <silent> 0 g0
+" noremap <silent> $ g$
