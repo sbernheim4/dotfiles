@@ -7,7 +7,7 @@ let mapleader=","
 call plug#begin('~/.vim/plugged')
 
 " A tree explorer plugin for vim.
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
 " Extra syntax and highlight for nerdtree files
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
