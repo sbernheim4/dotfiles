@@ -28,6 +28,8 @@ function installHomebrewPackages() {
     echo "bat"
     echo "icdiff"
     echo "shpotify"
+    echo "ripgrep"
+    echo "delta"
     echo "=================================="
 
     cd ~/
@@ -42,6 +44,7 @@ function installHomebrewPackages() {
     brew install icdiff
     brew install shpotify
     brew install ripgrep
+    brew install octavore/tools/delta
 
     # Sneak on colorls here --> https://github.com/athityakumar/colorls
     gem install colorls
