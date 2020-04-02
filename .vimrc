@@ -163,11 +163,3 @@ colorscheme gruvbox
 source ~/dotfiles/vim_settings/mappings.vim
 source ~/dotfiles/vim_settings/statusLine.vim
 source ~/dotfiles/vim_settings/settings.vim
-
-set foldmethod=syntax "syntax highlighting items specify folds
-set foldcolumn=0 " Max of 12
-set foldlevelstart=5 "start file folding indents higher than 5
-let javaScript_fold=1 "activate folding by JS syntax
-
-nnoremap <Space> za
-vnoremap <Space> za

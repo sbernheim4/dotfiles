@@ -71,8 +71,68 @@ set shiftwidth=4
 " Indent with spaces by default - only due to work :(
 set expandtab
 
+" ******************** TAB AND STATUS LINE ********************
+" Always show status line
 set laststatus=2
-set noshowmode
+
+" Hide tabline
 set showtabline=0
 
-set scl=no
+" Don't display mode changes in command line (displayed in status line)
+set noshowmode
+
+" ******************** FOLDING ********************
+" Fold based off of syntax highlighting
+set foldmethod=syntax
+
+" Don't set the fold column
+set foldcolumn=0
+
+" Open files without any folding
+set foldlevelstart=99
+
+" Enable folding for JS syntax
+let javaScript_fold=1
+
+" Convert indentation level of the line being folded to spaces
+function! GetSpaces(name)
+    let spacing = ''
+    let spaceAmount = ''
+
+    if &noexpandtab
+        let spaceAmount = '      '
+    else
+        let spaceAmount = ''
+    endif
+
+    for i in range(1, len(a:name))
+        let spacing = foo . spaceAmount
+    endfor
+
+    return spacing
+endfunction
+
+function! MyFoldText()
+    let startLine = getline(v:foldstart)
+    let endLine = getline(v:foldend)
+    let indentLevel = indent(v:foldstart)
+    let spaces = GetSpaces(indentLevel)
+
+    let total = spaces . startLine . endLine
+
+    return total
+endfunction
+
+" Custom display for text when folding
+set foldtext=MyFoldText()
+
+" ******************** CUSTOM HIGHLIGHT GROUPS ********************
+" Set color for vertical bar for the color column
+hi ColorColumn guibg=#3a3a3a
+
+" Set background for vertical vim split
+hi vertsplit guifg=#1d1d1d guibg=#1d1d1d
+
+" Highlight color for the cursor line
+hi CursorLine guibg=#3d3d3d
+
