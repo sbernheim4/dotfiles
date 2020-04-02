@@ -16,14 +16,11 @@ function! GetMode()
     endif
 endfunction
 
-function! CheckMod(modi)
-    if a:modi == 1
-        hi Modi guifg=#efefef guibg=#212333 gui=bold
-        hi Filename guifg=#efefef guibg=#212333
-        return expand('%:t').'*'
+" Append a `•` to the end of the file name if its been changed and not saved
+function! CheckMod(modified)
+    if a:modified == 1
+        return expand('%:t').'•'
     else
-        hi Modi guifg=#929dcb guibg=#212333 gui=bold
-        hi Filename guifg=#929dcb guibg=#212333
         return expand('%:t')
     endif
 endfunction
@@ -94,7 +91,7 @@ function! GetMode()
     endif
 endfunction
 
-" Change status line automatically
+" Change status line automatically when moving between buffers and windows
 augroup Statusline
   autocmd!
   autocmd WinEnter,BufEnter * setlocal statusline=%!ActiveLine()
