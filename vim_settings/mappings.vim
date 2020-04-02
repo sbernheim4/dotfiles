@@ -116,3 +116,7 @@ noremap <silent> k gk
 noremap <silent> j gj
 " noremap <silent> 0 g0
 " noremap <silent> $ g$
+
+" Toggle folds with space key in normal and visual mode
+nnoremap <Space> za
+vnoremap <Space> za
