@@ -43,6 +43,8 @@ Plug 'christoomey/vim-tmux-navigator'
 " vim plugin that open the link of current line on github
 Plug 'ruanyl/vim-gh-line'
 
+" ➕  Show a diff using Vim its sign column.Temp
+Plug 'mhinz/vim-signify', { 'on': ['SignifyToggle', 'SignifyToggleHighlight'] }
 call plug#end()
 
 " Lazy load coc after insert mode is entered to keep vim snappy
@@ -147,6 +149,12 @@ let g:coc_global_extensions = [
     \ 'coc-json',
     \ 'coc-tsserver'
 \ ]
+
+" ########################################################################
+" ######## Vim-Signify
+" ########################################################################
+nnoremap <Leader>st :SignifyToggle<CR>
+nnoremap <Leader>sh :SignifyEnable<CR> :SignifyToggleHighlight<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR SCHEME SETTINGS

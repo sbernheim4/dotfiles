@@ -26,7 +26,8 @@ set scrolloff=4
 " Write on :next/:prev/^Z
 set autowrite
 
-set signcolumn=no
+
+set signcolumn=auto
 
 " ****************** LINE WRAPPING ******************
 " Don't wrap lines by default
