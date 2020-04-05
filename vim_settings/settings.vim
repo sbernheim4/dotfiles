@@ -1,9 +1,3 @@
-" Don't wrap lines by default
-set nowrap
-
-" When wrapping text, do so appropriately (don't wrap in the middle of the word)
-set linebreak
-
 " Highlight the current cursor line
 set cursorline
 
@@ -12,9 +6,6 @@ set number
 
 " Use relative line numbers by default
 set relativenumber
-
-" Indent wrapped lines for easier separation
-set breakindent
 
 " Use utf8 as the encoding format for files
 set encoding=utf8
@@ -37,6 +28,18 @@ set autowrite
 
 set signcolumn=no
 
+" ****************** LINE WRAPPING ******************
+" Don't wrap lines by default
+set nowrap
+
+" Indent wrapped lines for easier separation
+set breakindent
+
+" When wrapping text, do so appropriately (don't wrap in the middle of the word)
+set linebreak
+
+set breakindentopt=shift:2,sbr
+
 " ****************** SEARCH SETTINGS ******************
 " If search string contains only lowercase letters search is case insensitive.
 set ignorecase
@@ -46,6 +49,10 @@ set smartcase
 
 " Search as you type (NOTE: enabled by default in neovim)
 set incsearch
+
+" ****************** UNDO INFO ******************
+set undodir=~/.vim/undo-dir
+set undofile
 
 " ****************** LIST CHARACTERS ******************
 
