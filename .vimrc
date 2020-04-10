@@ -1,4 +1,4 @@
-" Make the Leader key , instead of the default \
+﻿" Make the Leader key , instead of the default \
 let mapleader=","
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -44,7 +44,11 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ruanyl/vim-gh-line'
 
 " ➕  Show a diff using Vim its sign column.Temp
-Plug 'mhinz/vim-signify', { 'on': ['SignifyToggle', 'SignifyToggleHighlight'] }
+Plug 'mhinz/vim-signify'
+
+" Tame the quickfix window
+Plug 'romainl/vim-qf'
+
 call plug#end()
 
 " Lazy load coc after insert mode is entered to keep vim snappy
@@ -117,19 +121,15 @@ nmap <silent> <Leader>gd <Plug>(coc-definition)
 " Remap for rename current word
 nmap <silent> <Leader>rn <Plug>(coc-rename)
 
-" Add a cursor for multiple cursors
-nmap <silent> <Leader>c <Plug>(coc-cursors-position)
-
 " Show function signature when `K` is pressed
 nmap <silent> K :call <SID>show_documentation()<CR>
 
 " Remap for do codeAction of current line
 nmap <silent> <Leader>ac <Plug>(coc-codeaction)
 
-" Fix auto fix problem of current line
-nmap <silent> <Leader>qf <Plug>(coc-fix-current)
-
 nmap <silent> <Leader>fr <Plug>(coc-references)
+
+nmap <silent> <Leader>ee <Plug>(coc-refactor)
 
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
@@ -153,9 +153,26 @@ let g:coc_global_extensions = [
 " ########################################################################
 " ######## Vim-Signify
 " ########################################################################
+augroup SignifyHighlight
+    autocmd!
+    autocmd VimEnter * :SignifyToggleHighlight
+augroup END
 nnoremap <Leader>st :SignifyToggle<CR>
-nnoremap <Leader>sh :SignifyEnable<CR> :SignifyToggleHighlight<CR>
+nnoremap <Leader>sh :SignifyToggleHighlight<CR>
 
+let g:signify_sign_add = '▌'
+let g:signify_sign_delete = '▌'
+let g:signify_sign_change= '▌'
+let g:signify_line_highlight = 1
+
+" ########################################################################
+" ######## Vim-Quickfix
+" ########################################################################
+let g:qf_mapping_ack_style = 1
+
+" Don't shorten file names in the quickfix or location list
+let g:qf_shorten_path = 0
+nmap cm <Plug>(qf_qf_toggle)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR SCHEME SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -171,3 +188,13 @@ colorscheme gruvbox
 source ~/dotfiles/vim_settings/mappings.vim
 source ~/dotfiles/vim_settings/statusLine.vim
 source ~/dotfiles/vim_settings/settings.vim
+
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+highlight SignifySignAdd  guifg=#b8ba25 cterm=NONE gui=NONE
+highlight SignifySignDelete guifg=#fa4933 cterm=NONE gui=NONE
+highlight SignifySignChange guifg=#458488 cterm=NONE gui=NONE
+

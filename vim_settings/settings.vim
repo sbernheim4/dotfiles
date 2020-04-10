@@ -26,7 +26,6 @@ set scrolloff=4
 " Write on :next/:prev/^Z
 set autowrite
 
-
 set signcolumn=auto
 
 " ****************** LINE WRAPPING ******************
@@ -139,3 +138,4 @@ hi vertsplit guifg=#1d1d1d guibg=#1d1d1d
 " Highlight color for the cursor line
 hi CursorLine guibg=#3d3d3d
 
+hi SignColumn guibg=#282828

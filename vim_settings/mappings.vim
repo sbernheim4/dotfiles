@@ -8,6 +8,15 @@ noremap <DOWN> <NOP>
 noremap <LEFT> <NOP>
 noremap <RIGHT> <NOP>
 
+function! ToggleSignColumn()
+    if &scl ==? 'no'
+        set scl=auto
+    else
+        set scl=no
+    endif
+endfunction
+nnoremap sc :call ToggleSignColumn()<CR>
+
 " Toggle wrap mode
 nnoremap <Leader>wr :set wrap!<CR>
 
