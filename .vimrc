@@ -25,8 +25,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "
-" React JSX syntax highlighting and indenting for vim.
-Plug 'mxw/vim-jsx'
+" 🔦 [Vim script] JSX and TSX syntax pretty highlighting for vim.
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 " Vastly improved Javascript indentation and syntax support in Vim. http://www.vim.org/scripts/script.php…
 Plug 'pangloss/vim-javascript'
@@ -73,13 +73,6 @@ let g:NERDTreeWinPos = 'right'
 
 nnoremap ff :Files<CR>
 nnoremap aa :Buffers<CR>
-
-" ########################################################################
-" ######## Rg
-" ########################################################################
-
-nnoremap <Leader>f :Rg
-nnoremap <Leader>ff :Rgg '
 
 " ########################################################################
 " ######## Vim-Javascript
