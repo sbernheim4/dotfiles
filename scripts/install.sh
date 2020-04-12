@@ -107,8 +107,8 @@ function setupVim() {
     cd ~/
 
     # Link vimrc for both vim and neovim
-    ln -sf ~/dotfiles/.vimrc ~/.vimrc
-    ln -sf ~/dotfiles/.vimrc ~/.config/nvim/init.vim
+    ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
+    ln -sf ~/dotfiles/vim/.vimrc ~/.config/nvim/init.vim
 
     # Set up colors folder
     mkdir -p ~/.vim/colors
@@ -123,8 +123,8 @@ function setupVim() {
 
     for colorFile in $colors
     do
-        ln -sf ~/dotfiles/vim_colors/$colorFile ~/.vim/colors/$colorFile
-        ln -sf ~/dotfiles/vim_colors/$colorFile ~/.config/nvim/colors/$colorFile
+        ln -sf ~/dotfiles/vim/colors/$colorFile ~/.vim/colors/$colorFile
+        ln -sf ~/dotfiles/vim/colors/$colorFile ~/.config/nvim/colors/$colorFile
     done
 
     echo "==================================="
@@ -142,7 +142,7 @@ function setupTmux() {
     cd ~/
 
     touch ~/.tmux.conf
-    ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+    ln -sf ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
 }
 
 function useZsh() {
@@ -152,10 +152,10 @@ function useZsh() {
     echo "==================================="
 
     # Link .zshrc
-    ln -sf ~/dotfiles/.zshrc ~/.zhsrc
+    ln -sf ~/dotfiles/zsh/.zshrc ~/.zhsrc
 
-    # Use powerlevel9k for prompt - https://github.com/bhilburn/powerlevel9k
-    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    # Use powerlevel10k for prompt - https://github.com/romkatv/powerlevel10k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
     cd ~/
 

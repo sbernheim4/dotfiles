@@ -1,0 +1,5 @@
+{
+    "coc.preferences.useQuickfixForLocations": true,
+    "coc.preferences.extensionUpdateCheck": "weekly",
+    "eslint.autoFixOnSave": true
+}

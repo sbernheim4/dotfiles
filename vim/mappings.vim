@@ -129,3 +129,6 @@ noremap <silent> j gj
 " Toggle folds with space key in normal and visual mode
 nnoremap <Space> za
 vnoremap <Space> za
+
+" Delete the space automatically when running J
+nnoremap J Jx

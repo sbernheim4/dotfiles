@@ -49,6 +49,8 @@ Plug 'mhinz/vim-signify'
 " Tame the quickfix window
 Plug 'romainl/vim-qf'
 
+Plug 'Raimondi/delimitMate'
+
 call plug#end()
 
 " Lazy load coc after insert mode is entered to keep vim snappy
@@ -165,6 +167,7 @@ let g:qf_mapping_ack_style = 1
 " Don't shorten file names in the quickfix or location list
 let g:qf_shorten_path = 0
 nmap cm <Plug>(qf_qf_toggle)
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR SCHEME SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -177,9 +180,9 @@ colorscheme gruvbox
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-source ~/dotfiles/vim_settings/mappings.vim
-source ~/dotfiles/vim_settings/statusLine.vim
-source ~/dotfiles/vim_settings/settings.vim
+source ~/dotfiles/vim/mappings.vim
+source ~/dotfiles/vim/statusLine.vim
+source ~/dotfiles/vim/settings.vim
 
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
@@ -189,4 +192,3 @@ endif
 highlight SignifySignAdd  guifg=#b8ba25 cterm=NONE gui=NONE
 highlight SignifySignDelete guifg=#fa4933 cterm=NONE gui=NONE
 highlight SignifySignChange guifg=#458488 cterm=NONE gui=NONE
-
