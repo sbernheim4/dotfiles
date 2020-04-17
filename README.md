@@ -20,7 +20,7 @@ Be sure to also install the font in the `fonts/` folder and use this font as the
 - tmux
 - zsh
 - oh-my-zsh
-- Many additionl plugins and packages
+- Many additional plugins and packages
 
 zsh will be set to be the default shell. Symlinks will be set up for `.vimrc`, `.tmux.conf` and `.zshrc` and all the themes.
 
@@ -30,6 +30,6 @@ Be sure to install the font in `fonts/`and set this to be the default font for y
 
 Your computer password is needed to change shells which is a sudo operation
 
-# Screenshots
+## Screenshots
 
 ![Image description](./screenshots/screenshot.png)
