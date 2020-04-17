@@ -157,6 +157,9 @@ function useZsh() {
     # Use powerlevel10k for prompt - https://github.com/romkatv/powerlevel10k
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
+    # Link powerlevel10k config
+    ln -sf ~/dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
+
     cd ~/
 
     chsh -s $(which zsh)

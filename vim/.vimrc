@@ -43,7 +43,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " vim plugin that open the link of current line on github
 Plug 'ruanyl/vim-gh-line'
 
-" ➕  Show a diff using Vim its sign column.Temp
+" ➕  Show a diff using Vim its sign column
 Plug 'mhinz/vim-signify'
 
 " Tame the quickfix window
