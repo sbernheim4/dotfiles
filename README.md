@@ -29,3 +29,4 @@ Be sure to install the font in `fonts/`and set this to be the default font for y
 ## Installation Notes
 
 Your computer password is needed to change shells which is a sudo operation
+![Image description](./screenshots/screenshot.png)
