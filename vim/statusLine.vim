@@ -1,6 +1,17 @@
 let g:left_sep=""
 let g:right_sep=""
 
+hi User1 guibg=#424242 guifg=#ffaf00
+hi User2 guibg=#1c1c1c guifg=#424242
+hi User3 guibg=#1c1c1c guifg=#ebdbb2
+hi User4 guibg=#458588 guifg=#1c1c1c
+hi User5 guibg=#1c1c1c guifg=#458588
+
+hi User6 guibg=#458588 guifg=#1c1c1c
+hi User7 guibg=#404040 guifg=#ebdbb2
+hi User8 guibg=#458588 guifg=#404040
+hi User9 guibg=#1c1c1c guifg=#458588
+
 function! GetMode()
     let l:mode = mode()
     if l:mode == 'n'
@@ -24,17 +35,6 @@ function! CheckMod(modified)
         return expand('%:t')
     endif
 endfunction
-
-hi User1 guibg=#424242 guifg=#ffaf00
-hi User2 guibg=#1c1c1c guifg=#424242
-hi User3 guibg=#1c1c1c guifg=#ebdbb2
-hi User4 guibg=#458588 guifg=#1c1c1c
-hi User5 guibg=#1c1c1c guifg=#458588
-
-hi User6 guibg=#458588 guifg=#1c1c1c
-hi User7 guibg=#404040 guifg=#ebdbb2
-hi User8 guibg=#458588 guifg=#404040
-hi User9 guibg=#1c1c1c guifg=#458588
 
 function! ActiveLine()
     " Left side of status line
@@ -73,27 +73,13 @@ function! InactiveLine()
     endif
 
     let statusline .= " %{CheckMod(&modified)} "
-    return statusline
-endfunction
 
-function! GetMode()
-    let l:mode = mode()
-    if l:mode == 'n'
-        return 'NORMAL'
-    elseif l:mode == 'i'
-        return 'INSERT'
-    elseif l:mode == 'v'
-        return 'VISUAL'
-    elseif l:mode == 'c'
-        return 'COMMAND'
-    else
-        return '¯\_(ツ)_/¯'
-    endif
+    return statusline
 endfunction
 
 " Change status line automatically when moving between buffers and windows
 augroup Statusline
-  autocmd!
-  autocmd WinEnter,BufEnter * setlocal statusline=%!ActiveLine()
-  autocmd WinLeave,BufLeave * setlocal statusline=%!InactiveLine()
+    autocmd!
+    autocmd WinEnter,BufEnter * setlocal statusline=%!ActiveLine()
+    autocmd WinLeave,BufLeave * setlocal statusline=%!InactiveLine()
 augroup END

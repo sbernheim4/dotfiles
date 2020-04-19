@@ -13,9 +13,6 @@ set encoding=utf8
 " Allow the backspace button to work as normal
 set backspace=indent,eol,start
 
-" Persist undo even after vim/neovim is closed and reopened
-set undofile
-
 " Have vim splits open on the right and on the bottom by default
 set splitbelow
 set splitright
@@ -28,7 +25,9 @@ set autowrite
 
 set signcolumn=auto
 
-" ****************** LINE WRAPPING ******************
+" ########################################################################
+" ######## Line Wrapping
+" ########################################################################
 " Don't wrap lines by default
 set nowrap
 
@@ -40,7 +39,9 @@ set linebreak
 
 set breakindentopt=shift:2,sbr
 
-" ****************** SEARCH SETTINGS ******************
+" ########################################################################
+" ######## Search Settings
+" ########################################################################
 " If search string contains only lowercase letters search is case insensitive.
 set ignorecase
 
@@ -50,12 +51,17 @@ set smartcase
 " Search as you type (NOTE: enabled by default in neovim)
 set incsearch
 
-" ****************** UNDO INFO ******************
+" ########################################################################
+" ######## Undo Info
+" ########################################################################
 set undodir=~/.vim/undo-dir
+
+" Persist undo even after vim/neovim is closed and reopened
 set undofile
 
-" ****************** LIST CHARACTERS ******************
-
+" ########################################################################
+" ######## List Characters
+" ########################################################################
 " Displays the special characters like eol, indents etc.
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
 set list
@@ -63,7 +69,9 @@ set listchars=tab:\|\ ,
 set listchars=tab:•\ ,eol:¬
 set listchars=tab:•\ ,
 
-" ****************** TABS AND SPACES ******************
+" ########################################################################
+" ######## Tabs and Spaces
+" ########################################################################
 " Set the tab stop to 4
 set tabstop=4
 
@@ -73,7 +81,9 @@ set shiftwidth=4
 " Indent with spaces by default - only due to work :(
 set expandtab
 
-" ******************** TAB AND STATUS LINE ********************
+" ########################################################################
+" ######## Status Line"
+" ########################################################################
 " Always show status line
 set laststatus=2
 
@@ -83,7 +93,9 @@ set showtabline=0
 " Don't display mode changes in command line (displayed in status line)
 set noshowmode
 
-" ******************** FOLDING ********************
+" #######################################################################
+" ######## Folding
+" ########################################################################
 " Fold based off of syntax highlighting
 set foldmethod=syntax
 
@@ -114,7 +126,9 @@ endfunction
 " Custom display for text when folding
 set foldtext=MyFoldText()
 
-" ******************** CUSTOM HIGHLIGHT GROUPS ********************
+" ########################################################################
+" ######## Custom Highlight Groups
+" ########################################################################
 " Set color for vertical bar for the color column
 hi ColorColumn guibg=#3a3a3a
 
