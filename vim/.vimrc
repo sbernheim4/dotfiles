@@ -1,9 +1,9 @@
 ﻿" Make the Leader key , instead of the default \
 let mapleader=","
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Using Vim-Plug for plugin manager
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ########################################################################
+" ######## Using Vim-Plug for plugin manager
+" ########################################################################
 call plug#begin('~/.vim/plugged')
 
 " A tree explorer plugin for vim.
@@ -168,10 +168,9 @@ let g:qf_mapping_ack_style = 1
 let g:qf_shorten_path = 0
 nmap cm <Plug>(qf_qf_toggle)
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COLOR SCHEME SETTINGS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" ########################################################################
+" ######## Color Scheme Settings
+" ########################################################################
 syntax enable
 syntax on
 set termguicolors
@@ -192,3 +191,27 @@ endif
 highlight SignifySignAdd  guifg=#b8ba25 cterm=NONE gui=NONE
 highlight SignifySignDelete guifg=#fa4933 cterm=NONE gui=NONE
 highlight SignifySignChange guifg=#458488 cterm=NONE gui=NONE
+
+
+augroup ReduceNoise
+    autocmd!
+    " Automatically resize active split to 85 width and 30 height if less
+    autocmd WinEnter * :set winwidth=85
+    autocmd WinEnter * :set winheight=30
+
+    " Resize remaning buffers to be the same width
+    autocmd WinEnter * :wincmd =
+
+    " autocmd WinEnter * match
+    " autocmd WinLeave * match Comment '\%>0v.\+'
+
+    " Show line numbers and cursorline in current window
+    autocmd WinEnter * setlocal cursorline
+    " autocmd WinEnter * setlocal relativenumber
+    " autocmd WinEnter * setlocal number
+
+    autocmd WinLeave * setlocal nocursorline
+    " autocmd WinLeave * setlocal norelativenumber
+    " autocmd WinLeave * setlocal nonumber
+
+augroup END
