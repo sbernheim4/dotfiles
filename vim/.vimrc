@@ -189,6 +189,7 @@ highlight SignifySignDelete guifg=#fa4933 cterm=NONE gui=NONE
 highlight SignifySignChange guifg=#458488 cterm=NONE gui=NONE
 
 
+" From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
 augroup ReduceNoise
     autocmd!
     " Automatically resize active split to 85 width and 30 height if less
