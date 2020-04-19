@@ -96,33 +96,21 @@ set foldlevelstart=99
 " Enable folding for JS syntax
 let javaScript_fold=1
 
-" Convert indentation level of the line being folded to spaces
-function! GetSpaces(name)
-    let spacing = ''
-    let spaceAmount = ''
-
-    if &noexpandtab
-        let spaceAmount = '      '
-    else
-        let spaceAmount = ''
-    endif
-
-    for i in range(1, len(a:name))
-        let spacing = foo . spaceAmount
-    endfor
-
-    return spacing
-endfunction
-
 function! MyFoldText()
+
     let startLine = getline(v:foldstart)
     let endLine = getline(v:foldend)
-    let indentLevel = indent(v:foldstart)
-    let spaces = GetSpaces(indentLevel)
 
-    let total = spaces . startLine . endLine
+    if g:use_tabs==0
+        let spaces = repeat (" ", v:foldlevel / 4)
+        let total = spaces . startLine . endLine
+        return total
+    else
+        let spaces = repeat("  ", v:foldlevel) . "  "
+        let total = spaces . startLine . endLine
+        return total
+    endif
 
-    return total
 endfunction
 
 " Custom display for text when folding
