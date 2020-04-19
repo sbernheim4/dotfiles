@@ -147,17 +147,13 @@ let g:coc_global_extensions = [
 " ########################################################################
 " ######## Vim-Signify
 " ########################################################################
-augroup SignifyHighlight
-    autocmd!
-    autocmd VimEnter * :SignifyToggleHighlight
-augroup END
 nnoremap <Leader>st :SignifyToggle<CR>
 nnoremap <Leader>sh :SignifyToggleHighlight<CR>
 
 let g:signify_sign_add = '▌'
 let g:signify_sign_delete = '▌'
 let g:signify_sign_change= '▌'
-let g:signify_line_highlight = 1
+let g:signify_line_highlight = 0
 
 " ########################################################################
 " ######## Vim-Quickfix
