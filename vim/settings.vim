@@ -97,20 +97,18 @@ set foldlevelstart=99
 let javaScript_fold=1
 
 function! MyFoldText()
-
     let startLine = getline(v:foldstart)
     let endLine = getline(v:foldend)
 
+    let l:spaces = ""
     if g:use_tabs==0
-        let spaces = repeat (" ", v:foldlevel / 4)
-        let total = spaces . startLine . endLine
-        return total
+        let l:spaces = repeat (" ", v:foldlevel / 4)
     else
-        let spaces = repeat("  ", v:foldlevel) . "  "
-        let total = spaces . startLine . endLine
-        return total
+        let l:spaces = repeat("  ", v:foldlevel) . "  "
     endif
 
+    let total = l:spaces . startLine . endLine
+    return total
 endfunction
 
 " Custom display for text when folding
