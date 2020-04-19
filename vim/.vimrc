@@ -215,3 +215,5 @@ augroup ReduceNoise
     " autocmd WinLeave * setlocal nonumber
 
 augroup END
+
+highlight Visual guifg=#575757 guibg=#d1d1d1
