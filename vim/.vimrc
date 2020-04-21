@@ -187,30 +187,4 @@ endif
 highlight SignifySignAdd  guifg=#b8ba25 cterm=NONE gui=NONE
 highlight SignifySignDelete guifg=#fa4933 cterm=NONE gui=NONE
 highlight SignifySignChange guifg=#458488 cterm=NONE gui=NONE
-
-
-" From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
-augroup ReduceNoise
-    autocmd!
-    " Automatically resize active split to 85 width and 30 height if less
-    autocmd WinEnter * :set winwidth=85
-    autocmd WinEnter * :set winheight=30
-
-    " Resize remaning buffers to be the same width
-    autocmd WinEnter * :wincmd =
-
-    " autocmd WinEnter * match
-    " autocmd WinLeave * match Comment '\%>0v.\+'
-
-    " Show line numbers and cursorline in current window
-    autocmd WinEnter * setlocal cursorline
-    " autocmd WinEnter * setlocal relativenumber
-    " autocmd WinEnter * setlocal number
-
-    autocmd WinLeave * setlocal nocursorline
-    " autocmd WinLeave * setlocal norelativenumber
-    " autocmd WinLeave * setlocal nonumber
-
-augroup END
-
 highlight Visual guifg=#575757 guibg=#d1d1d1

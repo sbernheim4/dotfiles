@@ -51,6 +51,9 @@ set smartcase
 " Search as you type (NOTE: enabled by default in neovim)
 set incsearch
 
+" Use rg when calling :grep
+set grepprg=rg\ --vimgrep
+
 " ########################################################################
 " ######## Undo Info
 " ########################################################################
@@ -68,6 +71,8 @@ set list
 set listchars=tab:\|\ ,
 set listchars=tab:•\ ,eol:¬
 set listchars=tab:•\ ,
+
+set fillchars+=vert:\
 
 " ########################################################################
 " ######## Tabs and Spaces
@@ -139,3 +144,26 @@ hi vertsplit guifg=#1d1d1d guibg=#1d1d1d
 hi CursorLine guibg=#3d3d3d
 
 hi SignColumn guibg=#282828
+
+" From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
+augroup ReduceNoise
+    autocmd!
+    " Automatically resize active split to 85 width and 30 height if less
+    autocmd WinEnter * :set winwidth=85
+
+    " Resize remaning buffers to be the same width
+    autocmd WinEnter * :wincmd =
+
+    " autocmd WinEnter * match
+    " autocmd WinLeave * match Comment '\%>0v.\+'
+
+    " Show line numbers and cursorline in current window
+    autocmd WinEnter * setlocal cursorline
+    " autocmd WinEnter * setlocal relativenumber
+    " autocmd WinEnter * setlocal number
+
+    autocmd WinLeave * setlocal nocursorline
+    " autocmd WinLeave * setlocal norelativenumber
+    " autocmd WinLeave * setlocal nonumber
+
+augroup END
