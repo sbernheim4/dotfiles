@@ -98,7 +98,7 @@ nnoremap <Space> za
 vnoremap <Space> za
 
 " ########################################################################
-" ######## Buffer Management
+" ######## Buffer and Window Management
 " ########################################################################
 " Move to the next buffer
 nnoremap <Leader>n :bn<CR>
@@ -117,6 +117,14 @@ nnoremap <Leader>hp :split<CR>
 " Vertically and horizontally resize a window
 nnoremap <Leader>vs :vertical resize +
 nnoremap <Leader>hs :resize +
+
+nnoremap < :wincmd <<CR>
+nnoremap > :wincmd ><CR>
+
+nnoremap <Space>h <C-W>H
+nnoremap <Space>j <C-W>J
+nnoremap <Space>k <C-W>K
+nnoremap <Space>l <C-W>L
 
 " ########################################################################
 " ######## Miscellaneous
