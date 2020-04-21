@@ -188,3 +188,4 @@ highlight SignifySignAdd  guifg=#b8ba25 cterm=NONE gui=NONE
 highlight SignifySignDelete guifg=#fa4933 cterm=NONE gui=NONE
 highlight SignifySignChange guifg=#458488 cterm=NONE gui=NONE
 highlight Visual guifg=#575757 guibg=#d1d1d1
+highlight QuickFixLine guibg=#707070 guifg=#e8d8c5

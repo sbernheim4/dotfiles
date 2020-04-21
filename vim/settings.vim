@@ -148,7 +148,7 @@ hi SignColumn guibg=#282828
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
 augroup ReduceNoise
     autocmd!
-    " Automatically resize active split to 85 width and 30 height if less
+    " Automatically resize active split to 85 width
     autocmd WinEnter * :set winwidth=85
 
     " Resize remaning buffers to be the same width
