@@ -87,15 +87,15 @@ nnoremap <Leader>hl :set hlsearch!<CR>
 " Toggle cursor line highlight for all windows
 nnoremap <Leader>cll :call WinDo('set cursorline!')<CR>
 
-nnoremap <silent>rn :call ToggleRelativeLineNumbers()<CR>
+nnoremap <Leader>rn :call ToggleRelativeLineNumbers()<CR>
 
 nmap <Leader>t :call ToggleIndentType()<CR>
 
 nnoremap <silent> tw :call ToggleTextWidth()<CR>
 
 " Toggle folds with space key in normal and visual mode
-nnoremap <Space><Space> za
-vnoremap <Space><Space> za
+nnoremap <Space> za
+vnoremap <Space> za
 
 " ########################################################################
 " ######## Buffer and Window Management
@@ -121,10 +121,10 @@ nnoremap <Leader>hs :resize +
 nnoremap < :wincmd <<CR>
 nnoremap > :wincmd ><CR>
 
-nnoremap <Space>h <C-W>H
-nnoremap <Space>j <C-W>J
-nnoremap <Space>k <C-W>K
-nnoremap <Space>l <C-W>L
+nnoremap <Leader>ah <C-W>H
+nnoremap <Leader>aj <C-W>J
+nnoremap <Leader>ak <C-W>K
+nnoremap <Leader>al <C-W>L
 
 " ########################################################################
 " ######## Miscellaneous

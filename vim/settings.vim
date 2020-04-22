@@ -167,3 +167,6 @@ augroup ReduceNoise
     " autocmd WinLeave * setlocal nonumber
 
 augroup END
+
+" Make delimitMateCR play nicely with pop up menu
+imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
