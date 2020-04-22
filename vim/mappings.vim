@@ -94,8 +94,8 @@ nmap <Leader>t :call ToggleIndentType()<CR>
 nnoremap <silent> tw :call ToggleTextWidth()<CR>
 
 " Toggle folds with space key in normal and visual mode
-nnoremap <Space> za
-vnoremap <Space> za
+nnoremap <Space><Space> za
+vnoremap <Space><Space> za
 
 " ########################################################################
 " ######## Buffer and Window Management
