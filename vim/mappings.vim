@@ -87,7 +87,7 @@ nnoremap <Leader>hl :set hlsearch!<CR>
 " Toggle cursor line highlight for all windows
 nnoremap <Leader>cll :call WinDo('set cursorline!')<CR>
 
-nnoremap <Leader>rn :call ToggleRelativeLineNumbers()<CR>
+nnoremap <Leader><Leader>rn :call ToggleRelativeLineNumbers()<CR>
 
 nmap <Leader>t :call ToggleIndentType()<CR>
 
