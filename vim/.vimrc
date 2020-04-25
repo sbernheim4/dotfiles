@@ -49,7 +49,11 @@ Plug 'mhinz/vim-signify'
 " Tame the quickfix window
 Plug 'romainl/vim-qf'
 
+" Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc. http://www.vim.org/scripts/script.php…
 Plug 'Raimondi/delimitMate'
+
+" surround.vim: quoting/parenthesizing made simple http://www.vim.org/scripts/script.php…
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
