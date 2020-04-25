@@ -154,9 +154,9 @@ let g:coc_global_extensions = [
 nnoremap <Leader>st :SignifyToggle<CR>
 nnoremap <Leader>sh :SignifyToggleHighlight<CR>
 
-let g:signify_sign_add = '▌'
-let g:signify_sign_delete = '▌'
-let g:signify_sign_change= '▌'
+let g:signify_sign_add = '▐'
+let g:signify_sign_delete = '▐'
+let g:signify_sign_change= '▐'
 let g:signify_line_highlight = 0
 
 " ########################################################################

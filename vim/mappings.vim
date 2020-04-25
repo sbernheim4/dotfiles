@@ -118,9 +118,6 @@ nnoremap <Leader>hp :split<CR>
 nnoremap <Leader>vs :vertical resize +
 nnoremap <Leader>hs :resize +
 
-nnoremap < :wincmd <<CR>
-nnoremap > :wincmd ><CR>
-
 nnoremap <Leader>ah <C-W>H
 nnoremap <Leader>aj <C-W>J
 nnoremap <Leader>ak <C-W>K
@@ -148,3 +145,6 @@ vnoremap // y/\M<C-R>"<CR>
 
 " Don't jump to the next occurrence automatically when searching via *
 nnoremap * *N
+
+" Make delimitMateCR play nicely with pop up menu
+imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"

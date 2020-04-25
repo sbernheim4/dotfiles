@@ -138,7 +138,7 @@ set foldtext=MyFoldText()
 hi ColorColumn guibg=#3a3a3a
 
 " Set background for vertical vim split
-hi vertsplit guifg=#1d1d1d guibg=#1d1d1d
+hi vertsplit guifg=#c4ab97 guibg=#c4ab97
 
 " Highlight color for the cursor line
 hi CursorLine guibg=#3d3d3d
@@ -168,5 +168,3 @@ augroup ReduceNoise
 
 augroup END
 
-" Make delimitMateCR play nicely with pop up menu
-imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
