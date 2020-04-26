@@ -149,22 +149,21 @@ hi SignColumn guibg=#282828
 augroup ReduceNoise
     autocmd!
     " Automatically resize active split to 85 width
-    autocmd WinEnter * :set winwidth=85
+    autocmd WinEnter * :call ResizeSplits()
 
-    " Resize remaning buffers to be the same width
-    autocmd WinEnter * :wincmd =
-
-    " autocmd WinEnter * match
-    " autocmd WinLeave * match Comment '\%>0v.\+'
-
-    " Show line numbers and cursorline in current window
     autocmd WinEnter * setlocal cursorline
-    " autocmd WinEnter * setlocal relativenumber
-    " autocmd WinEnter * setlocal number
-
     autocmd WinLeave * setlocal nocursorline
-    " autocmd WinLeave * setlocal norelativenumber
-    " autocmd WinLeave * setlocal nonumber
 
 augroup END
 
+function! ResizeSplits()
+    if &ft == 'nerdtree'
+        return
+    elseif &ft == 'qf'
+        set winheight=10
+        return
+    else
+        set winwidth=85
+        wincmd =
+    endif
+endfunction
