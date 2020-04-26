@@ -67,9 +67,9 @@ augroup END
 " ########################################################################
 " ######## NERDTree
 " ########################################################################
-nnoremap <Leader>d :NERDTreeToggle<CR>
-nnoremap <Leader>nt :NERDTree<CR>
-nnoremap <Leader>nf :NERDTreeFind <CR>
+nnoremap <silent> <Leader>d :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>nt :NERDTree<CR>
+nnoremap <silent> <Leader>nf :NERDTreeFind <CR>
 
 let g:NERDTreeWinPos = 'right'
 
