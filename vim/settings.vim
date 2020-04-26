@@ -160,7 +160,8 @@ function! ResizeSplits()
     if &ft == 'nerdtree'
         return
     elseif &ft == 'qf'
-        set winheight=10
+        " Always set quickfix list to a height of 10
+        resize 10
         return
     else
         set winwidth=85
