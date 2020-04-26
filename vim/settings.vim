@@ -72,7 +72,7 @@ set listchars=tab:\|\ ,
 set listchars=tab:•\ ,eol:¬
 set listchars=tab:•\ ,
 
-set fillchars+=vert:\
+set fillchars+=vert:█
 
 " ########################################################################
 " ######## Tabs and Spaces
