@@ -115,13 +115,13 @@ let javaScript_fold=1
 
 function! MyFoldText()
     let startLine = getline(v:foldstart)
-    let endLine = getline(v:foldend)
+    let endLine = trim(getline(v:foldend))
 
     let l:spaces = ""
     if g:use_tabs==0
         let l:spaces = repeat (" ", v:foldlevel / 4)
     else
-        let l:spaces = repeat("  ", v:foldlevel) . "  "
+        let l:spaces = repeat(" ", v:foldlevel) . " "
     endif
 
     let total = l:spaces . startLine . endLine
