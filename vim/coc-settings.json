@@ -2,5 +2,11 @@
     "coc.preferences.extensionUpdateCheck": "weekly",
     "coc.preferences.useQuickfixForLocations": true,
     "eslint.autoFixOnSave": true,
-    "javascript.validate.enable": false
+    "eslint.filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "javascript.validate.enable": true
 }
