@@ -118,10 +118,10 @@ function! MyFoldText()
     let endLine = trim(getline(v:foldend))
 
     let l:spaces = ""
-    if g:use_tabs==0
-        let l:spaces = repeat (" ", v:foldlevel / 4)
+    if &expandtab
+        let l:spaces = repeat("  ", v:foldlevel)
     else
-        let l:spaces = repeat(" ", v:foldlevel) . " "
+        let l:spaces = repeat (" ", v:foldlevel / 4)
     endif
 
     let total = l:spaces . startLine . endLine
