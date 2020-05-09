@@ -28,6 +28,11 @@ Plug 'junegunn/fzf.vim'
 " 🔦 [Vim script] JSX and TSX syntax pretty highlighting for vim.
 Plug 'MaxMEllon/vim-jsx-pretty'
 
+" React JSX syntax highlighting for vim and Typescript
+Plug 'leafgarland/typescript-vim'
+
+Plug 'peitalin/vim-jsx-typescript'
+
 " Vastly improved Javascript indentation and syntax support in Vim. http://www.vim.org/scripts/script.php…
 Plug 'pangloss/vim-javascript'
 
