@@ -118,10 +118,10 @@ function! MyFoldText()
     let endLine = trim(getline(v:foldend))
 
     let l:spaces = ""
-    if &expandtab
-        let l:spaces = repeat("  ", v:foldlevel)
-    else
+    if g:use_tabs==0
         let l:spaces = repeat (" ", v:foldlevel / 4)
+    else
+        let l:spaces = repeat("  ", v:foldlevel) . "  "
     endif
 
     let total = l:spaces . startLine . endLine
@@ -152,7 +152,10 @@ augroup ReduceNoise
     autocmd WinEnter * :call ResizeSplits()
 
     autocmd WinEnter * setlocal cursorline
+    autocmd WinEnter * setlocal signcolumn=auto
+
     autocmd WinLeave * setlocal nocursorline
+    autocmd WinLeave * setlocal signcolumn=no
 
 augroup END
 
