@@ -120,7 +120,7 @@ nmap <silent> <silent> tt :<C-u>CocList outline<CR>
 nmap <silent> <Leader>s :<C-u>CocList symbols<CR>
 
 " Go to the definition of the value the cursor is on
-nmap <silent> <Leader>gd <Plug>(coc-definition)
+nmap <silent> <Leader>gd <C-w>v<Plug>(coc-definition)
 "
 " Remap for rename current word
 nmap <silent> <Leader>rn <Plug>(coc-rename)
