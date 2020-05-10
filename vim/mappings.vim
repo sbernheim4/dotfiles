@@ -33,22 +33,11 @@ endfunction
 
 " Toggle indenting with tabs and spaces
 function! ToggleIndentType()
-    if !exists("g:use_tabs") || g:use_tabs
-        " Indent with SPACES instead of tabs
-        set expandtab
-        let g:use_tabs=0
-    else
-        " Indent with TABS instead of spaces
+    if &expandtab == 1
         set noexpandtab
-        let g:use_tabs=1
+    else
+        set expandtab
     endif
-endfunction
-
-" Just like windo, but restore the current window when done - https://vim.fandom.com/wiki/Windo_and_restore_current_window
-function! WinDo(command)
-    let currwin=winnr()
-    execute 'windo ' . a:command
-    execute currwin . 'wincmd w'
 endfunction
 
 " ########################################################################
@@ -83,9 +72,6 @@ nnoremap <Leader>wr :set wrap!<CR>
 
 " Toggle highlighting of search results
 nnoremap <Leader>hl :set hlsearch!<CR>
-
-" Toggle cursor line highlight for all windows
-nnoremap <Leader>cll :call WinDo('set cursorline!')<CR>
 
 nnoremap <Leader><Leader>rn :call ToggleRelativeLineNumbers()<CR>
 

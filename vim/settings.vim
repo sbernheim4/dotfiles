@@ -114,16 +114,14 @@ set foldlevelstart=99
 let javaScript_fold=1
 
 function! GetSpaces(foldLevel)
-
     if &expandtab == 1
-        " Uses spaces
+        " Indenting with spaces
         let str = repeat(" ", a:foldLevel / (&shiftwidth + 1) - 1)
         return str
     elseif &expandtab == 0
-        " Uses tabs
+        " Indenting with tabs
         return repeat(" ", indent(v:foldstart) - (indent(v:foldstart) / &shiftwidth))
     endif
-
 endfunction
 
 function! MyFoldText()
