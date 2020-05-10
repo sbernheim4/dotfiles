@@ -92,9 +92,6 @@ set expandtab
 " Always show status line
 set laststatus=2
 
-" Hide tabline
-set showtabline=0
-
 " Don't display mode changes in command line (displayed in status line)
 set noshowmode
 

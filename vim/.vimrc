@@ -191,6 +191,7 @@ colorscheme gruvbox
 
 source ~/dotfiles/vim/mappings.vim
 source ~/dotfiles/vim/statusLine.vim
+source ~/dotfiles/vim/tabLine.vim
 source ~/dotfiles/vim/settings.vim
 
 if executable("rg")
