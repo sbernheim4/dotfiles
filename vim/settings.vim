@@ -101,7 +101,7 @@ set noshowmode
 " #######################################################################
 " ######## Folding
 " ########################################################################
-" Fold based off of syntax highlighting
+" Fold based off of indent
 set foldmethod=syntax
 
 " Don't set the fold column
@@ -113,19 +113,27 @@ set foldlevelstart=99
 " Enable folding for JS syntax
 let javaScript_fold=1
 
+function! GetSpaces(foldLevel)
+
+    if &expandtab == 1
+        " Uses spaces
+        let str = repeat(" ", a:foldLevel / (&shiftwidth + 1) - 1)
+        return str
+    elseif &expandtab == 0
+        " Uses tabs
+        return repeat(" ", indent(v:foldstart) - 3)
+    endif
+
+endfunction
+
 function! MyFoldText()
     let startLine = getline(v:foldstart)
     let endLine = trim(getline(v:foldend))
+    let spaces = GetSpaces(foldlevel("."))
 
-    let l:spaces = ""
-    if g:use_tabs==0
-        let l:spaces = repeat (" ", v:foldlevel / 4)
-    else
-        let l:spaces = repeat("  ", v:foldlevel) . "  "
-    endif
+    let str = spaces . startLine . endLine
 
-    let total = l:spaces . startLine . endLine
-    return total
+    return str
 endfunction
 
 " Custom display for text when folding
