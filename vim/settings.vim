@@ -121,7 +121,7 @@ function! GetSpaces(foldLevel)
         return str
     elseif &expandtab == 0
         " Uses tabs
-        return repeat(" ", indent(v:foldstart) - 3)
+        return repeat(" ", indent(v:foldstart) - (indent(v:foldstart) / &shiftwidth))
     endif
 
 endfunction
@@ -131,7 +131,7 @@ function! MyFoldText()
     let endLine = trim(getline(v:foldend))
     let spaces = GetSpaces(foldlevel("."))
 
-    let str = spaces . startLine . endLine
+    let str = spaces . startLine . "..." . endLine . repeat(" ", 200)
 
     return str
 endfunction
