@@ -69,6 +69,11 @@ augroup load_coc
   autocmd InsertEnter * call plug#load('coc.nvim')
 augroup END
 
+autocmd FileType help wincmd L
+
+" Enable spell checking for commit messages
+autocmd FileType gitcommit setlocal spell
+
 " ########################################################################
 " ######## NERDTree
 " ########################################################################
