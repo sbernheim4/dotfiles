@@ -12,8 +12,8 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 " Use RipGrep in Vim and display results in a quickfix list
 Plug 'sbernheim4/vim-ripgrep'
 
-" Vim motions on speed!
-Plug 'easymotion/vim-easymotion'
+" The missing motion for Vim 👟 http://www.vim.org/scripts/script.php…
+Plug 'justinmk/vim-sneak'
 
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
