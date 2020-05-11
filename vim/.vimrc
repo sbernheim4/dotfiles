@@ -58,7 +58,7 @@ call plug#end()
 
 " Lazy load coc after insert mode is entered to keep vim snappy
 " https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
-augroup load_coc
+augroup lazy_load_plugins
   autocmd!
   autocmd InsertEnter * call plug#load('coc.nvim')
 augroup END
@@ -161,7 +161,10 @@ nnoremap <Leader>sh :SignifyToggleHighlight<CR>
 let g:signify_sign_add = '▐'
 let g:signify_sign_delete = '▐'
 let g:signify_sign_change= '▐'
+" Don't highlight the line by default when the plugin is enabled
 let g:signify_line_highlight = 0
+" Disable the plugin by default
+let g:signify_disable_by_default = 1
 
 " ########################################################################
 " ######## Vim-Quickfix
