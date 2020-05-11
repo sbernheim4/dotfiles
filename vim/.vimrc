@@ -9,12 +9,6 @@ call plug#begin('~/.vim/plugged')
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
-" Extra syntax and highlight for nerdtree files
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-" 🔣 Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
-Plug 'ryanoasis/vim-devicons'
-
 " Use RipGrep in Vim and display results in a quickfix list
 Plug 'sbernheim4/vim-ripgrep'
 
