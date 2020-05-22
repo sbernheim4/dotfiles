@@ -1,6 +1,7 @@
 {
     "coc.preferences.extensionUpdateCheck": "weekly",
     "coc.preferences.useQuickfixForLocations": true,
+    "eslint.autoFix": true,
     "eslint.autoFixOnSave": true,
     "eslint.filetypes": [
         "javascript",

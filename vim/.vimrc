@@ -6,6 +6,8 @@ let mapleader=","
 " ########################################################################
 call plug#begin('~/.vim/plugged')
 
+Plug 'gruvbox-community/gruvbox'
+
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 
@@ -51,7 +53,15 @@ Plug 'Raimondi/delimitMate'
 " surround.vim: quoting/parenthesizing made simple http://www.vim.org/scripts/script.php…
 Plug 'tpope/vim-surround'
 
+" F# bindings for vim
+Plug 'fsharp/vim-fsharp', {
+      \ 'for': 'fsharp',
+      \ 'do':  'make fsautocomplete',
+      \}
+
 call plug#end()
+
+let g:fsharp_map_keys = 0
 
 " Lazy load coc after insert mode is entered to keep vim snappy
 " https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually

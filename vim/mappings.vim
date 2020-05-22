@@ -135,4 +135,4 @@ nnoremap * *N
 " Make delimitMateCR play nicely with pop up menu
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
-inoremap jj <ESC>
+inoremap jj <ESC> :w<CR>
