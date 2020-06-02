@@ -17,17 +17,6 @@ Plug 'sbernheim4/vim-ripgrep'
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"
-" 🔦 [Vim script] JSX and TSX syntax pretty highlighting for vim.
-Plug 'MaxMEllon/vim-jsx-pretty'
-
-" React JSX syntax highlighting for vim and Typescript
-Plug 'leafgarland/typescript-vim'
-
-Plug 'peitalin/vim-jsx-typescript'
-
-" Vastly improved Javascript indentation and syntax support in Vim. http://www.vim.org/scripts/script.php…
-Plug 'pangloss/vim-javascript'
 
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
@@ -65,6 +54,9 @@ Plug 'AndrewRadev/sideways.vim'
 " 🔧 JavaScript & NodeJS Snippets for Vim
 Plug 'grvcoelho/vim-javascript-snippets'
 
+" A solid language pack for Vim.
+Plug 'sheerun/vim-polyglot'
+
 call plug#end()
 
 let g:fsharp_map_keys = 0
@@ -96,13 +88,6 @@ let g:NERDTreeWinPos = 'right'
 
 nnoremap ff :Files<CR>
 nnoremap aa :Buffers<CR>
-
-" ########################################################################
-" ######## Vim-Javascript
-" ########################################################################
-
-" Enable jsdoc/esdoc syntax highlighting
-let g:javascript_plugin_jsdoc = 1
 
 " ########################################################################
 " ######## Coc
