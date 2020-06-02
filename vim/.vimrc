@@ -62,6 +62,12 @@ Plug 'fsharp/vim-fsharp', {
 " A Vim plugin to move function arguments (and other delimited-by-something items) left and right. http://www.vim.org/scripts/script.php…
 Plug 'AndrewRadev/sideways.vim'
 
+" A Vim plugin to move function arguments (and other delimited-by-something items) left and right. http://www.vim.org/scripts/script.php…
+Plug 'AndrewRadev/sideways.vim'
+
+" 🔧 JavaScript & NodeJS Snippets for Vim
+Plug 'grvcoelho/vim-javascript-snippets'
+
 call plug#end()
 
 let g:fsharp_map_keys = 0
