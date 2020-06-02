@@ -62,9 +62,6 @@ Plug 'fsharp/vim-fsharp', {
 " A Vim plugin to move function arguments (and other delimited-by-something items) left and right. http://www.vim.org/scripts/script.php…
 Plug 'AndrewRadev/sideways.vim'
 
-" A Vim plugin to move function arguments (and other delimited-by-something items) left and right. http://www.vim.org/scripts/script.php…
-Plug 'AndrewRadev/sideways.vim'
-
 " 🔧 JavaScript & NodeJS Snippets for Vim
 Plug 'grvcoelho/vim-javascript-snippets'
 
@@ -190,6 +187,13 @@ let g:qf_mapping_ack_style = 1
 " Don't shorten file names in the quickfix or location list
 let g:qf_shorten_path = 0
 nmap cm <Plug>(qf_qf_toggle)
+
+" ########################################################################
+" ######## Sideways
+" ########################################################################
+
+nnoremap <Leader><Leader>s :SidewaysLeft<CR>
+nnoremap <Leader><Leader>l :SidewaysRight<CR>
 
 " ########################################################################
 " ######## Color Scheme Settings
