@@ -9,5 +9,7 @@
         "typescript",
         "typescriptreact"
     ],
-    "javascript.validate.enable": true
+    "javascript.validate.enable": true,
+    "typescript.suggestionActions.enabled": false,
+    "javascript.suggestionActions.enabled": false
 }
