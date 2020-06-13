@@ -42,20 +42,13 @@ Plug 'Raimondi/delimitMate'
 " surround.vim: quoting/parenthesizing made simple http://www.vim.org/scripts/script.php…
 Plug 'tpope/vim-surround'
 
-" F# bindings for vim
-Plug 'fsharp/vim-fsharp', {
-      \ 'for': 'fsharp',
-      \ 'do':  'make fsautocomplete',
-      \}
-
 " A Vim plugin to move function arguments (and other delimited-by-something items) left and right. http://www.vim.org/scripts/script.php…
 Plug 'AndrewRadev/sideways.vim'
 
-" 🔧 JavaScript & NodeJS Snippets for Vim
-Plug 'grvcoelho/vim-javascript-snippets'
-
 " A solid language pack for Vim.
 Plug 'sheerun/vim-polyglot'
+
+Plug 'honza/vim-snippets'
 
 call plug#end()
 
@@ -118,7 +111,10 @@ nmap <silent> <Leader>s :<C-u>CocList symbols<CR>
 
 " Go to the definition of the value the cursor is on
 nmap <silent> <Leader>gd <C-w>v<Plug>(coc-definition)
-"
+
+" Go to type definition
+nmap <silent> <Leader>td <Plug>(coc-type-definition)
+
 " Remap for rename current word
 nmap <silent> <Leader>rn <Plug>(coc-rename)
 
