@@ -45,14 +45,16 @@ Plug 'tpope/vim-surround'
 " A Vim plugin to move function arguments (and other delimited-by-something items) left and right. http://www.vim.org/scripts/script.php…
 Plug 'AndrewRadev/sideways.vim'
 
-" A solid language pack for Vim.
-Plug 'sheerun/vim-polyglot'
+Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'gabrielelana/vim-markdown'
 
 Plug 'honza/vim-snippets'
 
 call plug#end()
 
-let g:fsharp_map_keys = 0
+let g:javascript_plugin_jsdoc = 1
 
 " Lazy load coc after insert mode is entered to keep vim snappy
 " https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
