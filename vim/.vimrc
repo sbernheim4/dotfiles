@@ -46,6 +46,7 @@ Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/sideways.vim'
 
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gabrielelana/vim-markdown'
@@ -54,7 +55,7 @@ Plug 'honza/vim-snippets'
 
 call plug#end()
 
-let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_jsdoc=1
 
 " Lazy load coc after insert mode is entered to keep vim snappy
 " https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
