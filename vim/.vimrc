@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'gruvbox-community/gruvbox'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'sbernheim4/vim-ripgrep'
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
+" Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
 Plug 'markonm/traces.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ruanyl/vim-gh-line'
@@ -28,15 +28,19 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gabrielelana/vim-markdown'
+
+Plug 'neovim/nvim-lsp'
+Plug 'haorenW1025/completion-nvim'
+
 call plug#end()
 
 let g:javascript_plugin_jsdoc=1
 
 " https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
-augroup LazyLoadCoc
-  autocmd!
-  autocmd InsertEnter * call plug#load('coc.nvim')
-augroup END
+" augroup LazyLoadCoc
+"   autocmd!
+"   autocmd InsertEnter * call plug#load('coc.nvim')
+" augroup END
 
 autocmd FileType help wincmd L
 autocmd FileType gitcommit setlocal spell
@@ -67,26 +71,25 @@ endfunction
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Use <CR> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-nmap <silent> <silent> tt :<C-u>CocList outline<CR>
-nmap <silent> <Leader>s :<C-u>CocList symbols<CR>
-nmap <silent> <Leader>gd <C-w>v<Plug>(coc-definition)
-nmap <silent> <Leader>td <Plug>(coc-type-definition)
-nmap <silent> <Leader>rn <Plug>(coc-rename)
-nmap <silent> <Leader>ac <Plug>(coc-codeaction)
-nmap <silent> <Leader>fr <Plug>(coc-references)
-nmap <silent> <Leader>ee <Plug>(coc-refactor)
-nmap <silent> K :call <SID>show_documentation()<CR>
+" nmap <silent> <silent> tt :<C-u>CocList outline<CR>
+" nmap <silent> <Leader>s :<C-u>CocList symbols<CR>
+" nmap <silent> <Leader>gd <C-w>v<Plug>(coc-definition)
+" nmap <silent> <Leader>td <Plug>(coc-type-definition)
+" nmap <silent> <Leader>rn <Plug>(coc-rename)
+" nmap <silent> <Leader>ac <Plug>(coc-codeaction)
+" nmap <silent> <Leader>fr <Plug>(coc-references)
+" nmap <silent> <Leader>ee <Plug>(coc-refactor)
+" nmap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
@@ -159,3 +162,35 @@ endif
 
 highlight Visual guifg=#575757 guibg=#d1d1d1
 highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
+
+lua require'nvim_lsp'.tsserver.setup{}
+lua vim.lsp.set_log_level(4)
+
+
+" nmap <silent> <silent> tt :<C-u>CocList outline<CR>
+" nmap <silent> <Leader>ee <Plug>(coc-refactor)
+"
+" nmap <silent> <Leader>s :<C-u>CocList symbols<CR>
+" nmap <silent> <Leader>gd <C-w>v<Plug>(coc-definition)
+" nmap <silent> <Leader>td <Plug>(coc-type-definition)
+" nmap <silent> <Leader>rn <Plug>(coc-rename)
+" nmap <silent> <Leader>ac <Plug>(coc-codeaction)
+" nmap <silent> <Leader>fr <Plug>(coc-references)
+" nmap <silent> K :call <SID>show_documentation()<CR>
+
+inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
+
+nnoremap <silent> <Leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> td            <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> <Leader>fr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> <Leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <Leader>ac    <cmd>lua vim.lsp.buf.code_action()<CR>
+lua require'nvim_lsp'.tsserver.setup{on_attach=require'completion'.on_attach}
+autocmd BufEnter * lua require'completion'.on_attach()
