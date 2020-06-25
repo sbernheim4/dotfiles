@@ -2,71 +2,43 @@
 let mapleader=","
 
 " ########################################################################
-" ######## Using Vim-Plug for plugin manager
+" ######## Vim Plug and Plugins
 " ########################################################################
 call plug#begin('~/.vim/plugged')
 
 Plug 'gruvbox-community/gruvbox'
-
-" A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-
-" Use RipGrep in Vim and display results in a quickfix list
 Plug 'sbernheim4/vim-ripgrep'
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
+Plug 'markonm/traces.vim'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'ruanyl/vim-gh-line'
+Plug 'mhinz/vim-signify'
+Plug 'romainl/vim-qf'
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-surround'
+Plug 'AndrewRadev/sideways.vim'
 
-" Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
-" Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
-
-" Range, pattern and substitute preview for Vim
-Plug 'markonm/traces.vim'
-
-" Seamless navigation between tmux panes and vim splits
-Plug 'christoomey/vim-tmux-navigator'
-
-" vim plugin that open the link of current line on github
-Plug 'ruanyl/vim-gh-line'
-
-" ➕  Show a diff using Vim its sign column
-Plug 'mhinz/vim-signify'
-
-" Tame the quickfix window
-Plug 'romainl/vim-qf'
-
-" Vim plugin, provides insert mode auto-completion for quotes, parens, brackets, etc. http://www.vim.org/scripts/script.php…
-Plug 'Raimondi/delimitMate'
-
-" surround.vim: quoting/parenthesizing made simple http://www.vim.org/scripts/script.php…
-Plug 'tpope/vim-surround'
-
-" A Vim plugin to move function arguments (and other delimited-by-something items) left and right. http://www.vim.org/scripts/script.php…
-Plug 'AndrewRadev/sideways.vim'
+Plug 'yuki-ycino/fzf-preview.vim'
 
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gabrielelana/vim-markdown'
-
-Plug 'yuki-ycino/fzf-preview.vim'
-
 call plug#end()
 
 let g:javascript_plugin_jsdoc=1
 
-" Lazy load coc after insert mode is entered to keep vim snappy
 " https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
-augroup lazy_load_plugins
+augroup LazyLoadCoc
   autocmd!
   autocmd InsertEnter * call plug#load('coc.nvim')
 augroup END
 
 autocmd FileType help wincmd L
-
-" Enable spell checking for commit messages
 autocmd FileType gitcommit setlocal spell
 
 " ########################################################################
@@ -81,7 +53,6 @@ let g:NERDTreeWinPos = 'right'
 " ########################################################################
 " ######## FZF / FZF Preview
 " ########################################################################
-
 nnoremap ff :FzfPreviewProjectFiles<CR>
 nnoremap aa :FzfPreviewBuffers<CR>
 nnoremap <Leader>f :FzfPreviewProjectGrep
@@ -89,7 +60,6 @@ nnoremap <Leader>f :FzfPreviewProjectGrep
 " ########################################################################
 " ######## Coc
 " ########################################################################
-
 function! s:check_back_space() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1]  =~# '\s'
@@ -103,34 +73,20 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 " Use <CR> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-" Find symbol of current document
 nmap <silent> <silent> tt :<C-u>CocList outline<CR>
-
-" Search workspace symbols
 nmap <silent> <Leader>s :<C-u>CocList symbols<CR>
-
-" Go to the definition of the value the cursor is on
 nmap <silent> <Leader>gd <C-w>v<Plug>(coc-definition)
-
-" Go to type definition
 nmap <silent> <Leader>td <Plug>(coc-type-definition)
-
-" Remap for rename current word
 nmap <silent> <Leader>rn <Plug>(coc-rename)
-
-" Show function signature when `K` is pressed
-nmap <silent> K :call <SID>show_documentation()<CR>
-
-" Remap for do codeAction of current line
 nmap <silent> <Leader>ac <Plug>(coc-codeaction)
-
 nmap <silent> <Leader>fr <Plug>(coc-references)
-
 nmap <silent> <Leader>ee <Plug>(coc-refactor)
+nmap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
@@ -158,25 +114,25 @@ nnoremap <Leader>sh :SignifyToggleHighlight<CR>
 
 let g:signify_sign_add = '▐'
 let g:signify_sign_delete = '▐'
-let g:signify_sign_change= '▐'
-" Don't highlight the line by default when the plugin is enabled
+let g:signify_sign_change = '▐'
 let g:signify_line_highlight = 0
-" Disable the plugin by default
 let g:signify_disable_by_default = 1
+
+highlight SignifySignAdd  guifg=#b8ba25 cterm=NONE gui=NONE
+highlight SignifySignDelete guifg=#fa4933 cterm=NONE gui=NONE
+highlight SignifySignChange guifg=#458488 cterm=NONE gui=NONE
 
 " ########################################################################
 " ######## Vim-Quickfix
 " ########################################################################
-let g:qf_mapping_ack_style = 1
-
-" Don't shorten file names in the quickfix or location list
-let g:qf_shorten_path = 0
 nmap cm <Plug>(qf_qf_toggle)
+
+let g:qf_mapping_ack_style = 1
+let g:qf_shorten_path = 0
 
 " ########################################################################
 " ######## Sideways
 " ########################################################################
-
 nnoremap <Leader><Leader>s :SidewaysLeft<CR>
 nnoremap <Leader><Leader>l :SidewaysRight<CR>
 
@@ -201,8 +157,5 @@ if executable("rg")
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-highlight SignifySignAdd  guifg=#b8ba25 cterm=NONE gui=NONE
-highlight SignifySignDelete guifg=#fa4933 cterm=NONE gui=NONE
-highlight SignifySignChange guifg=#458488 cterm=NONE gui=NONE
 highlight Visual guifg=#575757 guibg=#d1d1d1
 highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
