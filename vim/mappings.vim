@@ -54,6 +54,10 @@ nnoremap <C-j> <C-W><C-J>
 nnoremap <C-k> <C-W><C-K>
 nnoremap <C-l> <C-W><C-L>
 nnoremap <C-h> <C-W><C-H>
+nnoremap <LEFT> :2 wincmd <<CR>
+nnoremap <RIGHT> :2 wincmd ><CR>
+nnoremap <UP> :2 wincmd +<CR>
+nnoremap <UP> :2 wincmd +<CR>
 
 " make wrapped lines more intuitive. Pressing j/k moves to the next/previous
 " line even if wrppaed and the 'next' line is still the same line. Same for 0

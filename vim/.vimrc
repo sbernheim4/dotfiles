@@ -51,7 +51,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gabrielelana/vim-markdown'
 
-Plug 'honza/vim-snippets'
+Plug 'yuki-ycino/fzf-preview.vim'
 
 call plug#end()
 
@@ -79,11 +79,12 @@ nnoremap <silent> <Leader>nf :NERDTreeFind <CR>
 let g:NERDTreeWinPos = 'right'
 
 " ########################################################################
-" ######## FZF
+" ######## FZF / FZF Preview
 " ########################################################################
 
-nnoremap ff :Files<CR>
-nnoremap aa :Buffers<CR>
+nnoremap ff :FzfPreviewProjectFiles<CR>
+nnoremap aa :FzfPreviewBuffers<CR>
+nnoremap <Leader>f :FzfPreviewProjectGrep
 
 " ########################################################################
 " ######## Coc
@@ -192,8 +193,8 @@ colorscheme gruvbox
 
 source ~/dotfiles/vim/mappings.vim
 source ~/dotfiles/vim/statusLine.vim
-source ~/dotfiles/vim/tabLine.vim
 source ~/dotfiles/vim/settings.vim
+source ~/dotfiles/vim/tabLine.vim
 
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
