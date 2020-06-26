@@ -51,6 +51,8 @@ set smartcase
 " Search as you type (NOTE: enabled by default in neovim)
 set incsearch
 
+set inccommand=split
+
 " Use rg when calling :grep
 set grepprg=rg\ --vimgrep
 

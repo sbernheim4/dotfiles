@@ -10,7 +10,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'sbernheim4/vim-ripgrep'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
-Plug 'markonm/traces.vim'
+" Plug 'markonm/traces.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ruanyl/vim-gh-line'
 Plug 'mhinz/vim-signify'
