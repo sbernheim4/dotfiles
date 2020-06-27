@@ -68,43 +68,23 @@ noremap <silent> j gj
 " ########################################################################
 " ######## Toggle Commands
 " ########################################################################
-
 nnoremap <Leader>sc :call ToggleSignColumn()<CR>
-
-" Toggle wrap mode
 nnoremap <Leader>wr :set wrap!<CR>
-
-" Toggle highlighting of search results
 nnoremap <Leader>hl :set hlsearch!<CR>
-
+nnoremap <Leader>t :call ToggleIndentType()<CR>
 nnoremap <Leader><Leader>rn :call ToggleRelativeLineNumbers()<CR>
-
-nmap <Leader>t :call ToggleIndentType()<CR>
-
-nnoremap <silent> tw :call ToggleTextWidth()<CR>
-
-" Toggle folds with space key in normal and visual mode
 nnoremap <Space> za
 vnoremap <Space> za
+nnoremap tw :call ToggleTextWidth()<CR>
 
 " ########################################################################
 " ######## Buffer and Window Management
 " ########################################################################
-" Move to the next buffer
 nnoremap <Leader>n :bn<CR>
-
-" Move to the previous buffer
 nnoremap <Leader>p :bp<CR>
-
-" Close the current buffer and move to the previous one
-" This replicates the idea of closing a tab
 nnoremap <Leader>q :bp <BAR> bd #<CR>
-
-" Split the current window vertically or horizontally
 nnoremap <Leader>vp :vsplit<CR>
 nnoremap <Leader>hp :split<CR>
-
-" Vertically and horizontally resize a window
 nnoremap <Leader>vs :vertical resize +
 nnoremap <Leader>hs :resize +
 
@@ -117,8 +97,6 @@ nnoremap <Leader>al <C-W>L
 " ######## Miscellaneous
 " ########################################################################
 nnoremap <Leader>r :source ~/.vimrc<CR>
-
-" Display the path of the current file
 nnoremap <Leader>pwf :echo expand("%p")<CR>
 
 " Delete trailing whitespace on save
@@ -132,9 +110,6 @@ autocmd BufWritePre * %s/\s\+$//e
 " <C-R>" pastes the yanked text into the search bar
 " <CR> is enter to execute the search
 vnoremap // y/\M<C-R>"<CR>
-
-" Don't jump to the next occurrence automatically when searching via *
-nnoremap * *N
 
 " Make delimitMateCR play nicely with pop up menu
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
