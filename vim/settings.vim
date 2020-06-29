@@ -37,7 +37,19 @@ set breakindent
 " When wrapping text, do so appropriately (don't wrap in the middle of the word)
 set linebreak
 
-set breakindentopt=shift:2,sbr
+set breakindentopt=shift:3,sbr
+
+" ########################################################################
+" ######## Tabs and Spaces
+" ########################################################################
+" Set the tab stop to 4
+set tabstop=4
+
+" Helps with auto indenting when using =
+set shiftwidth=4
+
+" Indent with spaces by default - only due to work :(
+set expandtab
 
 " ########################################################################
 " ######## Search Settings
@@ -53,8 +65,10 @@ set incsearch
 
 set inccommand=split
 
-" Use rg when calling :grep
-set grepprg=rg\ --vimgrep
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
 
 " ########################################################################
 " ######## Undo Info
@@ -75,18 +89,6 @@ set listchars=tab:•\ ,eol:¬
 set listchars=tab:•\ ,
 
 set fillchars+=vert:█
-
-" ########################################################################
-" ######## Tabs and Spaces
-" ########################################################################
-" Set the tab stop to 4
-set tabstop=4
-
-" Helps with auto indenting when using =
-set shiftwidth=4
-
-" Indent with spaces by default - only due to work :(
-set expandtab
 
 " ########################################################################
 " ######## Status Line"
@@ -172,7 +174,7 @@ function! ResizeSplits()
         resize 10
         return
     else
-        set winwidth=85
+        set winwidth=100
         wincmd =
     endif
 endfunction

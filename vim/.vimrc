@@ -153,11 +153,6 @@ set background=dark
 colorscheme gruvbox
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if executable("rg")
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
-
 highlight Visual guifg=#575757 guibg=#d1d1d1
 highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
 
