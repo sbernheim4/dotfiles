@@ -6,28 +6,40 @@ let mapleader=","
 " ########################################################################
 call plug#begin('~/.vim/plugged')
 
+" Misc.
 Plug 'gruvbox-community/gruvbox'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'sbernheim4/vim-ripgrep'
 " Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
 Plug 'markonm/traces.vim'
+
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ruanyl/vim-gh-line'
+Plug 'ap/vim-buftabline'
+
+" Feature Enhancers
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'sbernheim4/vim-ripgrep'
 Plug 'mhinz/vim-signify'
 Plug 'romainl/vim-qf'
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
+
+" Text Manipulation
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/sideways.vim'
 
+" FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'yuki-ycino/fzf-preview.vim'
 
-Plug 'leafgarland/typescript-vim'
+" Syntax
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gabrielelana/vim-markdown'
+Plug 'HerringtonDarkholme/yats.vim'
 
 Plug 'neovim/nvim-lsp'
 Plug 'haorenW1025/completion-nvim'
@@ -147,12 +159,14 @@ syntax on
 set termguicolors
 set background=dark
 colorscheme gruvbox
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+highlight Visual guifg=#575757 guibg=#d1d1d1
+highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
+
 source ~/dotfiles/vim/mappings.vim
-source ~/dotfiles/vim/statusLine.vim
 source ~/dotfiles/vim/settings.vim
+source ~/dotfiles/vim/statusLine.vim
 source ~/dotfiles/vim/tabLine.vim
 
 if executable("rg")
