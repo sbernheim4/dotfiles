@@ -30,11 +30,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'yuki-ycino/fzf-preview.vim'
 
 " Syntax
-Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gabrielelana/vim-markdown'
+Plug 'HerringtonDarkholme/yats.vim'
 call plug#end()
 
 let g:javascript_plugin_jsdoc=1
