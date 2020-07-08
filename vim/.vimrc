@@ -23,6 +23,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'AndrewRadev/sideways.vim'
+Plug 'FooSoft/vim-argwrap'
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -133,6 +134,7 @@ highlight SignifySignChange guifg=#458488 cterm=NONE gui=NONE
 " ######## Vim-Quickfix
 " ########################################################################
 nmap cm <Plug>(qf_qf_toggle)
+nmap cl <Plug>(qf_loc_toggle)
 
 let g:qf_mapping_ack_style = 1
 let g:qf_shorten_path = 0
@@ -142,6 +144,12 @@ let g:qf_shorten_path = 0
 " ########################################################################
 nnoremap <Leader><Leader>s :SidewaysLeft<CR>
 nnoremap <Leader><Leader>l :SidewaysRight<CR>
+
+" ########################################################################
+" ######## ArgWrap
+" ########################################################################
+let g:argwrap_padded_braces = '{'
+nmap <silent> <leader>aw <Plug>(ArgWrapToggle)
 
 " ########################################################################
 " ######## Color Scheme Settings
