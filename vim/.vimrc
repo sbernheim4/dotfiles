@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'gruvbox-community/gruvbox'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'sbernheim4/vim-ripgrep'
-" Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
 Plug 'markonm/traces.vim'
 
 Plug 'christoomey/vim-tmux-navigator'
@@ -49,12 +48,6 @@ call plug#end()
 
 let g:javascript_plugin_jsdoc=1
 
-" https://github.com/junegunn/vim-plug/wiki/tips#loading-plugins-manually
-" augroup LazyLoadCoc
-"   autocmd!
-"   autocmd InsertEnter * call plug#load('coc.nvim')
-" augroup END
-
 autocmd FileType help wincmd L
 autocmd FileType gitcommit setlocal spell
 
@@ -73,44 +66,6 @@ let g:NERDTreeWinPos = 'right'
 nnoremap ff :FzfPreviewProjectFiles<CR>
 nnoremap aa :FzfPreviewBuffers<CR>
 nnoremap <Leader>f :FzfPreviewProjectGrep
-
-" ########################################################################
-" ######## Coc
-" ########################################################################
-" function! s:check_back_space() abort
-" 	let col = col('.') - 1
-" 	return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-"
-" " Use tab for trigger completion with characters ahead and navigate.
-" " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-" " inoremap <silent><expr> <TAB>
-" "       \ pumvisible() ? "\<C-n>" :
-" "       \ <SID>check_back_space() ? "\<TAB>" :
-" "       \ coc#refresh()
-"
-" " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"
-" " Use <CR> to confirm completion, `<C-g>u` means break undo chain at current position.
-" " Coc only does snippet and additional edit on confirm.
-" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" function! s:show_documentation()
-"     if (index(['vim','help'], &filetype) >= 0)
-"         execute 'h '.expand('<cword>')
-"     else
-"         call CocAction('doHover')
-"     endif
-" endfunction
-"
-" let g:coc_global_extensions = [
-"     \ 'coc-snippets',
-"     \ 'coc-eslint',
-"     \ 'coc-prettier',
-"     \ 'coc-css',
-"     \ 'coc-html',
-"     \ 'coc-json',
-"     \ 'coc-tsserver'
-" \ ]
 
 " ########################################################################
 " ######## Vim-Signify
