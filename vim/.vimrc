@@ -8,8 +8,6 @@ call plug#begin('~/.vim/plugged')
 
 " Misc.
 Plug 'gruvbox-community/gruvbox'
-Plug 'markonm/traces.vim'
-
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ruanyl/vim-gh-line'
 Plug 'ap/vim-buftabline'
