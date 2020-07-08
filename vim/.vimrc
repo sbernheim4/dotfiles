@@ -43,6 +43,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 
 Plug 'neovim/nvim-lsp'
 Plug 'haorenW1025/completion-nvim'
+Plug 'nvim-lua/diagnostic-nvim'
 
 call plug#end()
 
@@ -197,6 +198,9 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
+
+let g:diagnostic_enable_virtual_text = 0
+lua vim.lsp.util.show_line_diagnostics()
 
 nnoremap <silent> <Leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
