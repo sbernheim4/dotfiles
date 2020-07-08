@@ -37,6 +37,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gabrielelana/vim-markdown'
 Plug 'HerringtonDarkholme/yats.vim'
 
+" Native LSP
 Plug 'neovim/nvim-lsp'
 Plug 'haorenW1025/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
