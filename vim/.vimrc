@@ -8,8 +8,6 @@ call plug#begin('~/.vim/plugged')
 
 " Misc.
 Plug 'gruvbox-community/gruvbox'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-Plug 'sbernheim4/vim-ripgrep'
 Plug 'markonm/traces.vim'
 
 Plug 'christoomey/vim-tmux-navigator'
