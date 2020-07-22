@@ -28,7 +28,6 @@ Plug 'FooSoft/vim-argwrap'
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'yuki-ycino/fzf-preview.vim'
 
 " Syntax
 Plug 'peitalin/vim-jsx-typescript'
@@ -61,9 +60,9 @@ let g:NERDTreeWinPos = 'right'
 " ########################################################################
 " ######## FZF / FZF Preview
 " ########################################################################
-nnoremap ff :CocCommand fzf-preview.ProjectFiles<CR>
-nnoremap aa :CocCommand fzf-preview.Buffers<CR>
-nnoremap <Leader>f :CocCommand fzf-preview.ProjectGrep
+nnoremap ff :Files<CR>
+nnoremap aa :Buffers<CR>
+nnoremap <Leader>f :Rg
 
 " ########################################################################
 " ######## Vim-Signify
