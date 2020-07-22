@@ -61,9 +61,9 @@ let g:NERDTreeWinPos = 'right'
 " ########################################################################
 " ######## FZF / FZF Preview
 " ########################################################################
-nnoremap ff :FzfPreviewProjectFiles<CR>
-nnoremap aa :FzfPreviewBuffers<CR>
-nnoremap <Leader>f :FzfPreviewProjectGrep
+nnoremap ff :CocCommand fzf-preview.ProjectFiles<CR>
+nnoremap aa :CocCommand fzf-preview.Buffers<CR>
+nnoremap <Leader>f :CocCommand fzf-preview.ProjectGrep
 
 " ########################################################################
 " ######## Vim-Signify
