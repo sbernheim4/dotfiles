@@ -36,6 +36,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gabrielelana/vim-markdown'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'hardcoreplayers/dashboard-nvim'
 call plug#end()
 
 let g:javascript_plugin_jsdoc=1
@@ -151,6 +152,12 @@ nnoremap <Leader><Leader>l :SidewaysRight<CR>
 " ########################################################################
 let g:argwrap_padded_braces = '{'
 nmap <silent> <leader>aw <Plug>(ArgWrapToggle)
+
+" ########################################################################
+" ######## Dashboard Nvim
+" ########################################################################
+let g:dashboard_default_executive ='fzf'
+let g:dashboard_default_header='lambada'
 
 " ########################################################################
 " ######## Color Scheme Settings
