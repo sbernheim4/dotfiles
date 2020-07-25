@@ -28,7 +28,6 @@ Plug 'FooSoft/vim-argwrap'
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'yuki-ycino/fzf-preview.vim'
 
 " Syntax
 Plug 'peitalin/vim-jsx-typescript'
@@ -60,11 +59,17 @@ nnoremap <silent> <Leader>nf :NERDTreeFind <CR>
 let g:NERDTreeWinPos = 'right'
 
 " ########################################################################
-" ######## FZF / FZF Preview
+" ######## FZF
 " ########################################################################
-nnoremap ff :CocCommand fzf-preview.ProjectFiles<CR>
-nnoremap aa :CocCommand fzf-preview.Buffers<CR>
-nnoremap <Leader>f :CocCommand fzf-preview.ProjectGrep
+noremap ff :Files<CR>
+nnoremap aa :Buffers<CR>
+nnoremap <Leader>f :Rg
+
+
+" Open vim in pop up window instead of using fzf preview
+let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.6} }
+let $FZF_DEFAULT_OPTS='--layout=reverse --preview-window=:noborder --color=gutter:-1'
+let g:fzf_preview_window = 'right:60%'
 
 " ########################################################################
 " ######## Coc
