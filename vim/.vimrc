@@ -41,6 +41,8 @@ Plug 'neovim/nvim-lsp'
 Plug 'haorenW1025/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
 
+Plug 'hardcoreplayers/dashboard-nvim'
+
 call plug#end()
 
 let g:javascript_plugin_jsdoc=1
@@ -58,7 +60,7 @@ nnoremap <silent> <Leader>nf :NERDTreeFind <CR>
 let g:NERDTreeWinPos = 'right'
 
 " ########################################################################
-" ######## FZF / FZF Preview
+" ######## FZF
 " ########################################################################
 nnoremap ff :Files<CR>
 nnoremap aa :Buffers<CR>
@@ -100,6 +102,21 @@ nnoremap <Leader><Leader>l :SidewaysRight<CR>
 " ########################################################################
 let g:argwrap_padded_braces = '{'
 nmap <silent> <leader>aw <Plug>(ArgWrapToggle)
+
+" ########################################################################
+" ######## Dashboard Nvim
+" ########################################################################
+let g:dashboard_default_executive ='fzf'
+let g:dashboard_default_header='lambada'
+
+let g:dashboard_custom_shortcut={
+            \ 'find_file'          : '       f f',
+            \ 'last_session'       : '   SPC s l',
+            \ 'find_history'       : '  :History',
+            \ 'change_colorscheme' : '   :Colors',
+            \ 'find_word'          : '       :Rg',
+            \ 'book_marks'         : ':Bookmarks',
+            \ }
 
 " ########################################################################
 " ######## Color Scheme Settings
