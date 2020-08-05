@@ -36,6 +36,10 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gabrielelana/vim-markdown'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'hardcoreplayers/dashboard-nvim'
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
 call plug#end()
 
 let g:javascript_plugin_jsdoc=1
