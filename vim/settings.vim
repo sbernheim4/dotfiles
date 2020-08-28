@@ -126,11 +126,12 @@ function! GetSpaces(foldLevel)
 endfunction
 
 function! MyFoldText()
-    let startLine = getline(v:foldstart)
-    let endLine = trim(getline(v:foldend))
-    let spaces = GetSpaces(foldlevel("."))
+    let startLineText = getline(v:foldstart)
+    let endLineText = trim(getline(v:foldend))
+    let indentation = GetSpaces(foldlevel("."))
+    let spaces = repeat(" ", 200)
 
-    let str = spaces . startLine . "..." . endLine . repeat(" ", 200)
+    let str = indentation . startLineText . "..." . endLineText . spaces
 
     return str
 endfunction
