@@ -11,6 +11,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ruanyl/vim-gh-line'
 Plug 'ap/vim-buftabline'
+Plug 'hardcoreplayers/dashboard-nvim'
 
 " Feature Enhancers
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
@@ -35,12 +36,12 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'gabrielelana/vim-markdown'
 Plug 'HerringtonDarkholme/yats.vim'
 
-" Native LSP
+" LSP & Linting
 Plug 'neovim/nvim-lsp'
 Plug 'haorenW1025/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
-
 Plug 'dense-analysis/ale'
+
 call plug#end()
 
 let b:ale_fixers = ['prettier', 'eslint']
@@ -67,7 +68,7 @@ nnoremap <silent> <Leader>nf :NERDTreeFind <CR>
 let g:NERDTreeWinPos = 'right'
 
 " ########################################################################
-" ######## FZF / FZF Preview
+" ######## FZF
 " ########################################################################
 nnoremap ff :Files<CR>
 nnoremap aa :Buffers<CR>
@@ -109,6 +110,21 @@ nnoremap <Leader><Leader>l :SidewaysRight<CR>
 " ########################################################################
 let g:argwrap_padded_braces = '{'
 nmap <silent> <leader>aw <Plug>(ArgWrapToggle)
+
+" ########################################################################
+" ######## Dashboard Nvim
+" ########################################################################
+let g:dashboard_default_executive ='fzf'
+let g:dashboard_default_header='lambada'
+
+let g:dashboard_custom_shortcut={
+            \ 'find_file'          : '       f f',
+            \ 'last_session'       : '   SPC s l',
+            \ 'find_history'       : '  :History',
+            \ 'change_colorscheme' : '   :Colors',
+            \ 'find_word'          : '       :Rg',
+            \ 'book_marks'         : ':Bookmarks',
+            \ }
 
 " ########################################################################
 " ######## Color Scheme Settings
