@@ -19,6 +19,11 @@ Plug 'mhinz/vim-signify'
 Plug 'romainl/vim-qf'
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'on': [] }
 
+" Telescope.vim --> https://github.com/nvim-lua/telescope.nvim
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/telescope.nvim'
+
 " Text Manipulation
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
@@ -63,17 +68,16 @@ nnoremap <silent> <Leader>nf :NERDTreeFind <CR>
 let g:NERDTreeWinPos = 'right'
 
 " ########################################################################
-" ######## FZF
+" ######## Telescope
 " ########################################################################
-noremap ff :Files<CR>
-nnoremap aa :Buffers<CR>
+nnoremap ff :lua require'telescope.builtin'.git_files{}<CR>
+nnoremap aa :lua require'telescope.builtin'.buffers{}<CR>
 nnoremap <Leader>f :Rg
-
 
 " Open vim in pop up window instead of using fzf preview
 let g:fzf_layout = { 'window': {'width': 0.8, 'height': 0.6} }
 let $FZF_DEFAULT_OPTS='--layout=reverse --preview-window=:noborder --color=gutter:-1'
-let g:fzf_preview_window = 'right:60%'
+let g:fzf_preview_window = 'right:40%'
 
 " ########################################################################
 " ######## Coc
@@ -122,7 +126,6 @@ let g:coc_global_extensions = [
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-tsserver',
-    \ 'coc-fzf-preview'
     \ ]
 
 " ########################################################################
