@@ -40,20 +40,21 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'neovim/nvim-lsp'
 Plug 'haorenW1025/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
+
 Plug 'dense-analysis/ale'
 
 call plug#end()
 
-let b:ale_fixers = ['prettier', 'eslint']
-let g:ale_linters = {'javascript': ['eslint', 'prettier']}
-let g:ale_lint_on_text_changed=0
-let g:ale_fix_on_save=1
+let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_trimmed_virtual_text = '20'
 
+let b:ale_fixers = { 'javascript': [ 'prettier', 'eslint' ] }
+let g:ale_linters = {'javascript': ['eslint', 'prettier']}
+let g:ale_lint_on_text_changed = 0
+let g:ale_fix_on_save=1
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
 let g:ale_disable_lsp = 1
-
-let g:javascript_plugin_jsdoc=1
 
 autocmd FileType help wincmd L
 autocmd FileType gitcommit setlocal spell
