@@ -30,6 +30,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Syntax
+Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -46,15 +47,24 @@ Plug 'dense-analysis/ale'
 call plug#end()
 
 let g:diagnostic_enable_virtual_text = 1
-let g:diagnostic_trimmed_virtual_text = '20'
+let g:diagnostic_trimmed_virtual_text = '40'
+let g:diagnostic_enable_underline = 0
 
-let b:ale_fixers = { 'javascript': [ 'prettier', 'eslint' ] }
-let g:ale_linters = {'javascript': ['eslint', 'prettier']}
-let g:ale_lint_on_text_changed = 0
-let g:ale_fix_on_save=1
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-let g:ale_disable_lsp = 1
+let g:ale_linters = { 'javascript': ['eslint'], 'typescript': ['eslint'] }
+let g:ale_fixers = {
+            \   'javascript': [
+            \       'eslint'
+            \   ],
+            \  'typescript': [
+            \      'eslint'
+            \  ]
+            \ }
+
+let g:ale_lint_on_text_changed = 1
+let g:ale_fix_on_save = 1
+" let g:ale_set_loclist = 1
+" let g:ale_set_quickfix = 0
+" let g:ale_disable_lsp = 1
 
 autocmd FileType help wincmd L
 autocmd FileType gitcommit setlocal spell
@@ -92,7 +102,7 @@ highlight SignifySignDelete guifg=#fa4933 cterm=NONE gui=NONE
 highlight SignifySignChange guifg=#458488 cterm=NONE gui=NONE
 
 " ########################################################################
-" ######## Vim-Quickfix
+" ######## vim-qf | Vim Quickfix
 " ########################################################################
 nmap cm <Plug>(qf_qf_toggle)
 nmap cl <Plug>(qf_loc_toggle)
@@ -127,6 +137,22 @@ let g:dashboard_custom_shortcut={
             \ 'find_word'          : '       :Rg',
             \ 'book_marks'         : ':Bookmarks',
             \ }
+
+" ########################################################################
+" ######## Tresitter
+" ########################################################################
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = { enable = true },
+  ensure_installed = {"javascript", "typescript"},
+  incremental_selection = { enable = true, },
+  refactor = {
+    highlight_definitions = { enable = true },
+    highlight_current_scope = { enable = false },
+    navigation = { enable = false, }
+  }
+}
+EOF
 
 " ########################################################################
 " ######## Color Scheme Settings
@@ -174,17 +200,14 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 nnoremap <silent> <Leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD            <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <Leader>td    <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> <Leader>fr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <Leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <Leader>ac    <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <leader>gg    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
 
 lua require'nvim_lsp'.tsserver.setup{on_attach=require'completion'.on_attach}
 lua require'nvim_lsp'.tsserver.setup{on_attach=require'diagnostic'.on_attach}
 
 autocmd BufEnter * lua require'completion'.on_attach()
-
-let g:diagnostic_enable_virtual_text = 0
-lua vim.lsp.util.show_line_diagnostics()

@@ -1,5 +1,5 @@
 " Highlight the current cursor line
-set cursorline
+" set cursorline
 
 " Display line numbers by default
 set number
@@ -139,6 +139,10 @@ endfunction
 " Custom display for text when folding
 set foldtext=MyFoldText()
 
+" https://github.com/nvim-treesitter/nvim-treesitter#syntax-based-code-folding
+" set foldmethod=expr
+ "set foldexpr=nvim_treesitter#foldexpr()
+
 " ########################################################################
 " ######## Custom Highlight Groups
 " ########################################################################
@@ -159,11 +163,11 @@ augroup ReduceNoise
     " Automatically resize active split to 85 width
     autocmd WinEnter * :call ResizeSplits()
 
-    autocmd WinEnter * setlocal cursorline
     autocmd WinEnter * setlocal signcolumn=auto
-
-    autocmd WinLeave * setlocal nocursorline
     autocmd WinLeave * setlocal signcolumn=no
+
+    " autocmd WinEnter * setlocal cursorline
+    " autocmd WinLeave * setlocal nocursorline
 
 augroup END
 
