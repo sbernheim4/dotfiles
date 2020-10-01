@@ -34,14 +34,16 @@ Plug 'nvim-treesitter/nvim-treesitter'
 
 " LSP & Linting
 Plug 'neovim/nvim-lsp'
-Plug 'haorenW1025/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
+Plug 'nvim-lua/completion-nvim'
 Plug 'dense-analysis/ale'
 
 call plug#end()
 
 autocmd FileType help wincmd L
 autocmd FileType gitcommit setlocal spell
+
+let g:javascript_plugin_jsdoc = 1
 
 " ########################################################################
 " ######## NERDTree
@@ -174,7 +176,6 @@ endif
 highlight Visual guifg=#575757 guibg=#d1d1d1
 highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
 
-
 " ########################################################################
 " ######## Native LSP and associated Plugins and Settings
 " ########################################################################
@@ -201,10 +202,13 @@ nnoremap <silent> <Leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <Leader>ac    <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <leader>gg    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
 
+" set completeopt=menuone,noinsert,noselect
+let g:completion_matching_strattegy_list = ['exact', 'substring', 'fuzzy']
 lua require'nvim_lsp'.tsserver.setup{on_attach=require'completion'.on_attach}
 lua require'nvim_lsp'.tsserver.setup{on_attach=require'diagnostic'.on_attach}
 
 autocmd BufEnter * lua require'completion'.on_attach()
+
 
 let g:diagnostic_enable_virtual_text = 1
 let g:diagnostic_trimmed_virtual_text = '40'
