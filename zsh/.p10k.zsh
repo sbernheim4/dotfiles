@@ -335,7 +335,7 @@
   # Change the value of this parameter to show a different icon.
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
 
-  typeset -g VCS_UNSTAGED_ICON=''
+  typeset -g VCS_UNSTAGED_ICON=' '
   typeset -g VCS_STASH_ICON=' '
 
 
