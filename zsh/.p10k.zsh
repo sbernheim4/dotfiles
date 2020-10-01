@@ -34,6 +34,7 @@
     # =========================[ Line #1 ]=========================
     # os_icon               # os identifier
     dir                     # current directory
+    battery                 # internal battery
     vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
@@ -97,7 +98,7 @@
     # todo                  # todo items (https://github.com/todotxt/todo.txt-cli)
     # timewarrior           # timewarrior tracking status (https://timewarrior.net/)
     # taskwarrior           # taskwarrior task count (https://taskwarrior.org/)
-    battery                 # internal battery
+    # battery               # internal battery
     # wifi                  # wifi speed
     # time                  # current time
     # =========================[ Line #2 ]=========================
@@ -334,8 +335,8 @@
   # Change the value of this parameter to show a different icon.
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
 
-  typeset -g VCS_UNSTAGED_ICON='±'
-  typeset -g VCS_STASH_ICON='⧮ '
+  typeset -g VCS_UNSTAGED_ICON=''
+  typeset -g VCS_STASH_ICON=' '
 
 
   # Formatter for Git status.
