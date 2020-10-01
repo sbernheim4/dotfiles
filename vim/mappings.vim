@@ -111,6 +111,8 @@ autocmd BufWritePre * %s/\s\+$//e
 " <CR> is enter to execute the search
 vnoremap // y/\M<C-R>"<CR>
 
+nnoremap * *N
+
 " Make delimitMateCR play nicely with pop up menu
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
