@@ -12,7 +12,7 @@ function installHomebrew() {
     if [[ $? -eq 1 ]]; then
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     else
-        brew upgrade
+        brew update
     fi
 }
 
@@ -59,7 +59,7 @@ function installNodeJS() {
     cd ~/
 
     curl -L https://git.io/n-install | bash
-    n lts
+    N_PREFIX=/usr/local && n lts
 }
 
 function installNpmPackages() {
