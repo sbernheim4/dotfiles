@@ -149,7 +149,6 @@ let g:ale_fix_on_save = 1
 " let g:ale_set_quickfix = 0
 " let g:ale_disable_lsp = 1
 
-
 " ########################################################################
 " ######## Color Scheme Settings
 " ########################################################################
@@ -203,12 +202,12 @@ nnoremap <silent> <Leader>ac    <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <leader>gg    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
 
 " set completeopt=menuone,noinsert,noselect
-let g:completion_matching_strattegy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_matching_strategy_list = ['exact', 'fuzzy', 'substring', 'all']
+
 lua require'nvim_lsp'.tsserver.setup{on_attach=require'completion'.on_attach}
 lua require'nvim_lsp'.tsserver.setup{on_attach=require'diagnostic'.on_attach}
 
 autocmd BufEnter * lua require'completion'.on_attach()
-
 
 let g:diagnostic_enable_virtual_text = 1
 let g:diagnostic_trimmed_virtual_text = '40'
