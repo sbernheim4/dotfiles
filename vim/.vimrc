@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'gruvbox-community/gruvbox'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ruanyl/vim-gh-line'
+Plug 'rhysd/git-messenger.vim'
 Plug 'ap/vim-buftabline'
 Plug 'hardcoreplayers/dashboard-nvim'
 
