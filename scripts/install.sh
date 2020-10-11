@@ -46,6 +46,8 @@ function installHomebrewPackages() {
     brew install ripgrep
     brew install octavore/tools/delta
 
+    brew update
+
     # Sneak on colorls here --> https://github.com/athityakumar/colorls
     gem install colorls
 }
