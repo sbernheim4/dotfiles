@@ -38,6 +38,7 @@ Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'dense-analysis/ale'
+Plug 'aca/completion-tabnine', { 'do': './install.sh' }
 
 call plug#end()
 
@@ -204,6 +205,14 @@ nnoremap <silent> <leader>gg    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR
 
 " set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy_list = ['exact', 'fuzzy', 'substring', 'all']
+
+let g:completion_chain_complete_list = {
+    \ 'default': [
+    \    {'complete_items': ['tabnine', 'lsp', 'snippet' ]},
+    \    {'mode': '<c-p>'},
+    \    {'mode': '<c-n>'}
+    \]
+\}
 
 lua require'nvim_lsp'.tsserver.setup{on_attach=require'completion'.on_attach}
 lua require'nvim_lsp'.tsserver.setup{on_attach=require'diagnostic'.on_attach}
