@@ -102,8 +102,10 @@ set noshowmode
 " #######################################################################
 " ######## Folding
 " ########################################################################
-" Fold based off of indent
-set foldmethod=syntax
+" https://github.com/nvim-treesitter/nvim-treesitter#syntax-based-code-folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 
 " Don't set the fold column
 set foldcolumn=0
@@ -112,7 +114,7 @@ set foldcolumn=0
 set foldlevelstart=99
 
 " Enable folding for JS syntax
-let javaScript_fold=1
+" let javaScript_fold=1
 
 function! GetSpaces(foldLevel)
     if &expandtab == 1
@@ -138,10 +140,6 @@ endfunction
 
 " Custom display for text when folding
 set foldtext=MyFoldText()
-
-" https://github.com/nvim-treesitter/nvim-treesitter#syntax-based-code-folding
-" set foldmethod=expr
- "set foldexpr=nvim_treesitter#foldexpr()
 
 " ########################################################################
 " ######## Custom Highlight Groups

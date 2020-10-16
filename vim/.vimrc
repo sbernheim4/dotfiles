@@ -32,13 +32,13 @@ Plug 'junegunn/fzf.vim'
 
 " Syntax
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/playground'
 
 " LSP & Linting
 Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'dense-analysis/ale'
-Plug 'aca/completion-tabnine', { 'do': './install.sh' }
 
 call plug#end()
 
@@ -123,11 +123,25 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
   ensure_installed = {"javascript", "typescript"},
-  incremental_selection = { enable = true, },
+  incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "gnn",
+        node_incremental = "grn",
+        scope_incremental = "grc",
+        node_decremental = "grm",
+      }
+  },
   refactor = {
     highlight_definitions = { enable = true },
     highlight_current_scope = { enable = false },
     navigation = { enable = false, }
+  },
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false -- Whether the query persists across vim sessions
   }
 }
 EOF
