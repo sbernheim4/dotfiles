@@ -35,9 +35,11 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 
 " LSP & Linting
-Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'vim-scripts/AutoComplPop'
 Plug 'dense-analysis/ale'
 
 call plug#end()
@@ -194,19 +196,30 @@ highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
 " ########################################################################
 " ######## Native LSP and associated Plugins and Settings
 " ########################################################################
-lua require'nvim_lsp'.tsserver.setup{}
+let g:completion_enable_auto_popup=1
+
+lua <<EOF
+require'nvim_lsp'.tsserver.setup {
+    on_attach=require'completion'.on_attach,
+    on_attach=require'diagnostic'.on_attach,
+    cmd = { "typescript-language-server", "--stdio" },
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
+}
+EOF
+
 lua vim.lsp.set_log_level(4)
 
-" nmap <silent> <silent> tt :<C-u>CocList outline<CR>
 " nmap <silent> <Leader>ee <Plug>(coc-refactor)
-" nmap <silent> <Leader>s :<C-u>CocList symbols<CR>
 
-set completeopt=menuone,noinsert,noselect
+set completeopt=longest,menuone,noinsert,noselect,noinsert
 set shortmess+=c
 
 inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
+
 
 nnoremap <silent> <Leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
@@ -215,23 +228,12 @@ nnoremap <silent> <Leader>fr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <Leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <Leader>ac    <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <leader>gg    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <silent> <Leader>gg    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> tt            <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
-" set completeopt=menuone,noinsert,noselect
-let g:completion_matching_strategy_list = ['exact', 'fuzzy', 'substring', 'all']
 
-let g:completion_chain_complete_list = {
-    \ 'default': [
-    \    {'complete_items': ['tabnine', 'lsp', 'snippet' ]},
-    \    {'mode': '<c-p>'},
-    \    {'mode': '<c-n>'}
-    \]
-\}
-
-lua require'nvim_lsp'.tsserver.setup{on_attach=require'completion'.on_attach}
-lua require'nvim_lsp'.tsserver.setup{on_attach=require'diagnostic'.on_attach}
-
-autocmd BufEnter * lua require'completion'.on_attach()
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 let g:diagnostic_enable_virtual_text = 1
 let g:diagnostic_trimmed_virtual_text = '40'
