@@ -1,3 +1,5 @@
+let g:displayTextWidthBarrier=0
+
 " ########################################################################
 " Custom Functions
 " ########################################################################
@@ -13,12 +15,12 @@ endfunction
 
 " Function to toggle textwidth bar
 function! ToggleTextWidth()
-    " if the textwidth is not set and the width is greater than 120 chars
-    if (&textwidth == 0)
-        set textwidth=120
-        set colorcolumn=+1
-    else
-        set textwidth=0
+    if g:displayTextWidthBarrier == 0
+        let g:displayTextWidthBarrier=1
+        hi ColorColumn guibg=#3a3a3a
+	else
+        let g:displayTextWidthBarrier=0
+        hi ColorColumn guibg=#282828;
     endif
 endfunction
 

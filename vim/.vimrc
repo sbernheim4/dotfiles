@@ -7,18 +7,20 @@ let mapleader=","
 call plug#begin('~/.vim/plugged')
 
 " Misc.
-Plug 'gruvbox-community/gruvbox'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ruanyl/vim-gh-line'
-Plug 'rhysd/git-messenger.vim'
-Plug 'ap/vim-buftabline'
 Plug 'hardcoreplayers/dashboard-nvim'
+Plug 'ap/vim-buftabline'
 
 " Feature Enhancers
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'sbernheim4/vim-ripgrep'
 Plug 'mhinz/vim-signify'
 Plug 'romainl/vim-qf'
+Plug 'ruanyl/vim-gh-line'
+Plug 'rhysd/git-messenger.vim'
+Plug 'vim-scripts/AutoComplPop'
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+
 
 " Text Manipulation
 Plug 'Raimondi/delimitMate'
@@ -30,16 +32,16 @@ Plug 'FooSoft/vim-argwrap'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Syntax
+" Syntax and highlighting
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
+Plug 'gruvbox-community/gruvbox'
 
 " LSP & Linting
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
-Plug 'vim-scripts/AutoComplPop'
 Plug 'dense-analysis/ale'
 
 call plug#end()
@@ -48,6 +50,7 @@ autocmd FileType help wincmd L
 autocmd FileType gitcommit setlocal spell
 
 let g:javascript_plugin_jsdoc = 1
+let g:doge_mapping='<Leader>dc'
 
 " ########################################################################
 " ######## NERDTree
