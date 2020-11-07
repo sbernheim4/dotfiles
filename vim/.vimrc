@@ -15,12 +15,8 @@ Plug 'ap/vim-buftabline'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'sbernheim4/vim-ripgrep'
 Plug 'mhinz/vim-signify'
-Plug 'romainl/vim-qf'
 Plug 'ruanyl/vim-gh-line'
 Plug 'rhysd/git-messenger.vim'
-Plug 'vim-scripts/AutoComplPop'
-Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
-
 
 " Text Manipulation
 Plug 'Raimondi/delimitMate'
@@ -48,9 +44,6 @@ call plug#end()
 
 autocmd FileType help wincmd L
 autocmd FileType gitcommit setlocal spell
-
-let g:javascript_plugin_jsdoc = 1
-let g:doge_mapping='<Leader>dc'
 
 " ########################################################################
 " ######## NERDTree
@@ -152,6 +145,26 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 " ########################################################################
+" ######## Native LSP and associated Plugins and Settings
+" ########################################################################
+lua <<EOF
+local nvim_lsp = require'nvim_lsp'
+local diagnostic = require'diagnostic'
+local completion = require'completion'
+
+local custom_on_attach = function(client, bufnr)
+    diagnostic.on_attach();
+    completion.on_attach();
+end
+
+nvim_lsp.tsserver.setup{ on_attach = custom_on_attach }
+nvim_lsp.cssls.setup{}
+nvim_lsp.html.setup{}
+EOF
+
+lua vim.lsp.set_log_level(4)
+
+" ########################################################################
 " ######## Ale
 " ########################################################################
 let g:ale_linters = { 'javascript': ['eslint'], 'typescript': ['eslint'] }
@@ -196,22 +209,6 @@ endif
 highlight Visual guifg=#575757 guibg=#d1d1d1
 highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
 
-" ########################################################################
-" ######## Native LSP and associated Plugins and Settings
-" ########################################################################
-let g:completion_enable_auto_popup=1
-
-lua <<EOF
-require'nvim_lsp'.tsserver.setup {
-    on_attach=require'completion'.on_attach,
-    on_attach=require'diagnostic'.on_attach,
-    cmd = { "typescript-language-server", "--stdio" },
-    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
-}
-EOF
-
-lua vim.lsp.set_log_level(4)
-
 " nmap <silent> <Leader>ee <Plug>(coc-refactor)
 
 set completeopt=longest,menuone,noinsert,noselect,noinsert
@@ -220,8 +217,8 @@ set shortmess+=c
 inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
+imap <TAB> <Plug>(completion_smart_tab)
+imap <S-TAB> <Plug>(completion_smart_s_tab)
 
 
 nnoremap <silent> <Leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
