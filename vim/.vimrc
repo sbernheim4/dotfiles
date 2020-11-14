@@ -35,7 +35,6 @@ Plug 'gruvbox-community/gruvbox'
 
 " LSP & Linting
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/diagnostic-nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'dense-analysis/ale'
@@ -118,51 +117,52 @@ let g:dashboard_custom_shortcut={
 " ######## Tresitter
 " ########################################################################
 lua <<EOF
-require'nvim-treesitter.configs'.setup {
+
+-- import packages
+
+local nvim_lsp = require 'nvim_lsp'
+local completion = require 'completion'
+local nvim_treesitter_configs = require 'nvim-treesitter.configs'
+
+nvim_treesitter_configs.setup{
   highlight = { enable = true },
   ensure_installed = {"javascript", "typescript"},
-  incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "gnn",
-        node_incremental = "grn",
-        scope_incremental = "grc",
-        node_decremental = "grm",
-      }
-  },
+  incremental_selection = { enable = true },
   refactor = {
     highlight_definitions = { enable = true },
     highlight_current_scope = { enable = false },
     navigation = { enable = false, }
   },
   playground = {
-    enable = true,
+    enable = false,
     disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false -- Whether the query persists across vim sessions
+    updatetime = 25,
+    persist_queries = false
   }
 }
-EOF
 
-" ########################################################################
-" ######## Native LSP and associated Plugins and Settings
-" ########################################################################
-lua <<EOF
-local nvim_lsp = require'nvim_lsp'
-local diagnostic = require'diagnostic'
-local completion = require'completion'
-
-local custom_on_attach = function(client, bufnr)
-    diagnostic.on_attach();
-    completion.on_attach();
-end
-
-nvim_lsp.tsserver.setup{ on_attach = custom_on_attach }
+-- " ########################################################################
+-- " ######## Native LSP and associated Plugins and Settings
+-- " ########################################################################
+nvim_lsp.tsserver.setup{ on_attach=require'completion'.on_attach }
 nvim_lsp.cssls.setup{}
 nvim_lsp.html.setup{}
-EOF
 
-lua vim.lsp.set_log_level(4)
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = {
+        spacing = 1,
+        prefix = '>>= =<<'
+    },
+    signs = true,
+    update_in_insert = true,
+  }
+)
+
+vim.lsp.set_log_level(4)
+
+EOF
 
 " ########################################################################
 " ######## Ale
@@ -228,7 +228,9 @@ nnoremap <silent> <Leader>fr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <Leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <Leader>ac    <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <Leader>gg    <cmd>lua vim.lsp.util.show_line_diagnostics()<CR>
+nnoremap <silent> <Leader>gg    <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <silent> <leader>gn    <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent> <leader>gp    <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> tt            <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
