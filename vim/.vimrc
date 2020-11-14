@@ -236,6 +236,35 @@ nnoremap <silent> tt            <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
-let g:diagnostic_enable_virtual_text = 1
-let g:diagnostic_trimmed_virtual_text = '40'
-let g:diagnostic_enable_underline = 0
+function! GetBufferList()
+    redir => buflist
+    silent! ls!
+    redir END
+    return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+    let buflist = GetBufferList()
+
+    for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+        if bufwinnr(bufnum) != -1
+            exec(a:pfx.'close')
+            return
+        endif
+    endfor
+
+    let winnr = winnr()
+
+    exec(a:pfx.'open')
+
+    if winnr() != winnr
+        wincmd p
+    endif
+
+endfunction
+
+nmap <silent> cm :call ToggleList("Quickfix List", 'c')<CR>
+
+highlight LspDiagnosticsDefaultError guifg=#e5898b
+highlight LspDiagnosticsDefaultWarning guifg=#edbb7b
+highlight LspDiagnosticsDefaultHint guifg=#b1bbbf
