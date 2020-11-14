@@ -18,6 +18,11 @@ Plug 'mhinz/vim-signify'
 Plug 'ruanyl/vim-gh-line'
 Plug 'rhysd/git-messenger.vim'
 
+" Telescope.vim --> https://github.com/nvim-lua/telescope.nvim
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/telescope.nvim'
+
 " Text Manipulation
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
@@ -54,7 +59,7 @@ nnoremap <silent> <Leader>nf :NERDTreeFind <CR>
 let g:NERDTreeWinPos = 'right'
 
 " ########################################################################
-" ######## FZF
+" ######## Telescope
 " ########################################################################
 nnoremap ff :Files<CR>
 nnoremap aa :Buffers<CR>
