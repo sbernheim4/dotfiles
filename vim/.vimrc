@@ -234,7 +234,6 @@ nnoremap <silent> <leader>gp    <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> tt            <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
-
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 let g:diagnostic_enable_virtual_text = 1
