@@ -211,7 +211,7 @@ highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
 
 " nmap <silent> <Leader>ee <Plug>(coc-refactor)
 
-set completeopt=longest,menuone,noinsert,noselect,noinsert
+set completeopt=menuone,noinsert,noselect,noinsert
 set shortmess+=c
 
 inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
