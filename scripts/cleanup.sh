@@ -7,7 +7,6 @@ rm -rf ~/.zshrc
 # Remove folders
 rm -rf ~/personal/gruvbox-community
 rm -rf ~/.vim
-rm -rf ~/.config/coc
 rm -rf ~/.config/nvim/
 rm -rf ~/dotfiles
 

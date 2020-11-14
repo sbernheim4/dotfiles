@@ -29,7 +29,7 @@ hi User1 guibg=#424242 guifg=#ffaf00
 hi User2 guibg=#1c1c1c guifg=#424242
 hi User3 guibg=#1c1c1c guifg=#ebdbb2
 hi User4 guibg=#458588 guifg=#1c1c1c
-hi User5 guibg=#1c1c1c guifg=#458588
+hi User5 guibg=#282828 guifg=#458588
 
 hi User6 guibg=#458588 guifg=#1c1c1c
 hi User7 guibg=#404040 guifg=#ebdbb2
@@ -52,14 +52,15 @@ function! ActiveLine()
     let statusline .= "%="
 
     " Right side of status line
-    let statusline .= "%9*"
-    let statusline .= "%{g:right_sep}"
-    let statusline .= "%6*"
+    " let statusline .= "%9*"
+    " let statusline .= "%{g:right_sep}"
+    let statusline .= " "
+    " let statusline .= "%6*"
     let statusline .= " Ln %l"
     let statusline .= " (%p%%)"
-    let statusline .= "%8*"
-    let statusline .= " %{g:right_sep}"
-    let statusline .= "%7*"
+    " let statusline .= "%8*"
+    " let statusline .= " %{g:right_sep}"
+    " let statusline .= "%7*"
     let statusline .= " Col: %-3c"
 
     return statusline

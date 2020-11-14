@@ -1,5 +1,5 @@
 " Highlight the current cursor line
-set cursorline
+" set cursorline
 
 " Display line numbers by default
 set number
@@ -38,6 +38,9 @@ set breakindent
 set linebreak
 
 set breakindentopt=shift:3,sbr
+
+set textwidth=120
+set colorcolumn=120
 
 " ########################################################################
 " ######## Tabs and Spaces
@@ -102,8 +105,10 @@ set noshowmode
 " #######################################################################
 " ######## Folding
 " ########################################################################
-" Fold based off of indent
-set foldmethod=syntax
+" https://github.com/nvim-treesitter/nvim-treesitter#syntax-based-code-folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 
 " Don't set the fold column
 set foldcolumn=0
@@ -112,7 +117,7 @@ set foldcolumn=0
 set foldlevelstart=99
 
 " Enable folding for JS syntax
-let javaScript_fold=1
+" let javaScript_fold=1
 
 function! GetSpaces(foldLevel)
     if &expandtab == 1
@@ -159,11 +164,11 @@ augroup ReduceNoise
     " Automatically resize active split to 85 width
     autocmd WinEnter * :call ResizeSplits()
 
-    autocmd WinEnter * setlocal cursorline
     autocmd WinEnter * setlocal signcolumn=auto
-
-    autocmd WinLeave * setlocal nocursorline
     autocmd WinLeave * setlocal signcolumn=no
+
+    " autocmd WinEnter * setlocal cursorline
+    " autocmd WinLeave * setlocal nocursorline
 
 augroup END
 

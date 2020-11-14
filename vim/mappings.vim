@@ -1,3 +1,5 @@
+let g:displayTextWidthBarrier=0
+
 " ########################################################################
 " Custom Functions
 " ########################################################################
@@ -13,12 +15,12 @@ endfunction
 
 " Function to toggle textwidth bar
 function! ToggleTextWidth()
-    " if the textwidth is not set and the width is greater than 120 chars
-    if (&textwidth == 0)
-        set textwidth=120
-        set colorcolumn=+1
-    else
-        set textwidth=0
+    if g:displayTextWidthBarrier == 0
+        let g:displayTextWidthBarrier=1
+        hi ColorColumn guibg=#3a3a3a
+	else
+        let g:displayTextWidthBarrier=0
+        hi ColorColumn guibg=#282828;
     endif
 endfunction
 
@@ -110,6 +112,8 @@ autocmd BufWritePre * %s/\s\+$//e
 " <C-R>" pastes the yanked text into the search bar
 " <CR> is enter to execute the search
 vnoremap // y/\M<C-R>"<CR>
+
+nnoremap * *N
 
 " Make delimitMateCR play nicely with pop up menu
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
