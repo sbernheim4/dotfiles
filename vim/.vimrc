@@ -74,10 +74,6 @@ let g:signify_sign_change = '▐'
 let g:signify_line_highlight = 0
 let g:signify_disable_by_default = 1
 
-highlight SignifySignAdd  guifg=#b8ba25 cterm=NONE gui=NONE
-highlight SignifySignDelete guifg=#fa4933 cterm=NONE gui=NONE
-highlight SignifySignChange guifg=#458488 cterm=NONE gui=NONE
-
 " ########################################################################
 " ######## vim-qf | Vim Quickfix
 " ########################################################################
@@ -196,9 +192,6 @@ set background=dark
 colorscheme gruvbox
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-highlight Visual guifg=#575757 guibg=#d1d1d1
-highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
-
 source ~/dotfiles/vim/mappings.vim
 source ~/dotfiles/vim/settings.vim
 source ~/dotfiles/vim/statusLine.vim
@@ -209,11 +202,7 @@ if executable("rg")
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-highlight Visual guifg=#575757 guibg=#d1d1d1
-highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
-
 " nmap <silent> <Leader>ee <Plug>(coc-refactor)
-
 set completeopt=menuone,noinsert,noselect,noinsert
 set shortmess+=c
 
@@ -222,7 +211,6 @@ inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 imap <TAB> <Plug>(completion_smart_tab)
 imap <S-TAB> <Plug>(completion_smart_s_tab)
-
 
 nnoremap <silent> <Leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
@@ -268,6 +256,13 @@ endfunction
 
 nmap <silent> cm :call ToggleList("Quickfix List", 'c')<CR>
 
+highlight Visual guifg=#575757 guibg=#d1d1d1
+highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
+
 highlight LspDiagnosticsDefaultError guifg=#e5898b
 highlight LspDiagnosticsDefaultWarning guifg=#edbb7b
 highlight LspDiagnosticsDefaultHint guifg=#b1bbbf
+
+highlight SignifySignAdd  guifg=#b8ba25
+highlight SignifySignDelete guifg=#fa4933
+highlight SignifySignChange guifg=#458488
