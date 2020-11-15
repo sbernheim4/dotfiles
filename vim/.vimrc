@@ -18,11 +18,6 @@ Plug 'mhinz/vim-signify'
 Plug 'ruanyl/vim-gh-line'
 Plug 'rhysd/git-messenger.vim'
 
-" Telescope.vim --> https://github.com/nvim-lua/telescope.nvim
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lua/telescope.nvim'
-
 " Text Manipulation
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
@@ -33,15 +28,17 @@ Plug 'FooSoft/vim-argwrap'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Syntax and highlighting
+" Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 Plug 'gruvbox-community/gruvbox'
 
-" LSP & Linting
+" LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
+
+" For linting/formatting via ESLint and Prettier
 Plug 'dense-analysis/ale'
 
 call plug#end()
@@ -125,7 +122,7 @@ lua <<EOF
 
 -- import packages
 
-local nvim_lsp = require 'nvim_lsp'
+local lspconfig = require'lspconfig'
 local completion = require 'completion'
 local nvim_treesitter_configs = require 'nvim-treesitter.configs'
 
@@ -149,9 +146,10 @@ nvim_treesitter_configs.setup{
 -- " ########################################################################
 -- " ######## Native LSP and associated Plugins and Settings
 -- " ########################################################################
-nvim_lsp.tsserver.setup{ on_attach=require'completion'.on_attach }
-nvim_lsp.cssls.setup{}
-nvim_lsp.html.setup{}
+lspconfig.tsserver.setup{ on_attach=require'completion'.on_attach }
+lspconfig.cssls.setup{}
+lspconfig.html.setup{}
+lspconfig.vimls.setup{}
 
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
