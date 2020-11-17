@@ -4,6 +4,9 @@
 
 This repo is a collection of all my dotfiles for vim, tmux and zsh. This repo contains my `.vimrc`, `.tmux.conf` and my `.zshrc`. I also use `oh-my-zsh`
 
+Vim related settings are configured to use neovim nightly to leverage the built in LSP functionality. The .vimrc is NOT
+compaitible with vim or neovim 4.x.x.
+
 ## Installation
 
 To install simply run:
