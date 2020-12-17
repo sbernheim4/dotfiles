@@ -37,6 +37,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
+Plug 'ojroques/nvim-lspfuzzy'
 
 " For linting/formatting via ESLint and Prettier
 Plug 'dense-analysis/ale'
@@ -122,6 +123,10 @@ local lspconfig = require'lspconfig'
 local completion = require 'completion'
 local nvim_treesitter_configs = require 'nvim-treesitter.configs'
 
+require('lspfuzzy').setup {
+    methods = {'textDocument/documentSymbol'}
+}
+
 nvim_treesitter_configs.setup{
   highlight = { enable = true },
   ensure_installed = {"javascript", "typescript"},
@@ -143,10 +148,9 @@ nvim_treesitter_configs.setup{
 -- " ######## Native LSP and associated Plugins and Settings
 -- " ########################################################################
 lspconfig.tsserver.setup{ on_attach=require'completion'.on_attach }
-lspconfig.cssls.setup{}
-lspconfig.html.setup{}
-lspconfig.vimls.setup{}
-
+lspconfig.cssls.setup{ on_attach=require'completion'.on_attach }
+lspconfig.html.setup{ on_attach=require'completion'.on_attach }
+lspconfig.vimls.setup{ on_attach=require'completion'.on_attach }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -158,8 +162,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
-
-vim.lsp.set_log_level(4)
 
 EOF
 
@@ -206,6 +208,9 @@ endif
 set completeopt=menuone,noinsert,noselect,noinsert
 set shortmess+=c
 
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_sorting='length'
+
 inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
@@ -224,8 +229,6 @@ nnoremap <silent> <leader>gn    <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 nnoremap <silent> <leader>gp    <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> tt            <cmd>lua vim.lsp.buf.document_symbol()<CR>
-
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 function! GetBufferList()
     redir => buflist
