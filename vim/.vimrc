@@ -128,20 +128,20 @@ require('lspfuzzy').setup {
 }
 
 nvim_treesitter_configs.setup{
-  highlight = { enable = true },
-  ensure_installed = {"javascript", "typescript"},
-  incremental_selection = { enable = true },
-  refactor = {
-    highlight_definitions = { enable = true },
-    highlight_current_scope = { enable = false },
-    navigation = { enable = false, }
-  },
-  playground = {
-    enable = false,
-    disable = {},
-    updatetime = 25,
-    persist_queries = false
-  }
+ highlight = { enable = true },
+ ensure_installed = {"javascript", "typescript"},
+ incremental_selection = { enable = true },
+ refactor = {
+   highlight_definitions = { enable = true },
+   highlight_current_scope = { enable = false },
+   navigation = { enable = false, }
+ },
+ playground = {
+   enable = false,
+   disable = {},
+   updatetime = 25,
+   persist_queries = false
+ }
 }
 
 -- " ########################################################################
@@ -236,28 +236,6 @@ function! GetBufferList()
     redir END
     return buflist
 endfunction
-
-function! ToggleList(bufname, pfx)
-    let buflist = GetBufferList()
-
-    for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
-        if bufwinnr(bufnum) != -1
-            exec(a:pfx.'close')
-            return
-        endif
-    endfor
-
-    let winnr = winnr()
-
-    exec(a:pfx.'open')
-
-    if winnr() != winnr
-        wincmd p
-    endif
-
-endfunction
-
-nmap <silent> cm :call ToggleList("Quickfix List", 'c')<CR>
 
 highlight Visual guifg=#575757 guibg=#d1d1d1
 highlight QuickFixLine guibg=#707070 guifg=#e8d8c5

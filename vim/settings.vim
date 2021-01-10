@@ -1,5 +1,5 @@
 " Highlight the current cursor line
-" set cursorline
+set cursorline
 
 " Display line numbers by default
 set number
@@ -20,10 +20,16 @@ set splitright
 " Start scrolling when you hit 10 lines above or below the buffer start/end
 set scrolloff=4
 
-" Write on :next/:prev/^Z
+" Write on :next/:prev
 set autowrite
 
 set signcolumn=auto
+
+" Automatically indent when typing as appropriate
+set smartindent
+
+" Time in milliseconds to wait for a mapped sequence to complete
+set timeoutlen=200
 
 " ########################################################################
 " ######## Line Wrapping
@@ -40,11 +46,12 @@ set linebreak
 set breakindentopt=shift:3,sbr
 
 set textwidth=120
-set colorcolumn=120
+set colorcolumn=80,120
 
 " ########################################################################
 " ######## Tabs and Spaces
 " ########################################################################
+
 " Set the tab stop to 4
 set tabstop=4
 
@@ -57,6 +64,7 @@ set expandtab
 " ########################################################################
 " ######## Search Settings
 " ########################################################################
+
 " If search string contains only lowercase letters search is case insensitive.
 set ignorecase
 
@@ -76,6 +84,7 @@ endif
 " ########################################################################
 " ######## Undo Info
 " ########################################################################
+
 set undodir=~/.vim/undo-dir
 
 " Persist undo even after vim/neovim is closed and reopened
@@ -84,6 +93,7 @@ set undofile
 " ########################################################################
 " ######## List Characters
 " ########################################################################
+
 " Displays the special characters like eol, indents etc.
 " DON'T MODIFY. OTHERWISE THE TAB CHARACTER WILL BE MESSED UP AND NOT DISPLAY CORRECTLY
 set list
@@ -96,6 +106,7 @@ set fillchars+=vert:█
 " ########################################################################
 " ######## Status Line"
 " ########################################################################
+
 " Always show status line
 set laststatus=2
 
@@ -105,6 +116,7 @@ set noshowmode
 " #######################################################################
 " ######## Folding
 " ########################################################################
+
 " https://github.com/nvim-treesitter/nvim-treesitter#syntax-based-code-folding
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
@@ -147,6 +159,7 @@ set foldtext=MyFoldText()
 " ########################################################################
 " ######## Custom Highlight Groups
 " ########################################################################
+
 " Set color for vertical bar for the color column
 hi ColorColumn guibg=#3a3a3a
 
@@ -167,8 +180,8 @@ augroup ReduceNoise
     autocmd WinEnter * setlocal signcolumn=auto
     autocmd WinLeave * setlocal signcolumn=no
 
-    " autocmd WinEnter * setlocal cursorline
-    " autocmd WinLeave * setlocal nocursorline
+    autocmd WinEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
 
 augroup END
 

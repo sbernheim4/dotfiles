@@ -1,5 +1,3 @@
-let g:displayTextWidthBarrier=0
-
 " ########################################################################
 " Custom Functions
 " ########################################################################
@@ -15,12 +13,10 @@ endfunction
 
 " Function to toggle textwidth bar
 function! ToggleTextWidth()
-    if g:displayTextWidthBarrier == 0
-        let g:displayTextWidthBarrier=1
-        hi ColorColumn guibg=#3a3a3a
-	else
-        let g:displayTextWidthBarrier=0
-        hi ColorColumn guibg=#282828;
+    if &colorcolumn == ""
+        set colorcolumn=80,120
+    else
+        set colorcolumn=""
     endif
 endfunction
 
@@ -42,14 +38,26 @@ function! ToggleIndentType()
     endif
 endfunction
 
-" ########################################################################
-" ######## Navigation
-" ########################################################################
-" Unbinds the arrow keys in normal mode (they still work in insert mode)
-noremap <UP> <NOP>
-noremap <DOWN> <NOP>
-noremap <LEFT> <NOP>
-noremap <RIGHT> <NOP>
+" Toggle the quickfix menu open and close
+function! ToggleList(bufname, pfx)
+    let buflist = GetBufferList()
+
+    for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+        if bufwinnr(bufnum) != -1
+            exec(a:pfx.'close')
+            return
+        endif
+    endfor
+
+    let winnr = winnr()
+
+    exec(a:pfx.'open')
+
+    if winnr() != winnr
+        wincmd p
+    endif
+
+endfunction
 
 " Use CTRL + h/j/k/l to move between buffers instead of CTRL + W + (HJKL)
 nnoremap <C-j> <C-W><C-J>
@@ -61,7 +69,7 @@ nnoremap <RIGHT> :2 wincmd ><CR>
 nnoremap <UP> :2 wincmd +<CR>
 nnoremap <UP> :2 wincmd +<CR>
 
-" make wrapped lines more intuitive. Pressing j/k moves to the next/previous
+" Intuitively navigate wrapped lines. Pressing j/k moves to the next/previous
 " line even if wrppaed and the 'next' line is still the same line. Same for 0
 " and $
 noremap <silent> k gk
@@ -70,6 +78,7 @@ noremap <silent> j gj
 " ########################################################################
 " ######## Toggle Commands
 " ########################################################################
+"
 nnoremap <Leader>sc :call ToggleSignColumn()<CR>
 nnoremap <Leader>wr :set wrap!<CR>
 nnoremap <Leader>hl :set hlsearch!<CR>
@@ -78,6 +87,7 @@ nnoremap <Leader><Leader>rn :call ToggleRelativeLineNumbers()<CR>
 nnoremap <Space> za
 vnoremap <Space> za
 nnoremap tw :call ToggleTextWidth()<CR>
+nmap <silent> cm :call ToggleList("Quickfix List", 'c')<CR>
 
 " ########################################################################
 " ######## Buffer and Window Management
@@ -115,7 +125,7 @@ vnoremap // y/\M<C-R>"<CR>
 
 nnoremap * *N
 
-" Make delimitMateCR play nicely with pop up menu
+" Make delimitMate play nicely with pop up menu
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
 inoremap jj <ESC> :w<CR>
