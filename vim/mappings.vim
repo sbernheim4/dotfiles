@@ -95,10 +95,16 @@ nmap <silent> cm :call ToggleList("Quickfix List", 'c')<CR>
 nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>p :bp<CR>
 nnoremap <Leader>q :bp <BAR> bd #<CR>
+
 nnoremap <Leader>vp :vsplit<CR>
 nnoremap <Leader>hp :split<CR>
+
 nnoremap <Leader>vs :vertical resize +
 nnoremap <Leader>hs :resize +
+
+" Move visually selected lines up and down with J and K respectively
+vnoremap J :move '>+1<CR>gv=gv
+vnoremap K :move '<-2<CR>gv=gv
 
 nnoremap <Leader>ah <C-W>H
 nnoremap <Leader>aj <C-W>J
