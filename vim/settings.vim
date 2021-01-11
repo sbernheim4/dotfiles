@@ -29,7 +29,7 @@ set signcolumn=auto
 set smartindent
 
 " Time in milliseconds to wait for a mapped sequence to complete
-set timeoutlen=200
+set timeoutlen=300
 
 " ########################################################################
 " ######## Line Wrapping

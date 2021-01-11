@@ -39,6 +39,11 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'ojroques/nvim-lspfuzzy'
 
+Plug 'fsharp/vim-fsharp', {
+      \ 'for': 'fsharp',
+      \ 'do':  'make fsautocomplete',
+      \}
+
 " For linting/formatting via ESLint and Prettier
 Plug 'dense-analysis/ale'
 
