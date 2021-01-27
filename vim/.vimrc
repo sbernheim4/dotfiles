@@ -170,6 +170,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 EOF
 
+autocmd BufEnter * lua require'completion'.on_attach()
+
 " ########################################################################
 " ######## Ale
 " ########################################################################
@@ -210,15 +212,15 @@ if executable("rg")
 endif
 
 " nmap <silent> <Leader>ee <Plug>(coc-refactor)
-set completeopt=menuone,noinsert,noselect,noinsert
+set completeopt=menuone,noselect,noinsert
 set shortmess+=c
 
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 let g:completion_sorting='length'
 
-inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 imap <TAB> <Plug>(completion_smart_tab)
 imap <S-TAB> <Plug>(completion_smart_s_tab)
 
