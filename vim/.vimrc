@@ -33,9 +33,11 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 Plug 'gruvbox-community/gruvbox'
 
+
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+" Plug 'glepnir/lspsaga.nvim'
+Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/popup.nvim'
 Plug 'ojroques/nvim-lspfuzzy'
 
@@ -120,12 +122,11 @@ let g:dashboard_custom_shortcut={
 " ########################################################################
 " ######## Tresitter
 " ########################################################################
-lua <<EOF
+lua << EOF
 
 -- import packages
 
 local lspconfig = require'lspconfig'
-local completion = require 'completion'
 local nvim_treesitter_configs = require 'nvim-treesitter.configs'
 
 require('lspfuzzy').setup {
@@ -152,10 +153,9 @@ nvim_treesitter_configs.setup{
 -- " ########################################################################
 -- " ######## Native LSP and associated Plugins and Settings
 -- " ########################################################################
-lspconfig.tsserver.setup{ on_attach=require'completion'.on_attach }
-lspconfig.cssls.setup{ on_attach=require'completion'.on_attach }
-lspconfig.html.setup{ on_attach=require'completion'.on_attach }
-lspconfig.vimls.setup{ on_attach=require'completion'.on_attach }
+lspconfig.tsserver.setup{
+    root_dir = lspconfig.util.root_pattern("tsconfig.json", ".git");
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -170,7 +170,21 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 EOF
 
-autocmd BufEnter * lua require'completion'.on_attach()
+" autocmd BufEnter * lua require'completion'.on_attach()
+
+" ########################################################################
+" ######## Nvim-Compe
+" ########################################################################
+
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.source = {
+            \ 'path': v:true,
+            \ 'buffer': v:true,
+            \ 'nvim_lsp': v:true,
+            \ 'treesitter': v:true,
+            \ }
+
 
 " ########################################################################
 " ######## Ale
@@ -212,17 +226,8 @@ if executable("rg")
 endif
 
 " nmap <silent> <Leader>ee <Plug>(coc-refactor)
-set completeopt=menuone,noselect,noinsert
+set completeopt=menu,menuone,noselect,noinsert
 set shortmess+=c
-
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-let g:completion_sorting='length'
-
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-imap <TAB> <Plug>(completion_smart_tab)
-imap <S-TAB> <Plug>(completion_smart_s_tab)
 
 nnoremap <silent> <Leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
@@ -254,3 +259,8 @@ highlight LspDiagnosticsDefaultHint guifg=#b1bbbf
 highlight SignifySignAdd  guifg=#b8ba25
 highlight SignifySignDelete guifg=#fa4933
 highlight SignifySignChange guifg=#458488
+
+" Better pop up suggestion navigation behaviour
+inoremap <expr> <TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <CR>     pumvisible() ? compe#confirm('<CR>') : "\<C-g>u\<CR>"
