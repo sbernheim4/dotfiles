@@ -25,16 +25,16 @@ function! CheckMod(modified)
     endif
 endfunction
 
-hi User1 guibg=#424242 guifg=#ffaf00
-hi User2 guibg=#1c1c1c guifg=#424242
-hi User3 guibg=#1c1c1c guifg=#ebdbb2
-hi User4 guibg=#458588 guifg=#1c1c1c
-hi User5 guibg=#282828 guifg=#458588
+hi User1 ctermbg=237 guibg=#424242 ctermfg=214 guifg=#ffaf00
+hi User2 ctermbg=232 guibg=#1c1c1c ctermfg=237 guifg=#424242
+hi User3 ctermbg=232 guibg=#1c1c1c ctermfg=222 guifg=#ebdbb2
+hi User4 ctermbg=4   guibg=#458588 ctermfg=232 guifg=#1c1c1c
+hi User5 ctermbg=235 guibg=#282828 ctermfg=4   guifg=#458588
 
-hi User6 guibg=#458588 guifg=#1c1c1c
-hi User7 guibg=#404040 guifg=#ebdbb2
-hi User8 guibg=#458588 guifg=#404040
-hi User9 guibg=#1c1c1c guifg=#458588
+hi User6 ctermbg=4   guibg=#458588 ctermfg=232 guifg=#1c1c1c
+hi User7 ctermbg=236 guibg=#404040 ctermfg=222 guifg=#ebdbb2
+hi User8 ctermbg=4   guibg=#458588 ctermfg=236 guifg=#404040
+hi User9 ctermbg=232 guibg=#1c1c1c ctermfg=4   guifg=#458588
 
 function! ActiveLine()
     " Left side of status line
