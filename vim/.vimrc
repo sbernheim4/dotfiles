@@ -36,6 +36,7 @@ Plug 'gruvbox-community/gruvbox'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'scalameta/nvim-metals'
 " Plug 'glepnir/lspsaga.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/popup.nvim'
@@ -122,7 +123,30 @@ let g:dashboard_custom_shortcut={
 " ########################################################################
 " ######## Tresitter
 " ########################################################################
+
+" autocmd BufEnter * lua require'completion'.on_attach()
+
 lua << EOF
+
+-- SCALA/METALS --> nvim-metals
+metals_config = require'metals'.bare_config
+
+metals_config.settings = {
+   showImplicitArguments = true,
+}
+
+metals_config.on_attach = function()
+    require'completion'.on_attach();
+end
+
+metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = {
+            prefix = '',
+        }
+    }
+)
+
 
 -- import packages
 
@@ -158,19 +182,27 @@ lspconfig.tsserver.setup{
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-        spacing = 1,
-        prefix = '>>= =<<'
-    },
-    signs = true,
-    update_in_insert = true,
-  }
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = {
+            spacing = 1,
+            prefix = '>>= =<<'
+        },
+        signs = true,
+        update_in_insert = true,
+    }
 )
+
 
 EOF
 
-" autocmd BufEnter * lua require'completion'.on_attach()
+" Setup scala lsp via metals
+if has('nvim-0.5')
+    augroup lsp
+        au!
+        au FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)
+    augroup end
+endif
+
 
 " ########################################################################
 " ######## Nvim-Compe
@@ -228,6 +260,7 @@ endif
 " nmap <silent> <Leader>ee <Plug>(coc-refactor)
 set completeopt=menu,menuone,noselect,noinsert
 set shortmess+=c
+set shortmess-=F
 
 nnoremap <silent> <Leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
