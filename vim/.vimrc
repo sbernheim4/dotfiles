@@ -154,7 +154,7 @@ nvim_treesitter_configs.setup{
 -- " ######## Native LSP and associated Plugins and Settings
 -- " ########################################################################
 lspconfig.tsserver.setup{
-    root_dir = lspconfig.util.root_pattern("tsconfig.json", ".git");
+    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git");
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
