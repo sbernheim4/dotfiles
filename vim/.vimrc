@@ -41,6 +41,7 @@ Plug 'scalameta/nvim-metals'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/popup.nvim'
 Plug 'ojroques/nvim-lspfuzzy'
+Plug 'jparise/vim-graphql'
 
 " Plug 'fsharp/vim-fsharp', {
 "       \ 'for': 'fsharp',
