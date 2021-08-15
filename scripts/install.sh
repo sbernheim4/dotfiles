@@ -10,7 +10,7 @@ function installHomebrew() {
 
     which -s brew > /dev/null
     if [[ $? -eq 1 ]]; then
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     else
         brew upgrade
     fi

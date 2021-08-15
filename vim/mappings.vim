@@ -14,7 +14,7 @@ endfunction
 " Function to toggle textwidth bar
 function! ToggleTextWidth()
     if &colorcolumn == ""
-        set colorcolumn=80,120
+        set colorcolumn=80,100
     else
         set colorcolumn=""
     endif
