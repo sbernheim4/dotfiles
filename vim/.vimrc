@@ -124,33 +124,11 @@ let g:dashboard_custom_shortcut={
 " ######## Tresitter
 " ########################################################################
 
-" autocmd BufEnter * lua require'completion'.on_attach()
-
 lua << EOF
-
--- SCALA/METALS --> nvim-metals
-metals_config = require'metals'.bare_config
-
-metals_config.settings = {
-   showImplicitArguments = true,
-}
-
-metals_config.on_attach = function()
-    require'completion'.on_attach();
-end
-
-metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = {
-            prefix = '',
-        }
-    }
-)
-
 
 -- import packages
 
-local lspconfig = require'lspconfig'
+local lspconfig = require 'lspconfig'
 local nvim_treesitter_configs = require 'nvim-treesitter.configs'
 
 require('lspfuzzy').setup {
@@ -177,6 +155,30 @@ nvim_treesitter_configs.setup{
 -- " ########################################################################
 -- " ######## Native LSP and associated Plugins and Settings
 -- " ########################################################################
+
+-- SCALA/METALS --> nvim-metals
+local metals = require 'metals'
+
+metals_config = metals.bare_config
+
+metals_config.settings = {
+   showImplicitArguments = true,
+}
+
+metals_config.on_attach = function()
+    require 'completion'.on_attach();
+end
+
+metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = {
+            prefix = '',
+        }
+    }
+)
+metals.initialize_or_attach(metals_config)
+
+
 lspconfig.tsserver.setup{
     root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git");
 }
@@ -192,17 +194,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
 )
 
-
 EOF
-
-" Setup scala lsp via metals
-if has('nvim-0.5')
-    augroup lsp
-        au!
-        au FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)
-    augroup end
-endif
-
 
 " ########################################################################
 " ######## Nvim-Compe
