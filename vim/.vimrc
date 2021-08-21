@@ -37,6 +37,7 @@ Plug 'gruvbox-community/gruvbox'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'scalameta/nvim-metals'
+Plug 'ray-x/lsp_signature.nvim'
 " Plug 'glepnir/lspsaga.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/popup.nvim'
@@ -131,6 +132,8 @@ lua << EOF
 
 local lspconfig = require 'lspconfig'
 local nvim_treesitter_configs = require 'nvim-treesitter.configs'
+
+require "lsp_signature".setup()
 
 require('lspfuzzy').setup {
     methods = {'textDocument/documentSymbol'}
