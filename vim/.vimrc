@@ -273,13 +273,6 @@ nnoremap <silent> <leader>gp    <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> tt            <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
-function! GetBufferList()
-    redir => buflist
-    silent! ls!
-    redir END
-    return buflist
-endfunction
-
 highlight Visual guifg=#575757 guibg=#d1d1d1
 highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
 

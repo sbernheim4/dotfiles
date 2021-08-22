@@ -38,6 +38,14 @@ function! ToggleIndentType()
     endif
 endfunction
 
+
+function! GetBufferList()
+    redir => buflist
+    silent! ls!
+    redir END
+    return buflist
+endfunction
+
 " Toggle the quickfix menu open and close
 function! ToggleList(bufname, pfx)
     let buflist = GetBufferList()
