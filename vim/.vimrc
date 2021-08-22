@@ -37,10 +37,10 @@ Plug 'gruvbox-community/gruvbox'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'scalameta/nvim-metals'
-Plug 'ray-x/lsp_signature.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/popup.nvim'
 Plug 'ojroques/nvim-lspfuzzy'
+Plug 'ray-x/lsp_signature.nvim'
 Plug 'jparise/vim-graphql'
 
 " Plug 'fsharp/vim-fsharp', {
@@ -131,45 +131,48 @@ lua << EOF
 
 local lspconfig = require 'lspconfig'
 local nvim_treesitter_configs = require 'nvim-treesitter.configs'
+local lsp_signature = require 'lsp_signature'
+local lspfuzzy = require 'lspfuzzy'
+local metals = require 'metals'
+local compe = require 'compe'
 
-require "lsp_signature".setup()
+lsp_signature.setup()
 
-require('lspfuzzy').setup {
-    methods = {
-        'textDocument/documentSymbol',
-        'textDocument/references'
-    }
-}
+lspfuzzy.setup({
+  methods = {
+    'textDocument/documentSymbol',
+    'textDocument/references'
+  }
+})
 
-nvim_treesitter_configs.setup{
- highlight = { enable = true },
- ensure_installed = {"javascript", "typescript"},
- incremental_selection = { enable = true },
- refactor = {
-   highlight_definitions = { enable = true },
-   highlight_current_scope = { enable = false },
-   navigation = { enable = false, }
- },
- playground = {
-   enable = false,
-   disable = {},
-   updatetime = 25,
-   persist_queries = false
- }
-}
+nvim_treesitter_configs.setup({
+  highlight = { enable = true },
+  ensure_installed = {"javascript", "typescript"},
+  incremental_selection = { enable = true },
+  refactor = {
+    highlight_definitions = { enable = true },
+    highlight_current_scope = { enable = false },
+    navigation = { enable = false, }
+  },
+  playground = {
+    enable = false,
+    disable = {},
+    updatetime = 25,
+    persist_queries = false
+  }
+})
 
 -- " ########################################################################
 -- " ######## Native LSP and associated Plugins and Settings
 -- " ########################################################################
 
 -- SCALA/METALS --> nvim-metals
-local metals = require 'metals'
 
 metals_config = metals.bare_config
 
-metals_config.settings = {
+metals_config.settings = ({
    showImplicitArguments = true,
-}
+})
 
 metals_config.on_attach = function()
     require 'completion'.on_attach();
@@ -182,12 +185,14 @@ metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         }
     }
 )
+
 metals.initialize_or_attach(metals_config)
 
-
-lspconfig.tsserver.setup{
+lspconfig.tsserver.setup({
     root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git");
-}
+})
+
+lspconfig.vimls.setup{}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -200,21 +205,18 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
 )
 
+compe.setup({
+  enabled = true;
+  preselect = 'always';
+  source = {
+    path = true;
+    buffer = true;
+    nvim_lsp = true;
+    treesitter = true
+  };
+})
+
 EOF
-
-" ########################################################################
-" ######## Nvim-Compe
-" ########################################################################
-
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.source = {
-            \ 'path': v:true,
-            \ 'buffer': v:true,
-            \ 'nvim_lsp': v:true,
-            \ 'treesitter': v:true,
-            \ }
-
 
 " ########################################################################
 " ######## Ale
