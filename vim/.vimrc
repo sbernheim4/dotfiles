@@ -36,7 +36,6 @@ Plug 'gruvbox-community/gruvbox'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
-Plug 'scalameta/nvim-metals'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/popup.nvim'
 Plug 'ojroques/nvim-lspfuzzy'
@@ -128,12 +127,10 @@ let g:dashboard_custom_shortcut={
 lua << EOF
 
 -- import packages
-
 local lspconfig = require 'lspconfig'
 local nvim_treesitter_configs = require 'nvim-treesitter.configs'
 local lsp_signature = require 'lsp_signature'
 local lspfuzzy = require 'lspfuzzy'
-local metals = require 'metals'
 local compe = require 'compe'
 
 lsp_signature.setup()
@@ -162,37 +159,24 @@ nvim_treesitter_configs.setup({
   }
 })
 
+compe.setup({
+  enabled = true;
+  preselect = 'always';
+  source = {
+    path = true;
+    buffer = true;
+    nvim_lsp = true;
+    treesitter = true
+  };
+})
+
+
 -- " ########################################################################
 -- " ######## Native LSP and associated Plugins and Settings
 -- " ########################################################################
-
--- SCALA/METALS --> nvim-metals
-
-metals_config = metals.bare_config
-
-metals_config.settings = ({
-   showImplicitArguments = true,
-})
-
-metals_config.on_attach = function()
-    require 'completion'.on_attach();
-end
-
-metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = {
-            prefix = '',
-        }
-    }
-)
-
-metals.initialize_or_attach(metals_config)
-
-lspconfig.tsserver.setup({
-    root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", ".git");
-})
-
+lspconfig.tsserver.setup{}
 lspconfig.vimls.setup{}
+lspconfig.metals.setup{}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -204,17 +188,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         update_in_insert = true,
     }
 )
-
-compe.setup({
-  enabled = true;
-  preselect = 'always';
-  source = {
-    path = true;
-    buffer = true;
-    nvim_lsp = true;
-    treesitter = true
-  };
-})
 
 EOF
 
@@ -233,9 +206,6 @@ let g:ale_fixers = {
 
 let g:ale_lint_on_text_changed = 1
 let g:ale_fix_on_save = 1
-" let g:ale_set_loclist = 1
-" let g:ale_set_quickfix = 0
-" let g:ale_disable_lsp = 1
 
 " ########################################################################
 " ######## Color Scheme Settings
@@ -252,10 +222,8 @@ source ~/dotfiles/vim/settings.vim
 source ~/dotfiles/vim/statusLine.vim
 source ~/dotfiles/vim/tabLine.vim
 
-if executable("rg")
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
+set grepprg=rg\ --vimgrep\ --no-heading
+set grepformat=%f:%l:%c:%m,%f:%l:%m
 
 " nmap <silent> <Leader>ee <Plug>(coc-refactor)
 set completeopt=menu,menuone,noselect,noinsert
