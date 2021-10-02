@@ -108,6 +108,7 @@ function setupVim() {
 
     cd ~/
 
+    # Ensure a lua folder exists
     mkdir -p ~/.config/nvim/lua
 
     # Link vimrc for both vim and neovim
