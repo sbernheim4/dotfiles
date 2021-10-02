@@ -131,6 +131,13 @@ set foldlevelstart=99
 " Enable folding for JS syntax
 " let javaScript_fold=1
 
+" #######################################################################
+" ######## Completion Settings
+" ########################################################################
+set completeopt=menu,menuone,noselect,noinsert
+set shortmess+=c
+set shortmess-=F
+
 function! GetSpaces(foldLevel)
     if &expandtab == 1
         " Indenting with spaces
@@ -155,21 +162,6 @@ endfunction
 
 " Custom display for text when folding
 set foldtext=MyFoldText()
-
-" ########################################################################
-" ######## Custom Highlight Groups
-" ########################################################################
-
-" Set color for vertical bar for the color column
-hi ColorColumn guibg=#3a3a3a
-
-" Set background for vertical vim split
-hi vertsplit guifg=#c4ab97 guibg=#c4ab97
-
-" Highlight color for the cursor line
-hi CursorLine guibg=#3d3d3d
-
-hi SignColumn guibg=#282828
 
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
 augroup ReduceNoise

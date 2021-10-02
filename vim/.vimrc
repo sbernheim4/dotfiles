@@ -55,6 +55,8 @@ call plug#end()
 autocmd FileType help wincmd L
 autocmd FileType gitcommit setlocal spell
 
+" Vim Plugin Mappings
+
 " ########################################################################
 " ######## NERDTree
 " ########################################################################
@@ -121,18 +123,6 @@ let g:dashboard_custom_shortcut={
             \ }
 
 " ########################################################################
-" ######## Tresitter
-" ########################################################################
-
-lua << EOF
-require 'compe_settings'
-require 'lsp_signature_settings'
-require 'lspconfig_settings'
-require 'lspfuzzy_settings'
-require 'nvim_treesitter_settings'
-EOF
-
-" ########################################################################
 " ######## Ale
 " ########################################################################
 let g:ale_linters = { 'javascript': ['eslint'], 'typescript': ['eslint'] }
@@ -156,34 +146,44 @@ syntax on
 set termguicolors
 set background=dark
 colorscheme gruvbox
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Load additional vim mappings, settings, and helpers
 source ~/dotfiles/vim/mappings.vim
 source ~/dotfiles/vim/settings.vim
 source ~/dotfiles/vim/statusLine.vim
 source ~/dotfiles/vim/tabLine.vim
 
-set grepprg=rg\ --vimgrep\ --no-heading
-set grepformat=%f:%l:%c:%m,%f:%l:%m
+" Load Lua Plugins - I have one file per plugin
+lua << EOF
+require 'compe_settings'
+require 'lsp_signature_settings'
+require 'lspconfig_settings'
+require 'lspfuzzy_settings'
+require 'nvim_treesitter_settings'
+EOF
 
+" ########################################################################
+" ######## LSP Mappings
+" ########################################################################
+nnoremap <silent> <Leader>gd  <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K           <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <Leader>td  <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> <Leader>fr  <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> <Leader>s   <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> <Leader>rn  <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <silent> <Leader>ac  <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <Leader>gg  <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+nnoremap <silent> <leader>gn  <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent> <leader>gp  <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <Leader>s   <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> tt          <cmd>lua vim.lsp.buf.document_symbol()<CR>
 " nmap <silent> <Leader>ee <Plug>(coc-refactor)
-set completeopt=menu,menuone,noselect,noinsert
-set shortmess+=c
-set shortmess-=F
 
-nnoremap <silent> <Leader>gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K             <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <Leader>td    <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> <Leader>fr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> <Leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <Leader>ac    <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <Leader>gg    <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-nnoremap <silent> <leader>gn    <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <silent> <leader>gp    <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> <Leader>s     <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> tt            <cmd>lua vim.lsp.buf.document_symbol()<CR>
-
+" ########################################################################
+" ######## Custom Highlight Groups
+" ########################################################################
 highlight Visual guifg=#575757 guibg=#d1d1d1
 highlight QuickFixLine guibg=#707070 guifg=#e8d8c5
 
@@ -195,7 +195,14 @@ highlight SignifySignAdd  guifg=#b8ba25
 highlight SignifySignDelete guifg=#fa4933
 highlight SignifySignChange guifg=#458488
 
-" Better pop up suggestion navigation behaviour
-inoremap <expr> <TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <expr> <CR>     pumvisible() ? compe#confirm('<CR>') : "\<C-g>u\<CR>"
+" Set color for vertical bar for the color column
+hi ColorColumn guibg=#3a3a3a
+
+" Set background for vertical vim split
+hi vertsplit guifg=#c4ab97 guibg=#c4ab97
+
+" Highlight color for the cursor line
+hi CursorLine guibg=#3d3d3d
+
+hi SignColumn guibg=#282828
+
