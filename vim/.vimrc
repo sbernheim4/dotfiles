@@ -35,11 +35,13 @@ Plug 'gruvbox-community/gruvbox'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'scalameta/nvim-metals'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/popup.nvim'
 Plug 'ojroques/nvim-lspfuzzy'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'jparise/vim-graphql'
+Plug 'nvim-lua/plenary.nvim'
 
 " Plug 'fsharp/vim-fsharp', {
 "       \ 'for': 'fsharp',
@@ -161,6 +163,7 @@ require 'lsp_signature_settings'
 require 'lspconfig_settings'
 require 'lspfuzzy_settings'
 require 'nvim_treesitter_settings'
+require 'scala_metals_settings'
 EOF
 
 " ########################################################################
