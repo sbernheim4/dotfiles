@@ -9,5 +9,3 @@ lspconfig.metals.setup {}
 lspconfig.cssls.setup {
     capabilities = capabilities
 }
-
-

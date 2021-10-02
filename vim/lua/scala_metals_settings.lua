@@ -2,7 +2,26 @@ local cmd = vim.cmd
 local g = vim.g
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-metals_config = require("metals").bare_config
+metals_config = require 'metals'.bare_config
+
+metals_config.settings = {
+    showImplicitArguments = true,
+}
+
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+metals_config.capabilities = capabilities
+
+metals_config.handlers['textDocument/publishDiagnostics'] =
+    vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics,
+        {
+            virtual_text = {
+                prefix = ">> "
+            }
+       }
+    )
+
 
 cmd([[augroup lsp]])
 cmd([[autocmd!]])
@@ -14,11 +33,4 @@ vim.cmd([[hi! link LspReferenceText CursorColumn]])
 vim.cmd([[hi! link LspReferenceRead CursorColumn]])
 vim.cmd([[hi! link LspReferenceWrite CursorColumn]])
 
-
-metals_config.settings = {
-    showImplicitArguments = true,
-}
-
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-metals_config.capabilities = capabilities
+vim.o.shortmess = string.gsub(vim.o.shortmess, 'F', '') .. 'c'

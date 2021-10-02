@@ -10,4 +10,3 @@ compe.setup({
     treesitter = true
   };
 })
-

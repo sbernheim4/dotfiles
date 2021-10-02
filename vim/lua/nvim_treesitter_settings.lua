@@ -16,4 +16,3 @@ nvim_treesitter_configs.setup({
     persist_queries = false
   }
 })
-

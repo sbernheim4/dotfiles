@@ -8,4 +8,3 @@ lsp_signature.setup({
     padding=' ',
     hint_prefix = ""
 })
-
