@@ -124,71 +124,14 @@ let g:dashboard_custom_shortcut={
 " ######## Tresitter
 " ########################################################################
 
+set runtimepath += "~/dotfiles/vim"
+
 lua << EOF
-
--- import packages
-local lspconfig = require 'lspconfig'
-local nvim_treesitter_configs = require 'nvim-treesitter.configs'
-local lsp_signature = require 'lsp_signature'
-local lspfuzzy = require 'lspfuzzy'
-local compe = require 'compe'
-
-lsp_signature.setup()
-
-lspfuzzy.setup({
-  methods = {
-    'textDocument/documentSymbol',
-    'textDocument/references'
-  }
-})
-
-nvim_treesitter_configs.setup({
-  highlight = { enable = true },
-  ensure_installed = {"javascript", "typescript"},
-  incremental_selection = { enable = true },
-  refactor = {
-    highlight_definitions = { enable = true },
-    highlight_current_scope = { enable = false },
-    navigation = { enable = false, }
-  },
-  playground = {
-    enable = false,
-    disable = {},
-    updatetime = 25,
-    persist_queries = false
-  }
-})
-
-compe.setup({
-  enabled = true;
-  preselect = 'always';
-  source = {
-    path = true;
-    buffer = true;
-    nvim_lsp = true;
-    treesitter = true
-  };
-})
-
-
--- " ########################################################################
--- " ######## Native LSP and associated Plugins and Settings
--- " ########################################################################
-lspconfig.tsserver.setup{}
-lspconfig.vimls.setup{}
-lspconfig.metals.setup{}
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = {
-            spacing = 1,
-            prefix = '>>= =<<'
-        },
-        signs = true,
-        update_in_insert = true,
-    }
-)
-
+require 'compe_settings'
+require 'lsp_signature_settings'
+require 'lspconfig_settings'
+require 'lspfuzzy_settings'
+require 'nvim_treesitter_settings'
 EOF
 
 " ########################################################################
