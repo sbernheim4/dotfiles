@@ -35,7 +35,6 @@ function installHomebrewPackages() {
     cd ~/
 
     brew install git
-    brew install hub
     brew install neovim
     brew install tmux
     brew install zsh
@@ -72,7 +71,6 @@ function installNpmPackages() {
 
     cd ~/
 
-    npm i -g weatherterm
     npm i -g tldr
     npm i -g vtop
 }
