@@ -23,7 +23,7 @@ set scrolloff=4
 " Write on :next/:prev
 set autowrite
 
-set signcolumn=auto
+set signcolumn=yes
 
 " Automatically indent when typing as appropriate
 set smartindent

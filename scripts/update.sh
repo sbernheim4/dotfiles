@@ -15,4 +15,3 @@ cd ~/personal/gruvbox-community/ && git pull && cd
 
 # Update npm packages
 npm update -g
-

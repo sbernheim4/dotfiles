@@ -5,7 +5,7 @@
 " Toggle the sign column
 function! ToggleSignColumn()
     if &scl == 'no'
-        set scl=auto
+        set scl=yes
     else
         set scl=no
     endif

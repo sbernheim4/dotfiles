@@ -33,7 +33,6 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
 Plug 'gruvbox-community/gruvbox'
 
-
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
@@ -67,7 +66,7 @@ nnoremap <silent> <Leader>nf :NERDTreeFind <CR>
 let g:NERDTreeWinPos = 'right'
 
 " ########################################################################
-" ######## Telescope
+" ######## FZF
 " ########################################################################
 nnoremap ff :Files<CR>
 nnoremap aa :Buffers<CR>
@@ -83,7 +82,7 @@ let g:signify_sign_add = '▐'
 let g:signify_sign_delete = '▐'
 let g:signify_sign_change = '▐'
 let g:signify_line_highlight = 0
-let g:signify_disable_by_default = 1
+let g:signify_disable_by_default = 0
 
 " ########################################################################
 " ######## vim-qf | Vim Quickfix
