@@ -124,8 +124,6 @@ let g:dashboard_custom_shortcut={
 " ######## Tresitter
 " ########################################################################
 
-set runtimepath += "~/dotfiles/vim"
-
 lua << EOF
 require 'compe_settings'
 require 'lsp_signature_settings'
