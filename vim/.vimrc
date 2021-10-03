@@ -36,12 +36,18 @@ Plug 'gruvbox-community/gruvbox'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'scalameta/nvim-metals'
-Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/popup.nvim'
 Plug 'ojroques/nvim-lspfuzzy'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'jparise/vim-graphql'
 Plug 'nvim-lua/plenary.nvim'
+
+" Snippets and Completion
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
 
 " Plug 'fsharp/vim-fsharp', {
 "       \ 'for': 'fsharp',
@@ -158,12 +164,12 @@ source ~/dotfiles/vim/tabLine.vim
 
 " Load Lua Plugins - I have one file per plugin
 lua << EOF
-require 'compe_settings'
 require 'lsp_signature_settings'
 require 'lspconfig_settings'
 require 'lspfuzzy_settings'
 require 'nvim_treesitter_settings'
 require 'scala_metals_settings'
+require 'cmp_settings'
 EOF
 
 " ########################################################################
@@ -207,4 +213,3 @@ hi vertsplit guifg=#c4ab97 guibg=#c4ab97
 hi CursorLine guibg=#3d3d3d
 
 hi SignColumn guibg=#282828
-

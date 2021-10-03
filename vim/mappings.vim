@@ -147,4 +147,3 @@ inoremap jj <ESC> :w<CR>
 " Better pop up suggestion navigation behaviour
 inoremap <expr> <TAB>    pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <expr> <CR>     pumvisible() ? compe#confirm('<CR>') : "\<C-g>u\<CR>"
