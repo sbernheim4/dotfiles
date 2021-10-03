@@ -73,6 +73,18 @@ function installNpmPackages() {
 
     npm i -g tldr
     npm i -g vtop
+    # Bash Language Server
+    npm i -g bash-language-server
+    # CSS, HTML, JSON Language Server
+    npm i -g vscode-langservers-extracted
+    # GraphQL Language Server
+    npm i -g graphql-language-service-cli
+    # Typescript Language Server (and language)
+    npm i -g typescript typescript-language-server
+    # VimL Language Server
+    npm i -g vim-language-server
+    # YAML Language Server
+    npm i -g yaml-language-server
 }
 
 function cloneDotfiles() {
