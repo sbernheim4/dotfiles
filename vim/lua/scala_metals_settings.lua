@@ -2,7 +2,7 @@ local cmd = vim.cmd
 local g = vim.g
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-metals_config = require 'metals'.bare_config
+metals_config = require 'metals'.bare_config()
 
 metals_config.settings = {
     showImplicitArguments = true,
