@@ -175,6 +175,9 @@ augroup ReduceNoise
     autocmd WinEnter * setlocal cursorline
     autocmd WinLeave * setlocal nocursorline
 
+    autocmd WinEnter * setlocal relativenumber
+    autocmd WinLeave * setlocal norelativenumber
+
 augroup END
 
 function! ResizeSplits()
