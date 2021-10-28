@@ -14,6 +14,7 @@ function installHomebrew() {
     else
         brew upgrade
     fi
+
 }
 
 function installHomebrewPackages() {
@@ -49,6 +50,7 @@ function installHomebrewPackages() {
 
     # Sneak on colorls here --> https://github.com/athityakumar/colorls
     gem install colorls
+
 }
 
 function installNodeJS() {
@@ -61,6 +63,7 @@ function installNodeJS() {
 
     curl -L https://git.io/n-install | bash
     n lts
+
 }
 
 function installNpmPackages() {
@@ -85,6 +88,7 @@ function installNpmPackages() {
     npm i -g vim-language-server
     # YAML Language Server
     npm i -g yaml-language-server
+
 }
 
 function cloneDotfiles() {
@@ -109,6 +113,7 @@ function cloneDotfiles() {
 
     # Clone zsh syntax highlighting dir
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 }
 
 function setupVim() {
@@ -151,6 +156,7 @@ function setupVim() {
 }
 
 function setupTmux() {
+
     echo "==================================="
     echo "Linking tmux config"
     echo "==================================="
@@ -159,6 +165,7 @@ function setupTmux() {
 
     touch ~/.tmux.conf
     ln -sf ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
+
 }
 
 function useZsh() {
@@ -166,6 +173,8 @@ function useZsh() {
     echo "==================================="
     echo "Setting ZSH as default shell"
     echo "==================================="
+
+    cd ~/
 
     # Link .zshrc
     ln -sf ~/dotfiles/zsh/.zshrc ~/.zhsrc
@@ -176,9 +185,8 @@ function useZsh() {
     # Link powerlevel10k config
     ln -sf ~/dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
 
-    cd ~/
-
     chsh -s $(which zsh)
+
 }
 
 function install() {
