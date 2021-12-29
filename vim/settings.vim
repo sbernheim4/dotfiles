@@ -45,8 +45,8 @@ set linebreak
 
 set breakindentopt=shift:3,sbr
 
-set textwidth=120
-set colorcolumn=80,120
+set textwidth=80
+set colorcolumn=60,80
 
 " ########################################################################
 " ######## Backup Settings - Don't track swap files

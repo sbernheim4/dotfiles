@@ -14,7 +14,7 @@ endfunction
 " Function to toggle textwidth bar
 function! ToggleTextWidth()
     if &colorcolumn == ""
-        set colorcolumn=80,100
+        set colorcolumn=60,80
     else
         set colorcolumn=""
     endif
@@ -142,7 +142,7 @@ nnoremap * *N
 " Make delimitMate play nicely with pop up menu
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
-inoremap jj <ESC> :w<CR>
+inoremap jj <ESC> :lua vim.lsp.buf.formatting_sync()<CR>:w<CR>
 
 " Better pop up suggestion navigation behaviour
 inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
