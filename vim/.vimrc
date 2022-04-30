@@ -162,6 +162,10 @@ source ~/dotfiles/vim/tabLine.vim
 
 " Load Lua Plugins - I have one file per plugin
 lua << EOF
+--- For copilot suggestions, select using ctrl-j so as to not interfere with cmp suggestions
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
 require 'lsp_signature_settings'
 require 'lspconfig_settings'
 require 'lspfuzzy_settings'
