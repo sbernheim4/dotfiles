@@ -48,11 +48,9 @@ Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
-
-" Plug 'fsharp/vim-fsharp', {
-"       \ 'for': 'fsharp',
-"       \ 'do':  'make fsautocomplete',
-"       \}
+Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'github/copilot.vim'
+Plug 'zbirenbaum/copilot.lua'
 
 " For linting/formatting via ESLint and Prettier
 Plug 'dense-analysis/ale'
@@ -71,7 +69,7 @@ nnoremap <silent> <Leader>d :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>nt :NERDTree<CR>
 nnoremap <silent> <Leader>nf :NERDTreeFind <CR>
 
-let g:NERDTreeWinPos = 'right'
+let g:NERDTreeWinPos = 'left'
 
 " ########################################################################
 " ######## FZF

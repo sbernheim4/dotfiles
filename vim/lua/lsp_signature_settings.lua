@@ -6,5 +6,6 @@ lsp_signature.setup({
         border = "single"
     },
     padding=' ',
-    hint_prefix = ""
+    hint_prefix = "",
+    hint_enable = false
 })

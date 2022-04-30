@@ -22,10 +22,10 @@ lspconfig.yamlls.setup   {
 -- Install Help:
 -- Clone the relevant git repo in ~/personal
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
--- https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#sumneko_lua
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
 local system_name = "macOS"
-local sumneko_root_path = "/Users/sbernheim/personal/lua-language-server"
-local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+local sumneko_root_path = "/Users/sambernheim/personal/lua-language-server"
+local sumneko_binary = sumneko_root_path.."/bin".."/lua-language-server"
 local runtime_path = vim.split(package.path, ';')
 
 lspconfig.sumneko_lua.setup {

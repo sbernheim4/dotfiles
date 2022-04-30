@@ -66,8 +66,8 @@ set tabstop=4
 " Helps with auto indenting when using =
 set shiftwidth=4
 
-" Indent with spaces by default - only due to work :(
-set expandtab
+" Indent with tabs by default
+set noexpandtab
 
 " ########################################################################
 " ######## Search Settings
