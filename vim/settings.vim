@@ -174,6 +174,7 @@ set foldtext=MyFoldText()
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
 augroup ReduceNoise
     autocmd!
+
     " Automatically resize active split to 85 width
     autocmd WinEnter * :call ResizeSplits()
 
@@ -186,10 +187,14 @@ augroup ReduceNoise
     autocmd WinEnter * setlocal relativenumber
     autocmd WinLeave * setlocal norelativenumber
 
+    autocmd WinEnter * :call ResizeSplits()
+
 augroup END
 
 function! ResizeSplits()
     if &ft == 'nerdtree'
+        set signcolumn=no
+        set norelativenumber
         return
     elseif &ft == 'qf'
         " Always set quickfix list to a height of 10
