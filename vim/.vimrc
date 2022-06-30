@@ -34,6 +34,7 @@ Plug 'nvim-treesitter/playground'
 Plug 'gruvbox-community/gruvbox'
 
 " LSP
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
 Plug 'scalameta/nvim-metals'
 Plug 'nvim-lua/popup.nvim'
@@ -173,23 +174,6 @@ require 'nvim_treesitter_settings'
 require 'scala_metals_settings'
 require 'cmp_settings'
 EOF
-
-" ########################################################################
-" ######## LSP Mappings
-" ########################################################################
-nnoremap <silent> <Leader>gd  <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K           <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <Leader>td  <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> <Leader>fr  <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> <Leader>rn  <cmd>lua vim.lsp.buf.rename()<CR>
-nnoremap <silent> <Leader>ac  <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <Leader>gg  <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
-nnoremap <silent> <leader>gn  <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <silent> <leader>gp  <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> <Leader>s   <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> tt          <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent>  <Leader>c  <cmd>lua vim.lsp.buf.formatting()<CR>
-" nmap <silent> <Leader>ee <Plug>(coc-refactor)
 
 " ########################################################################
 " ######## Custom Highlight Groups
