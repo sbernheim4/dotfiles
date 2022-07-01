@@ -161,7 +161,7 @@ function! MyFoldText()
     let startLineText = getline(v:foldstart)
     let endLineText = trim(getline(v:foldend))
     let indentation = GetSpaces(foldlevel("."))
-    let spaces = repeat(" ", 200)
+    let spaces = repeat(" ", 500)
 
     let str = indentation . startLineText . "..." . endLineText . spaces
 

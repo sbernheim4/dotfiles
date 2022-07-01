@@ -18,6 +18,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local completion_capabilities = cmp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+lspconfig.rust_analyzer.setup{ capabilities = capabilities }
 lspconfig.cssls.setup { capabilities = capabilities }
 lspconfig.tsserver.setup { capabilities = completion_capabilities }
 lspconfig.vimls.setup { capabilities = completion_capabilities }
@@ -71,11 +72,12 @@ vim.api.nvim_set_keymap('n', '<Leader>td', ':lua vim.lsp.buf.type_definition()<C
 vim.api.nvim_set_keymap('n', '<Leader>fr', ':lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>rn', ':lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>ac', ':lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>gg', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>gn', ':lua vim.lsp.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>gp', ':lua vim.lsp.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>gg', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gn', ':lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gp', ':lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>s', ':lua vim.lsp.buf.workspace_symbol()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'tt', ':lua vim.lsp.buf.document_symbol()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>c', ':lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader><Leader>e', ':lua vim.diagnostic.setqflist()<CR>', { noremap = true, silent = true });
 -- " nmap <silent> <Leader>ee <Plug>(coc-refactor)
