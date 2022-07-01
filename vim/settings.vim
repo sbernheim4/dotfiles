@@ -115,8 +115,8 @@ set fillchars+=vert:█
 " ######## Status Line"
 " ########################################################################
 
-" Always show status line
-set laststatus=2
+" Always show gloabl status line. NEOVIM ONLY
+set laststatus=3
 
 " Don't display mode changes in command line (displayed in status line)
 set noshowmode
