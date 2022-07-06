@@ -61,10 +61,6 @@ function! ToggleList(bufname, pfx)
 
     exec(a:pfx.'open')
 
-    if winnr() != winnr
-        wincmd p
-    endif
-
 endfunction
 
 " Use CTRL + h/j/k/l to move between buffers instead of CTRL + W + (HJKL)
