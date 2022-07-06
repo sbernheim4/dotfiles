@@ -46,7 +46,7 @@ set linebreak
 set breakindentopt=shift:3,sbr
 
 set textwidth=80
-set colorcolumn=60,80
+set colorcolumn=""
 
 " ########################################################################
 " ######## Backup Settings - Don't track swap files
@@ -196,6 +196,10 @@ function! ResizeSplits()
         set signcolumn=no
         set norelativenumber
         return
+	elseif &ft == "Outline"
+		set norelativenumber
+		set number!
+		return
     elseif &ft == 'qf'
         " Always set quickfix list to a height of 10
         resize 10

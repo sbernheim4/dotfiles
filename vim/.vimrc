@@ -51,6 +51,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'github/copilot.vim'
 Plug 'zbirenbaum/copilot.lua'
+Plug 'simrat39/symbols-outline.nvim'
 
 " For linting/formatting via ESLint and Prettier
 Plug 'dense-analysis/ale'
