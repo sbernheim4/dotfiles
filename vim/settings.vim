@@ -46,7 +46,7 @@ set linebreak
 set breakindentopt=shift:3,sbr
 
 set textwidth=80
-set colorcolumn=""
+set colorcolumn=''
 
 " ########################################################################
 " ######## Backup Settings - Don't track swap files
@@ -84,7 +84,7 @@ set incsearch
 
 set inccommand=split
 
-if executable("rg")
+if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
@@ -112,7 +112,7 @@ set listchars=tab:•\ ,
 set fillchars+=vert:█
 
 " ########################################################################
-" ######## Status Line"
+" ######## Status Line
 " ########################################################################
 
 " Always show gloabl status line. NEOVIM ONLY
@@ -149,21 +149,21 @@ set shortmess-=F
 function! GetSpaces(foldLevel)
     if &expandtab == 1
         " Indenting with spaces
-        let str = repeat(" ", a:foldLevel / (&shiftwidth + 1) - 1)
+        let str = repeat(' ', a:foldLevel / (&shiftwidth + 1) - 1)
         return str
     elseif &expandtab == 0
         " Indenting with tabs
-        return repeat(" ", indent(v:foldstart) - (indent(v:foldstart) / &shiftwidth))
+        return repeat(' ', indent(v:foldstart) - (indent(v:foldstart) / &shiftwidth))
     endif
 endfunction
 
 function! MyFoldText()
     let startLineText = getline(v:foldstart)
     let endLineText = trim(getline(v:foldend))
-    let indentation = GetSpaces(foldlevel("."))
+    let indentation = GetSpaces(foldlevel('.'))
     let spaces = repeat(" ", 500)
 
-    let str = indentation . startLineText . "..." . endLineText . spaces
+    let str = indentation . startLineText . '...' . endLineText . spaces
 
     return str
 endfunction
@@ -172,7 +172,7 @@ endfunction
 set foldtext=MyFoldText()
 
 " File Types that should be ignored for the autogroup below
-let blacklist = ['NvimTree', 'Outline', 'qf', "dashboard"]
+let blacklist = ['NvimTree', 'Outline', 'qf', 'dashboard']
 
 
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
@@ -201,11 +201,11 @@ function! ResizeSplits()
 		set norelativenumber
 		setlocal signcolumn=yes
         return
-	elseif &ft == "Outline"
+	elseif &ft == 'Outline'
 		set norelativenumber
 		set number!
 		return
-	elseif &ft == "dashboard"
+	elseif &ft == 'dashboard'
 		set norelativenumber
 		set number!
 		return
