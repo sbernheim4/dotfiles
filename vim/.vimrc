@@ -12,7 +12,7 @@ Plug 'hardcoreplayers/dashboard-nvim'
 Plug 'ap/vim-buftabline'
 
 " Feature Enhancers
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'sbernheim4/vim-ripgrep'
 Plug 'mhinz/vim-signify'
 Plug 'ruanyl/vim-gh-line'
@@ -107,4 +107,9 @@ require 'scala_metals_settings'
 require 'cmp_settings'
 require 'symbols_outline_settings'
 require 'copilot_settings'
+require 'nvim_tree_settings'
 EOF
+
+nnoremap <silent> <Leader>d :NvimTreeToggle<CR>
+nnoremap <silent> <Leader>nf :NvimTreeFindFile<CR>
+nnoremap <silent> <Leader>nt :NvimTreeRefresh<CR>

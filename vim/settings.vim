@@ -171,6 +171,9 @@ endfunction
 " Custom display for text when folding
 set foldtext=MyFoldText()
 
+let blacklist = ['NvimTree', 'Outline', 'qf']
+
+
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
 augroup ReduceNoise
     autocmd!
@@ -178,8 +181,8 @@ augroup ReduceNoise
     " Automatically resize active split to 85 width
     autocmd WinEnter * :call ResizeSplits()
 
-    autocmd WinEnter * setlocal signcolumn=auto
-    autocmd WinLeave * setlocal signcolumn=no
+    autocmd WinEnter * if index(blacklist, &ft) < 0 | setlocal signcolumn=auto | endif
+    autocmd WinLeave * if index(blacklist, &ft) < 0 | setlocal signcolumn=no | endif
 
     autocmd WinEnter * setlocal cursorline
     autocmd WinLeave * setlocal nocursorline
@@ -192,9 +195,10 @@ augroup ReduceNoise
 augroup END
 
 function! ResizeSplits()
-    if &ft == 'nerdtree'
-        set signcolumn=no
-        set norelativenumber
+    if &ft == 'NvimTree'
+		vertical resize 30
+		set norelativenumber
+		setlocal signcolumn=yes
         return
 	elseif &ft == "Outline"
 		set norelativenumber
@@ -204,8 +208,8 @@ function! ResizeSplits()
         " Always set quickfix list to a height of 10
         resize 10
         return
-    else
-        set winwidth=100
-        wincmd =
+    " else
+    "     set winwidth=100
+    "     wincmd =
     endif
 endfunction
