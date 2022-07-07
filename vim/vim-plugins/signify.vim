@@ -3,6 +3,7 @@
 " ########################################################################
 nnoremap <Leader>st :SignifyToggle<CR>
 nnoremap <Leader>sh :SignifyToggleHighlight<CR>
+nnoremap <Leader>sd :SignifyDiff<CR>
 
 let g:signify_sign_add = '▐'
 let g:signify_sign_delete = '▐'
