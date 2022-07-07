@@ -171,7 +171,8 @@ endfunction
 " Custom display for text when folding
 set foldtext=MyFoldText()
 
-let blacklist = ['NvimTree', 'Outline', 'qf']
+" File Types that should be ignored for the autogroup below
+let blacklist = ['NvimTree', 'Outline', 'qf', "dashboard"]
 
 
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
@@ -201,6 +202,10 @@ function! ResizeSplits()
 		setlocal signcolumn=yes
         return
 	elseif &ft == "Outline"
+		set norelativenumber
+		set number!
+		return
+	elseif &ft == "dashboard"
 		set norelativenumber
 		set number!
 		return
