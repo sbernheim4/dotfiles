@@ -93,7 +93,6 @@ source ~/dotfiles/vim/vim-plugins/ale.vim
 source ~/dotfiles/vim/vim-plugins/argwrap.vim
 source ~/dotfiles/vim/vim-plugins/dashboard.vim
 source ~/dotfiles/vim/vim-plugins/fzf.vim
-source ~/dotfiles/vim/vim-plugins/nerdtree.vim
 source ~/dotfiles/vim/vim-plugins/sideways.vim
 source ~/dotfiles/vim/vim-plugins/signify.vim
 
