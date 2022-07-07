@@ -165,6 +165,7 @@ require 'lspfuzzy_settings'
 require 'nvim_treesitter_settings'
 require 'scala_metals_settings'
 require 'cmp_settings'
+require 'symbols_outline_settings'
 EOF
 
 " ########################################################################
