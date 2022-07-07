@@ -75,9 +75,9 @@ vim.api.nvim_set_keymap('n', '<Leader>ac', ':lua vim.lsp.buf.code_action()<CR>',
 vim.api.nvim_set_keymap('n', '<Leader>gg', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gn', ':lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gp', ':lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>s', ':lua vim.lsp.buf.workspace_symbol()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'tt', ':lua vim.lsp.buf.document_symbol()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>c', ':lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader><Leader>e', ':lua vim.diagnostic.setqflist()<CR>', { noremap = true, silent = true });
+vim.api.nvim_set_keymap('n', '<Leader>s',  ':lua vim.lsp.buf.workspace_symbol()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'K',          ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'tt',         ':lua vim.lsp.buf.document_symbol()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>c',  ':lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>ee', ':lua vim.diagnostic.setqflist()<CR>', { noremap = true, silent = true });
 -- " nmap <silent> <Leader>ee <Plug>(coc-refactor)
