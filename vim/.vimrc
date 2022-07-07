@@ -89,13 +89,13 @@ source ~/dotfiles/vim/tabLine.vim
 source ~/dotfiles/vim/highlights.vim
 
 " Load Plugin Settings
-source ~/dotfiles/vim/ale.vim
-source ~/dotfiles/vim/argwrap.vim
-source ~/dotfiles/vim/dashboard.vim
-source ~/dotfiles/vim/fzf.vim
-source ~/dotfiles/vim/nerdtree.vim
-source ~/dotfiles/vim/sideways.vim
-source ~/dotfiles/vim/signify.vim
+source ~/dotfiles/vim/vim-plugins/ale.vim
+source ~/dotfiles/vim/vim-plugins/argwrap.vim
+source ~/dotfiles/vim/vim-plugins/dashboard.vim
+source ~/dotfiles/vim/vim-plugins/fzf.vim
+source ~/dotfiles/vim/vim-plugins/nerdtree.vim
+source ~/dotfiles/vim/vim-plugins/sideways.vim
+source ~/dotfiles/vim/vim-plugins/signify.vim
 
 " Load Lua Plugins
 lua << EOF
