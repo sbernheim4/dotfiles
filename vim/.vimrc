@@ -107,6 +107,7 @@ require 'cmp_settings'
 require 'symbols_outline_settings'
 require 'copilot_settings'
 require 'nvim_tree_settings'
+require 'helper_functions'
 EOF
 
 nnoremap <silent> <Leader>d :NvimTreeToggle<CR>

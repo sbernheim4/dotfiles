@@ -91,7 +91,6 @@ nnoremap <Leader><Leader>rn :call ToggleRelativeLineNumbers()<CR>
 nnoremap <Space> za
 vnoremap <Space> za
 nnoremap tw :call ToggleTextWidth()<CR>
-nmap <silent> cm :call ToggleList("Quickfix List", 'c')<CR>
 
 " ########################################################################
 " ######## Buffer and Window Management
