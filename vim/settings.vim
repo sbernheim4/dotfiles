@@ -213,8 +213,8 @@ function! ResizeSplits()
         " Always set quickfix list to a height of 10
         resize 10
         return
-    " else
-    "     set winwidth=100
-    "     wincmd =
+    else
+        set winwidth=100
+        wincmd =
     endif
 endfunction
