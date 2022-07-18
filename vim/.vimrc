@@ -35,23 +35,16 @@ Plug 'gruvbox-community/gruvbox'
 " LSP
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
-Plug 'scalameta/nvim-metals'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'ojroques/nvim-lspfuzzy'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'jparise/vim-graphql'
 
 " Snippets and Completion
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'github/copilot.vim'
-Plug 'zbirenbaum/copilot.lua'
-
 " Plug 'simrat39/symbols-outline.nvim'
 Plug 'mxsdev/symbols-outline.nvim', { 'branch': 'folding' }
 
@@ -104,7 +97,6 @@ require 'lsp_signature_settings'
 require 'lspconfig_settings'
 require 'lspfuzzy_settings'
 require 'nvim_treesitter_settings'
-require 'scala_metals_settings'
 require 'cmp_settings'
 require 'symbols_outline_settings'
 require 'copilot_settings'
