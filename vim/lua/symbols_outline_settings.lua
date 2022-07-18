@@ -53,4 +53,4 @@ vim.g.symbols_outline = {
 	}
 }
 
-vim.api.nvim_set_keymap('n', '<Leader><Leader>a', ':SymbolsOutline<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>a', ':SymbolsOutline<CR>', { noremap = true, silent = true })
