@@ -1,6 +1,13 @@
 local nvim_tree = require("nvim-tree")
 
 nvim_tree.setup({
+	actions = {
+		open_file = {
+			window_picker = {
+				enable = false
+			}
+		}
+	},
 	git = {
 		enable = true,
 		ignore = false,
@@ -9,8 +16,10 @@ nvim_tree.setup({
 		mappings = {
 			custom_only = false,
 			list = {
-    			{ key = "I",  action = "toggle_dotfiles" },
-    			{ key = "H",  action = "toggle_git_ignored" }
+				{ key = "I", action = "toggle_dotfiles" },
+				{ key = "H", action = "toggle_git_ignored" },
+				{ key = "s", action = "vsplit" },
+				{ key = "S", action = "split" }
 			}
 		}
 	}
