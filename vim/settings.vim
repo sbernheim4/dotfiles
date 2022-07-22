@@ -85,8 +85,8 @@ set incsearch
 set inccommand=split
 
 if executable('rg')
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
+	set grepprg=rg\ --vimgrep\ --no-heading
+	set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
 " ########################################################################
@@ -147,25 +147,25 @@ set shortmess+=c
 set shortmess-=F
 
 function! GetSpaces(foldLevel)
-    if &expandtab == 1
-        " Indenting with spaces
-        let str = repeat(' ', a:foldLevel / (&shiftwidth + 1) - 1)
-        return str
-    elseif &expandtab == 0
-        " Indenting with tabs
-        return repeat(' ', indent(v:foldstart) - (indent(v:foldstart) / &shiftwidth))
-    endif
+	if &expandtab == 1
+		" Indenting with spaces
+		let str = repeat(' ', a:foldLevel / (&shiftwidth + 1) - 1)
+		return str
+	elseif &expandtab == 0
+		" Indenting with tabs
+		return repeat(' ', indent(v:foldstart) - (indent(v:foldstart) / &shiftwidth))
+	endif
 endfunction
 
 function! MyFoldText()
-    let startLineText = getline(v:foldstart)
-    let endLineText = trim(getline(v:foldend))
-    let indentation = GetSpaces(foldlevel('.'))
-    let spaces = repeat(" ", 500)
+	let startLineText = getline(v:foldstart)
+	let endLineText = trim(getline(v:foldend))
+	let indentation = GetSpaces(foldlevel('.'))
+	let spaces = repeat(" ", 500)
 
-    let str = indentation . startLineText . '...' . endLineText . spaces
+	let str = indentation . startLineText . '...' . endLineText . spaces
 
-    return str
+	return str
 endfunction
 
 " Custom display for text when folding
@@ -175,32 +175,33 @@ set foldtext=MyFoldText()
 let blacklist = ['NvimTree', 'Outline', 'qf', 'dashboard']
 
 
+
 " From https://github.com/knubie/dotfiles/blob/fe7967f875945e54d49fc672f575c47691a1e4cc/.vimrc#L136
 augroup ReduceNoise
-    autocmd!
+	autocmd!
 
-    " Automatically resize active split to 85 width
-    autocmd WinEnter * :call ResizeSplits()
+	" Automatically resize active split to 85 width
+	autocmd WinEnter * :call ResizeSplits()
 
-    autocmd WinEnter * if index(blacklist, &ft) < 0 | setlocal signcolumn=auto | endif
-    autocmd WinLeave * if index(blacklist, &ft) < 0 | setlocal signcolumn=no | endif
+	autocmd WinEnter * if index(blacklist, &ft) < 0 | setlocal signcolumn=auto | endif
+	autocmd WinLeave * if index(blacklist, &ft) < 0 | setlocal signcolumn=no | endif
 
-    autocmd WinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
+	autocmd WinEnter * setlocal cursorline
+	autocmd WinLeave * setlocal nocursorline
 
-    autocmd WinEnter * setlocal relativenumber
-    autocmd WinLeave * setlocal norelativenumber
+	autocmd WinEnter * if index(blacklist, &ft) < 0 | setlocal relativenumber | endif
+	autocmd WinLeave * if index(blacklist, &ft) < 0 | setlocal norelativenumber | endif
 
-    autocmd WinEnter * :call ResizeSplits()
+	autocmd WinEnter * :call ResizeSplits()
 
 augroup END
 
 function! ResizeSplits()
-    if &ft == 'NvimTree'
+	if &ft == 'NvimTree'
 		vertical resize 30
 		set norelativenumber
 		setlocal signcolumn=yes
-        return
+		return
 	elseif &ft == 'Outline'
 		set norelativenumber
 		set number!
@@ -209,12 +210,13 @@ function! ResizeSplits()
 		set norelativenumber
 		set number!
 		return
-    elseif &ft == 'qf'
-        " Always set quickfix list to a height of 10
-        resize 10
-        return
-    else
-        set winwidth=100
-        wincmd =
-    endif
+	elseif &ft == 'qf'
+		" Always set quickfix list to a height of 10
+		resize 10
+		return
+	else
+		set winwidth=100
+		wincmd =
+		return
+	endif
 endfunction

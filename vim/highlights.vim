@@ -2,7 +2,7 @@
 " ######## Custom Highlight Groups
 " ########################################################################
 hi Visual guifg=#575757 guibg=#d1d1d1
-hi QuickFixLine guibg=#707070 guifg=#e8d8c5
+hi QuickFixLine guibg=#282828 guifg=#e8d8c5
 
 hi LspDiagnosticsDefaultError guifg=#e5898b
 hi LspDiagnosticsDefaultWarning guifg=#edbb7b

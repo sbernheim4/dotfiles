@@ -12,7 +12,7 @@ local set_normal_keymap = function(keymap, command)
 end
 
 -- Determines if the quick fix window is open;
-local is_window_open = function (window_name)
+local is_window_open = function(window_name)
 
 	for _, win in pairs(vim.fn.getwininfo()) do
 		if win[window_name] == 1 then
