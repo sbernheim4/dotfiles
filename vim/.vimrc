@@ -45,6 +45,9 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+
 " Plug 'simrat39/symbols-outline.nvim'
 Plug 'mxsdev/symbols-outline.nvim', { 'branch': 'folding' }
 
