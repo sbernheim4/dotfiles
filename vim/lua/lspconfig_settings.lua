@@ -18,6 +18,8 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local completion_capabilities = cmp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+lspconfig.jsonls.setup{ capabilities = capabilities }
+lspconfig.hhvm.setup{ capabilities = capabilities }
 lspconfig.rust_analyzer.setup{ capabilities = capabilities }
 lspconfig.cssls.setup { capabilities = capabilities }
 lspconfig.tsserver.setup { capabilities = completion_capabilities }

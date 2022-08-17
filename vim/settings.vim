@@ -204,11 +204,9 @@ function! ResizeSplits()
 		return
 	elseif &ft == 'Outline'
 		set norelativenumber
-		set number!
 		return
 	elseif &ft == 'dashboard'
 		set norelativenumber
-		set number!
 		return
 	elseif &ft == 'qf'
 		" Always set quickfix list to a height of 10
