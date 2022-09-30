@@ -12,7 +12,7 @@ local set_normal_keymap = function(keymap, command)
 end
 
 -- Determines if the quick fix window is open;
-local is_window_open = function(window_name)
+local is_qf_window_open = function(window_name)
 
 	for _, win in pairs(vim.fn.getwininfo()) do
 		if win[window_name] == 1 then
@@ -32,7 +32,7 @@ function toggle_quick_fix()
 	old_window = current_window or vim.fn.win_getid();
 	current_window = vim.fn.win_getid();
 
-	if (is_window_open("quickfix")) then
+	if (is_qf_window_open("quickfix")) then
 		vim.api.nvim_set_current_win(old_window)
 		vim.cmd('cclose')
 	else
