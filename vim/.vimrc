@@ -78,7 +78,7 @@ colorscheme gruvbox
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Load additional settings
+" Adds 30ms
 source ~/dotfiles/vim/mappings.vim
 source ~/dotfiles/vim/settings.vim
 source ~/dotfiles/vim/statusLine.vim
@@ -96,13 +96,18 @@ source ~/dotfiles/vim/vim-plugins/signify.vim
 " Load Lua Plugins
 lua << EOF
 require 'lsp_signature_settings'
+
+-- adds 50ms
 require 'lspconfig_settings'
+
+-- Adds 50ms
+require 'nvim_tree_settings'
+
 require 'lspfuzzy_settings'
 require 'nvim_treesitter_settings'
 require 'cmp_settings'
 require 'symbols_outline_settings'
 require 'copilot_settings'
-require 'nvim_tree_settings'
 require 'helper_functions'
 EOF
 
