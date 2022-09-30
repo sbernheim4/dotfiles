@@ -59,8 +59,6 @@ export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 export PATH="/usr/local/sbin:$PATH"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 #################################################
 ### Git Stuff
 #################################################
@@ -68,3 +66,5 @@ export REVIEW_BASE=master
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export GOPATH="${HOME}/go"
