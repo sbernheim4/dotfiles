@@ -48,8 +48,7 @@ Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 
-" Plug 'simrat39/symbols-outline.nvim'
-Plug 'mxsdev/symbols-outline.nvim', { 'branch': 'folding' }
+Plug 'simrat39/symbols-outline.nvim'
 
 " For linting/formatting via ESLint and Prettier
 Plug 'dense-analysis/ale'

@@ -1,27 +1,32 @@
--- Default Settings
-vim.g.symbols_outline = {
-	highlight_hovered_item = false,
-	show_guides = true,
-	auto_preview = false,
-	position = 'right',
-	autofold_depth = 0,
-	relative_width = true,
-	width = 25,
+local symbols_outline = require("symbols-outline")
+
+local opts = {
 	auto_close = false,
+	auto_preview = false,
+	autofold_depth = 0,
+	highlight_hovered_item = false,
+	keymaps = {
+		close = { "<Esc>", "q" },
+		code_actions = "a",
+		focus_location = "o",
+		fold = "h",
+		fold_all = "W",
+		fold_reset = "R",
+		goto_location = "<Cr>",
+		hover_symbol = "<C-space>",
+		rename_symbol = "r",
+		toggle_preview = "K",
+		unfold = "l",
+		unfold_all = "E"
+	},
+	lsp_blacklist = {},
+	position = 'right',
+	preview_bg_highlight = 'Pmenu',
+	relative_width = true,
+	show_guides = true,
 	show_numbers = false,
 	show_relative_numbers = false,
 	show_symbol_details = true,
-	preview_bg_highlight = 'Pmenu',
-	keymaps = { -- These keymaps can be a string or a table for multiple keys
-		close = { "<Esc>", "q" },
-		goto_location = "<Cr>",
-		focus_location = "o",
-		hover_symbol = "<C-space>",
-		toggle_preview = "K",
-		rename_symbol = "r",
-		code_actions = "a",
-	},
-	lsp_blacklist = {},
 	symbol_blacklist = {},
 	symbols = {
 		File = { icon = "", hl = "TSURI" },
@@ -50,7 +55,10 @@ vim.g.symbols_outline = {
 		Event = { icon = "🗲", hl = "TSType" },
 		Operator = { icon = "+", hl = "TSOperator" },
 		TypeParameter = { icon = "𝙏", hl = "TSParameter" }
-	}
+	},
+	width = 25
 }
+
+symbols_outline.setup(opts)
 
 vim.api.nvim_set_keymap('n', '<Leader>a', ':SymbolsOutline<CR>', { noremap = true, silent = true })
