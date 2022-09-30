@@ -16,11 +16,15 @@ lsp_installer.setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local completion_capabilities = cmp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local completion_capabilities = cmp.update_capabilities(capabilities)
 
-lspconfig.jsonls.setup{ capabilities = capabilities }
-lspconfig.rust_analyzer.setup{ capabilities = capabilities }
-lspconfig.cssls.setup { capabilities = capabilities }
+lspconfig.intelephense.setup{ capabilities = completion_capabilities }
+lspconfig.phpactor.setup{ capabilities = completion_capabilities }
+lspconfig.psalm.setup{ capabilities = completion_capabilities }
+
+lspconfig.jsonls.setup{ capabilities = completion_capabilities }
+lspconfig.rust_analyzer.setup{ capabilities = completion_capabilities }
+lspconfig.cssls.setup { capabilities = completion_capabilities }
 lspconfig.tsserver.setup { capabilities = completion_capabilities }
 lspconfig.vimls.setup { capabilities = completion_capabilities }
 lspconfig.metals.setup { capabilities = completion_capabilities }
