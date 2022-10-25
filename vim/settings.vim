@@ -31,6 +31,9 @@ set smartindent
 " Time in milliseconds to wait for a mapped sequence to complete
 set timeoutlen=300
 
+" Disable mouse mode
+set mouse=
+
 " ########################################################################
 " ######## Line Wrapping
 " ########################################################################
