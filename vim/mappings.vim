@@ -120,6 +120,12 @@ nnoremap <Leader>al <C-W>L
 nnoremap <Leader>r :source ~/.vimrc<CR>
 nnoremap <Leader>pwf :echo expand("%p")<CR>
 
+" (s)ort (s)urrounding character: ss<char>
+nnoremap ss{ vi{:sort<CR>
+nnoremap ss( vi(:sort<CR>
+nnoremap ss< vi<:sort<CR>
+nnoremap ss[ vi[:sort<CR>
+
 " Delete trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
