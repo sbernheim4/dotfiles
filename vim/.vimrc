@@ -49,9 +49,12 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 
 Plug 'simrat39/symbols-outline.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 " For linting/formatting via ESLint and Prettier
 Plug 'dense-analysis/ale'
+
+" Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
