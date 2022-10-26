@@ -19,8 +19,6 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local completion_capabilities = cmp.default_capabilities(capabilities)
 
 lspconfig.intelephense.setup{ capabilities = completion_capabilities }
-lspconfig.phpactor.setup{ capabilities = completion_capabilities }
-lspconfig.psalm.setup{ capabilities = completion_capabilities }
 lspconfig.jsonls.setup{ capabilities = completion_capabilities }
 lspconfig.rust_analyzer.setup{ capabilities = completion_capabilities }
 lspconfig.cssls.setup { capabilities = completion_capabilities }
