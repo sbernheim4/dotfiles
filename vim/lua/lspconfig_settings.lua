@@ -16,7 +16,7 @@ lsp_installer.setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local completion_capabilities = cmp.update_capabilities(capabilities)
+local completion_capabilities = cmp.default_capabilities(capabilities)
 
 lspconfig.intelephense.setup{ capabilities = completion_capabilities }
 lspconfig.phpactor.setup{ capabilities = completion_capabilities }
