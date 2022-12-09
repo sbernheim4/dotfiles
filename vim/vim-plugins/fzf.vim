@@ -3,4 +3,3 @@
 " ########################################################################
 nnoremap ff :Files<CR>
 nnoremap aa :Buffers<CR>
-nnoremap <Leader>f :Rg

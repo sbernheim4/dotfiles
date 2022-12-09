@@ -29,7 +29,7 @@ set signcolumn=yes
 set smartindent
 
 " Time in milliseconds to wait for a mapped sequence to complete
-set timeoutlen=300
+set timeoutlen=200
 
 " Disable mouse mode
 set mouse=
@@ -164,9 +164,9 @@ function! MyFoldText()
 	let startLineText = getline(v:foldstart)
 	let endLineText = trim(getline(v:foldend))
 	let indentation = GetSpaces(foldlevel('.'))
-	let spaces = repeat(" ", 500)
+	let spaces = repeat(" ", 1000)
 
-	let str = indentation . startLineText . '...' . endLineText . spaces
+	let str = indentation . startLineText . '  ..  ' . endLineText . spaces
 
 	return str
 endfunction
