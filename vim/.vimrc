@@ -32,6 +32,7 @@ Plug 'junegunn/fzf.vim'
 " Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/playground'
+Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'gruvbox-community/gruvbox'
 
 " LSP
@@ -118,6 +119,7 @@ require 'nvim_tree_settings'
 require 'lspfuzzy_settings'
 require 'nvim_treesitter_settings'
 require 'navic_settings'
+require 'nvim_treesitter_context'
 require 'cmp_settings'
 require 'symbols_outline_settings'
 require 'helper_functions'
