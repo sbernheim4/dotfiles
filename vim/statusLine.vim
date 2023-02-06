@@ -94,9 +94,9 @@ endfunction
 
 " Change status line automatically when moving between buffers and windows
 augroup Statusline
-    let ftToIgnore = ['NERDTree']
+    let filetypesToIgnore = ['NERDTree']
 
     autocmd!
-    autocmd WinEnter,BufEnter * if index(ftToIgnore, &ft) < 0 | setlocal statusline=%!ActiveLine()
-    autocmd WinLeave,BufLeave * if index(ftToIgnore, &ft) < 0 | setlocal statusline=%!InactiveLine()
+    autocmd WinEnter,BufEnter * if index(filetypesToIgnore, &ft) < 0 | setlocal statusline=%!ActiveLine()
+    autocmd WinLeave,BufLeave * if index(filetypesToIgnore, &ft) < 0 | setlocal statusline=%!InactiveLine()
 augroup END

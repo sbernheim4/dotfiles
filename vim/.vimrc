@@ -35,6 +35,7 @@ Plug 'gruvbox-community/gruvbox'
 " LSP
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
+Plug 'SmiteshP/nvim-navic'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'ojroques/nvim-lspfuzzy'
@@ -110,7 +111,6 @@ require 'lspfuzzy_settings'
 require 'nvim_treesitter_settings'
 require 'cmp_settings'
 require 'symbols_outline_settings'
-require 'copilot_settings'
 require 'helper_functions'
 EOF
 

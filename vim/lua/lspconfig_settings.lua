@@ -1,37 +1,44 @@
 local lspconfig = require 'lspconfig'
 local cmp = require 'cmp_nvim_lsp'
 local lsp_installer = require 'nvim-lsp-installer'
+local navic = require("nvim-navic")
 
 lsp_installer.setup {
-	automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
-	ui = {
-		icons = {
-			server_installed = "✓",
-			server_pending = "➜",
-			server_uninstalled = "✗"
-		}
-	}
+  automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+  ui = {
+    icons = {
+      server_installed = "✓",
+      server_pending = "➜",
+      server_uninstalled = "✗"
+    }
+  }
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+local custom_on_attach = function(client, bufnr)
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
+end
+
 local completion_capabilities = cmp.default_capabilities(capabilities)
 
-lspconfig.intelephense.setup{ capabilities = completion_capabilities }
-lspconfig.jsonls.setup{ capabilities = completion_capabilities }
-lspconfig.rust_analyzer.setup{ capabilities = completion_capabilities }
-lspconfig.cssls.setup { capabilities = completion_capabilities }
-lspconfig.gopls.setup{ capabilities = capabilities }
-lspconfig.tsserver.setup { capabilities = completion_capabilities }
-lspconfig.vimls.setup { capabilities = completion_capabilities }
-lspconfig.metals.setup { capabilities = completion_capabilities }
-lspconfig.bashls.setup { capabilities = completion_capabilities }
-lspconfig.graphql.setup { capabilities = completion_capabilities }
+lspconfig.intelephense.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
+lspconfig.jsonls.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
+lspconfig.rust_analyzer.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
+lspconfig.cssls.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
+lspconfig.gopls.setup { capabilities = capabilities, on_attach = custom_on_attach }
+lspconfig.tsserver.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
+lspconfig.vimls.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
+lspconfig.metals.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
+lspconfig.bashls.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
+lspconfig.graphql.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
 lspconfig.vimls.setup { capabilities = completion_capabilities }
 lspconfig.yamlls.setup {
-	capabilities = completion_capabilities,
-	schemaStore = { url = "https://www.schemastore.org/api/json/catalog.json" }
+  capabilities = completion_capabilities,
+  schemaStore = { url = "https://www.schemastore.org/api/json/catalog.json" }
 }
 
 -- Lua LSP Setup
