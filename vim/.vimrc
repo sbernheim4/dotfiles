@@ -109,6 +109,7 @@ require 'nvim_tree_settings'
 
 require 'lspfuzzy_settings'
 require 'nvim_treesitter_settings'
+require 'navic_settings'
 require 'cmp_settings'
 require 'symbols_outline_settings'
 require 'helper_functions'

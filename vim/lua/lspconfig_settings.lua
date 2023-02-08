@@ -17,28 +17,32 @@ lsp_installer.setup {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local custom_on_attach = function(client, bufnr)
+local on_attach = function(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
+      navic.attach(client, bufnr)
+
+      -- Display the location in the winbar
+      vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
     end
 end
 
 local completion_capabilities = cmp.default_capabilities(capabilities)
 
-lspconfig.intelephense.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
-lspconfig.jsonls.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
-lspconfig.rust_analyzer.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
-lspconfig.cssls.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
-lspconfig.gopls.setup { capabilities = capabilities, on_attach = custom_on_attach }
-lspconfig.tsserver.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
-lspconfig.vimls.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
-lspconfig.metals.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
-lspconfig.bashls.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
-lspconfig.graphql.setup { capabilities = completion_capabilities, on_attach = custom_on_attach }
-lspconfig.vimls.setup { capabilities = completion_capabilities }
+lspconfig.intelephense.setup { capabilities = completion_capabilities, on_attach = on_attach }
+lspconfig.jsonls.setup { capabilities = completion_capabilities, on_attach = on_attach }
+lspconfig.rust_analyzer.setup { capabilities = completion_capabilities, on_attach = on_attach }
+lspconfig.cssls.setup { capabilities = completion_capabilities, on_attach = on_attach }
+lspconfig.gopls.setup { capabilities = capabilities, on_attach = on_attach }
+lspconfig.tsserver.setup { capabilities = completion_capabilities, on_attach = on_attach }
+lspconfig.vimls.setup { capabilities = completion_capabilities, on_attach = on_attach }
+lspconfig.metals.setup { capabilities = completion_capabilities, on_attach = on_attach }
+lspconfig.bashls.setup { capabilities = completion_capabilities, on_attach = on_attach }
+lspconfig.graphql.setup { capabilities = completion_capabilities, on_attach = on_attach }
+lspconfig.vimls.setup { capabilities = completion_capabilities, on_attach = on_attach }
 lspconfig.yamlls.setup {
   capabilities = completion_capabilities,
-  schemaStore = { url = "https://www.schemastore.org/api/json/catalog.json" }
+  schemaStore = { url = "https://www.schemastore.org/api/json/catalog.json" },
+  on_attach = on_attach
 }
 
 -- Lua LSP Setup
@@ -51,29 +55,30 @@ local sumneko_binary = sumneko_root_path .. "/bin" .. "/lua-language-server"
 local runtime_path = vim.split(package.path, ';')
 
 lspconfig.sumneko_lua.setup {
-	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" };
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = 'LuaJIT',
-				-- Setup your lua path
-				path = runtime_path,
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { 'vim' },
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
-			}
-		}
-	}
+  on_attach = on_attach,
+  cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" };
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      }
+    }
+  }
 }
 
 vim.api.nvim_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })

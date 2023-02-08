@@ -35,6 +35,3 @@ navic.setup {
     depth_limit_indicator = "..",
     safe_output = true
 }
-
--- Display the location in the winbar
-vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
