@@ -30,6 +30,7 @@ Plug 'junegunn/fzf.vim'
 
 " Syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/playground'
 Plug 'gruvbox-community/gruvbox'
 
 " LSP
@@ -54,6 +55,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 " For linting/formatting via ESLint and Prettier
 Plug 'dense-analysis/ale'
+Plug 'nvim-tree/nvim-web-devicons'
+
 
 " Plug 'editorconfig/editorconfig-vim'
 
@@ -92,7 +95,6 @@ source ~/dotfiles/vim/highlights.vim
 " Load Plugin Settings
 source ~/dotfiles/vim/vim-plugins/ale.vim
 source ~/dotfiles/vim/vim-plugins/argwrap.vim
-source ~/dotfiles/vim/vim-plugins/dashboard.vim
 source ~/dotfiles/vim/vim-plugins/fzf.vim
 source ~/dotfiles/vim/vim-plugins/sideways.vim
 source ~/dotfiles/vim/vim-plugins/signify.vim
@@ -113,6 +115,7 @@ require 'navic_settings'
 require 'cmp_settings'
 require 'symbols_outline_settings'
 require 'helper_functions'
+require 'dashboard_settings'
 EOF
 
 nnoremap <silent> <Leader>d :NvimTreeToggle<CR>
