@@ -149,4 +149,4 @@ nnoremap * *N
 " Make delimitMate play nicely with pop up menu
 imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
-inoremap jj <ESC> :lua vim.lsp.buf.formatting_sync()<CR>:w<CR>
+inoremap jj <ESC> :lua vim.lsp.buf.format()<CR>:w<CR>
