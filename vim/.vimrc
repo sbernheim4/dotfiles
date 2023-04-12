@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'hardcoreplayers/dashboard-nvim'
 Plug 'ap/vim-buftabline'
+Plug 'kkoomen/vim-doge', { 'do': 'npm i --no-save && npm run build:binary:unix' }
 
 " Feature Enhancers
 Plug 'kyazdani42/nvim-tree.lua'
@@ -116,6 +117,26 @@ require 'cmp_settings'
 require 'symbols_outline_settings'
 require 'helper_functions'
 require 'dashboard_settings'
+
+local links = {
+   ['@lsp.type.namespace'] = '@namespace',
+   ['@lsp.type.type'] = '@type',
+   ['@lsp.type.class'] = '@type',
+   ['@lsp.type.enum'] = '@type',
+   ['@lsp.type.interface'] = '@type',
+   ['@lsp.type.struct'] = '@structure',
+   ['@lsp.type.parameter'] = '@parameter',
+   ['@lsp.type.variable'] = '@constant',
+   ['@lsp.type.property'] = '@property',
+   ['@lsp.type.enumMember'] = '@constant',
+   ['@lsp.type.function'] = '@function',
+   ['@lsp.type.method'] = '@method',
+   ['@lsp.type.macro'] = '@macro',
+   ['@lsp.type.decorator'] = '@function',
+}
+for newgroup, oldgroup in pairs(links) do
+  vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true, })
+end
 EOF
 
 nnoremap <silent> <Leader>d :NvimTreeToggle<CR>
