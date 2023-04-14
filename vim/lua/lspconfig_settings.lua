@@ -4,14 +4,14 @@ local lsp_installer = require 'nvim-lsp-installer'
 local navic = require("nvim-navic")
 
 lsp_installer.setup {
-  automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
-  ui = {
-    icons = {
-      server_installed = "✓",
-      server_pending = "➜",
-      server_uninstalled = "✗"
+    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
     }
-  }
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -19,10 +19,10 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
-      navic.attach(client, bufnr)
+        navic.attach(client, bufnr)
 
-      -- Display the location in the winbar
-      vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+        -- Display the location in the winbar
+        vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
     end
 end
 
@@ -40,32 +40,32 @@ lspconfig.bashls.setup { capabilities = completion_capabilities, on_attach = on_
 lspconfig.graphql.setup { capabilities = completion_capabilities, on_attach = on_attach }
 lspconfig.vimls.setup { capabilities = completion_capabilities, on_attach = on_attach }
 lspconfig.yamlls.setup {
-  capabilities = completion_capabilities,
-  schemaStore = { url = "https://www.schemastore.org/api/json/catalog.json" },
-  on_attach = on_attach
+    capabilities = completion_capabilities,
+    schemaStore = { url = "https://www.schemastore.org/api/json/catalog.json" },
+    on_attach = on_attach
 }
 -- Lua
 local sumneko_root_path = vim.fn.expand('$HOME/.local/share/nvim/lsp_servers/sumneko_lua/extension/server')
 local sumneko_binary = sumneko_root_path .. "/bin" .. "/lua-language-server"
 
 lspconfig.lua_ls.setup {
-  on_attach = on_attach,
-  cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = { globals = { 'vim' }, },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      telemetry = {
-        enable = false,
-      },
+    on_attach = on_attach,
+    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+            },
+            diagnostics = { globals = { 'vim' }, },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
     },
-  },
 }
 
 vim.api.nvim_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
@@ -77,9 +77,9 @@ vim.api.nvim_set_keymap('n', '<Leader>ac', ':lua vim.lsp.buf.code_action()<CR>',
 vim.api.nvim_set_keymap('n', '<Leader>gg', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gn', ':lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gp', ':lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>s',  ':lua vim.lsp.buf.workspace_symbol()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'K',          ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'tt',         ':lua vim.lsp.buf.document_symbol()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>c',  ':lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>s', ':lua vim.lsp.buf.workspace_symbol()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'tt', ':lua vim.lsp.buf.document_symbol()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>c', ':lua vim.lsp.buf.formatting()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>ee', ':lua vim.diagnostic.setqflist()<CR>', { noremap = true, silent = true });
 -- " nmap <silent> <Leader>ee <Plug>(coc-refactor)
