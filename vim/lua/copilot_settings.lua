@@ -21,8 +21,9 @@ require('copilot').setup({
 })
 
 require("copilot_cmp").setup({
-	suggestion = {
-		enabled = true
+	formatters = {
+		label = require("copilot_cmp.format").format_label_text,
+		insert_text = require("copilot_cmp.format").format_insert_text,
+		preview = require("copilot_cmp.format").deindent,
 	},
-	panel = { enabled = false },
 })

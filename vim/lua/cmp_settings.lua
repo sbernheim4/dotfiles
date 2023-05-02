@@ -1,5 +1,5 @@
 local cmp = require('cmp')
-local copilotCmp = require("copilot_cmp")
+require("copilot_cmp").setup()
 
 local has_words_before = function()
 	if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
@@ -15,7 +15,7 @@ cmp.setup({
 	sorting = {
 		priority_weight = 2,
 		comparators = {
-			copilotCmp.prioritize,
+			require('copilot_cmp').prioritize,
 
 			-- Below is the default comparitor list and order for nvim-cmp
 			cmp.config.compare.offset,
@@ -60,5 +60,24 @@ cmp.setup({
 		{ name = 'nvim_lsp', group_index = 2 },
 		{ name = 'buffer',   group_index = 2 },
 		{ name = 'nvim_lua', group_index = 2 },
+	},
+	formatting = {
+		format = function(entry, vim_item)
+			-- Source
+			vim_item.menu = ({
+				copilot = "[Copilot]",
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				luasnip = "[LuaSnip]",
+				nvim_lua = "[Lua]",
+				latex_symbols = "[LaTeX]",
+			})[entry.source.name]
+			return vim_item
+		end
+	},
+	view = {
+		entries = {
+			name = 'custom',
+		}
 	}
 })
