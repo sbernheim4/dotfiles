@@ -7,3 +7,4 @@ secret-functions.sh
 secret-aliases.sh
 aliases.sh
 secret-cron-jobs
+.luarc.json
