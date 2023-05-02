@@ -36,6 +36,8 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'gruvbox-community/gruvbox'
 
 " LSP
+Plug 'github/copilot.vim'
+
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
 Plug 'SmiteshP/nvim-navic'
