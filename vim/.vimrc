@@ -4,7 +4,7 @@ let mapleader=","
 " ########################################################################
 " ######## Vim Plug and Plugins
 " ########################################################################
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged ')
 
 " Misc.
 Plug 'christoomey/vim-tmux-navigator'
