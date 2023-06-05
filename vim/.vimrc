@@ -36,7 +36,6 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'gruvbox-community/gruvbox'
 
 " LSP
-Plug 'github/copilot.vim'
 
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
@@ -48,10 +47,6 @@ Plug 'ray-x/lsp_signature.nvim'
 
 " Snippets and Completion
 Plug 'hrsh7th/nvim-cmp'
-
-" Plug 'github/copilot.vim'
-Plug 'zbirenbaum/copilot.lua'
-Plug 'zbirenbaum/copilot-cmp'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -126,7 +121,6 @@ require 'cmp_settings'
 require 'symbols_outline_settings'
 require 'helper_functions'
 require 'dashboard_settings'
-require 'copilot_settings'
 
 local links = {
    ['@lsp.type.namespace'] = '@namespace',

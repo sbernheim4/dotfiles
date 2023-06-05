@@ -149,8 +149,8 @@ function setupVim() {
     done
 
     echo "==================================="
-    echo "Vim and neovim setup complete"
-    echo "Once this process is complete open vim and run :PlugInstall"
+    echo "Neovim setup complete"
+    echo "Once this process is complete open nvim and run :PlugInstall"
     echo "==================================="
 
 }
