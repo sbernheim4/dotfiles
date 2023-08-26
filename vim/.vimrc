@@ -1,71 +1,6 @@
 ﻿" Make the Leader key , instead of the default \
 let mapleader=","
 
-" ########################################################################
-" ######## Vim Plug and Plugins
-" ########################################################################
-call plug#begin('~/.config/nvim/plugged ')
-
-" Misc.
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'hardcoreplayers/dashboard-nvim'
-Plug 'ap/vim-buftabline'
-Plug 'kkoomen/vim-doge', { 'do': 'npm i --no-save && npm run build:binary:unix' }
-
-" Feature Enhancers
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'sbernheim4/vim-ripgrep'
-Plug 'mhinz/vim-signify'
-Plug 'ruanyl/vim-gh-line'
-Plug 'rhysd/git-messenger.vim'
-
-" Text Manipulation
-Plug 'Raimondi/delimitMate'
-Plug 'tpope/vim-surround'
-Plug 'AndrewRadev/sideways.vim'
-Plug 'FooSoft/vim-argwrap'
-
-" FZF
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-" Syntax highlighting
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/playground'
-Plug 'nvim-treesitter/nvim-treesitter-context'
-Plug 'gruvbox-community/gruvbox'
-
-" LSP
-
-Plug 'williamboman/nvim-lsp-installer'
-Plug 'neovim/nvim-lspconfig'
-Plug 'SmiteshP/nvim-navic'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'ojroques/nvim-lspfuzzy'
-Plug 'ray-x/lsp_signature.nvim'
-
-" Snippets and Completion
-Plug 'hrsh7th/nvim-cmp'
-
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-
-Plug 'simrat39/symbols-outline.nvim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-
-" For linting/formatting via ESLint and Prettier
-Plug 'dense-analysis/ale'
-Plug 'nvim-tree/nvim-web-devicons'
-
-
-" Plug 'editorconfig/editorconfig-vim'
-
-call plug#end()
-
 autocmd FileType help wincmd L
 autocmd FileType gitcommit setlocal spell
 
@@ -105,6 +40,8 @@ source ~/dotfiles/vim/vim-plugins/signify.vim
 
 " Load Lua Plugins
 lua << EOF
+require 'packer_config'
+
 require 'lsp_signature_settings'
 
 -- adds 50ms
