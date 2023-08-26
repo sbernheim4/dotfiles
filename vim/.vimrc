@@ -40,7 +40,7 @@ source ~/dotfiles/vim/vim-plugins/signify.vim
 
 " Load Lua Plugins
 lua << EOF
-require 'packer_config'
+require 'lazy_config'
 require 'lsp_signature_settings'
 require 'lspconfig_settings'
 require 'nvim_tree_settings'
