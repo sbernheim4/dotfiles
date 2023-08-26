@@ -16,11 +16,11 @@ let g:qf_shorten_path = 0
 " ########################################################################
 " ######## Color Scheme Settings
 " ########################################################################
+" NOTE: colorscheme is set in the plugin manager
 syntax enable
 syntax on
 set termguicolors
 set background=dark
-colorscheme gruvbox
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -69,7 +69,9 @@ local links = {
    ['@lsp.type.macro'] = '@macro',
    ['@lsp.type.decorator'] = '@function',
 }
+
 for newgroup, oldgroup in pairs(links) do
   vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true, })
 end
+
 EOF

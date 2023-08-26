@@ -7,7 +7,7 @@ dashboard.setup {
 		},
 		shortcut = {
 			{
-        action = 'PlugUpdate',
+        action = 'Lazy',
         desc = ' Update',
         group = '@property',
         icon = '⥀',

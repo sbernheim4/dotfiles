@@ -1,5 +1,3 @@
-vim.cmd.packadd('packer.nvim')
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -16,7 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 return require('lazy').setup({
 	-- Packer can manage itself
-	{'wbthomason/packer.nvim'},
 
 	{ "folke/neodev.nvim" },
 
@@ -48,7 +45,12 @@ return require('lazy').setup({
 	{ 'nvim-treesitter/nvim-treesitter' },
 	{ 'nvim-treesitter/playground' },
 	{ 'nvim-treesitter/nvim-treesitter-context' },
-	{ 'gruvbox-community/gruvbox' },
+	{
+		'gruvbox-community/gruvbox',
+		config = function()
+			vim.cmd.colorscheme("gruvbox")
+		end
+	},
 
 	-- LSP
 	{ 'williamboman/nvim-lsp-installer' },

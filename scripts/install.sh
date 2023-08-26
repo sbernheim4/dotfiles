@@ -135,7 +135,7 @@ function setupVim() {
     mkdir -p ~/.vim/colors
     mkdir -p ~/.config/nvim/colors
 
-    local colors=($(ls ~/dotfiles/vim_colors))
+    local colors=($(ls ~/dotfiles/vim/colors))
 
     for colorFile in $colors
     do
