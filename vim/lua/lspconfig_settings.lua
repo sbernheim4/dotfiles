@@ -1,10 +1,14 @@
-local lspconfig = require 'lspconfig'
-local cmp = require 'cmp_nvim_lsp'
-local lsp_installer = require 'nvim-lsp-installer'
-local navic = require("nvim-navic")
+require('neodev').setup({
+	-- add any options here, or leave empty to use the default settings
+})
+
+local lspconfig = require('lspconfig')
+local cmp = require('cmp_nvim_lsp')
+local lsp_installer = require('nvim-lsp-installer')
+local navic = require('nvim-navic')
 
 lsp_installer.setup {
-	automatic_installation = true,   -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+	automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
 	ui = {
 		icons = {
 			server_installed = "✓",
@@ -53,6 +57,9 @@ lspconfig.lua_ls.setup {
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	settings = {
 		Lua = {
+			completion = {
+				callSnippet = "Replace"
+			},
 			runtime = {
 				version = 'LuaJIT',
 			},
@@ -81,6 +88,6 @@ vim.api.nvim_set_keymap('n', '<Leader>s', ':lua vim.lsp.buf.workspace_symbol()<C
 vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'tt', ':lua vim.lsp.buf.document_symbol()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>c', ':lua vim.lsp.buf.format({async = true})<CR>',
-{ noremap = true, silent = true })
+	{ noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>ee', ':lua vim.diagnostic.setqflist()<CR>', { noremap = true, silent = true });
 -- " nmap <silent> <Leader>ee <Plug>(coc-refactor)

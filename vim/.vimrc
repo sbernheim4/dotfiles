@@ -73,7 +73,3 @@ for newgroup, oldgroup in pairs(links) do
   vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true, })
 end
 EOF
-
-nnoremap <silent> <Leader>d :NvimTreeToggle<CR>
-nnoremap <silent> <Leader>nf :NvimTreeFindFile<CR>
-nnoremap <silent> <Leader>nt :NvimTreeRefresh<CR>
