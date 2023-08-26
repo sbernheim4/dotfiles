@@ -135,10 +135,9 @@ function setupVim() {
     mkdir -p ~/.vim/colors
     mkdir -p ~/.config/nvim/colors
 
-    # Install vim-plug
-    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
+    # Install packer
+    git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+        ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
     local colors=($(ls ~/dotfiles/vim_colors))
 
@@ -150,7 +149,7 @@ function setupVim() {
 
     echo "==================================="
     echo "Neovim setup complete"
-    echo "Once this process is complete open nvim and run :PlugInstall"
+    echo "Once this process is complete open nvim and run :PackerInstall"
     echo "==================================="
 
 }

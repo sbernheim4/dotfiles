@@ -6,7 +6,6 @@ local function on_attach(bufnr)
     return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
 
-  -- BEGIN_DEFAULT_ON_ATTACH
   vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node,          opts('CD'))
   vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer,     opts('Open: In Place'))
   vim.keymap.set('n', '<C-k>', api.node.show_info_popup,              opts('Info'))
@@ -80,12 +79,6 @@ nvim_tree.setup({
 		enable = false,
 		ignore = false,
 	},
-	view = {
-		mappings = {
-			custom_only = false,
-		}
-	}
-
 })
 
 -- vim.api.nvim_set_keymap('n', '<Leader>d', ':NvimTreeToggle<CR>',   { noremap = true, silent = true })
