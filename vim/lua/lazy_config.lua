@@ -62,13 +62,16 @@ return require('lazy').setup({
 	{ 'ray-x/lsp_signature.nvim' },
 
 	-- Snippets and Completion
-	{ 'hrsh7th/nvim-cmp' },
-
-	{ 'hrsh7th/cmp-nvim-lsp' },
-	{ 'hrsh7th/cmp-buffer' },
-	{ 'hrsh7th/cmp-nvim-lua' },
-	{ 'hrsh7th/vim-vsnip' },
-	{ 'hrsh7th/vim-vsnip-integ' },
+	{
+		'hrsh7th/nvim-cmp',
+		dependencies = {
+			{ 'hrsh7th/cmp-nvim-lsp' },
+			{ 'hrsh7th/cmp-buffer' },
+			{ 'hrsh7th/cmp-nvim-lua' },
+			{ 'hrsh7th/vim-vsnip' },
+			{ 'hrsh7th/vim-vsnip-integ' },
+		}
+	},
 
 	{ 'simrat39/symbols-outline.nvim' },
 

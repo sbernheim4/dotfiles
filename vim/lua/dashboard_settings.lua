@@ -7,11 +7,11 @@ dashboard.setup {
 		},
 		shortcut = {
 			{
-        action = 'Lazy',
-        desc = ' Update',
-        group = '@property',
-        icon = '⥀',
-        key = 'u',
+				action = 'Lazy',
+				desc = ' Update',
+				group = '@property',
+				icon = '⥀',
+				key = 'u',
 			},
 			{
 				action = 'Files',
