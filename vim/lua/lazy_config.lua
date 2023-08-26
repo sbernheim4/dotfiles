@@ -57,7 +57,6 @@ return require('lazy').setup({
 	{ 'neovim/nvim-lspconfig' },
 	{ 'SmiteshP/nvim-navic' },
 	{ 'nvim-lua/popup.nvim' },
-	{ 'nvim-lua/plenary.nvim' },
 	{ 'ojroques/nvim-lspfuzzy' },
 	{ 'ray-x/lsp_signature.nvim' },
 
@@ -106,4 +105,12 @@ return require('lazy').setup({
 			require("copilot_cmp").setup()
 		end
 	},
+
+	{
+		'nvim-telescope/telescope.nvim',
+		dependencies = {
+			{ 'nvim-lua/plenary.nvim' },
+		}
+	},
+
 })

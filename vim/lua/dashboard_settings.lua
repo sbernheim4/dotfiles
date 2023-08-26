@@ -14,7 +14,7 @@ dashboard.setup {
 				key = 'u',
 			},
 			{
-				action = 'Files',
+				action = 'Telescope find_files',
 				desc = 'Files',
 				group = 'Label',
 				icon = ' ',

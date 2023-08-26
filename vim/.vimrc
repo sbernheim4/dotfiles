@@ -50,6 +50,7 @@ require 'navic_settings'
 require 'nvim_treesitter_context'
 require 'cmp_settings'
 require 'symbols_outline_settings'
+require 'telescope_settings'
 require 'helper_functions'
 require 'dashboard_settings'
 
