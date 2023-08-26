@@ -195,14 +195,9 @@ function install() {
     echo "Beginning Installation..."
     echo "==================================="
 
-    installHomebrew
-    installHomebrewPackages
-    installNodeJS
-    installNpmPackages
-    cloneDotfiles
-    setupVim
-    setupTmux
-    useZsh
+	(installHomebrew && installHomebrewPackages)&
+	(installNodeJS && installNpmPackages)&
+	(cloneDotfiles && setupVim && setupTmux && useZsh)&
 
 }
 
