@@ -32,6 +32,7 @@ end
 
 local completion_capabilities = cmp.default_capabilities(capabilities)
 
+lspconfig.eslint.setup {}
 lspconfig.intelephense.setup { capabilities = completion_capabilities, on_attach = on_attach }
 lspconfig.jsonls.setup { capabilities = completion_capabilities, on_attach = on_attach }
 lspconfig.rust_analyzer.setup { capabilities = completion_capabilities, on_attach = on_attach }
