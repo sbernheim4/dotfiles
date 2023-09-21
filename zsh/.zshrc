@@ -33,8 +33,8 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 
 # Source custom and private aliases, env vars, functions
-source ~/dotfiles/zsh/aliases.sh
 source ~/dotfiles/zsh/secret-keys.sh
+source ~/dotfiles/zsh/aliases.sh
 source ~/dotfiles/zsh/secret-functions.sh
 
 # Load in fzf
