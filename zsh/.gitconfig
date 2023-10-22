@@ -1,0 +1,7 @@
+[difftool "icdiff"]
+	cmd = icdiff --highlight --line-numbers $LOCAL $REMOTE
+[diff]
+	tool = icdiff
+[difftool]
+	prompt = false
+	tool = icdiff

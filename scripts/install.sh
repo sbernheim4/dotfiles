@@ -104,6 +104,9 @@ function cloneDotfiles() {
     # Create secret keys file - used to store local env vars
     touch ~/dotfile/secret-keys.sh
 
+    # Create secret functions file - used to store device specific functions
+    touch ~/dotfile/secret-functions.sh
+
     # Create aliases script file to store zsh aliases
     touch ~/dotfiles/aliases.sh
 
@@ -180,6 +183,9 @@ function useZsh() {
 
     # Link powerlevel10k config
     ln -sf ~/dotfiles/zsh/.p10k.zsh ~/.p10k.zsh
+
+    # Copy git config settings
+    cat ./../zsh/.gitconfig >> ~/.gitconfig
 
     chsh -s $(which zsh)
 
