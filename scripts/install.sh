@@ -44,7 +44,9 @@ function installHomebrewPackages() {
     brew install icdiff
     brew install shpotify
     brew install ripgrep
-    brew install octavore/tools/delta
+
+    brew tap microsoft/git
+    brew install --cask git-credential-manager
 
     brew update
 
