@@ -1,11 +1,10 @@
 #!/bin/bash
 
 function display () {
-	xstatus=$(spotify status | head -n 1)
+	spotify_status=$(spotify status | head -n 1)
 
-	if echo "$xstatus" | grep -q "playing"; then
-		local name=$(getName)
-		echo "$name"
+	if [[ $spotify_status == *"playing"* ]]; then
+		echo $(getName)
 	else
 		echo ""
 	fi
