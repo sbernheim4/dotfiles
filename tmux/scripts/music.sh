@@ -1,25 +1,28 @@
-#!/usr/bin/env osascript
-# Returns the current playing song in Spotify for OSX
+#!/bin/bash
 
-tell application "Spotify"
-if it is running then
-	if player state is playing then
-		set track_name to name of current track
-		set artist_name to artist of current track
+function display () {
+	xstatus=$(spotify status | head -n 1)
 
-		if artist_name > 0
-			# If the track has an artist set and is therefore most likely a song rather than an advert
-			set t to "♫ " & artist_name & " - " & track_name
+	if echo "$xstatus" | grep -q "playing"; then
+		local name=$(getName)
+		echo "$name"
+	else
+		echo ""
+	fi
+}
 
-			if length of t > 35
-				text 1 thru 35 of t & "..."
-			else
-				"♫ " & artist_name & " - " & track_name
-			end if
-		else
-			# If the track doesn't have an artist set and is therefore most likely an advert rather than a song
-			"~ " & track_name
-		end if
-	end if
-end if
-end tell
+function getArtistName () {
+	spotify status artist
+}
+
+function getTrackName () {
+	spotify status track
+}
+
+function getName() {
+    local artist=$(getArtistName)
+    local song=$(getTrackName)
+    echo "${artist} - ${song}"
+}
+
+display
