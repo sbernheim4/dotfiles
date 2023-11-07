@@ -131,8 +131,7 @@ set noshowmode
 " https://github.com/nvim-treesitter/nvim-treesitter#syntax-based-code-folding
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
-set foldtext=MyFoldText()
-
+lua vim.wo.foldtext = 'v:lua.vim.treesitter.foldtext()'
 
 " Don't set the fold column
 set foldcolumn=0
