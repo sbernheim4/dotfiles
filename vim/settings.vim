@@ -131,6 +131,7 @@ set noshowmode
 " https://github.com/nvim-treesitter/nvim-treesitter#syntax-based-code-folding
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+set foldtext=MyFoldText()
 
 
 " Don't set the fold column
@@ -138,9 +139,6 @@ set foldcolumn=0
 
 " Open files without any folding
 set foldlevelstart=99
-
-" Enable folding for JS syntax
-" let javaScript_fold=1
 
 " #######################################################################
 " ######## Completion Settings
@@ -170,9 +168,6 @@ function! MyFoldText()
 
 	return str
 endfunction
-
-" Custom display for text when folding
-set foldtext=MyFoldText()
 
 " File Types that should be ignored for the autogroup below
 let blacklist = ['NvimTree', 'Outline', 'qf', 'dashboard']

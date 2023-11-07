@@ -1,8 +1,19 @@
 local nvim_treesitter_configs = require 'nvim-treesitter.configs'
 
 nvim_treesitter_configs.setup({
+	indent = { enable = true },
 	highlight = { enable = true },
-	ensure_installed = { "javascript", "typescript" },
+	ensure_installed = {
+		"javascript",
+		"typescript",
+		"vimdoc",
+		"html",
+		"bash",
+		"gitcommit",
+		"markdown",
+		"rust",
+		"scala",
+	},
 	incremental_selection = { enable = true },
 	refactor = {
 		highlight_definitions = { enable = true },
