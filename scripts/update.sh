@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-/opt/homebrew/bin/brew update
+/usr/local/bin/brew update
 
-/opt/homebrew/bin/brew upgrade
+/usr/local/bin/brew upgrade
 
 # Update dotfiles
 cd ~/dotfiles && git pull && cd
