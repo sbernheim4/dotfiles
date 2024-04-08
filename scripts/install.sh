@@ -63,7 +63,7 @@ function installNodeJS() {
 
     cd ~/
 
-    curl -L https://git.io/n-install | bash
+    curl -L https://git.io/n-install -y | bash
     n lts
 
 }
