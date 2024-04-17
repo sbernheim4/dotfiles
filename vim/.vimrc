@@ -53,6 +53,7 @@ require 'symbols_outline_settings'
 require 'telescope_settings'
 require 'helper_functions'
 require 'dashboard_settings'
+require 'mappings'
 
 local links = {
    ['@lsp.type.namespace'] = '@namespace',

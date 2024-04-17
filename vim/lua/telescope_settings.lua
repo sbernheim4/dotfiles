@@ -40,3 +40,22 @@ require('telescope').setup {
 vim.api.nvim_set_keymap('n', 'ff', '<cmd>Telescope find_files<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'aa', '<cmd>Telescope buffers<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'tt', '<cmd>Telescope lsp_document_symbols<CR>', { noremap = true, silent = true })
+
+-- Not related to telescope but helpful
+local function gitBlame ()
+	local filePath = vim.api.nvim_buf_get_name(0)
+	local gitBlameCommand = "git blame " .. filePath
+	local copyToClipboardCommand = string.format("echo %s | pbcopy", gitBlameCommand)
+	os.execute(copyToClipboardCommand)
+end
+
+vim.api.nvim_set_keymap(
+	'n',
+	'mm',
+	'',
+	{
+		callback = gitBlame,
+		noremap = true,
+		silent = true
+	}
+)

@@ -134,7 +134,7 @@ function setupVim() {
     # Link vimrc for both vim and neovim
     ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
     ln -sf ~/dotfiles/vim/.vimrc ~/.config/nvim/init.vim
-    ln -sf ~/dotfiles/vim/lua/**/*.lua ~/.config/nvim/lua/
+    ln -sf ~/dotfiles/vim/lua/*.lua ~/.config/nvim/lua/
 
     # Set up colors folder
     mkdir -p ~/.vim/colors

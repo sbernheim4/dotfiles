@@ -42,3 +42,4 @@ function _G.containsString(text, match)
     local descriptionIndex = lowerText:find(lowerMatch, 1, true);
     return descriptionIndex
 end
+

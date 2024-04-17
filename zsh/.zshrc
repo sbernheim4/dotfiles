@@ -1,8 +1,5 @@
 export TERM="xterm-256color"
 
-#; Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
-
 # Run spectrum_ls to see a list of colors zsh can easily produce and
 # which can be used in a theme
 #ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
@@ -26,6 +23,9 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git z zsh-syntax-highlighting)
+
+#; Path to your oh-my-zsh installation.
+export ZSH=~/.oh-my-zsh
 
 # User configuration
 source $ZSH/oh-my-zsh.sh

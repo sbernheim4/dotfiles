@@ -90,6 +90,8 @@ return require('lazy').setup({
 					help = false,
 					gitcommit = false,
 					gitrebase = false,
+					javascript = true,
+					typescript = true,
 					["."] = false,
 				},
 				suggestion = { enabled = false },
@@ -111,6 +113,12 @@ return require('lazy').setup({
 		dependencies = {
 			{ 'nvim-lua/plenary.nvim' },
 		}
+	},
+
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 
 })
