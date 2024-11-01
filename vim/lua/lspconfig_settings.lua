@@ -38,7 +38,7 @@ lspconfig.jsonls.setup { capabilities = completion_capabilities, on_attach = on_
 lspconfig.rust_analyzer.setup { capabilities = completion_capabilities, on_attach = on_attach }
 lspconfig.cssls.setup { capabilities = completion_capabilities, on_attach = on_attach }
 lspconfig.gopls.setup { capabilities = capabilities, on_attach = on_attach }
--- lspconfig.tsserver.setup { capabilities = completion_capabilities, on_attach = on_attach }
+lspconfig.ts_ls.setup { capabilities = completion_capabilities, on_attach = on_attach }
 lspconfig.vimls.setup { capabilities = completion_capabilities, on_attach = on_attach }
 lspconfig.metals.setup { capabilities = completion_capabilities, on_attach = on_attach }
 lspconfig.bashls.setup { capabilities = completion_capabilities, on_attach = on_attach }
