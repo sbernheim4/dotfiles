@@ -44,7 +44,7 @@ return require('lazy').setup({
 	-- Syntax highlighting
 	{ 'nvim-treesitter/nvim-treesitter' },
 	{ 'nvim-treesitter/playground' },
-	{ 'nvim-treesitter/nvim-treesitter-context' },
+	-- { 'nvim-treesitter/nvim-treesitter-context' },
 	{
 		'gruvbox-community/gruvbox',
 		config = function()
