@@ -49,17 +49,17 @@ lspconfig.yamlls.setup {
 	schemaStore = { url = "https://www.schemastore.org/api/json/catalog.json" },
 	on_attach = on_attach
 }
-lspconfig.pylsp.setup{
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          ignore = {'W391'},
-          maxLineLength = 100
-        }
-      }
-    }
-  }
+lspconfig.pylsp.setup {
+	settings = {
+		pylsp = {
+			plugins = {
+				pycodestyle = {
+					ignore = { 'W391' },
+					maxLineLength = 100
+				}
+			}
+		}
+	}
 }
 
 -- Lua
@@ -103,5 +103,6 @@ vim.api.nvim_set_keymap('n', '<leader>gn', ':lua vim.diagnostic.goto_next()<CR>'
 vim.api.nvim_set_keymap('n', '<leader>gp', ':lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>s', ':lua vim.lsp.buf.workspace_symbol()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>c', ':lua vim.lsp.buf.format({async = true})<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>c', ':lua vim.lsp.buf.format({async = true})<CR>',
+	{ noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>ee', ':lua vim.diagnostic.setqflist()<CR>', { noremap = true, silent = true });
