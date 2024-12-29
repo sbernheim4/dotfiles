@@ -49,18 +49,7 @@ lspconfig.yamlls.setup {
 	schemaStore = { url = "https://www.schemastore.org/api/json/catalog.json" },
 	on_attach = on_attach
 }
-lspconfig.pylsp.setup {
-	settings = {
-		pylsp = {
-			plugins = {
-				pycodestyle = {
-					ignore = { 'W391' },
-					maxLineLength = 100
-				}
-			}
-		}
-	}
-}
+lspconfig.pyright.setup{}
 
 -- Lua
 local sumneko_root_path = vim.fn.expand('$HOME/.local/share/nvim/lsp_servers/sumneko_lua/extension/server')

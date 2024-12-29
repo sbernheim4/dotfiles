@@ -22,7 +22,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z zsh-syntax-highlighting)
+plugins=(git z zsh-syntax-highlighting poetry)
 
 #; Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -59,6 +59,7 @@ export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/bin/icdiff$PATH"
+export PATH="/Users/samuelbernheim/Library/Python/3.9/bin:$PATH"
 
 #################################################
 ### Git Stuff
@@ -71,3 +72,6 @@ export REVIEW_BASE=master
 export GOPATH="${HOME}/go"
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+# Created by `pipx` on 2024-12-27 00:10:29
+export PATH="$PATH:/Users/samuelbernheim/.local/bin"
