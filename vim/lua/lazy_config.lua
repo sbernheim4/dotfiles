@@ -79,36 +79,6 @@ return require('lazy').setup({
 	{ 'nvim-tree/nvim-web-devicons' },
 
 	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		config = function()
-			require("copilot").setup({
-				filetypes = {
-					lua = true,
-					yaml = false,
-					markdown = false,
-					help = false,
-					gitcommit = false,
-					gitrebase = false,
-					javascript = true,
-					typescript = true,
-					["."] = false,
-				},
-				suggestion = { enabled = false },
-				panel = { enabled = false },
-			})
-		end,
-	},
-
-	{
-		"zbirenbaum/copilot-cmp",
-		dependencies = { "copilot.lua" },
-		config = function()
-			require("copilot_cmp").setup()
-		end
-	},
-
-	{
 		'nvim-telescope/telescope.nvim',
 		dependencies = {
 			{ 'nvim-lua/plenary.nvim' },

@@ -6,14 +6,6 @@ local has_words_before = function()
 	return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
 end
 
-cmp.event:on("menu_opened", function()
-	vim.b.copilot_suggestion_hidden = true
-end)
-
-cmp.event:on("menu_closed", function()
-	vim.b.copilot_suggestion_hidden = false
-end)
-
 cmp.setup({
 	window = {
 		completion = cmp.config.window.bordered(),
@@ -61,7 +53,6 @@ cmp.setup({
 		end),
 	},
 	sources = {
-		{ name = 'copilot', },
 		{ name = 'nvim_lsp', },
 		{ name = 'buffer', },
 		{ name = 'nvim_lua', },

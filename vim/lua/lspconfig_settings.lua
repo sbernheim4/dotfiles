@@ -49,7 +49,22 @@ lspconfig.yamlls.setup {
 	schemaStore = { url = "https://www.schemastore.org/api/json/catalog.json" },
 	on_attach = on_attach
 }
-lspconfig.pyright.setup{}
+lspconfig.pyright.setup {}
+lspconfig.graphql.setup({
+	filetypes = { 'graphql', 'gql' },
+	on_attach = on_attach,
+	root_dir = lspconfig.util.root_pattern(
+		".graphqlconfig",
+		".graphql.json",
+		".graphqlrc",
+		"package.json",
+		"graphql.config.ts"
+	),
+	flags = {
+		debounce_text_changes = 150,
+	},
+	capabilities = capabilities,
+})
 
 -- Lua
 local sumneko_root_path = vim.fn.expand('$HOME/.local/share/nvim/lsp_servers/sumneko_lua/extension/server')
