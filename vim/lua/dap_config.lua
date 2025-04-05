@@ -16,7 +16,6 @@ vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Toggle Breakp
 vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Continue" })
 vim.keymap.set("n", "<leader>dC", dap.run_to_cursor, { desc = "Run to Cursor" })
 vim.keymap.set("n", "<leader>dT", dap.terminate, { desc = "Terminate" })
-
 vim.keymap.set("n", "<leader>dt", dap_go.debug_test, { desc = "Debug Test" })
 vim.keymap.set("n", "<leader>du", function() dapui.toggle() end, { desc = "Toggle DAP UI" })
 
@@ -54,7 +53,15 @@ dap.configurations.go = {
 		request = "launch",
 		program = "${workspaceFolder}/main.go",
 		mode = "debug"
-	}
+	},
+	{
+		type = "go",
+		name = "Attach to Go server",
+		request = "attach",
+		mode = "remote",
+		port = 2345,
+		host = "127.0.0.1"
+	},
 }
 
 require("dap-vscode-js").setup({
