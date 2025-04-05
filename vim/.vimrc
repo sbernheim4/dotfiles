@@ -24,17 +24,9 @@ set background=dark
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Adds 30ms
-source ~/dotfiles/vim/mappings.vim
-source ~/dotfiles/vim/settings.vim
-source ~/dotfiles/vim/statusLine.vim
-source ~/dotfiles/vim/tabLine.vim
-source ~/dotfiles/vim/highlights.vim
-
 " Load Plugin Settings
 source ~/dotfiles/vim/vim-plugins/ale.vim
 source ~/dotfiles/vim/vim-plugins/argwrap.vim
-source ~/dotfiles/vim/vim-plugins/fzf.vim
 source ~/dotfiles/vim/vim-plugins/sideways.vim
 source ~/dotfiles/vim/vim-plugins/signify.vim
 
@@ -54,6 +46,11 @@ require 'telescope_settings'
 require 'helper_functions'
 require 'dashboard_settings'
 require 'mappings'
+require 'dap_config'
+require 'highlights'
+require 'settings'
+require 'status_line'.setup()
+
 
 local links = {
    ['@lsp.type.namespace'] = '@namespace',

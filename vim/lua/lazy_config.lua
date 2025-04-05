@@ -72,6 +72,62 @@ return require('lazy').setup({
 		}
 	},
 
+	-- DAP
+	{ "williamboman/mason.nvim" },
+	{ "mfussenegger/nvim-dap",  lazy = true, },
+	{
+		"jay-babu/mason-nvim-dap.nvim",
+		---@type MasonNvimDapSettings
+		opts = {
+			-- This line is essential to making automatic installation work
+			-- :exploding-brain
+			handlers = {},
+			automatic_installation = {
+				-- These will be configured by separate plugins.
+				exclude = {
+					"delve",
+					"python",
+				},
+			},
+			-- DAP servers: Mason will be invoked to install these if necessary.
+			ensure_installed = {
+				"bash",
+				"codelldb",
+				"php",
+				"python",
+			},
+		},
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"williamboman/mason.nvim",
+		},
+	},
+	{
+		"leoluz/nvim-dap-go",
+		config = true,
+		dependencies = { "mfussenegger/nvim-dap", }
+	},
+	{
+		"mxsdev/nvim-dap-vscode-js",
+		dependencies = {
+			"mfussenegger/nvim-dap"
+		}
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		config = true,
+		dependencies = {
+			"jay-babu/mason-nvim-dap.nvim",
+			"leoluz/nvim-dap-go",
+			"mfussenegger/nvim-dap-python",
+			"nvim-neotest/nvim-nio",
+			"theHamsta/nvim-dap-virtual-text"
+		}
+	},
+
+
+	-----------------------------------------------------------------------------------
+
 	{ 'simrat39/symbols-outline.nvim' },
 
 	-- For linting/formatting via ESLint and Prettier
