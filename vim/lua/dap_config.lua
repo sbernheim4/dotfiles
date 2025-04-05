@@ -33,19 +33,6 @@ dap.listeners.before.event_exited.dapui_config = function()
 	dapui.close()
 end
 
-
-dap.adapters["pwa-node"] = {
-	type = "server",
-	host = "localhost",
-	port = "${port}",
-	executable = {
-		command = "node",
-		-- 💀 Make sure to update this path to point to your installation
-		args = { "/path/to/js-debug/src/dapDebugServer.js", "${port}" },
-	}
-}
-
-
 dap.configurations.go = {
 	{
 		type = "go",
@@ -58,10 +45,33 @@ dap.configurations.go = {
 		type = "go",
 		name = "Attach to Go server",
 		request = "attach",
+		substitutePath = {
+			{
+				from = "/Users/samuelbernheim/notification-service/go-server",
+				to = "/code",
+			},
+		},
 		mode = "remote",
 		port = 2345,
 		host = "127.0.0.1"
 	},
+}
+
+dap.configurations.node2 = {
+	type = 'server',
+	host = '127.0.0.1',
+	port = 9229,
+}
+
+dap.adapters["pwa-node"] = {
+	type = "server",
+	host = "localhost",
+	port = "${port}",
+	executable = {
+		command = "node",
+		-- 💀 Make sure to update this path to point to your installation
+		args = { "/path/to/js-debug/src/dapDebugServer.js", "${port}" },
+	}
 }
 
 require("dap-vscode-js").setup({
@@ -76,43 +86,28 @@ require("dap-vscode-js").setup({
 
 dap.configurations.javascript = {
 	{
-		type = "pwa-node",
-		request = "launch",
-		name = "Launch file",
-		program = "${file}",
-		cwd = "${workspaceFolder}",
-	},
-	{
-		type = "pwa-node",
-		request = "attach",
-		name = "Attach",
-		processId = require 'dap.utils'.pick_process,
-		cwd = "${workspaceFolder}",
-	},
-}
-
-dap.configurations.javascriptreact = { -- change this to javascript if needed
-	{
-		type = "chrome",
-		request = "attach",
-		program = "${file}",
-		cwd = vim.fn.getcwd(),
+		name = 'Launch Node.js',
+		type = 'node2',                    -- Must match the adapter name
+		request = 'launch',
+		program = '${workspaceFolder}/index.js', -- Replace with the entry point of your Node.js app
+		cwd = '${workspaceFolder}',
+		runtimeExecutable = 'node',
+		runtimeArgs = { '--inspect-brk=9229' }, -- Tells Node.js to start in debugging mode
 		sourceMaps = true,
-		protocol = "inspector",
-		port = 9222,
-		webRoot = "${workspaceFolder}"
+		skipFiles = { '<node_internals>/**' }
 	}
 }
 
-dap.configurations.typescriptreact = { -- change to typescript if needed
+dap.configurations.typescript = {
 	{
-		type = "chrome",
-		request = "attach",
-		program = "${file}",
-		cwd = vim.fn.getcwd(),
+		name = 'Launch Node.js',
+		type = 'node2',
+		request = 'launch',
+		program = '${workspaceFolder}/index.ts', -- For TypeScript, you can also configure this
+		cwd = '${workspaceFolder}',
+		runtimeExecutable = 'node',
+		runtimeArgs = { '--inspect-brk=9229', '--require', 'ts-node/register' }, -- Use ts-node for TypeScript
 		sourceMaps = true,
-		protocol = "inspector",
-		port = 9222,
-		webRoot = "${workspaceFolder}"
+		skipFiles = { '<node_internals>/**' }
 	}
 }
