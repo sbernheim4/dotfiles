@@ -42,9 +42,12 @@ return require('lazy').setup({
 	},
 
 	-- Syntax highlighting
-	{ 'nvim-treesitter/nvim-treesitter' },
-	{ 'nvim-treesitter/playground' },
-	-- { 'nvim-treesitter/nvim-treesitter-context' },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+		end,
+	},
 	{
 		'gruvbox-community/gruvbox',
 		config = function()
@@ -54,7 +57,12 @@ return require('lazy').setup({
 
 	-- LSP
 	{ 'williamboman/nvim-lsp-installer' },
-	{ 'neovim/nvim-lspconfig' },
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("lspconfig_settings")
+		end,
+	},
 	{ 'SmiteshP/nvim-navic' },
 	{ 'nvim-lua/popup.nvim' },
 	{ 'ojroques/nvim-lspfuzzy' },

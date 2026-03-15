@@ -62,8 +62,7 @@ function installNodeJS() {
     echo "==================================="
 
     cd ~/
-
-    curl -L https://git.io/n-install -y | bash
+    brew install n
     n lts
 
 }

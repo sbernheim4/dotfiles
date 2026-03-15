@@ -1,29 +1,22 @@
-local nvim_treesitter_configs = require 'nvim-treesitter.configs'
-
-nvim_treesitter_configs.setup({
-	indent = { enable = true },
-	highlight = { enable = true },
-	ensure_installed = {
-		"javascript",
-		"typescript",
-		"vimdoc",
-		"html",
-		"bash",
-		"gitcommit",
-		"markdown",
-		"rust",
-		"scala",
-	},
-	incremental_selection = { enable = true },
-	refactor = {
-		highlight_definitions = { enable = true },
-		highlight_current_scope = { enable = false },
-		navigation = { enable = false, }
-	},
-	playground = {
-		enable = false,
-		disable = {},
-		updatetime = 25,
-		persist_queries = false
-	}
-})
+-- require("nvim-treesitter.configs").setup({
+--   ensure_installed = {
+--     "go",
+--     "lua",
+--     "python",
+--     "javascript",
+--     "typescript",
+--     "json",
+--     "yaml",
+--     "bash",
+--     "css",
+--     "graphql",
+--   },
+-- 
+--   highlight = {
+--     enable = true,
+--   },
+-- 
+--   indent = {
+--     enable = true,
+--   },
+-- })

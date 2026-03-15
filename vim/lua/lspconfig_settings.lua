@@ -1,112 +1,63 @@
-require('neodev').setup({
-	-- add any options here, or leave empty to use the default settings
+-- lua/lspconfig_settings.lua
+
+-- LSP keymaps when server attaches
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(ev)
+    local opts = { buffer = ev.buf }
+
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  end,
 })
 
-local lspconfig = require('lspconfig')
-local cmp = require('cmp_nvim_lsp')
-local lsp_installer = require('nvim-lsp-installer')
-local navic = require('nvim-navic')
-
-lsp_installer.setup {
-	automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
-	ui = {
-		icons = {
-			server_installed = "✓",
-			server_pending = "➜",
-			server_uninstalled = "✗"
-		}
-	}
-}
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-local on_attach = function(client, bufnr)
-	if client.server_capabilities.documentSymbolProvider then
-		navic.attach(client, bufnr)
-
-		-- Display the location in the winbar
-		vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-	end
-end
-
-local completion_capabilities = cmp.default_capabilities(capabilities)
-
-lspconfig.eslint.setup {}
-lspconfig.intelephense.setup { capabilities = completion_capabilities, on_attach = on_attach }
-lspconfig.jsonls.setup { capabilities = completion_capabilities, on_attach = on_attach }
-lspconfig.rust_analyzer.setup { capabilities = completion_capabilities, on_attach = on_attach }
-lspconfig.cssls.setup { capabilities = completion_capabilities, on_attach = on_attach }
-lspconfig.gopls.setup { capabilities = capabilities, on_attach = on_attach }
-lspconfig.ts_ls.setup { capabilities = completion_capabilities, on_attach = on_attach }
-lspconfig.vimls.setup { capabilities = completion_capabilities, on_attach = on_attach }
-lspconfig.metals.setup { capabilities = completion_capabilities, on_attach = on_attach }
-lspconfig.bashls.setup { capabilities = completion_capabilities, on_attach = on_attach }
-lspconfig.graphql.setup { capabilities = completion_capabilities, on_attach = on_attach }
-lspconfig.vimls.setup { capabilities = completion_capabilities, on_attach = on_attach }
-lspconfig.yamlls.setup {
-	capabilities = completion_capabilities,
-	schemaStore = { url = "https://www.schemastore.org/api/json/catalog.json" },
-	on_attach = on_attach
-}
-lspconfig.pyright.setup {}
-lspconfig.graphql.setup({
-	filetypes = { 'graphql', 'gql' },
-	on_attach = on_attach,
-	root_dir = lspconfig.util.root_pattern(
-		".graphqlconfig",
-		".graphql.json",
-		".graphqlrc",
-		"package.json",
-		"graphql.config.ts"
-	),
-	flags = {
-		debounce_text_changes = 150,
-	},
-	capabilities = capabilities,
+-- Diagnostics
+vim.diagnostic.config({
+  virtual_text = true,
+  underline = true,
+  update_in_insert = false,
 })
 
--- Lua
-local sumneko_root_path = vim.fn.expand('$HOME/.local/share/nvim/lsp_servers/sumneko_lua/extension/server')
-local sumneko_binary = sumneko_root_path .. "/bin" .. "/lua-language-server"
+-- LSP servers
+vim.lsp.config("gopls", {})
 
-lspconfig.lua_ls.setup {
-	on_attach = on_attach,
-	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-	settings = {
-		Lua = {
-			completion = {
-				callSnippet = "Replace"
-			},
-			runtime = {
-				version = 'LuaJIT',
-			},
-			diagnostics = { globals = { 'vim' }, },
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
-				checkThirdParty = false,
-			},
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
-}
+vim.lsp.config("pyright", {})
 
+vim.lsp.config("eslint", {})
 
--- LSP Config Mappings
-vim.api.nvim_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>td', ':lua vim.lsp.buf.type_definition()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>fr', ':lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>rn', ':lua vim.lsp.buf.rename()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>ac', ':lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>gg', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>gn', ':lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>gp', ':lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>s', ':lua vim.lsp.buf.workspace_symbol()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>c', ':lua vim.lsp.buf.format({async = true})<CR>',
-	{ noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>ee', ':lua vim.diagnostic.setqflist()<CR>', { noremap = true, silent = true });
+vim.lsp.config("jsonls", {})
+
+vim.lsp.config("yamlls", {})
+
+vim.lsp.config("bashls", {})
+
+vim.lsp.config("cssls", {})
+
+vim.lsp.config("vimls", {})
+
+vim.lsp.config("graphql", {})
+
+vim.lsp.config("intelephense", {})
+
+-- Enable them
+vim.lsp.enable({
+  "gopls",
+  "pyright",
+  "eslint",
+  "jsonls",
+  "yamlls",
+  "bashls",
+  "cssls",
+  "vimls",
+  "graphql",
+  "intelephense",
+})
