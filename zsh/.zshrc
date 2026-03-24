@@ -84,20 +84,21 @@ ghim() {
   local CACHE_TTL=300  # seconds
 
   # --- Helper: fetch with cache & background refresh ---
-  fetch_with_cache() {
-    local cache_file="$1"
-    local fetch_cmd="$2"
+  fetch_with_cache_bg() {
+	  local cache_file="$1"
+	  local fetch_cmd="$2"
 
-    if [[ -f "$cache_file" ]]; then
-      local age=$(( $(date +%s) - $(stat -f %m "$cache_file") ))
-      if (( age < CACHE_TTL )); then
-        cat "$cache_file"
-        # Background refresh
-        ( eval "$fetch_cmd" > "$cache_file" ) &
-        return
-      fi
-    fi
-    eval "$fetch_cmd" | tee "$cache_file"
+	  # Always return cache immediately if exists
+	  if [[ -f "$cache_file" ]]; then
+		  cat "$cache_file"
+		  echo "⚡ Cache used: $cache_file" >&2
+		  # Refresh in background
+		  ( eval "$fetch_cmd" > "$cache_file" ) &
+	  else
+		  echo "🔄 Fetching fresh: $cache_file" >&2
+		  # No cache, fetch now
+		  eval "$fetch_cmd" | tee "$cache_file"
+	  fi
   }
 
   echo "--- Starting GHIM ---"
@@ -108,7 +109,7 @@ ghim() {
 
   local project_sel
   project_sel=$(
-    fetch_with_cache "$PROJECTS_CACHE" "gh project list --owner $project_owner --format json" \
+    fetch_with_cache_bg "$PROJECTS_CACHE" "gh project list --owner $project_owner --format json" \
     | jq -r '.projects[] | "\(.id)\t\(.title) (#\(.number))"' \
     | fzf --header="Select Project" --delimiter=$'\t' --with-nth=2
   )
@@ -124,7 +125,7 @@ ghim() {
 
   local item_sel
   item_sel=$(
-    fetch_with_cache "$ITEMS_CACHE" "gh project item-list $project_number --owner $project_owner --format json" \
+    fetch_with_cache_bg "$ITEMS_CACHE" "gh project item-list $project_number --owner $project_owner --format json" \
     | jq -r '.items[] | "\(.id)\t#\(.content.number // "Draft") - \(.content.title // "Untitled")"' \
     | fzf --header="Select Issue" --delimiter=$'\t' --with-nth=2
   )
@@ -139,7 +140,7 @@ ghim() {
 
   local field_sel
   field_sel=$(
-    fetch_with_cache "$FIELDS_CACHE" "gh project field-list $project_number --owner $project_owner --format json" \
+    fetch_with_cache_bg "$FIELDS_CACHE" "gh project field-list $project_number --owner $project_owner --format json" \
     | jq -r '.fields[] | select(.options != null) | "\(.id)\t\(.name)"' \
     | fzf --header="Select Field" --delimiter=$'\t' --with-nth=2
   )
