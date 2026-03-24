@@ -77,73 +77,93 @@ export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PR
 export PATH="$PATH:/Users/samuelbernheim/.local/bin:$GOPATH/bin"
 
 ghim() {
-	(
-		set -euo pipefail
+  # --- Configuration ---
+  local project_owner="sbernheim4"
+  local CACHE_DIR="${HOME}/.cache/ghim"
+  mkdir -p "$CACHE_DIR"
+  local CACHE_TTL=300  # seconds
 
-		local project_owner="sbernheim4"
+  # --- Helper: fetch with cache & background refresh ---
+  fetch_with_cache() {
+    local cache_file="$1"
+    local fetch_cmd="$2"
 
-		echo "--- Starting GHIM ---"
+    if [[ -f "$cache_file" ]]; then
+      local age=$(( $(date +%s) - $(stat -f %m "$cache_file") ))
+      if (( age < CACHE_TTL )); then
+        cat "$cache_file"
+        # Background refresh
+        ( eval "$fetch_cmd" > "$cache_file" ) &
+        return
+      fi
+    fi
+    eval "$fetch_cmd" | tee "$cache_file"
+  }
 
-		# STEP 1: PROJECT SELECTION
+  echo "--- Starting GHIM ---"
 
-		echo "STEP 1: Fetching projects..."
-		project_sel=$(gh project list --owner "$project_owner" --format json \
-			| jq -r '.projects[] | "\(.id)\t\(.title) (#\(.number))"' \
-				| fzf --header="Select Project" --delimiter=$'\t' --with-nth=2)
+  # --- STEP 1: PROJECT SELECTION ---
+  echo "STEP 1: Fetching projects..."
+  local PROJECTS_CACHE="$CACHE_DIR/projects.json"
 
-		[[ -z "$project_sel" ]] && return
+  local project_sel
+  project_sel=$(
+    fetch_with_cache "$PROJECTS_CACHE" "gh project list --owner $project_owner --format json" \
+    | jq -r '.projects[] | "\(.id)\t\(.title) (#\(.number))"' \
+    | fzf --header="Select Project" --delimiter=$'\t' --with-nth=2
+  )
+  [[ -z "$project_sel" ]] && return
 
-		project_node_id=$(echo "$project_sel" | cut -f1)
-		project_number=$(echo "$project_sel" | sed -E 's/.*\(#([0-9]+)\).*/\1/')
+  local project_node_id=$(echo "$project_sel" | cut -f1)
+  local project_number=$(echo "$project_sel" | sed -E 's/.*\(#([0-9]+)\).*/\1/')
+  echo "PROGRESS: Selected Project #$project_number"
 
-			echo "PROGRESS: Selected Project #$project_number"
+  # --- STEP 2: ISSUE SELECTION ---
+  echo "STEP 2: Fetching items..."
+  local ITEMS_CACHE="$CACHE_DIR/project_${project_number}_items.json"
 
-			# STEP 2: ISSUE SELECTION
-			echo "STEP 2: Fetching items..."
-			item_sel=$(gh project item-list "$project_number" --owner "$project_owner" --format json \
-				| jq -r '.items[] | "\(.id)\t#\(.content.number // "Draft") - \(.content.title // "Untitled")"' \
-				| fzf --header="Select Issue" --delimiter=$'\t' --with-nth=2)
+  local item_sel
+  item_sel=$(
+    fetch_with_cache "$ITEMS_CACHE" "gh project item-list $project_number --owner $project_owner --format json" \
+    | jq -r '.items[] | "\(.id)\t#\(.content.number // "Draft") - \(.content.title // "Untitled")"' \
+    | fzf --header="Select Issue" --delimiter=$'\t' --with-nth=2
+  )
+  [[ -z "$item_sel" ]] && { echo "❌ No items found in this project."; return; }
 
-			[[ -z "$item_sel" ]] && return
+  local item_id=$(echo "$item_sel" | cut -f1)
+  echo "PROGRESS: Selected Item $item_id"
 
-			item_id=$(echo "$item_sel" | cut -f1)
-			echo "PROGRESS: Selected Item $item_id"
+  # --- STEP 3: FIELD SELECTION ---
+  echo "STEP 3: Fetching fields..."
+  local FIELDS_CACHE="$CACHE_DIR/project_${project_number}_fields.json"
 
-			# STEP 3: FIELD SELECTION
-			echo "STEP 3: Fetching fields..."
-			local fields_json
-			fields_json=$(gh project field-list "$project_number" --owner "$project_owner" --format json)
+  local field_sel
+  field_sel=$(
+    fetch_with_cache "$FIELDS_CACHE" "gh project field-list $project_number --owner $project_owner --format json" \
+    | jq -r '.fields[] | select(.options != null) | "\(.id)\t\(.name)"' \
+    | fzf --header="Select Field" --delimiter=$'\t' --with-nth=2
+  )
+  [[ -z "$field_sel" ]] && return
+  local field_id=$(echo "$field_sel" | cut -f1)
 
-			local field_sel
-			field_sel=$(echo "$fields_json" \
-				| jq -r '.fields[] | select(.options != null) | "\(.id)\t\(.name)"' \
-				| fzf --header="Select Field" --delimiter=$'\t' --with-nth=2)
+  # --- STEP 4: OPTION SELECTION ---
+  echo "STEP 4: Fetching options..."
+  local option_sel
+  option_sel=$(
+    cat "$FIELDS_CACHE" \
+    | jq -r --arg fid "$field_id" '.fields[] | select(.id == $fid) | .options[] | "\(.id)\t\(.name)"' \
+    | fzf --header="Select New Value" --delimiter=$'\t' --with-nth=2
+  )
+  [[ -z "$option_sel" ]] && return
+  local option_id=$(echo "$option_sel" | cut -f1)
 
-			[[ -z "$field_sel" ]] && return
+  # --- STEP 5: EXECUTION ---
+  echo "STEP 5: Updating..."
+  gh project item-edit \
+    --id "$item_id" \
+    --project-id "$project_node_id" \
+    --field-id "$field_id" \
+    --single-select-option-id "$option_id"
 
-			local field_id
-			field_id=$(echo "$field_sel" | cut -f1)
-
-			# STEP 4: OPTION SELECTION
-			echo "STEP 4: Fetching options..."
-			local option_sel
-			option_sel=$(echo "$fields_json" \
-				| jq -r --arg fid "$field_id" '.fields[] | select(.id == $fid) | .options[] | "\(.id)\t\(.name)"' \
-				| fzf --header="Select New Value" --delimiter=$'\t' --with-nth=2)
-
-			[[ -z "$option_sel" ]] && return
-
-			local option_id
-			option_id=$(echo "$option_sel" | cut -f1)
-
-			# STEP 5: EXECUTION
-			echo "STEP 5: Updating..."
-			gh project item-edit \
-				--id "$item_id" \
-				--project-id "$project_node_id" \
-				--field-id "$field_id" \
-				--single-select-option-id "$option_id"
-
-			echo "✅ Success! Issue moved."
-		)
-	}
+  echo "✅ Success! Issue moved."
+}
