@@ -168,3 +168,5 @@ ghim() {
 
   echo "✅ Success! Issue moved."
 }
+source ~/.zsh/zsh-async/async.zsh
+
