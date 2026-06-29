@@ -37,7 +37,7 @@
     dir                     # current directory
     battery                 # internal battery
 	jj                      # jj status
-    vcs                     # git status
+    # vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
     # prompt_char           # prompt symbol

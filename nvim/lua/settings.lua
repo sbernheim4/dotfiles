@@ -62,11 +62,15 @@ opt.laststatus = 3
 opt.showmode = false
 
 -- Folding
+-- Tree-sitter provides structural folds for supported filetypes. Files open
+-- unfolded by default; use zc/zo or the configured leader mappings to fold.
+opt.foldenable = true
 opt.foldmethod = 'expr'
-opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.wo.foldtext = 'v:lua.vim.treesitter.foldtext()'
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+opt.foldtext = 'v:lua.vim.treesitter.foldtext()'
 opt.foldcolumn = '0'
 opt.foldlevelstart = 99
+opt.foldminlines = 3
 
 -- Completion
 opt.completeopt = { 'menu', 'menuone', 'noselect', 'noinsert' }

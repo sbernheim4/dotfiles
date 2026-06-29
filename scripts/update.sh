@@ -1,17 +1,30 @@
 #!/usr/bin/env bash
 
-/usr/local/bin/brew update
+set -Eeuo pipefail
 
-/usr/local/bin/brew upgrade
+readonly REPO_DIR="${HOME}/dotfiles"
 
-# Update dotfiles
-cd ~/dotfiles && git pull && cd
+command -v brew >/dev/null 2>&1 || {
+    printf 'update: brew is not installed or not on PATH\n' >&2
+    exit 1
+}
+[[ -d "$REPO_DIR/.git" ]] || {
+    printf 'update: dotfiles checkout not found at %s\n' "$REPO_DIR" >&2
+    exit 1
+}
 
-# Update powerlevel10k
-cd ~/.oh-my-zsh/custom/themes/powerlevel10k && git pull && cd
+brew update
+brew upgrade
+git -C "$REPO_DIR" pull --ff-only
 
-# Update community gruvbox
-cd ~/personal/gruvbox-community/ && git pull && cd
+for checkout in \
+    "${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}/themes/powerlevel10k" \
+    "${HOME}/personal/gruvbox-community"; do
+    if [[ -d "$checkout/.git" ]]; then
+        git -C "$checkout" pull --ff-only
+    fi
+done
 
-# Update npm packages
-npm update -g
+if command -v npm >/dev/null 2>&1; then
+    npm update --global
+fi

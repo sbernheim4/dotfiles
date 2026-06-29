@@ -22,7 +22,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z zsh-syntax-highlighting poetry)
+plugins=(git z zsh-syntax-highlighting jj)
 
 #; Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -33,9 +33,10 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 
 # Source custom and private aliases, env vars, functions
-source ~/dotfiles/zsh/secret-keys.sh
-source ~/dotfiles/zsh/aliases.sh
-source ~/dotfiles/zsh/secret-functions.sh
+for private_file in "$HOME/dotfiles/zsh/secret-keys.sh" \
+    "$HOME/dotfiles/zsh/aliases.sh" "$HOME/dotfiles/zsh/secret-functions.sh"; do
+  [[ -r "$private_file" ]] && source "$private_file"
+done
 
 # Load in fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -58,8 +59,8 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/opt/homebrew/bin/icdiff$PATH"
-export PATH="/Users/samuelbernheim/Library/Python/3.9/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+[[ -d "$HOME/Library/Python/3.9/bin" ]] && export PATH="$HOME/Library/Python/3.9/bin:$PATH"
 
 #################################################
 ### Git Stuff
@@ -168,5 +169,7 @@ ghim() {
 
   echo "✅ Success! Issue moved."
 }
-source ~/.zsh/zsh-async/async.zsh
+[[ -r "$HOME/.zsh/zsh-async/async.zsh" ]] && source "$HOME/.zsh/zsh-async/async.zsh"
 
+
+. "$HOME/.local/bin/env"

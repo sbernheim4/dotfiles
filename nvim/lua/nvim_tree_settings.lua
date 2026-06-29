@@ -58,8 +58,7 @@ local function on_attach(bufnr)
 	vim.keymap.set('n', 'Y', api.fs.copy.relative_path, opts('Copy Relative Path'))
 	vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
 	vim.keymap.set('n', '<2-RightMouse>', api.tree.change_root_to_node, opts('CD'))
-	-- END_DEFAULT_ON_ATTACH
-
+	-- Override the defaults for split opening behavior.
 	vim.keymap.set('n', 'I', api.tree.toggle_hidden_filter, opts('Toggle Dotfiles'))
 	vim.keymap.set('n', 'H', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignore'))
 	vim.keymap.set('n', 's', api.node.open.vertical, opts('Open: Vertical Split'))

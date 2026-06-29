@@ -101,7 +101,7 @@ map('n', '<Leader>ak', '<C-W>K', opts)
 map('n', '<Leader>al', '<C-W>L', opts)
 
 -- Misc
-map('n', '<Leader>r', ':source ~/.vimrc<CR>', opts)
+map('n', '<Leader>r', '<cmd>luafile ~/.config/nvim/init.lua<CR>', opts)
 map('n', '<Leader>pwf', ':echo expand("%:p")<CR>', opts)
 
 map('n', 'ss{', 'vi{:sort<CR>', opts)

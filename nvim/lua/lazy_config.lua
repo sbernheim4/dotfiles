@@ -43,11 +43,35 @@ return require('lazy').setup({
 
 	-- Syntax highlighting
 	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
+		"romus204/tree-sitter-manager.nvim",
+		dependencies = {}, -- tree-sitter CLI must be installed system-wide (brew install tree-sitter-cli)
 		config = function()
-		end,
+			require("tree-sitter-manager").setup({
+				ensure_installed = {
+					"go",
+					"lua",
+					"python",
+					"javascript",
+					"typescript",
+					"json",
+					"yaml",
+					"bash",
+					"css",
+					"graphql",
+				},
+				auto_install = true,
+				-- Default Options
+				-- ensure_installed = {}, -- list of parsers to install at the start of a neovim session
+				-- border = nil, -- border style for the window (e.g. "rounded", "single"), if nil, use the default border style defined by 'vim.o.winborder'. See :h 'winborder' for more info.
+				-- auto_install = false, -- if enabled, install missing parsers when editing a new file
+				-- highlight = true, -- treesitter highlighting is enabled by default
+				-- languages = {}, -- override or add new parser sources
+				-- parser_dir = vim.fn.stdpath("data") .. "/site/parser",
+				-- query_dir = vim.fn.stdpath("data") .. "/site/queries",
+			})
+		end
 	},
+
 	{
 		'gruvbox-community/gruvbox',
 		config = function()
@@ -56,7 +80,6 @@ return require('lazy').setup({
 	},
 
 	-- LSP
-	{ 'williamboman/nvim-lsp-installer' },
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
@@ -64,7 +87,6 @@ return require('lazy').setup({
 		end,
 	},
 	{ 'SmiteshP/nvim-navic' },
-	{ 'nvim-lua/popup.nvim' },
 	{ 'ojroques/nvim-lspfuzzy' },
 	{ 'ray-x/lsp_signature.nvim' },
 
@@ -123,14 +145,18 @@ return require('lazy').setup({
 	},
 	{
 		"rcarriga/nvim-dap-ui",
-		config = true,
 		dependencies = {
 			"jay-babu/mason-nvim-dap.nvim",
 			"leoluz/nvim-dap-go",
 			"mfussenegger/nvim-dap-python",
 			"nvim-neotest/nvim-nio",
 			"theHamsta/nvim-dap-virtual-text"
-		}
+		},
+		config = function()
+			if pcall(require, 'nvim-nio') then
+				require('dapui').setup()
+			end
+		end,
 	},
 
 
